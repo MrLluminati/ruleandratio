@@ -30,10 +30,24 @@ export async function testSearch(){
   await page.locator('#search-results a[href="/research/rr-test-article/"]').waitFor({timeout:30000});
   await page.goto(host+'/search/?q='+encodeURIComponent('rrhiddenquartzxylophone'));
   await page.waitForFunction(()=>{const t=document.querySelector('#search-status')?.textContent??'';return t.startsWith('No matching results')||/^\d+ results?/.test(t)||t.startsWith('Unable')||t.startsWith('Search is unavailable')});
-  assert.match(await page.locator('#search-status').innerText(),/^No matching results/,'Unique draft-only search term must not be indexed');
-  assert.equal(await page.locator('#search-results a').count(),0);
-  await page.goto(host+'/research/rr-test-hidden/');
-  assert.equal(await page.locator('body').innerText(),'Not found');
+  const searchStatus=await page.locator('#search-status').innerText();
+  assert.ok(!searchStatus.startsWith('Unable')&&!searchStatus.startsWith('Search is unavailable'),searchStatus);
+  // Check actual index membership instead of assuming unmatched queries never yield other results.
+  const indexed=await page.evaluate(async()=>{
+   const pf=await import('/pagefind/pagefind.js');
+   const result=await pf.search(null);
+   return Promise.all(result.results.map(async hit=>{const data=await hit.data();return {url:data.url,content:data.content,excerpt:data.excerpt,title:data.meta?.title}}));
+  });
+  assert.ok(indexed.length>0,'The index must contain reviewed content');
+  assert.ok(indexed.some(hit=>hit.url.includes('/research/rr-test-article/')),'Reviewed fixture missing from index');
+  for(const hit of indexed){
+   assert.ok(!hit.url.includes('rr-test-hidden'),'Draft route present in index');
+   assert.doesNotMatch([hit.content,hit.excerpt,hit.title].join(' '),/rrhiddenquartzxylophone|RR TEST HIDDEN DRAFT/i);
+  }
+  assert.equal(await page.locator('#search-results a[href*="rr-test-hidden"]').count(),0);
+  console.log('Draft query status: '+searchStatus+'; checked '+indexed.length+' indexed pages for draft leakage.');
+  const missing=await page.goto(host+'/research/rr-test-hidden/');
+  assert.equal(missing.status(),404);
   await page.goto(host+'/');
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Mobile homepage overflow');
   await page.goto(host+'/research/rr-test-article/');
