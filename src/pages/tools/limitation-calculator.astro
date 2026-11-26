@@ -1,0 +1,56 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import {presets,limitationSource} from '../../lib/limitation.mjs';
+---
+<BaseLayout title="Limitation Period Calculator (Beta)" description="Estimate ordinary filing deadlines for selected Limitation Act proceedings with user-verified exclusions and court reopening dates." eligible={false} searchType="Legal tool" breadcrumbs={[{name:'Home',path:'/'},{name:'Legal Tools',path:'/tools/'},{name:'Limitation Period Calculator',path:'/tools/limitation-calculator/'}]}>
+<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/tools/">Legal Tools</a><span>/</span><span aria-current="page">Limitation Period Calculator</span></nav>
+<header class="article-header"><p class="kicker">Legal tools · Beta</p><h1>Limitation Period Calculator</h1><p class="intro">Calculate an indicative ordinary deadline using selected Schedule articles or a period you have independently verified. This is not a filing-date certification.</p></header>
+<div class="rr-tool-grid">
+<section class="rr-tool-panel"><h2>Proceeding and calculation details</h2>
+<form id="limitation-form" hidden>
+<div class="rr-tool-fields">
+<label class="rr-tool-full">Proceeding<select name="preset"><option value="custom">Custom period — verify applicable provision</option>{presets.map(p=><option value={p.id}>{p.label}</option>)}</select></label>
+<p class="notice rr-tool-full" id="limitation-trigger-note">Enter a legally verified triggering date and period.</p>
+<label class="rr-tool-full">Triggering date (excluded)<input type="date" name="trigger" required min="1900-01-01" max="2200-12-31"/></label>
+<label>Period<input name="period" type="number" min="1" max="110000" step="1" value="30" required/></label>
+<label>Unit<select name="unit"><option value="days">Days</option><option value="months">Calendar months</option><option value="years">Calendar years</option></select></label>
+<label>Additional excluded days<input name="excluded" type="number" min="0" max="110000" step="1" value="0" required/></label>
+<label>Legal basis for exclusions<input name="exclusionBasis" maxlength="500" placeholder="e.g. verified Section 12 copy period"/></label>
+<p class="notice rr-tool-full">Enter only additional, legally applicable, non-overlapping days already checked against the running period. Do not count the triggering day twice. Exclusions are not inferred.</p>
+<label>Verified court closure on adjusted deadline<input name="closureDate" type="date" min="1900-01-01" max="2200-12-31"/></label>
+<label>First reopening date<input name="reopening" type="date" min="1900-01-01" max="2200-12-31"/></label>
+<label class="rr-tool-full">Closure authority / court calendar reference<input name="closureBasis" maxlength="500" placeholder="Required if applying closure"/></label>
+<label class="rr-tool-full">Actual or proposed filing date (optional)<input name="comparison" type="date" min="1900-01-01" max="2200-12-31"/></label>
+<label class="rr-tool-full"><input type="checkbox" required/> I have verified the applicable provision, triggering event, exclusions and court reopening rules.</label>
+</div>
+<div class="rr-tool-actions"><button class="rr-button" type="submit">Calculate indicative deadline</button></div>
+</form><noscript><p>Enable JavaScript to use the calculator.</p></noscript></section>
+<section class="rr-tool-panel rr-tool-result"><h2>Calculated deadline</h2><p id="limitation-status" role="status" aria-live="polite">Enter details and calculate.</p>
+<div id="limitation-result" hidden><p class="rr-tool-result-label">Indicative ordinary filing deadline</p><p class="rr-tool-total" id="limitation-deadline"></p><dl class="rr-tool-breakdown" id="limitation-breakdown"></dl><p id="limitation-comparison"></p><p class="notice" id="limitation-condonation"></p><p class="notice" id="limitation-historical"></p><div class="rr-tool-actions"><button id="limitation-copy" type="button" class="rr-tool-secondary">Copy calculation</button><button id="limitation-download" type="button" class="rr-tool-secondary">Download calculation (.txt)</button></div><p id="limitation-export-status" role="status"></p></div>
+</section></div>
+<section class="home-section prose"><h2>Legal basis and assumptions</h2><p>Source: <a href={limitationSource}>Limitation Act, 1963 — official India Code PDF</a>, Sections 3–5, 12–15, 29 and selected Schedule articles. The commencement day is excluded; the model adds the stated calendar period to the triggering date. Month and year arithmetic clamps to the final day of shorter months. Additional excluded days are user-entered after legal verification and added to the ordinary arithmetic date. This is not an automated Section 12, 14 or 15 eligibility assessment.</p><p>Section 4 applies to expiry on a closed court day where legally applicable. Enter the exact adjusted deadline and the verified first reopening day; weekends are not automatically treated as closed. Check official filing arrangements and special enactments. Section 5 does not generally permit condonation of suits and excludes Order XXI CPC applications; other appeals/applications may require sufficient cause and judicial approval. No discretionary extension is added.</p><p>Special/local statutes, acknowledgment or part-payment restarting limitation, disability, fraud, continuing causes, pandemic exclusion orders, state amendments and specific court rules require separate review. Do not use this tool for Section 34 arbitration challenges or other special-law outer limits without specialist verification. No automatic court holiday database. All inputs stay in your browser.</p></section>
+</BaseLayout>
+<script>
+ import {limitationEstimate,presets} from '../../lib/limitation.mjs';
+ const el=(id:string)=>document.getElementById(id)!;
+ const form=el('limitation-form') as HTMLFormElement,result=el('limitation-result'),status=el('limitation-status');
+ const field=(name:string)=>form.elements.namedItem(name) as HTMLInputElement;
+ let report='';
+ function invalidate(){report='';result.hidden=true;status.textContent='Details changed. Calculate again.';el('limitation-export-status').textContent=''}
+ function sync(){const rule=presets.find(p=>p.id===field('preset').value);field('period').disabled=!!rule;field('unit').disabled=!!rule;if(rule){field('period').value=String(rule.period);field('unit').value=rule.unit}el('limitation-trigger-note').textContent=rule?.trigger??'Enter a legally verified triggering date and period.';invalidate()}
+ form.hidden=false;form.addEventListener('input',invalidate);field('preset').addEventListener('change',sync);
+ form.addEventListener('submit',e=>{e.preventDefault();invalidate();try{
+ const r=limitationEstimate({preset:field('preset').value,trigger:field('trigger').value,period:Number(field('period').value),unit:field('unit').value,excluded:Number(field('excluded').value),exclusionBasis:field('exclusionBasis').value,closureDate:field('closureDate').value,reopening:field('reopening').value,closureBasis:field('closureBasis').value,comparison:field('comparison').value});
+ el('limitation-deadline').textContent=r.deadline;
+ const rows=[['Proceeding',r.rule],['Triggering date',r.trigger],['Prescribed period',r.period+' '+r.unit],['Unadjusted date',r.base],['Additional excluded days',String(r.excluded)],['Exclusion basis',r.exclusionBasis||'None entered'],['After exclusions',r.adjusted],['Reopening adjustment',r.reopening||'None entered'],['Closure basis',r.closureBasis||'None entered'],['Day of week',r.weekday]];
+ const dl=el('limitation-breakdown');dl.replaceChildren();for(const [k,v] of rows){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=k;dd.textContent=v;dl.append(dt,dd)}
+ const comparison=r.delta===null?'No filing date compared.':r.delta===0?'Compared date matches calculated deadline.':r.delta>0?r.delta+' calendar days after calculated deadline.':(-r.delta)+' calendar days before calculated deadline.';
+ el('limitation-comparison').textContent=comparison;el('limitation-condonation').textContent=r.condonation;
+ const warning=r.historicalWarning?'Historical period overlaps the COVID limitation-order window. No automatic COVID adjustment applied; independently review the Supreme Court orders and their applicability.':'';
+ el('limitation-historical').textContent=warning;
+ report=['Rule & Ratio — Limitation estimate (beta)',...rows.map(([k,v])=>k+': '+v),'Indicative deadline: '+r.deadline,'Compared filing date: '+(r.comparison||'None'),comparison,r.condonation,warning,'Not certified; no automatic condonation or statutory exclusions.'].join('\n');
+ result.hidden=false;status.textContent='Estimate complete. Verify before relying on it.';
+ }catch(error){status.textContent=error instanceof Error?error.message:'Calculation failed.'}});
+ el('limitation-copy').addEventListener('click',async()=>{if(!report)return;try{await navigator.clipboard.writeText(report);el('limitation-export-status').textContent='Copied.'}catch{el('limitation-export-status').textContent='Clipboard unavailable. Use download.'}});
+ el('limitation-download').addEventListener('click',()=>{if(!report)return;const url=URL.createObjectURL(new Blob([report],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='rule-and-ratio-limitation-estimate.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)});
+</script>
