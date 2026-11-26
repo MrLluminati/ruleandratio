@@ -1,0 +1,234 @@
+[
+  {
+    "slug": "actus-curiae-neminem-gravabit",
+    "term": "Actus curiae neminem gravabit",
+    "category": "Judicial procedure",
+    "translation": "An act of the court should prejudice no one.",
+    "meaning": "A court may correct prejudice attributable to its own procedural error, within its lawful powers.",
+    "example": "A litigant follows an erroneous deposit direction issued by court staff and seeks restoration when the error is discovered.",
+    "caution": "Not a general excuse for a party's own negligence or a power to disregard every statutory deadline.",
+    "related": [],
+    "aliases": [],
+    "sources": [
+      {
+        "title": "Jang Singh v. Brijlal (1963)",
+        "url": "https://indiankanoon.org/doc/1459512/",
+        "pinpoint": "Discussion of the erroneous deposit and court-caused prejudice.",
+        "kind": "public reproduction"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "audi-alteram-partem",
+    "term": "Audi alteram partem",
+    "category": "Natural justice",
+    "translation": "Hear the other side.",
+    "meaning": "A person affected by a decision should ordinarily have a meaningful opportunity to respond to adverse material.",
+    "example": "Before cancelling a licence, an authority ordinarily provides notice of the allegations and a fair opportunity to respond.",
+    "caution": "The content of a hearing depends on the statutory context; exceptions and prejudice require examination.",
+    "related": [
+      "nemo-judex-in-causa-sua"
+    ],
+    "aliases": [],
+    "sources": [
+      {
+        "title": "Satyavir Singh v. Union of India (1985)",
+        "url": "https://indiankanoon.org/doc/1677758/",
+        "pinpoint": "Paragraph 25; discussion of natural justice.",
+        "kind": "public reproduction"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "delegatus-non-potest-delegare",
+    "term": "Delegatus non potest delegare",
+    "category": "Administrative law",
+    "translation": "A delegate cannot delegate.",
+    "meaning": "A person entrusted with statutory power ordinarily cannot transfer that decision-making power without authority.",
+    "example": "An officer given power to decide a licence application cannot simply assign the final decision to a clerk without legal authority.",
+    "caution": "Express or implied authorization may permit subdelegation; ministerial assistance differs from transfer of discretion.",
+    "related": [],
+    "aliases": [],
+    "sources": [
+      {
+        "title": "Sidhartha Sarawgi v. Board of Trustees for Port of Kolkata (2014)",
+        "url": "https://indiankanoon.org/doc/169564876/",
+        "pinpoint": "Discussion under Delegatus Non Potest Delegare.",
+        "kind": "public reproduction"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "ejusdem-generis",
+    "term": "Ejusdem generis",
+    "category": "Statutory interpretation",
+    "translation": "Of the same kind.",
+    "meaning": "General words following specific words may be confined to an identifiable common class where the context warrants.",
+    "example": "A rule covering cars, buses, trucks and other vehicles may be read as addressing road vehicles if the context supports that class.",
+    "caution": "There must be an identifiable genus and no contrary legislative intention; the canon is not mandatory.",
+    "related": [
+      "noscitur-a-sociis"
+    ],
+    "aliases": [],
+    "sources": [
+      {
+        "title": "Amar Chandra Chakraborty v. Collector of Excise (1972)",
+        "url": "https://indiankanoon.org/doc/342005/",
+        "pinpoint": "Discussion of the conditions for ejusdem generis.",
+        "kind": "public reproduction"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "falsus-in-uno-falsus-in-omnibus",
+    "term": "Falsus in uno, falsus in omnibus",
+    "category": "Evidence",
+    "translation": "False in one thing, false in everything.",
+    "meaning": "The maxim proposes rejecting all testimony because part is false. Indian criminal courts do not apply it as a mandatory rule.",
+    "example": "A witness exaggerates one incident; the court assesses whether other parts of the evidence are independently credible.",
+    "caution": "Do not use the maxim as an automatic ground to discard all evidence. Reliable and unreliable portions may sometimes be separated.",
+    "related": [],
+    "aliases": [],
+    "sources": [
+      {
+        "title": "Ugar Ahir v. State of Bihar (1964)",
+        "url": "https://indiankanoon.org/doc/593857/",
+        "pinpoint": "Discussion rejecting the maxim as a rule of law or practice.",
+        "kind": "public reproduction"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "lex-non-cogit-ad-impossibilia",
+    "term": "Lex non cogit ad impossibilia",
+    "category": "Statutory interpretation",
+    "translation": "The law does not compel the impossible.",
+    "meaning": "Genuine impossibility may be relevant when interpreting or applying an obligation, depending on the legal framework.",
+    "example": "Compliance requires an act that has become objectively impossible through circumstances outside the obligated party's control.",
+    "caution": "Difficulty, expense or self-created obstacles are not necessarily impossibility; the applicable legislation controls.",
+    "related": [],
+    "aliases": [],
+    "sources": [
+      {
+        "title": "Narmada Bachao Andolan v. State of M.P. (2011)",
+        "url": "https://indiankanoon.org/doc/769498/",
+        "pinpoint": "Discussion of impossibility and the scope of the doctrine.",
+        "kind": "public reproduction"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "nemo-judex-in-causa-sua",
+    "term": "Nemo judex in causa sua",
+    "category": "Natural justice",
+    "translation": "No one should judge their own cause.",
+    "meaning": "Decision-makers should be free from legally disqualifying bias or conflicting interests.",
+    "example": "A member of a disciplinary panel has a personal financial interest in the outcome of the inquiry.",
+    "caution": "The applicable bias test and doctrines such as necessity depend on the facts and legal framework.",
+    "related": [
+      "audi-alteram-partem"
+    ],
+    "aliases": [
+      "Nemo debet esse judex in propria causa"
+    ],
+    "sources": [
+      {
+        "title": "Satyavir Singh v. Union of India (1985)",
+        "url": "https://indiankanoon.org/doc/1677758/",
+        "pinpoint": "Paragraph 25; rule against bias.",
+        "kind": "public reproduction"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "noscitur-a-sociis",
+    "term": "Noscitur a sociis",
+    "category": "Statutory interpretation",
+    "translation": "A word is known by its associates.",
+    "meaning": "The meaning of a potentially ambiguous expression may be informed by the surrounding words.",
+    "example": "The word 'paper' in a list of industrial packaging materials may take meaning from the neighbouring items, if the context warrants.",
+    "caution": "Context cannot override clear statutory language or an evident intention to give a word broader scope.",
+    "related": [
+      "ejusdem-generis"
+    ],
+    "aliases": [],
+    "sources": [
+      {
+        "title": "Rohit Pulp and Paper Mills Ltd. v. Collector of Central Excise (1990)",
+        "url": "https://indiankanoon.org/doc/1730575/",
+        "pinpoint": "Discussion of the interpretative principle.",
+        "kind": "public reproduction"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "res-ipsa-loquitur",
+    "term": "Res ipsa loquitur",
+    "category": "Evidence",
+    "translation": "The thing speaks for itself.",
+    "meaning": "In an appropriate negligence case, proved circumstances may support an inference of negligence without direct proof of the precise negligent act.",
+    "example": "An object falls from equipment under a defendant's management in circumstances that ordinarily would not occur with proper care.",
+    "caution": "Not strict liability or automatic proof of criminal guilt; the evidential context and explanations matter.",
+    "related": [],
+    "aliases": [],
+    "sources": [
+      {
+        "title": "Syad Akbar v. State of Karnataka (1979)",
+        "url": "https://indiankanoon.org/doc/1291532/",
+        "pinpoint": "Discussion of the evidentiary function and criminal negligence.",
+        "kind": "public reproduction"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "res-judicata",
+    "term": "Res judicata",
+    "category": "Judicial procedure",
+    "translation": "A matter already adjudicated.",
+    "meaning": "Section 11 CPC restricts re-litigation of issues that meet its requirements, including prior final determination by a competent court.",
+    "example": "The same parties attempt to litigate an ownership issue already finally determined between them under the same title.",
+    "caution": "The statutory conditions and explanations must be examined; not every dismissal or earlier observation bars a later case.",
+    "related": [],
+    "aliases": [],
+    "sources": [
+      {
+        "title": "Code of Civil Procedure, 1908",
+        "url": "https://indiankanoon.org/doc/137703392/",
+        "pinpoint": "Section 11 and explanations (public statutory reproduction).",
+        "kind": "public reproduction"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "ubi-jus-ibi-remedium",
+    "term": "Ubi jus ibi remedium",
+    "category": "Judicial procedure",
+    "translation": "Where there is a right, there is a remedy.",
+    "meaning": "A legally recognized right ordinarily calls for a means of enforcement or redress.",
+    "example": "A person whose enforceable civil right is infringed seeks the remedy provided by the relevant law.",
+    "caution": "The maxim does not create a remedy outside statutory jurisdiction or override procedural bars.",
+    "related": [],
+    "aliases": [
+      "Ubi ius ibi remedium"
+    ],
+    "sources": [
+      {
+        "title": "Dhannalal v. Kalawatibai (2002)",
+        "url": "https://indiankanoon.org/doc/446390/",
+        "pinpoint": "Discussion of the right-remedy principle.",
+        "kind": "public reproduction"
+      }
+    ],
+    "status": "preview"
+  }
+]
