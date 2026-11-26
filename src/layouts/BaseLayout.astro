@@ -1,28 +1,62 @@
 ---
 import '../styles/global.css';
 import Masthead from '../components/Masthead.astro';
-interface Props { title:string; description:string; }
-const {title,description}=Astro.props;
+import { indexing, siteOrigin, absolute } from '../lib/site.mjs';
+interface Props {
+ title:string; description:string; eligible?:boolean; searchType?:string; searchSubjects?:string[];
+ breadcrumbs?:{name:string;path:string}[];
+ article?:{type:'Article'|'NewsArticle';author:string;authorType:'Person'|'Organization';published:string;modified?:string;feed?:boolean};
+}
+const {title,description,eligible=false,searchType,searchSubjects=[],breadcrumbs=[],article}=Astro.props;
+const pageTitle=title==='Home'?'Rule & Ratio | Indian Law, Judgments & Research':title+' | Rule & Ratio';
+const indexable=indexing&&eligible;
+const canonical=title==='Page not found'||title==='Search'?undefined:absolute(Astro.url.pathname);
+const jsonLd:Record<string,unknown>[]=[];
+if(indexable&&canonical){
+ if(title==='Home')jsonLd.push({'@context':'https://schema.org','@type':'WebSite',name:'Rule & Ratio',url:siteOrigin,inLanguage:'en-IN'});
+ if(breadcrumbs.length>1)jsonLd.push({'@context':'https://schema.org','@type':'BreadcrumbList',itemListElement:breadcrumbs.map((item,i)=>({'@type':'ListItem',position:i+1,name:item.name,item:absolute(item.path)}))});
+ if(article)jsonLd.push({'@context':'https://schema.org','@type':article.type,headline:title,description,mainEntityOfPage:canonical,url:canonical,inLanguage:'en-IN',author:{'@type':article.authorType,name:article.author},publisher:{'@type':'Organization',name:'Rule & Ratio',url:siteOrigin},datePublished:article.published,...(article.modified?{dateModified:article.modified}:{})});
+}
+const safeJson=(v:unknown)=>JSON.stringify(v).replace(/</g,'\\u003c');
 ---
 <!doctype html>
 <html lang="en-IN">
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>{title === 'Home' ? 'Rule & Ratio | Indian Law, Judgments & Research' : title + ' | Rule & Ratio'}</title>
+<title>{pageTitle}</title>
 <meta name="description" content={description} />
-<meta name="robots" content="noindex, follow" />
+<meta name="robots" content={indexable?'index, follow, max-image-preview:large':'noindex, follow'} />
+{canonical&&<link rel="canonical" href={canonical}/>}
+<meta property="og:site_name" content="Rule &amp; Ratio"/>
+<meta property="og:locale" content="en_IN"/>
+<meta property="og:title" content={pageTitle}/>
+<meta property="og:description" content={description}/>
+<meta property="og:type" content={article?'article':'website'}/>
+{canonical&&<meta property="og:url" content={canonical}/>}
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content={pageTitle}/>
+<meta name="twitter:description" content={description}/>
+{article&&<meta property="article:published_time" content={article.published}/>}
+{article?.modified&&<meta property="article:modified_time" content={article.modified}/>}
+{article?.feed&&<meta name="rr:feed" content="article"/>}
+{indexing&&<link rel="alternate" type="application/rss+xml" title="Rule &amp; Ratio" href={absolute('/rss.xml')}/>}
+{jsonLd.map(data=><script type="application/ld+json" set:html={safeJson(data)}/>)}
 <meta name="theme-color" content="#ffffff" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
 <Masthead />
-<main id="main" class="wrap"><slot /></main>
+<main id="main" class="wrap" data-pagefind-body={searchType?'':undefined}>
+ {searchType&&<span hidden data-pagefind-filter="Type">{searchType}</span>}
+ {searchSubjects.map(subject=><span hidden data-pagefind-filter="Subject">{subject}</span>)}
+ <slot />
+</main>
 <footer class="site-footer"><div class="wrap footer-inner">
  <div><strong>Rule &amp; Ratio</strong><p>Independent Indian legal information and research.</p></div>
- <nav aria-label="Footer navigation"><a href="/about/">About</a><a href="/editorial-policy/">Editorial policy</a><a href="/journal/">Journal</a></nav>
- <p class="notice">Pre-launch development. General information only; not legal advice.</p>
+ <nav aria-label="Footer navigation"><a href="/about/">About</a><a href="/editorial-policy/">Editorial policy</a><a href="/journal/">Journal</a><a href="/search/">Search</a>{indexing&&<a href="/rss.xml">RSS</a>}</nav>
+ <p class="notice">{indexing?'':'Pre-launch development. '}General information only; not legal advice.</p>
 </div></footer>
 </body>
 </html>

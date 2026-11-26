@@ -22,8 +22,8 @@ const articles=defineCollection({
  type:z.enum(types),
  areas:z.array(nonempty.refine(v=>areas.some(a=>a.slug===v),'Unknown area of law')).min(1),
  jurisdiction:nonempty,
- author:nonempty,reviewer:nonempty.optional(),
- publishedAt:date.optional(),reviewedAt:date.optional(),
+ author:nonempty,authorType:z.enum(['Person','Organization']).default('Person'),reviewer:nonempty.optional(),
+ publishedAt:date.optional(),reviewedAt:date.optional(),modifiedAt:date.optional(),
  sources:z.array(source).default([]),
  judgment:judgment.optional(),
  statuteRefs:z.array(z.object({act:z.string().regex(slugPattern),provision:z.string().regex(slugPattern).optional()})).default([]),
@@ -37,6 +37,7 @@ const articles=defineCollection({
  const now=Date.now();
  if(data.publishedAt && data.publishedAt.getTime()>now)fail('Future publication dates are not allowed',['publishedAt']);
  if(data.reviewedAt && data.reviewedAt.getTime()>now)fail('Future review dates are not allowed',['reviewedAt']);
+ if(data.modifiedAt && (data.modifiedAt.getTime()>now || (data.publishedAt && data.modifiedAt<data.publishedAt)))fail('Invalid substantive modification date',['modifiedAt']);
  if(!data.sources.some(s=>s.kind==='primary'))fail('At least one primary source is required',['sources']);
  if(data.type==='judgment'){
   if(!data.judgment)fail('Judgment metadata is required',['judgment']);

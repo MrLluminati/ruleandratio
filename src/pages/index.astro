@@ -1,6 +1,8 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { sections } from '../data/sections';
+import {publishedStatutes} from '../lib/statutes';
+import { indexing } from '../lib/site.mjs';
 import {publishedArticles} from '../lib/publications';
 import {areas} from '../data/areas';
 import {hubPath} from '../data/hubs';
@@ -10,8 +12,8 @@ const lead=sections.filter(s=>['news','judgments','bare-acts'].includes(s.slug))
 const knowledge=sections.filter(s=>['procedures','areas-of-law','research','education','institutions','tools'].includes(s.slug));
 const subjects=areas.slice(0,12);
 ---
-<BaseLayout title="Home" description="Rule & Ratio is a developing independent Indian legal knowledge, judgments, legislation and research publication.">
-  <div class="edition-line"><span>Indian law · Knowledge · Analysis</span><span>Pre-launch edition</span></div>
+<BaseLayout title="Home" eligible={latest.length>0||publishedStatutes().length>0} description="Rule & Ratio is a developing independent Indian legal knowledge, judgments, legislation and research publication.">
+  <div class="edition-line"><span>Indian law · Knowledge · Analysis</span><span>{indexing?"Indian legal publication":"Pre-launch edition"}</span></div>
   <section class="editorial-lead" aria-labelledby="lead-title">
     <div class="lead-copy">
       <p class="kicker">The publication</p>

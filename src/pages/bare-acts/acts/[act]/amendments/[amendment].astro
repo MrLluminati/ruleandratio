@@ -1,10 +1,11 @@
 ---
+import {areaTitle} from '../../../../../data/areas';
 import BaseLayout from '../../../../../layouts/BaseLayout.astro';
 import {publishedStatutes,actPath,provisionPath,provisionLabel} from '../../../../../lib/statutes';
 export function getStaticPaths(){return publishedStatutes().flatMap(act=>act.amendments.map(amendment=>({params:{act:act.slug,amendment:amendment.slug},props:{act,amendment}})))}
 const {act,amendment:a}=Astro.props;
 ---
-<BaseLayout title={a.title} description={a.description}>
+<BaseLayout eligible={true} searchType="Amendment" searchSubjects={act.areas.map(areaTitle)} breadcrumbs={[{name:'Home',path:'/'},{name:'Bare Acts',path:'/bare-acts/'},{name:act.title,path:actPath(act)},{name:a.title,path:Astro.url.pathname}]} title={a.title} description={a.description}>
 <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/bare-acts/">Bare Acts</a><span>/</span><a href={actPath(act)}>{act.title}</a><span>/</span><span aria-current="page">Amendment</span></nav>
 <header class="article-header"><p class="kicker">Recorded amendment</p><h1>{a.title}</h1><p class="intro">{act.title}</p><p class="notice">Recorded effective date: {a.effectiveDate??'Not recorded'} · Act record reviewed {act.reviewedAt}</p></header>
 <div class="prose"><p>{a.description}</p><p><a href={a.source.url}>{a.source.title} ↗</a>{a.source.pinpoint&&<span class="pinpoint">{a.source.pinpoint}</span>}</p></div>

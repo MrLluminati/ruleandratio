@@ -15,17 +15,19 @@ const info=publicationTypes[d.type];
 const section=sections.find(s=>s.slug===info.section);
 const acts=publishedStatutes();
 const statuteLinks=d.statuteRefs.map(ref=>{const act=acts.find(a=>a.slug===ref.act)!;const p=act.provisions.find(p=>p.slug===ref.provision);return {href:p?provisionPath(act,p):actPath(act),label:p?act.title+' — '+provisionLabel(p):act.title}});
+const crumbs=[{name:'Home',path:'/'},{name:section?.title??info.label,path:'/'+info.section+'/'},{name:d.title,path:Astro.url.pathname}];
 const toc=headings.filter(h=>h.depth===2||h.depth===3);
 ---
-<BaseLayout title={d.title} description={d.description}>
+<BaseLayout title={d.title} description={d.description} eligible={true} searchType={info.label} searchSubjects={d.areas.map(areaTitle)} breadcrumbs={crumbs} article={{type:d.type==='news'?'NewsArticle':'Article',author:d.author,authorType:d.authorType,published:isoDate(d.publishedAt!),modified:d.modifiedAt?isoDate(d.modifiedAt):undefined,feed:true}}>
  <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href={`/${info.section}/`}>{section?.title}</a><span aria-hidden="true">/</span><span aria-current="page">{d.title}</span></nav>
  <article class="article-shell">
   <header class="article-header">
    <p class="kicker">{info.label} · {d.jurisdiction}</p>
-   <h1>{d.title}</h1>
+   <h1 data-pagefind-meta="title">{d.title}</h1>
    <p class="intro">{d.description}</p>
    <div class="byline"><span>By <strong>{d.author}</strong></span><span>Reviewed by <strong>{d.reviewer}</strong></span></div>
    <div class="publication-meta">{d.publishedAt && <span>Published <time datetime={isoDate(d.publishedAt)}>{formatDate(d.publishedAt)}</time></span>}{d.reviewedAt && <span>Last reviewed <time datetime={isoDate(d.reviewedAt)}>{formatDate(d.reviewedAt)}</time></span>}</div>
+   {d.modifiedAt&&<p class="notice">Last substantively updated <time datetime={isoDate(d.modifiedAt)}>{formatDate(d.modifiedAt)}</time></p>}
    <div class="article-topics">{d.areas.map(area=><a href={hubPath(area)}>{areaTitle(area)}</a>)}</div>
   </header>
   <div class="article-columns">

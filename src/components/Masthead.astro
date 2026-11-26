@@ -18,6 +18,7 @@ const current=(slug:string)=>Astro.url.pathname===`/${slug}/`?'page':undefined;
   <nav class="wrap nav editorial-nav" aria-label="Main navigation">
     <a href="/" aria-current={Astro.url.pathname==='/'?'page':undefined}>Home</a>
     {sections.filter(s=>primary.includes(s.slug)).map(s=><a href={`/${s.slug}/`} aria-current={current(s.slug)}>{s.title}</a>)}
+    <a class="nav-search" href="/search/" aria-current={Astro.url.pathname==='/search/'?'page':undefined}>Search</a>
     <details class="nav-more"><summary>More</summary><div class="nav-dropdown">{secondary.map(s=><a href={`/${s.slug}/`} aria-current={current(s.slug)}>{s.title}</a>)}</div></details>
   </nav>
 </header>

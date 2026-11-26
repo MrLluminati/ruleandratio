@@ -12,7 +12,7 @@ export async function getStaticPaths(){
 const {act,related}=Astro.props;
 const groups=[...act.chapters.map(c=>({title:c.label+' — '+c.title,provisions:act.provisions.filter(p=>p.chapter===c.slug)})),{title:'Other provisions',provisions:act.provisions.filter(p=>!p.chapter)}].filter(g=>g.provisions.length);
 ---
-<BaseLayout title={act.title} description={`Reviewed statutory text and provision directory for ${act.title}.`}>
+<BaseLayout title={act.title} eligible={true} searchType="Act" searchSubjects={act.areas.map(areaTitle)} breadcrumbs={[{name:'Home',path:'/'},{name:'Bare Acts',path:'/bare-acts/'},{name:act.title,path:Astro.url.pathname}]} description={`Reviewed statutory text and provision directory for ${act.title}.`}>
 <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/bare-acts/">Bare Acts</a><span>/</span><span aria-current="page">{act.title}</span></nav>
 <header class="article-header"><p class="kicker">Statutory library · {act.jurisdiction}</p><h1>{act.title}</h1><p class="intro">{[act.actNumber,act.year].filter(Boolean).join(' · ')}</p><div class="publication-meta"><span>Recorded status: {act.status?.replaceAll('-',' ')}</span><span>Reviewed: {act.reviewedAt}</span><span>Reviewer: {act.reviewer}</span></div><div class="article-topics">{act.areas.map(a=><a href={hubPath(a)}>{areaTitle(a)}</a>)}</div></header>
 <p class="notice">{act.coverage==='complete'?'Editor-declared complete coverage.':'Selected provisions only; this is not a complete consolidated text.'} Verify commencement, amendments and applicability against official sources.</p>

@@ -1,0 +1,21 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import {areas} from '../data/areas';
+import {publicationTypes} from '../data/publication';
+const types=['Act','Provision','Amendment','Subject hub','Directory',...Object.values(publicationTypes).map(t=>t.label)];
+---
+<BaseLayout title="Search" description="Search Rule &amp; Ratio by legal subject, judgment, Act or statutory provision.">
+<p class="kicker">Legal knowledge library</p>
+<h1>Search Rule &amp; Ratio</h1>
+<p class="intro">Find reviewed judgments, legislation, research and subject hubs. Use a case name, citation, Act title, provision number or legal term.</p>
+<form id="rr-search" action="/search/" method="get" class="search-form">
+ <label for="q">Search term</label>
+ <div class="search-query"><input id="q" name="q" type="search" placeholder="e.g. arbitration, Section 34, case name" maxlength="200" required/><button class="rr-button" type="submit">Search</button></div>
+ <div class="search-filters"><label>Content type<select id="type" name="type"><option value="">All content</option>{types.map(type=><option value={type}>{type}</option>)}</select></label><label>Legal subject<select id="subject" name="subject"><option value="">All subjects</option>{areas.map(area=><option value={area.title}>{area.title}</option>)}</select></label></div>
+</form>
+<p id="search-status" role="status" aria-live="polite" class="notice">Enter a search term to get started.</p>
+<div id="search-results" class="search-results"></div>
+<button type="button" class="rr-button" id="search-more" hidden>Load more results</button>
+<noscript><p>Search requires JavaScript. You can still browse <a href="/areas-of-law/">areas of law</a>, <a href="/bare-acts/">Bare Acts</a> and <a href="/judgments/">judgments</a>.</p></noscript>
+<script is:inline type="module" src="/search.js"></script>
+</BaseLayout>
