@@ -56,7 +56,7 @@ export function importStatute(manifestPath,outputRoot='.rr-import'){
   if(!versions.length)fail('No versions: '+pid);unique(versions.map(v=>v.id),'version in '+pid);
   const dated=versions.filter(v=>v.effectiveFrom).sort((a,b)=>a.effectiveFrom.localeCompare(b.effectiveFrom));
   for(let i=1;i<dated.length;i++)if(!dated[i-1].effectiveUntil||dated[i-1].effectiveUntil>dated[i].effectiveFrom)fail('Overlapping effective intervals: '+pid);
-  return {slug:pid,number:nonempty(p.number,'provision number'),kind:p.kind,heading:nonempty(p.heading,'provision heading'),...(p.chapter?{chapter:p.chapter}:{}),versions};
+  return {slug:pid,number:nonempty(p.number,'provision number'),kind:p.kind,heading:nonempty(p.heading,'provision heading'),...(p.chapter?{chapter:p.chapter}:{}),...(p.commentary!==undefined?{commentary:nonempty(p.commentary,'original commentary')}:{}),versions};
  });
  if(!provisions.length)fail('No provisions');unique(provisions.map(p=>p.slug),'provision slug');unique(provisions.map(p=>p.kind+':'+p.number),'provision number');
  const amendments=list(m.amendments??[],'amendments').map(a=>({slug:slug(a.slug,'amendment slug'),title:nonempty(a.title,'amendment title'),description:nonempty(a.description,'amendment description'),source:ref(a.sourceId,nonempty(a.pinpoint,'amendment pinpoint')),...(a.effectiveDate?{effectiveDate:date(a.effectiveDate)}:{}),affectedProvisions:list(a.affectedProvisions??[],'affected provisions').map(p=>slug(p,'affected provision'))}));

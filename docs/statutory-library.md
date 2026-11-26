@@ -15,3 +15,5 @@ Verify official sources (e.g. India Code or official gazettes), applicable copyr
 
 ## Acquisition
 Use the draft-only local importer and review workflow documented in docs/content-acquisition.md before populating this collection.
+
+Published provision records must now include independently written, legally reviewed `commentary`, displayed separately from verbatim statutory versions. The importer can carry draft commentary but cannot approve it. This supports the project reproduction-rights policy; the presence of commentary alone does not establish that all rights or legal review requirements have been met.

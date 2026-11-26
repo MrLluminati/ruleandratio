@@ -7,7 +7,7 @@ const url=z.string().url().refine(v=>/^https?:\/\//i.test(v));
 const date=z.string().regex(/^\d{4}-\d{2}-\d{2}$/).refine(v=>{const d=new Date(v+'T00:00:00Z');return !isNaN(d.getTime())&&d.toISOString().slice(0,10)===v},'Invalid calendar date');
 const source=z.object({title:text,url,pinpoint:text.optional()});
 const version=z.object({id:slug,effectiveFrom:date.optional(),effectiveUntil:date.optional(),text,source,amendmentIds:z.array(slug).default([]),note:text.optional()});
-const provision=z.object({slug,number:text,kind:z.enum(['section','article','rule','schedule','order','regulation','other']),heading:text,chapter:slug.optional(),versions:z.array(version).min(1)});
+const provision=z.object({slug,number:text,kind:z.enum(['section','article','rule','schedule','order','regulation','other']),heading:text,chapter:slug.optional(),commentary:text.optional(),versions:z.array(version).min(1)});
 const amendment=z.object({slug,title:text,description:text,source,effectiveDate:date.optional(),affectedProvisions:z.array(slug).default([])});
 export const statuteSchema=z.object({
  slug,title:text,shortTitle:text.optional(),jurisdiction:text,areas:z.array(text.refine(v=>areas.some(a=>a.slug===v),'Unknown subject')).min(1),
@@ -33,6 +33,7 @@ export function validateStatute(act:Statute){
  if(!act.provisions.length)fail('No reviewed provisions');
  const amendments=new Map(act.amendments.map(a=>[a.slug,a]));
  for(const p of act.provisions){
+  if(!p.commentary)fail('Original provision commentary required: '+p.slug);
   if(p.chapter&&!act.chapters.some(c=>c.slug===p.chapter))fail('Unknown chapter: '+p.chapter);
   unique(p.versions.map(v=>v.id),'version in '+p.slug);
   for(const v of p.versions){

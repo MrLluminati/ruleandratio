@@ -37,6 +37,7 @@ const statute={
       "number": "1",
       "kind": "section",
       "heading": "Synthetic provision",
+      "commentary": "RR TEST ORIGINAL COMMENTARY — fixture only.",
       "chapter": "chapter-one",
       "versions": [
         {
@@ -160,6 +161,7 @@ Not a public article. rrhiddenquartzxylophone
  assert.ok(act.includes('/bare-acts/acts/rr-test-act/amendments/revision/'));
  assert.match(provision,/RR TEST ORIGINAL TEXT/);
  assert.match(provision,/RR TEST REVISED TEXT/);
+ assert.match(provision,/RR TEST ORIGINAL COMMENTARY/);
  assert.ok(provision.includes('/research/rr-test-article/'));
  assert.ok(provision.includes('/bare-acts/acts/rr-test-act/amendments/revision/'));
  assert.ok(amendment.includes('/bare-acts/acts/rr-test-act/provisions/section-1/'));

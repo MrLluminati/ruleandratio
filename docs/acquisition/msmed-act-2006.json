@@ -1,0 +1,115 @@
+{
+  "slug": "msmed-act-2006",
+  "title": "Micro, Small and Medium Enterprises Development Act, 2006",
+  "actNumber": "27 of 2006",
+  "jurisdiction": "India",
+  "source": {
+    "url": "https://www.indiacode.nic.in/bitstream/123456789/5872/1/a2006-27.pdf",
+    "title": "India Code — MSMED Act 2006",
+    "retrieval": "Web PDF inspected; original bytes not downloaded; no checksum claimed"
+  },
+  "coverage": "selected-provisions",
+  "state": "source-map-only-awaiting-extraction-and-review",
+  "chapter": "V",
+  "provisions": [
+    {
+      "slug": "section-15",
+      "number": "15",
+      "headingDescription": "Buyer payment deadline",
+      "printedPages": [
+        9
+      ],
+      "draftArticle": "src/content/articles/msmed/msmed-act-section-15.md"
+    },
+    {
+      "slug": "section-16",
+      "number": "16",
+      "headingDescription": "Interest for delayed payments",
+      "printedPages": [
+        9
+      ],
+      "draftArticle": "src/content/articles/msmed/msmed-act-section-16.md"
+    },
+    {
+      "slug": "section-17",
+      "number": "17",
+      "headingDescription": "Recovery of principal and interest",
+      "printedPages": [
+        9
+      ],
+      "draftArticle": "src/content/articles/msmed/msmed-act-section-17.md"
+    },
+    {
+      "slug": "section-18",
+      "number": "18",
+      "headingDescription": "Reference to the Facilitation Council",
+      "printedPages": [
+        10
+      ],
+      "draftArticle": "src/content/articles/msmed/msmed-act-section-18.md"
+    },
+    {
+      "slug": "section-19",
+      "number": "19",
+      "headingDescription": "Challenge to an award or order",
+      "printedPages": [
+        10
+      ],
+      "draftArticle": "src/content/articles/msmed/msmed-act-section-19.md"
+    },
+    {
+      "slug": "section-20",
+      "number": "20",
+      "headingDescription": "Establishment of Facilitation Councils",
+      "printedPages": [
+        10
+      ],
+      "draftArticle": "src/content/articles/msmed/msmed-act-section-20.md"
+    },
+    {
+      "slug": "section-21",
+      "number": "21",
+      "headingDescription": "Council composition and procedure",
+      "printedPages": [
+        10,
+        11
+      ],
+      "draftArticle": "src/content/articles/msmed/msmed-act-section-21.md"
+    },
+    {
+      "slug": "section-22",
+      "number": "22",
+      "headingDescription": "Financial statement disclosure",
+      "printedPages": [
+        11
+      ],
+      "draftArticle": "src/content/articles/msmed/msmed-act-section-22.md"
+    },
+    {
+      "slug": "section-23",
+      "number": "23",
+      "headingDescription": "Interest and tax deductibility",
+      "printedPages": [
+        11
+      ],
+      "draftArticle": "src/content/articles/msmed/msmed-act-section-23.md"
+    },
+    {
+      "slug": "section-24",
+      "number": "24",
+      "headingDescription": "Interaction with other laws",
+      "printedPages": [
+        11
+      ],
+      "draftArticle": "src/content/articles/msmed/msmed-act-section-24.md"
+    }
+  ],
+  "additionalReview": [
+    "Section 2 definitions and Section 7 classification notifications",
+    "Registration timing and supplier eligibility case law",
+    "Commencement and amendments from official Gazette",
+    "Verify current tax law for Section 23",
+    "Check other provisions before claiming full coverage",
+    "Obtain original PDF, extract and validate text, and add genuine reviewer approval"
+  ]
+}
