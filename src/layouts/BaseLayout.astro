@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
-import { sections } from '../data/sections';
-interface Props { title: string; description: string; }
+import Masthead from '../components/Masthead.astro';
+interface Props { title:string; description:string; }
 const {title,description}=Astro.props;
 ---
 <!doctype html>
@@ -13,23 +13,15 @@ const {title,description}=Astro.props;
 <meta name="description" content={description} />
 <meta name="robots" content="noindex, follow" />
 <meta name="theme-color" content="#ffffff" />
+<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
-<header class="site-header">
- <div class="wrap masthead">
-  <a href="/" class="brand" aria-label="Rule and Ratio home">RULE <span>&amp;</span> RATIO</a>
-  <p>The Law and the Reasoning Behind It.</p>
- </div>
- <nav class="wrap nav" aria-label="Main navigation">
-  <a href="/" aria-current={Astro.url.pathname==='/'?'page':undefined}>Home</a>
-  {sections.map(s=><a href={`/${s.slug}/`} aria-current={Astro.url.pathname===`/${s.slug}/`?'page':undefined}>{s.title}</a>)}
- </nav>
-</header>
+<Masthead />
 <main id="main" class="wrap"><slot /></main>
 <footer class="site-footer"><div class="wrap footer-inner">
  <div><strong>Rule &amp; Ratio</strong><p>Independent Indian legal information and research.</p></div>
- <nav aria-label="Footer navigation"><a href="/about/">About</a><a href="/editorial-policy/">Editorial policy</a></nav>
+ <nav aria-label="Footer navigation"><a href="/about/">About</a><a href="/editorial-policy/">Editorial policy</a><a href="/journal/">Journal</a></nav>
  <p class="notice">Pre-launch development. General information only; not legal advice.</p>
 </div></footer>
 </body>

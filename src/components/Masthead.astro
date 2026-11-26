@@ -1,0 +1,23 @@
+---
+import { sections } from '../data/sections';
+const primary=['news','judgments','bare-acts','procedures','areas-of-law','research'];
+const secondary=sections.filter(s=>!primary.includes(s.slug));
+const current=(slug:string)=>Astro.url.pathname===`/${slug}/`?'page':undefined;
+---
+<header class="site-header">
+  <div class="wrap utility-bar">
+    <span>Independent Indian legal publication</span>
+    <nav aria-label="About the publication"><a href="/about/">About</a><a href="/editorial-policy/">Editorial standards</a></nav>
+  </div>
+  <div class="wrap masthead masthead-new">
+    <a class="masthead-lockup" href="/" aria-label="Rule and Ratio home">
+      <img class="masthead-symbol" src="/brand/monogram.svg" width="465" height="304" alt="" />
+      <span class="masthead-type"><img src="/brand/wordmark.svg" width="1580" height="181" alt="Rule &amp; Ratio" /><span>The Law and the Reasoning Behind It.</span></span>
+    </a>
+  </div>
+  <nav class="wrap nav editorial-nav" aria-label="Main navigation">
+    <a href="/" aria-current={Astro.url.pathname==='/'?'page':undefined}>Home</a>
+    {sections.filter(s=>primary.includes(s.slug)).map(s=><a href={`/${s.slug}/`} aria-current={current(s.slug)}>{s.title}</a>)}
+    <details class="nav-more"><summary>More</summary><div class="nav-dropdown">{secondary.map(s=><a href={`/${s.slug}/`} aria-current={current(s.slug)}>{s.title}</a>)}</div></details>
+  </nav>
+</header>
