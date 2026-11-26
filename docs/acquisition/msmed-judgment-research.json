@@ -1,0 +1,140 @@
+{
+  "state": "draft-research-only",
+  "researchDate": "2026-11-26",
+  "cases": [
+    {
+      "slug": "silpi-industries-v-ksrtc-2021",
+      "name": "Silpi Industries v. Kerala State Road Transport Corporation",
+      "date": "2021-06-29",
+      "sourceUrl": "https://indiankanoon.org/doc/134928159/",
+      "sourceStatus": "public judgment reproduction; official copy pending",
+      "statutoryTopics": [
+        "18",
+        "2",
+        "8"
+      ],
+      "relatedSources": [
+        {
+          "name": "NBCC (India) Ltd. v. State of West Bengal",
+          "url": "https://indiankanoon.org/doc/79643818/",
+          "pinpoint": "Paras 17–18, 29–30"
+        }
+      ]
+    },
+    {
+      "slug": "gujarat-state-civil-supplies-v-mahakali-foods-2022",
+      "name": "Gujarat State Civil Supplies Corporation Ltd. v. Mahakali Foods Pvt. Ltd. (Unit 2)",
+      "date": "2022-10-31",
+      "sourceUrl": "https://indiankanoon.org/doc/78592269/",
+      "sourceStatus": "public judgment reproduction; official copy pending",
+      "statutoryTopics": [
+        "18",
+        "24",
+        "2",
+        "8"
+      ],
+      "relatedSources": [
+        {
+          "name": "NBCC (India) Ltd. v. State of West Bengal",
+          "url": "https://indiankanoon.org/doc/79643818/",
+          "pinpoint": "Paras 19–29"
+        },
+        {
+          "name": "Tamil Nadu Cements Corporation Ltd. — reference order",
+          "url": "https://api.sci.gov.in/supremecourt/2023/3776/3776_2023_1_1501_58592_Order_22-Jan-2025.pdf",
+          "pinpoint": "Page 2, question (iii)"
+        }
+      ]
+    },
+    {
+      "slug": "gujarat-state-disaster-management-authority-v-aska-2021",
+      "name": "Gujarat State Disaster Management Authority v. Aska Equipments Ltd.",
+      "date": "2021-10-08",
+      "sourceUrl": "https://indiankanoon.org/doc/12942739/",
+      "sourceStatus": "public judgment reproduction; official copy pending",
+      "statutoryTopics": [
+        "19"
+      ],
+      "relatedSources": []
+    },
+    {
+      "slug": "goodyear-india-v-norton-intech-rubbers-2012",
+      "name": "Goodyear India Ltd. v. Norton Intech Rubbers (P) Ltd.",
+      "date": "2012-03-15",
+      "sourceUrl": "https://www.casemine.com/judgement/in/56ea9dfd607dba382a079b7a",
+      "sourceStatus": "public judgment reproduction; official copy pending",
+      "statutoryTopics": [
+        "19"
+      ],
+      "relatedSources": [
+        {
+          "name": "Gujarat State Disaster Management Authority v. Aska Equipments Ltd.",
+          "url": "https://indiankanoon.org/doc/12942739/",
+          "pinpoint": "Section 19 discussion"
+        }
+      ]
+    },
+    {
+      "slug": "india-glycols-v-msefc-2023",
+      "name": "India Glycols Ltd. v. Micro and Small Enterprises Facilitation Council, Medchal–Malkajgiri",
+      "date": "2023-11-06",
+      "sourceUrl": "https://indiankanoon.org/doc/121203247/?type=print",
+      "sourceStatus": "public judgment reproduction; official copy pending",
+      "statutoryTopics": [
+        "18",
+        "19"
+      ],
+      "relatedSources": [
+        {
+          "name": "Tamil Nadu Cements Corporation Ltd. — reference order",
+          "url": "https://api.sci.gov.in/supremecourt/2023/3776/3776_2023_1_1501_58592_Order_22-Jan-2025.pdf",
+          "pinpoint": "Page 2, questions (i)–(ii)"
+        }
+      ]
+    },
+    {
+      "slug": "nbcc-india-v-state-of-west-bengal-2025",
+      "name": "NBCC (India) Ltd. v. State of West Bengal",
+      "date": "2025-01-10",
+      "sourceUrl": "https://indiankanoon.org/doc/79643818/",
+      "sourceStatus": "public judgment reproduction; official copy pending",
+      "statutoryTopics": [
+        "2",
+        "8",
+        "18"
+      ],
+      "relatedSources": [
+        {
+          "name": "Tamil Nadu Cements Corporation Ltd. — reference order",
+          "url": "https://api.sci.gov.in/supremecourt/2023/3776/3776_2023_1_1501_58592_Order_22-Jan-2025.pdf",
+          "pinpoint": "Page 3, connected matters"
+        }
+      ]
+    },
+    {
+      "slug": "tamil-nadu-cements-v-msefc-2025-reference",
+      "name": "Tamil Nadu Cements Corporation Ltd. v. Micro and Small Enterprises Facilitation Council",
+      "date": "2025-01-22",
+      "sourceUrl": "https://api.sci.gov.in/supremecourt/2023/3776/3776_2023_1_1501_58592_Order_22-Jan-2025.pdf",
+      "sourceStatus": "official reference order inspected",
+      "statutoryTopics": [
+        "18",
+        "19"
+      ],
+      "relatedSources": []
+    }
+  ],
+  "watchIssues": [
+    {
+      "topic": "Registration and maintainability under Section 18",
+      "authority": "2025 INSC 54",
+      "status": "larger-bench referral verified; latest docket/final disposition not established"
+    },
+    {
+      "topic": "Writ maintainability and same Council member conciliation/arbitration",
+      "authority": "2025 INSC 91",
+      "status": "five-judge referral verified; latest docket/final disposition not established"
+    }
+  ],
+  "notes": "Do not infer overruling or automatic suspension of precedential effect. No statutory links added until reviewed statutory records exist. No paid database access."
+}
