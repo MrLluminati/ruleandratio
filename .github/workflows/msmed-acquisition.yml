@@ -1,0 +1,38 @@
+name: MSMED source acquisition (draft only)
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/msmed-acquisition.yml'
+      - 'scripts/extract_msmed.py'
+      - 'scripts/test_extract_msmed.py'
+permissions:
+  contents: read
+jobs:
+  acquire:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test extraction boundaries
+        run: python3 -m unittest discover -s scripts -p test_extract_msmed.py
+      - name: Install Poppler
+        run: sudo apt-get update -qq && sudo apt-get install -y poppler-utils
+      - name: Retrieve official source
+        run: |
+          mkdir -p .rr-sources
+          curl --fail --show-error --silent --connect-timeout 15 --max-time 60 --proto '=https' 'https://www.indiacode.nic.in/bitstream/123456789/5872/1/a2006-27.pdf' -o .rr-sources/msmed.pdf
+      - name: Prepare draft review package
+        run: python3 scripts/extract_msmed.py .rr-sources/msmed.pdf
+      - uses: actions/upload-artifact@v4
+        with:
+          name: msmed-draft-review
+          path: |
+            .rr-import/msmed-act-2006/
+            .rr-sources/msmed-act-2006/
+          retention-days: 7
+          if-no-files-found: error
