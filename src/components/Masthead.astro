@@ -21,4 +21,58 @@ const current=(slug:string)=>Astro.url.pathname===`/${slug}/`?'page':undefined;
     <a class="nav-search" href="/search/" aria-current={Astro.url.pathname==='/search/'?'page':undefined}>Search</a>
     <details class="nav-more"><summary>More</summary><div class="nav-dropdown">{secondary.map(s=><a href={`/${s.slug}/`} aria-current={current(s.slug)}>{s.title}</a>)}</div></details>
   </nav>
+
+  <div class="wrap mobile-nav-bar">
+    <button type="button" class="mobile-menu-toggle" aria-controls="rr-mobile-menu" aria-expanded="false" aria-haspopup="dialog">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg><span>Menu</span>
+    </button>
+    <a class="mobile-search-link" href="/search/" aria-current={Astro.url.pathname==='/search/'?'page':undefined}>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 4 4"/></svg><span>Search</span>
+    </a>
+  </div>
+  <dialog id="rr-mobile-menu" class="mobile-menu" aria-labelledby="rr-mobile-menu-title">
+    <div class="mobile-menu-panel">
+      <div class="mobile-menu-heading">
+        <a href="/" class="mobile-menu-brand" aria-label="Rule and Ratio home"><img src="/brand/wordmark.svg" width="1580" height="181" alt="Rule &amp; Ratio" /></a>
+        <button class="mobile-menu-close" type="button" aria-label="Close menu" autofocus><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+      </div>
+      <p id="rr-mobile-menu-title" class="mobile-menu-label">Navigation</p>
+      <nav aria-label="Mobile main navigation" class="mobile-menu-links">
+        <a href="/" aria-current={Astro.url.pathname==='/'?'page':undefined}>Home</a>
+        {sections.filter(s=>primary.includes(s.slug)).map(s=><a href={`/${s.slug}/`} aria-current={Astro.url.pathname===`/${s.slug}/`?'page':Astro.url.pathname.startsWith(`/${s.slug}/`)?'location':undefined}>{s.title}</a>)}
+        <p class="mobile-menu-label">More from Rule &amp; Ratio</p>
+        {secondary.map(s=><a href={`/${s.slug}/`} aria-current={Astro.url.pathname===`/${s.slug}/`?'page':Astro.url.pathname.startsWith(`/${s.slug}/`)?'location':undefined}>{s.title}</a>)}
+        <p class="mobile-menu-label">Publication</p>
+        <a href="/search/" aria-current={Astro.url.pathname==='/search/'?'page':undefined}>Search</a>
+        <a href="/about/" aria-current={Astro.url.pathname==='/about/'?'page':undefined}>About</a>
+        <a href="/editorial-policy/" aria-current={Astro.url.pathname==='/editorial-policy/'?'page':undefined}>Editorial standards</a>
+      </nav>
+    </div>
+  </dialog>
 </header>
+
+<script>
+  const dialog=document.querySelector<HTMLDialogElement>('#rr-mobile-menu');
+  const toggle=document.querySelector<HTMLButtonElement>('.mobile-menu-toggle');
+  const closeButton=dialog?.querySelector<HTMLButtonElement>('.mobile-menu-close');
+  const header=toggle?.closest('.site-header');
+  if(dialog&&toggle&&closeButton&&header&&typeof dialog.showModal==='function'){
+    const compact=window.matchMedia('(max-width: 1199px)');
+    header.classList.add('mobile-menu-ready');
+    toggle.addEventListener('click',()=>{
+      if(dialog.open)return;
+      dialog.showModal();
+      toggle.setAttribute('aria-expanded','true');
+      document.documentElement.classList.add('rr-menu-open');
+      closeButton.focus();
+    });
+    closeButton.addEventListener('click',()=>dialog.close());
+    dialog.addEventListener('click',event=>{if(event.target===dialog)dialog.close()});
+    dialog.addEventListener('close',()=>{
+      toggle.setAttribute('aria-expanded','false');
+      document.documentElement.classList.remove('rr-menu-open');
+      if(compact.matches)toggle.focus();
+    });
+    compact.addEventListener('change',event=>{if(!event.matches&&dialog.open)dialog.close()});
+  }
+</script>

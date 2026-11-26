@@ -48,8 +48,47 @@ export async function testSearch(){
   console.log('Draft query status: '+searchStatus+'; checked '+indexed.length+' indexed pages for draft leakage.');
   const missing=await page.goto(host+'/research/rr-test-hidden/');
   assert.equal(missing.status(),404);
+  for(const width of [390,768,1024,1180]){
+   await page.setViewportSize({width,height:844});
+   await page.goto(host+'/');
+   const toggle=page.locator('.mobile-menu-toggle');
+   const drawer=page.locator('#rr-mobile-menu');
+   await toggle.waitFor({state:'visible'});
+   assert.ok(!(await page.locator('.editorial-nav').isVisible()),'Desktop nav visible at '+width);
+   assert.ok(await page.locator('.mobile-search-link').isVisible());
+   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Homepage overflow at '+width);
+   await toggle.click();
+   await drawer.waitFor({state:'visible'});
+   assert.equal(await toggle.getAttribute('aria-expanded'),'true');
+   assert.ok(await drawer.locator('a[href="/judgments/"]').isVisible());
+   assert.ok(await drawer.locator('a[href="/journal/"]').isVisible());
+   assert.ok(await page.evaluate(()=>document.documentElement.classList.contains('rr-menu-open')));
+   await page.keyboard.press('Escape');
+   await drawer.waitFor({state:'hidden'});
+   assert.equal(await toggle.getAttribute('aria-expanded'),'false');
+   assert.ok(await toggle.evaluate(el=>document.activeElement===el));
+   await toggle.click();
+   await drawer.locator('.mobile-menu-close').click();
+   await drawer.waitFor({state:'hidden'});
+   await toggle.click();
+   await drawer.locator('a[href="/judgments/"]').click();
+   await page.waitForURL('**/judgments/');
+   await page.locator('.mobile-menu-toggle').click();
+   assert.equal(await page.locator('#rr-mobile-menu a[href="/judgments/"]').getAttribute('aria-current'),'page');
+   await page.setViewportSize({width:1366,height:900});
+   await page.locator('#rr-mobile-menu').waitFor({state:'hidden'});
+   assert.ok(await page.locator('.editorial-nav').isVisible());
+   assert.ok(!(await page.locator('.mobile-menu-toggle').isVisible()));
+   assert.ok(await page.evaluate(()=>!document.documentElement.classList.contains('rr-menu-open')));
+  }
+  await page.setViewportSize({width:390,height:844});
   await page.goto(host+'/');
-  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Mobile homepage overflow');
+  await page.locator('.mobile-menu-toggle').click();
+  await page.locator('#rr-mobile-menu').waitFor({state:'visible'});
+  await page.mouse.click(385,400);
+  await page.locator('#rr-mobile-menu').waitFor({state:'hidden'});
+  console.log('Responsive navigation tests passed: phone, tablets, desktop, menu links, Escape, close, backdrop and resizing.');
+
   await page.goto(host+'/research/rr-test-article/');
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Mobile article overflow');
   console.log('Browser tests passed: provision full-text search, type/subject filters, draft exclusion, mobile layout overflow checks.');

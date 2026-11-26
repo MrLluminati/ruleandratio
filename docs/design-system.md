@@ -6,3 +6,6 @@ Tokens: navy #08223D; gold #C99B2B; white #FFFFFF; ink #202C38; muted #526172; b
 
 ## Editorial homepage
 White masthead with horizontal logo lockup, compact responsive navigation, publication lead and editorial desk, knowledge library, discipline overview, journal feature, and editorial standards. No fake articles or misleading publication dates. Unpublished content is explicitly marked as pre-launch. The noindex gate remains in place. Search is deferred to RR-012.
+
+## Responsive navigation
+At viewport widths up to 1199px, the horizontal desktop navigation becomes a compact Menu/Search bar and left-side modal drawer. The approved masthead and desktop layout remain unchanged. Drawer uses native dialog semantics, focus restoration, Escape, backdrop and close button, background scroll lock, responsive resize cleanup and reduced-motion support. If JavaScript is unavailable the original navigation remains visible. All publication sections remain accessible.
