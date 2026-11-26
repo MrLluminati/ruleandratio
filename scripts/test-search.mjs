@@ -133,6 +133,18 @@ export async function testSearch(){
   await page.locator('#msme-form button[type="submit"]').click();
   assert.match(await page.locator('#msme-status').innerText(),/Missing bank-rate coverage/);
   assert.ok(!(await page.locator('#msme-result').isVisible()));
+  await page.locator('#rate-list [data-field="from"]').fill('2025-01-01');
+  await page.locator('#invoice-list [data-add-payment]').click();
+  await page.locator('[data-payment="date"]').fill('2025-01-22');
+  await page.locator('[data-payment="amount"]').fill('30000');
+  await page.locator('[data-payment="mode"]').selectOption('principal-only');
+  await page.locator('#msme-form button[type="submit"]').click();
+  assert.equal(await page.locator('#msme-principal').innerText(),'₹70,000.00');
+  assert.equal(await page.locator('#msme-interest').innerText(),'₹419.18');
+  assert.equal(await page.locator('#msme-payments-result tr').count(),1);
+  const [csv]=await Promise.all([page.waitForEvent('download'),page.locator('#msme-csv').click()]);
+  assert.equal(csv.suggestedFilename(),'rule-and-ratio-msme-estimate.csv');
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Payment calculator overflow');
   console.log('MSME estimator browser checks passed.');
   await page.goto(host+'/research/rr-test-article/');
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Mobile article overflow');
