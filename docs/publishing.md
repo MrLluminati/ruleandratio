@@ -21,3 +21,6 @@ Use H2 and H3 headings (page H1 comes from title). Link important propositions t
 5. Commit and push; CI repeats the build and tests. Production launch remains gated by noindex.
 
 Use docs/templates/article.md and docs/templates/judgment.md as non-content examples. No actual articles have been approved or published by this task. The public site is still a preview. Statutory provision versioning, author profile pages, taxonomy hubs, search, SEO/canonical metadata, corrections register and journal editorial infrastructure are later work.
+
+## Statutory references
+Optional front matter statuteRefs links to the statutory library, with act and optional provision slugs. Published references must resolve; see docs/statutory-library.md. The source list remains mandatory and separate.

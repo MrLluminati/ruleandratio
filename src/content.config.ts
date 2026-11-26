@@ -26,6 +26,7 @@ const articles=defineCollection({
  publishedAt:date.optional(),reviewedAt:date.optional(),
  sources:z.array(source).default([]),
  judgment:judgment.optional(),
+ statuteRefs:z.array(z.object({act:z.string().regex(slugPattern),provision:z.string().regex(slugPattern).optional()})).default([]),
  draft:z.boolean().default(true),
  }).superRefine((data,ctx)=>{
  const fail=(message:string,path:string[])=>ctx.addIssue({code:'custom',message,path});

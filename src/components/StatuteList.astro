@@ -1,0 +1,6 @@
+---
+import {type Statute,actPath} from '../lib/statutes';
+interface Props {acts:Statute[]}
+const {acts}=Astro.props;
+---
+{acts.length ? <div class="statute-list">{acts.map(act=><article class="statute-row"><div><p class="kicker">{act.jurisdiction}{act.year?' · '+act.year:''}</p><h3><a href={actPath(act)}>{act.title}</a></h3><p class="notice">{act.provisions.length} reviewed {act.provisions.length===1?'provision':'provisions'} · {act.coverage==='complete'?'Complete coverage (editor-declared)':'Selected provisions'}</p></div><a class="text-link" href={actPath(act)}>Browse text →</a></article>)}</div>:<p class="notice publication-empty">Reviewed statutory texts will appear here when available.</p>}

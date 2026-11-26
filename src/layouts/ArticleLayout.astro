@@ -4,6 +4,8 @@ import ArticleList from '../components/ArticleList.astro';
 import JudgmentDetails from '../components/JudgmentDetails.astro';
 import {publicationTypes} from '../data/publication';
 import {sections} from '../data/sections';
+import {hubPath} from '../data/hubs';
+import {publishedStatutes,actPath,provisionPath,provisionLabel} from '../lib/statutes';
 import {areaTitle} from '../data/areas';
 import {type Article,formatDate,isoDate} from '../lib/publications';
 interface Props {entry:Article;related:Article[];headings:{depth:number;slug:string;text:string}[]}
@@ -11,6 +13,8 @@ const {entry,related,headings}=Astro.props;
 const d=entry.data;
 const info=publicationTypes[d.type];
 const section=sections.find(s=>s.slug===info.section);
+const acts=publishedStatutes();
+const statuteLinks=d.statuteRefs.map(ref=>{const act=acts.find(a=>a.slug===ref.act)!;const p=act.provisions.find(p=>p.slug===ref.provision);return {href:p?provisionPath(act,p):actPath(act),label:p?act.title+' — '+provisionLabel(p):act.title}});
 const toc=headings.filter(h=>h.depth===2||h.depth===3);
 ---
 <BaseLayout title={d.title} description={d.description}>
@@ -22,12 +26,13 @@ const toc=headings.filter(h=>h.depth===2||h.depth===3);
    <p class="intro">{d.description}</p>
    <div class="byline"><span>By <strong>{d.author}</strong></span><span>Reviewed by <strong>{d.reviewer}</strong></span></div>
    <div class="publication-meta">{d.publishedAt && <span>Published <time datetime={isoDate(d.publishedAt)}>{formatDate(d.publishedAt)}</time></span>}{d.reviewedAt && <span>Last reviewed <time datetime={isoDate(d.reviewedAt)}>{formatDate(d.reviewedAt)}</time></span>}</div>
-   <div class="article-topics">{d.areas.map(area=><span>{areaTitle(area)}</span>)}</div>
+   <div class="article-topics">{d.areas.map(area=><a href={hubPath(area)}>{areaTitle(area)}</a>)}</div>
   </header>
   <div class="article-columns">
    <div class="article-main">
     {d.type==='judgment' && d.judgment && <JudgmentDetails judgment={d.judgment}/>}
     <div class="prose article-body"><slot/></div>
+    {statuteLinks.length>0&&<section class="article-sources"><h2>Statutory references</h2><ul class="reference-list">{statuteLinks.map(ref=><li><a href={ref.href}>{ref.label}</a></li>)}</ul></section>}
     <section class="article-sources" id="sources" aria-labelledby="source-title">
      <h2 id="source-title">Sources and references</h2>
      <ol>{d.sources.map(source=><li><a href={source.url}>{source.title}</a> <span class="source-kind">{source.kind==='primary'?'Primary source':'Secondary source'}</span>{source.pinpoint && <span class="pinpoint">{source.pinpoint}</span>}</li>)}</ol>

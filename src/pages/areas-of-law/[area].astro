@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleList from '../../components/ArticleList.astro';
+import StatuteList from '../../components/StatuteList.astro';
+import {areas} from '../../data/areas';
+import {hubTopics} from '../../data/hubs';
+import {publishedArticles} from '../../lib/publications';
+import {publishedStatutes} from '../../lib/statutes';
+import {publicationTypes} from '../../data/publication';
+export async function getStaticPaths(){
+ const entries=await publishedArticles();const acts=publishedStatutes();
+ return areas.map(area=>({params:{area:area.slug},props:{area,entries:entries.filter(e=>e.data.areas.includes(area.slug)),acts:acts.filter(a=>a.areas.includes(area.slug))}}));
+}
+const {area,entries,acts}=Astro.props;
+const topics=hubTopics[area.slug]??[];
+const groups=Object.entries(publicationTypes).map(([type,info])=>({type,label:info.label,items:entries.filter(e=>e.data.type===type)})).filter(g=>g.items.length);
+---
+<BaseLayout title={area.title} description={`Explore reviewed statutes, judgments, procedural guides and research in ${area.title}.`}>
+<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/areas-of-law/">Areas of law</a><span>/</span><span aria-current="page">{area.title}</span></nav>
+<header class="article-header"><p class="kicker">Legal knowledge hub</p><h1>{area.title}</h1><p class="intro">Statutory texts, judgments, procedures and research organized by subject.</p><p class="notice">{entries.length} published readings · {acts.length} reviewed statutes</p></header>
+{topics.length>0 && <section class="home-section"><h2>Coverage roadmap</h2><p class="notice">Topics planned for this hub; not yet a complete guide.</p><ul class="subject-list">{topics.map(topic=><li>{topic}</li>)}</ul></section>}
+<section class="home-section"><h2>Statutory library</h2><StatuteList acts={acts}/></section>
+{groups.length ? groups.map(group=><section class="home-section"><h2>{group.label}</h2><ArticleList entries={group.items}/></section>):<section class="home-section"><h2>Judgments, guides and analysis</h2><ArticleList entries={entries}/></section>}
+</BaseLayout>

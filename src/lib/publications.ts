@@ -1,4 +1,5 @@
 import {getCollection,type CollectionEntry} from 'astro:content';
+import {publishedStatutes} from './statutes';
 import {publicationTypes} from '../data/publication';
 export type Article=CollectionEntry<'articles'>;
 export function articlePath(entry:Article){
@@ -8,10 +9,12 @@ export function articlePath(entry:Article){
 export async function publishedArticles(){
  const entries=await getCollection('articles',({data})=>!data.draft);
  const paths=new Set<string>();
+ const statutes=publishedStatutes();
  for(const entry of entries){
   const path=articlePath(entry);
   if(paths.has(path))throw new Error('Duplicate publication route: '+path);
   paths.add(path);
+  for(const ref of entry.data.statuteRefs){const act=statutes.find(a=>a.slug===ref.act);if(!act || (ref.provision&&!act.provisions.some(p=>p.slug===ref.provision)))throw new Error('Unresolved statutory reference in '+path+': '+ref.act+'/'+(ref.provision??''));}
  }
  return entries.sort((a,b)=>(b.data.publishedAt?.getTime()??0)-(a.data.publishedAt?.getTime()??0)||articlePath(a).localeCompare(articlePath(b)));
 }
