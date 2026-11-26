@@ -20,7 +20,13 @@
       ],
       "relation": "corresponding",
       "analysis": "The definition is relocated. Compare the elements of intention and knowledge in the applicable text.",
-      "status": "preview"
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "299",
+          "new": "100"
+        }
+      ]
     },
     {
       "slug": "murder-definition",
@@ -34,7 +40,13 @@
       ],
       "relation": "corresponding",
       "analysis": "The definition and exceptions remain distinct from the punishment provision; check the applicable exceptions.",
-      "status": "preview"
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "300",
+          "new": "101"
+        }
+      ]
     },
     {
       "slug": "murder-punishment",
@@ -49,7 +61,17 @@
       ],
       "relation": "changed",
       "analysis": "The general punishment is addressed in subsection (1); subsection (2) separately addresses a specified group-based form of murder. Do not treat the additional subsection as an exact IPC counterpart.",
-      "status": "preview"
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "302",
+          "new": "103(1)"
+        },
+        {
+          "old": null,
+          "new": "103(2)"
+        }
+      ]
     },
     {
       "slug": "culpable-homicide-punishment",
@@ -63,7 +85,13 @@
       ],
       "relation": "changed",
       "analysis": "The punishment framework changes. Compare the intention and knowledge limbs separately.",
-      "status": "preview"
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "304",
+          "new": "105"
+        }
+      ]
     },
     {
       "slug": "negligent-death",
@@ -77,7 +105,13 @@
       ],
       "relation": "changed",
       "analysis": "The ordinary maximum custodial term increases from two to five years; a separate two-year maximum applies to registered medical practitioners performing medical procedures under the stated conditions.",
-      "status": "preview"
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "304A",
+          "new": "106(1)"
+        }
+      ]
     },
     {
       "slug": "negligent-driving-reporting",
@@ -89,7 +123,13 @@
       ],
       "relation": "new",
       "analysis": "A distinct subsection addresses specified driving and reporting circumstances. The initial commencement notification excluded this subsection; verify any later commencement notification before applying it.",
-      "status": "preview"
+      "status": "preview",
+      "pairs": [
+        {
+          "old": null,
+          "new": "106(2)"
+        }
+      ]
     },
     {
       "slug": "attempt-murder",
@@ -103,7 +143,13 @@
       ],
       "relation": "changed",
       "analysis": "The provision is relocated with changes including the treatment of an attempt by a life convict. Verify the applicable subsection.",
-      "status": "preview"
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "307",
+          "new": "109"
+        }
+      ]
     },
     {
       "slug": "attempt-culpable-homicide",
@@ -117,7 +163,13 @@
       ],
       "relation": "corresponding",
       "analysis": "Compare the definition and the separate punishment limb where hurt results.",
-      "status": "preview"
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "308",
+          "new": "110"
+        }
+      ]
     },
     {
       "slug": "hurt",
@@ -131,7 +183,13 @@
       ],
       "relation": "corresponding",
       "analysis": "The definition is relocated; distinguish it from the provision punishing voluntary hurt.",
-      "status": "preview"
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "319",
+          "new": "114"
+        }
+      ]
     },
     {
       "slug": "voluntary-hurt",
@@ -147,7 +205,17 @@
       ],
       "relation": "merged",
       "analysis": "Definition and punishment are brought together in one section, with distinct subsections. Compare the penalty provisions.",
-      "status": "preview"
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "321",
+          "new": "115(1)"
+        },
+        {
+          "old": "323",
+          "new": "115(2)"
+        }
+      ]
     },
     {
       "slug": "grievous-hurt",
@@ -161,7 +229,13 @@
       ],
       "relation": "changed",
       "analysis": "The statutory categories require comparison; the duration criterion in the final category changes from twenty to fifteen days.",
-      "status": "preview"
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "320",
+          "new": "116"
+        }
+      ]
     },
     {
       "slug": "voluntary-grievous-hurt",
@@ -179,7 +253,25 @@
       ],
       "relation": "merged",
       "analysis": "Definition and punishment are consolidated, with additional aggravated circumstances addressed in later subsections. Not every BNS subsection corresponds to an IPC provision.",
-      "status": "preview"
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "322",
+          "new": "117(1)"
+        },
+        {
+          "old": "325",
+          "new": "117(2)"
+        },
+        {
+          "old": null,
+          "new": "117(3)"
+        },
+        {
+          "old": null,
+          "new": "117(4)"
+        }
+      ]
     },
     {
       "slug": "organised-crime",
@@ -191,7 +283,13 @@
       ],
       "relation": "new",
       "analysis": "A dedicated BNS offence; no direct IPC section in the correspondence table. Other special enactments may address overlapping conduct.",
-      "status": "preview"
+      "status": "preview",
+      "pairs": [
+        {
+          "old": null,
+          "new": "111"
+        }
+      ]
     },
     {
       "slug": "petty-organised-crime",
@@ -203,7 +301,13 @@
       ],
       "relation": "new",
       "analysis": "A dedicated BNS provision. The absence of a direct IPC counterpart does not imply that underlying conduct was lawful before BNS.",
-      "status": "preview"
+      "status": "preview",
+      "pairs": [
+        {
+          "old": null,
+          "new": "112"
+        }
+      ]
     },
     {
       "slug": "theft",
@@ -219,7 +323,17 @@
       ],
       "relation": "merged",
       "analysis": "Definition and punishment share a section. BNS introduces a conditional community-service rule for certain first convictions involving low-value stolen property and restoration; check all statutory conditions.",
-      "status": "preview"
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "378",
+          "new": "303(1)"
+        },
+        {
+          "old": "379",
+          "new": "303(2)"
+        }
+      ]
     },
     {
       "slug": "snatching",
@@ -231,7 +345,13 @@
       ],
       "relation": "new",
       "analysis": "A separate BNS offence; conduct may previously have fallen under other offences depending on facts.",
-      "status": "preview"
+      "status": "preview",
+      "pairs": [
+        {
+          "old": null,
+          "new": "304"
+        }
+      ]
     },
     {
       "slug": "dwelling-theft",
@@ -245,7 +365,13 @@
       ],
       "relation": "changed",
       "analysis": "The BNS provision expressly addresses additional locations or property categories. Check the specific clause.",
-      "status": "preview"
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "380",
+          "new": "305"
+        }
+      ]
     },
     {
       "slug": "employee-theft",
@@ -259,7 +385,13 @@
       ],
       "relation": "corresponding",
       "analysis": "The corresponding provision concerns theft by a clerk or servant of property in the master's possession.",
-      "status": "preview"
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "381",
+          "new": "306"
+        }
+      ]
     },
     {
       "slug": "extortion",
@@ -285,7 +417,37 @@
       ],
       "relation": "merged",
       "analysis": "Definition, ordinary punishment and aggravated forms are consolidated. The ordered section lists align with the subsection correspondences; select the specific limb.",
-      "status": "preview"
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "383",
+          "new": "308(1)"
+        },
+        {
+          "old": "384",
+          "new": "308(2)"
+        },
+        {
+          "old": "385",
+          "new": "308(3)"
+        },
+        {
+          "old": "386",
+          "new": "308(5)"
+        },
+        {
+          "old": "387",
+          "new": "308(4)"
+        },
+        {
+          "old": "388",
+          "new": "308(7)"
+        },
+        {
+          "old": "389",
+          "new": "308(6)"
+        }
+      ]
     },
     {
       "slug": "breach-of-trust",
@@ -307,7 +469,29 @@
       ],
       "relation": "merged",
       "analysis": "Definition and different punishment categories are consolidated. Ordinary maximum imprisonment changes from three to five years; verify the specific category.",
-      "status": "preview"
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "405",
+          "new": "316(1)"
+        },
+        {
+          "old": "406",
+          "new": "316(2)"
+        },
+        {
+          "old": "407",
+          "new": "316(3)"
+        },
+        {
+          "old": "408",
+          "new": "316(4)"
+        },
+        {
+          "old": "409",
+          "new": "316(5)"
+        }
+      ]
     },
     {
       "slug": "stolen-property",
@@ -329,7 +513,29 @@
       ],
       "relation": "merged",
       "analysis": "Separate IPC provisions are consolidated into distinct subsections. Check the applicable elements and punishment.",
-      "status": "preview"
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "410",
+          "new": "317(1)"
+        },
+        {
+          "old": "411",
+          "new": "317(2)"
+        },
+        {
+          "old": "412",
+          "new": "317(3)"
+        },
+        {
+          "old": "413",
+          "new": "317(4)"
+        },
+        {
+          "old": "414",
+          "new": "317(5)"
+        }
+      ]
     },
     {
       "slug": "cheating",
@@ -349,7 +555,25 @@
       ],
       "relation": "merged",
       "analysis": "Definition and different punishment limbs are grouped together. Ordinary cheating has an increased maximum term; the dishonest inducement to deliver property is addressed separately in subsection (4).",
-      "status": "preview"
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "415",
+          "new": "318(1)"
+        },
+        {
+          "old": "417",
+          "new": "318(2)"
+        },
+        {
+          "old": "418",
+          "new": "318(3)"
+        },
+        {
+          "old": "420",
+          "new": "318(4)"
+        }
+      ]
     },
     {
       "slug": "personation",
@@ -365,7 +589,17 @@
       ],
       "relation": "merged",
       "analysis": "Definition and punishment are consolidated; compare the punishment provisions.",
-      "status": "preview"
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "416",
+          "new": "319(1)"
+        },
+        {
+          "old": "419",
+          "new": "319(2)"
+        }
+      ]
     }
   ]
 }
