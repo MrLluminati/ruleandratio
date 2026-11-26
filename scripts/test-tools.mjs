@@ -18,3 +18,11 @@ test('MSME monthly rests',()=>{const r=msmeEstimate([inv],[bank],'2025-03-17').r
 test('MSME changes within a rest',()=>{const r=msmeEstimate([inv],[{...bank,to:'2025-02-01'},{...bank,from:'2025-02-01',rate:5}],'2025-02-17').rows[0];assert.ok(Math.abs(r.interest-100000*(.18*15+.15*16)/365)<1e-8)});
 test('MSME coverage and multiple invoices',()=>{assert.throws(()=>msmeEstimate([inv],[],'2025-02-17'),/coverage/);assert.throws(()=>msmeEstimate([inv],[bank,bank],'2025-02-17'),/overlap/);assert.equal(msmeEstimate([inv],[],'2025-01-16').totals.interest,0);assert.equal(msmeEstimate([inv,{...inv,id:'B'}],[bank],'2025-02-17').totals.principal,200000)});
 test('MSME month-end clamp',()=>{const r=msmeEstimate([{...inv,acceptance:'2025-01-30',terms:0}],[bank],'2025-03-31').rows[0];const a=100000*.18*28/365,b=(100000+a)*.18*31/365;assert.ok(Math.abs(r.interest-a-b)<1e-8)});
+
+import {readFileSync} from 'node:fs';
+import {historicalRatePeriods} from '../src/lib/rbi-rates.mjs';
+const history=JSON.parse(readFileSync(new URL('../src/data/rbi-bank-rates.json',import.meta.url),'utf8'));
+test('RBI history is ordered, sourced and continuous',()=>{const r=historicalRatePeriods(history,history.coverageStart,history.endExclusive);assert.equal(r.length,history.changes.length);assert.equal(r[0].rate,6);assert.equal(r.at(-1).rate,5.75);assert.ok(r.every((p,i)=>i===0||p.from===r[i-1].to));assert.ok(r.every(p=>p.url.startsWith('https://')&&p.source.includes('RBI')))});
+test('RBI 2025 rate transitions and clipping',()=>{const r=historicalRatePeriods(history,'2025-04-08','2025-06-07');assert.deepEqual(r.map(p=>[p.from,p.to,p.rate]),[['2025-04-08','2025-04-09',6.5],['2025-04-09','2025-06-06',6.25],['2025-06-06','2025-06-07',5.75]])});
+test('RBI history rejects extrapolation',()=>{assert.throws(()=>historicalRatePeriods(history,'2006-10-01','2006-10-03'),/coverage/);assert.throws(()=>historicalRatePeriods(history,'2026-11-26','2026-11-28'),/coverage/)});
+test('RBI automatic rates integrate with MSME model',()=>{const r=msmeEstimate([inv],historicalRatePeriods(history,'2025-01-17','2025-01-27'),'2025-01-27');assert.ok(Math.abs(r.totals.interest-100000*.2025*10/365)<1e-8)});

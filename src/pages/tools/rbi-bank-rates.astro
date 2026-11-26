@@ -1,0 +1,10 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import data from '../../data/rbi-bank-rates.json';
+---
+<BaseLayout title="RBI Bank Rate History (Beta)" description="Dated RBI bank-rate records used by the MSME interest estimator, with official source references." eligible={false} searchType="Legal tool" breadcrumbs={[{name:'Home',path:'/'},{name:'Legal Tools',path:'/tools/'},{name:'RBI Bank Rate History',path:'/tools/rbi-bank-rates/'}]}>
+<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/tools/">Legal Tools</a><span>/</span><span aria-current="page">RBI Bank Rate History</span></nav>
+<header class="article-header"><p class="kicker">Reference data · Beta</p><h1>RBI Bank Rate History</h1><p class="intro">Source-transcribed bank-rate changes used by the Rule &amp; Ratio MSME Interest Calculator.</p><p>Coverage: {data.coverageStart} to {data.verifiedThrough} (inclusive). Dataset version: {data.version}.</p><p class="notice">{data.note}</p><a class="rr-button" href="/tools/msme-interest-calculator/">Open MSME Interest Calculator</a></header>
+<div class="msme-table-wrap"><table class="msme-table"><thead><tr><th>From (inclusive)</th><th>To (exclusive)</th><th>Bank rate (% p.a.)</th><th>3 × bank rate (% p.a.)</th><th>Source</th></tr></thead><tbody>{data.changes.map((c,i)=><tr><td>{c.from}</td><td>{data.changes[i+1]?.from??data.endExclusive}</td><td>{c.rate.toFixed(2)}</td><td>{(3*c.rate).toFixed(2)}</td><td><a href={data.sources[c.source].url}>Official RBI source</a></td></tr>)}</tbody></table></div>
+<section class="home-section"><h2>Official source register</h2><ul class="reference-list">{Object.values(data.sources).map(s=><li><a href={s.url}>{s.title}</a>{s.supportingUrls?.map((u,i)=><p><a href={u}>Supporting RBI source {i+1}</a></p>)}</li>)}</ul><p class="notice">No automatic future updates. The data is not a certified RBI statement, and the calculator remains a beta pending legal review.</p></section>
+</BaseLayout>

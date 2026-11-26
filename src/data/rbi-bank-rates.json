@@ -1,0 +1,255 @@
+{
+  "version": "2026-11-26",
+  "coverageStart": "2006-10-02",
+  "verifiedThrough": "2026-11-26",
+  "endExclusive": "2026-11-27",
+  "note": "Source-transcribed beta data, not independently human-reviewed. Day-level convention uses RBI handbook effective dates, including the close-of-business revision on 2012-02-13. Initial date is coverage boundary, not a rate-change date. No extrapolation beyond cutoff.",
+  "sources": {
+    "baseline": {
+      "title": "RBI Annual Report 2002–03, Table 8.1; subsequent Bank Rate change table and 2012 notification",
+      "url": "https://www.rbi.org.in/scripts/AnnualReportPublications.aspx?Id=341",
+      "supportingUrls": [
+        "https://www.rbi.org.in/scripts/PublicationsView.aspx?id=22517",
+        "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=7062&Mode=0"
+      ]
+    },
+    "adjustment": {
+      "title": "RBI Bank Rate notification, 13 February 2012 (close of business); handbook effective date",
+      "url": "https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=7062&Mode=0",
+      "supportingUrls": [
+        "https://www.rbi.org.in/scripts/PublicationsView.aspx?id=23217"
+      ]
+    },
+    "handbook": {
+      "title": "RBI Handbook of Statistics on Indian Economy, 29 August 2025, Table 43, Bank Rate column",
+      "url": "https://www.rbi.org.in/scripts/PublicationsView.aspx?id=23217",
+      "supportingUrls": [
+        "https://www.rbi.org.in/scripts/PublicationsView.aspx?id=22517"
+      ]
+    },
+    "apr25": {
+      "title": "RBI Monetary Policy Decisions, April 2025",
+      "url": "https://www.rbi.org.in/scripts/PublicationsView.aspx?Id=23149"
+    },
+    "jun25": {
+      "title": "RBI Governor's Statement, 6 June 2025",
+      "url": "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=60605",
+      "supportingUrls": [
+        "https://www.rbi.org.in/scripts/FS_PressRelease.aspx?prid=60957",
+        "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=61332"
+      ]
+    },
+    "dec25": {
+      "title": "RBI Governor's Statement, 5 December 2025",
+      "url": "https://www.rbi.org.in/Scripts/BS_ViewBulletin.aspx?Id=23841",
+      "supportingUrls": [
+        "https://www.rbi.org.in/scripts/BS_ViewBulletin.aspx?Id=24239",
+        "https://www.rbi.org.in/scripts/BS_PressReleaseDisplay.aspx?prid=63288"
+      ]
+    },
+    "oct26": {
+      "title": "RBI Governor's Statement, 7 October 2026",
+      "url": "https://www.rbi.org.in/Scripts/BS_PressReleaseDisplay.aspx?prid=63744",
+      "supportingUrls": [
+        "https://www.rbi.org.in/?id=10395"
+      ]
+    }
+  },
+  "changes": [
+    {
+      "from": "2006-10-02",
+      "rate": 6,
+      "source": "baseline"
+    },
+    {
+      "from": "2012-02-13",
+      "rate": 9.5,
+      "source": "adjustment"
+    },
+    {
+      "from": "2012-04-17",
+      "rate": 9,
+      "source": "handbook"
+    },
+    {
+      "from": "2013-01-29",
+      "rate": 8.75,
+      "source": "handbook"
+    },
+    {
+      "from": "2013-03-19",
+      "rate": 8.5,
+      "source": "handbook"
+    },
+    {
+      "from": "2013-05-03",
+      "rate": 8.25,
+      "source": "handbook"
+    },
+    {
+      "from": "2013-07-15",
+      "rate": 10.25,
+      "source": "handbook"
+    },
+    {
+      "from": "2013-09-20",
+      "rate": 9.5,
+      "source": "handbook"
+    },
+    {
+      "from": "2013-10-07",
+      "rate": 9,
+      "source": "handbook"
+    },
+    {
+      "from": "2013-10-29",
+      "rate": 8.75,
+      "source": "handbook"
+    },
+    {
+      "from": "2014-01-28",
+      "rate": 9,
+      "source": "handbook"
+    },
+    {
+      "from": "2015-01-15",
+      "rate": 8.75,
+      "source": "handbook"
+    },
+    {
+      "from": "2015-03-04",
+      "rate": 8.5,
+      "source": "handbook"
+    },
+    {
+      "from": "2015-06-02",
+      "rate": 8.25,
+      "source": "handbook"
+    },
+    {
+      "from": "2015-09-29",
+      "rate": 7.75,
+      "source": "handbook"
+    },
+    {
+      "from": "2016-04-05",
+      "rate": 7,
+      "source": "handbook"
+    },
+    {
+      "from": "2016-10-04",
+      "rate": 6.75,
+      "source": "handbook"
+    },
+    {
+      "from": "2017-04-06",
+      "rate": 6.5,
+      "source": "handbook"
+    },
+    {
+      "from": "2017-08-02",
+      "rate": 6.25,
+      "source": "handbook"
+    },
+    {
+      "from": "2018-06-06",
+      "rate": 6.5,
+      "source": "handbook"
+    },
+    {
+      "from": "2018-08-01",
+      "rate": 6.75,
+      "source": "handbook"
+    },
+    {
+      "from": "2019-02-07",
+      "rate": 6.5,
+      "source": "handbook"
+    },
+    {
+      "from": "2019-04-04",
+      "rate": 6.25,
+      "source": "handbook"
+    },
+    {
+      "from": "2019-06-06",
+      "rate": 6,
+      "source": "handbook"
+    },
+    {
+      "from": "2019-08-07",
+      "rate": 5.65,
+      "source": "handbook"
+    },
+    {
+      "from": "2019-10-04",
+      "rate": 5.4,
+      "source": "handbook"
+    },
+    {
+      "from": "2020-03-27",
+      "rate": 4.65,
+      "source": "handbook"
+    },
+    {
+      "from": "2020-05-22",
+      "rate": 4.25,
+      "source": "handbook"
+    },
+    {
+      "from": "2022-05-04",
+      "rate": 4.65,
+      "source": "handbook"
+    },
+    {
+      "from": "2022-06-08",
+      "rate": 5.15,
+      "source": "handbook"
+    },
+    {
+      "from": "2022-08-05",
+      "rate": 5.65,
+      "source": "handbook"
+    },
+    {
+      "from": "2022-09-30",
+      "rate": 6.15,
+      "source": "handbook"
+    },
+    {
+      "from": "2022-12-07",
+      "rate": 6.5,
+      "source": "handbook"
+    },
+    {
+      "from": "2023-02-08",
+      "rate": 6.75,
+      "source": "handbook"
+    },
+    {
+      "from": "2025-02-07",
+      "rate": 6.5,
+      "source": "handbook"
+    },
+    {
+      "from": "2025-04-09",
+      "rate": 6.25,
+      "source": "apr25"
+    },
+    {
+      "from": "2025-06-06",
+      "rate": 5.75,
+      "source": "jun25"
+    },
+    {
+      "from": "2025-12-05",
+      "rate": 5.5,
+      "source": "dec25"
+    },
+    {
+      "from": "2026-10-07",
+      "rate": 5.75,
+      "source": "oct26"
+    }
+  ]
+}

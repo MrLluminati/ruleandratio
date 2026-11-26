@@ -116,6 +116,10 @@ export async function testSearch(){
   await page.locator('[name="asOf"]').fill('2025-01-27');
   await page.locator('#invoice-list [data-field="amount"]').fill('100000');
   await page.locator('#invoice-list [data-field="acceptance"]').fill('2025-01-01');
+  await page.locator('#msme-form input[type="checkbox"]').check();
+  await page.locator('#msme-form button[type="submit"]').click();
+  assert.equal(await page.locator('#msme-interest').innerText(),'₹554.79');
+  await page.locator('#rate-mode').selectOption('manual');
   await page.locator('#rate-list [data-field="from"]').fill('2025-01-01');
   await page.locator('#rate-list [data-field="to"]').fill('2026-01-01');
   await page.locator('#rate-list [data-field="rate"]').fill('6');
