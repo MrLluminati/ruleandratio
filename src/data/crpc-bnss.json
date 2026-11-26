@@ -1,0 +1,625 @@
+{
+  "version": "2026-11-26",
+  "coverage": "Selected provisions only",
+  "sources": {
+    "table": "https://bprd.mha.gov.in/uploads/pdf/Comparison%20summary%20BNSS%20to%20CrPC.pdf",
+    "ipc": "https://www.indiacode.nic.in/handle/123456789/15247?sam_handle=&view_type=browse",
+    "bns": "https://www.ncrb.mha.gov.in/uploads/SankalanPortal/ChaptersBNSS.html",
+    "gazette": "https://www.mha.gov.in/sites/default/files/BharatiyaNagarikSurakshaSanhita_24022024.pdf"
+  },
+  "entries": [
+    {
+      "slug": "arrest-without-warrant",
+      "title": "Arrest without warrant and notice of appearance",
+      "category": "Arrest",
+      "oldSections": [
+        "41",
+        "41A"
+      ],
+      "newSections": [
+        "35"
+      ],
+      "relation": "merged",
+      "analysis": "The arrest and appearance-notice rules are consolidated. Subsection (7) introduces an additional prior-permission safeguard for specified persons and offences.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "41",
+          "new": "35"
+        },
+        {
+          "old": "41A",
+          "new": "35"
+        }
+      ]
+    },
+    {
+      "slug": "arrest-procedure",
+      "title": "Arrest procedure and officer duties",
+      "category": "Arrest",
+      "oldSections": [
+        "41B"
+      ],
+      "newSections": [
+        "36"
+      ],
+      "relation": "changed",
+      "analysis": "Review identification, arrest memorandum and notification duties under the revised provision.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "41B",
+          "new": "36"
+        }
+      ]
+    },
+    {
+      "slug": "access-to-advocate",
+      "title": "Access to advocate during interrogation",
+      "category": "Arrest",
+      "oldSections": [
+        "41D"
+      ],
+      "newSections": [
+        "38"
+      ],
+      "relation": "corresponding",
+      "analysis": "The right to meet an advocate during interrogation remains subject to the statutory scope.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "41D",
+          "new": "38"
+        }
+      ]
+    },
+    {
+      "slug": "grounds-of-arrest",
+      "title": "Communication of arrest grounds and bail rights",
+      "category": "Arrest",
+      "oldSections": [
+        "50"
+      ],
+      "newSections": [
+        "47"
+      ],
+      "relation": "corresponding",
+      "analysis": "Check communication of grounds and information about bail where applicable.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "50",
+          "new": "47"
+        }
+      ]
+    },
+    {
+      "slug": "notify-arrest",
+      "title": "Informing relatives or friends of arrest",
+      "category": "Arrest",
+      "oldSections": [
+        "50A"
+      ],
+      "newSections": [
+        "48"
+      ],
+      "relation": "changed",
+      "analysis": "The revised framework also refers to the designated police officer in the district.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "50A",
+          "new": "48"
+        }
+      ]
+    },
+    {
+      "slug": "maintenance",
+      "title": "Maintenance of wives, children and parents",
+      "category": "Maintenance",
+      "oldSections": [
+        "125"
+      ],
+      "newSections": [
+        "144"
+      ],
+      "relation": "corresponding",
+      "analysis": "The corresponding maintenance remedy is subject to the statutory eligibility conditions and applicable procedural law.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "125",
+          "new": "144"
+        }
+      ]
+    },
+    {
+      "slug": "urgent-orders",
+      "title": "Urgent orders concerning nuisance or apprehended danger",
+      "category": "Preventive jurisdiction",
+      "oldSections": [
+        "144"
+      ],
+      "newSections": [
+        "163"
+      ],
+      "relation": "corresponding",
+      "analysis": "The emergency preventive power is relocated; examine its statutory conditions and duration.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "144",
+          "new": "163"
+        }
+      ]
+    },
+    {
+      "slug": "land-disputes",
+      "title": "Land or water disputes and breach of peace",
+      "category": "Preventive jurisdiction",
+      "oldSections": [
+        "145"
+      ],
+      "newSections": [
+        "164"
+      ],
+      "relation": "corresponding",
+      "analysis": "This preventive procedure does not itself conclusively determine civil title.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "145",
+          "new": "164"
+        }
+      ]
+    },
+    {
+      "slug": "lawful-directions",
+      "title": "Compliance with lawful police directions",
+      "category": "Preventive jurisdiction",
+      "oldSections": [],
+      "newSections": [
+        "172"
+      ],
+      "relation": "new",
+      "analysis": "A separately numbered provision imposes obligations concerning lawful directions under the relevant chapter. Its scope is statutory, not a general unrestricted police power.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": null,
+          "new": "172"
+        }
+      ]
+    },
+    {
+      "slug": "fir",
+      "title": "First information report (FIR)",
+      "category": "Investigation",
+      "oldSections": [
+        "154"
+      ],
+      "newSections": [
+        "173"
+      ],
+      "relation": "changed",
+      "analysis": "The revised provision expressly addresses territorial flexibility and electronic reporting, and permits a conditional preliminary inquiry for a specified class of offences.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "154",
+          "new": "173"
+        }
+      ]
+    },
+    {
+      "slug": "non-cognizable",
+      "title": "Non-cognizable information and investigation",
+      "category": "Investigation",
+      "oldSections": [
+        "155"
+      ],
+      "newSections": [
+        "174"
+      ],
+      "relation": "changed",
+      "analysis": "The provision includes additional reporting requirements to the Magistrate.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "155",
+          "new": "174"
+        }
+      ]
+    },
+    {
+      "slug": "investigation-powers",
+      "title": "Investigation of cognizable cases and Magistrate directions",
+      "category": "Investigation",
+      "oldSections": [
+        "156",
+        "156(3)"
+      ],
+      "newSections": [
+        "175",
+        "175(3)"
+      ],
+      "relation": "changed",
+      "analysis": "Magistrate-directed investigation has additional procedural requirements. Examine subsections (3) and (4) separately.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "156",
+          "new": "175"
+        },
+        {
+          "old": "156(3)",
+          "new": "175(3)"
+        }
+      ]
+    },
+    {
+      "slug": "investigation-procedure",
+      "title": "Investigation procedure and forensic examination",
+      "category": "Investigation",
+      "oldSections": [
+        "157"
+      ],
+      "newSections": [
+        "176"
+      ],
+      "relation": "changed",
+      "analysis": "Subsection (3) introduces forensic crime-scene requirements for offences meeting the punishment threshold, subject to the prescribed notification framework.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "157",
+          "new": "176"
+        }
+      ]
+    },
+    {
+      "slug": "witness-examination",
+      "title": "Police examination of witnesses",
+      "category": "Investigation",
+      "oldSections": [
+        "161"
+      ],
+      "newSections": [
+        "180"
+      ],
+      "relation": "corresponding",
+      "analysis": "Compare the rules governing oral examination and recording of statements.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "161",
+          "new": "180"
+        }
+      ]
+    },
+    {
+      "slug": "police-statements",
+      "title": "Police statements and their use",
+      "category": "Investigation",
+      "oldSections": [
+        "162"
+      ],
+      "newSections": [
+        "181"
+      ],
+      "relation": "corresponding",
+      "analysis": "The restrictions on use of police statements remain important; consult the evidentiary exceptions.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "162",
+          "new": "181"
+        }
+      ]
+    },
+    {
+      "slug": "confessions",
+      "title": "Magistrate recording of confessions and statements",
+      "category": "Investigation",
+      "oldSections": [
+        "164"
+      ],
+      "newSections": [
+        "183"
+      ],
+      "relation": "changed",
+      "analysis": "The revised provision includes additional requirements for recording particular witness statements and electronic recording.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "164",
+          "new": "183"
+        }
+      ]
+    },
+    {
+      "slug": "remand",
+      "title": "Remand and default bail",
+      "category": "Investigation",
+      "oldSections": [
+        "167",
+        "167(2)"
+      ],
+      "newSections": [
+        "187",
+        "187(2)"
+      ],
+      "relation": "changed",
+      "analysis": "The framework allows the aggregate fifteen days of police custody to be authorised in parts within the specified initial forty- or sixty-day window. Check the separate detention limits in subsection (3).",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "167",
+          "new": "187"
+        },
+        {
+          "old": "167(2)",
+          "new": "187(2)"
+        }
+      ]
+    },
+    {
+      "slug": "police-report",
+      "title": "Police report on completion of investigation",
+      "category": "Investigation",
+      "oldSections": [
+        "173"
+      ],
+      "newSections": [
+        "193"
+      ],
+      "relation": "changed",
+      "analysis": "The new text includes electronic reporting and progress communication to the informant or victim; further investigation during trial has a separate proviso.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "173",
+          "new": "193"
+        }
+      ]
+    },
+    {
+      "slug": "cognizance",
+      "title": "Cognizance by Magistrates",
+      "category": "Complaints and trial",
+      "oldSections": [
+        "190"
+      ],
+      "newSections": [
+        "210"
+      ],
+      "relation": "corresponding",
+      "analysis": "Determine the appropriate route for cognizance and any preconditions in the relevant provisions.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "190",
+          "new": "210"
+        }
+      ]
+    },
+    {
+      "slug": "complainant-examination",
+      "title": "Examination of complainant",
+      "category": "Complaints and trial",
+      "oldSections": [
+        "200"
+      ],
+      "newSections": [
+        "223"
+      ],
+      "relation": "changed",
+      "analysis": "The revised text adds a pre-cognizance hearing proviso and special provisions for complaints against public servants. Check controlling judicial interpretation and special-law exceptions.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "200",
+          "new": "223"
+        }
+      ]
+    },
+    {
+      "slug": "supply-documents",
+      "title": "Supply of police report and documents",
+      "category": "Complaints and trial",
+      "oldSections": [
+        "207"
+      ],
+      "newSections": [
+        "230"
+      ],
+      "relation": "changed",
+      "analysis": "The new provision specifies a fourteen-day outer period from production or appearance of the accused and addresses supply to represented victims and electronic copies.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "207",
+          "new": "230"
+        }
+      ]
+    },
+    {
+      "slug": "compounding",
+      "title": "Compounding of offences",
+      "category": "Complaints and trial",
+      "oldSections": [
+        "320"
+      ],
+      "newSections": [
+        "359"
+      ],
+      "relation": "corresponding",
+      "analysis": "Use the relevant statutory tables, permissions and conditions; not every offence may be compounded.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "320",
+          "new": "359"
+        }
+      ]
+    },
+    {
+      "slug": "bail-bailable",
+      "title": "Bail in bailable offences",
+      "category": "Bail",
+      "oldSections": [
+        "436"
+      ],
+      "newSections": [
+        "478"
+      ],
+      "relation": "corresponding",
+      "analysis": "Check the applicable bond or bail-bond requirements.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "436",
+          "new": "478"
+        }
+      ]
+    },
+    {
+      "slug": "undertrial-detention",
+      "title": "Maximum undertrial detention",
+      "category": "Bail",
+      "oldSections": [
+        "436A"
+      ],
+      "newSections": [
+        "479"
+      ],
+      "relation": "changed",
+      "analysis": "The revised provision adds a one-third threshold for qualifying first-time offenders and restrictions relating to multiple cases, alongside other statutory exceptions.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "436A",
+          "new": "479"
+        }
+      ]
+    },
+    {
+      "slug": "regular-bail-magistrate",
+      "title": "Bail in non-bailable offences",
+      "category": "Bail",
+      "oldSections": [
+        "437"
+      ],
+      "newSections": [
+        "480"
+      ],
+      "relation": "changed",
+      "analysis": "The revised text changes certain provisos. Examine statutory exceptions and the court's discretion.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "437",
+          "new": "480"
+        }
+      ]
+    },
+    {
+      "slug": "anticipatory-bail",
+      "title": "Anticipatory bail",
+      "category": "Bail",
+      "oldSections": [
+        "438"
+      ],
+      "newSections": [
+        "482"
+      ],
+      "relation": "changed",
+      "analysis": "The corresponding pre-arrest bail remedy remains subject to the statutory conditions and exclusions. Compare the actual text, including the excluded offences.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "438",
+          "new": "482"
+        }
+      ]
+    },
+    {
+      "slug": "regular-bail-higher-courts",
+      "title": "High Court and Sessions Court bail powers",
+      "category": "Bail",
+      "oldSections": [
+        "439"
+      ],
+      "newSections": [
+        "483"
+      ],
+      "relation": "corresponding",
+      "analysis": "The special bail powers are relocated; examine conditions and applicable special statutes.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "439",
+          "new": "483"
+        }
+      ]
+    },
+    {
+      "slug": "witness-protection",
+      "title": "Witness protection scheme",
+      "category": "Complaints and trial",
+      "oldSections": [],
+      "newSections": [
+        "398"
+      ],
+      "relation": "new",
+      "analysis": "A separate provision requires a state witness-protection scheme; verify the relevant notified scheme.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": null,
+          "new": "398"
+        }
+      ]
+    },
+    {
+      "slug": "inherent-powers",
+      "title": "Inherent powers of High Court",
+      "category": "High Court powers",
+      "oldSections": [
+        "482"
+      ],
+      "newSections": [
+        "528"
+      ],
+      "relation": "corresponding",
+      "analysis": "The saving of inherent High Court powers is relocated; quashing remains subject to judicial principles and the facts.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "482",
+          "new": "528"
+        }
+      ]
+    },
+    {
+      "slug": "repeal-savings",
+      "title": "Repeal and savings",
+      "category": "Transitional provisions",
+      "oldSections": [
+        "484"
+      ],
+      "newSections": [
+        "531"
+      ],
+      "relation": "changed",
+      "analysis": "BNSS saves specified pending appeals, applications, trials, inquiries and investigations immediately before commencement. Do not determine applicability solely by the new section number.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "484",
+          "new": "531"
+        }
+      ]
+    }
+  ]
+}
