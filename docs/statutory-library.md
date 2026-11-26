@@ -12,3 +12,6 @@ Each provision has one or more recorded textual versions. effectiveFrom and effe
 Article front matter supports statuteRefs: [{act: statute-slug, provision: provision-slug}] (provision optional). Published references must resolve to reviewed public records. This yields reciprocal links to judgments, guides and research without duplicating the article. Subject tags alone do not establish interpretation of an individual provision.
 
 Verify official sources (e.g. India Code or official gazettes), applicable copyright and reporting restrictions, statutory versions, amendments and commencement before publishing. Do not commit private material to the public repository. No real statutory records are approved in this milestone.
+
+## Acquisition
+Use the draft-only local importer and review workflow documented in docs/content-acquisition.md before populating this collection.

@@ -1,0 +1,44 @@
+{
+  "slug": "synthetic-example",
+  "title": "Synthetic example — not legislation",
+  "jurisdiction": "TEST ONLY",
+  "areas": [
+    "general"
+  ],
+  "mainSourceId": "sample",
+  "sources": [
+    {
+      "id": "sample",
+      "title": "Synthetic example source",
+      "url": "https://example.invalid/synthetic",
+      "file": "source.txt",
+      "capturedAt": "2020-01-01"
+    }
+  ],
+  "chapters": [
+    {
+      "slug": "chapter-one",
+      "label": "Chapter I",
+      "title": "Example"
+    }
+  ],
+  "provisions": [
+    {
+      "slug": "section-1",
+      "number": "1",
+      "kind": "section",
+      "heading": "Example",
+      "chapter": "chapter-one",
+      "versions": [
+        {
+          "id": "recorded",
+          "sourceId": "sample",
+          "startLine": 1,
+          "endLine": 2,
+          "pinpoint": "Synthetic lines 1–2"
+        }
+      ]
+    }
+  ],
+  "amendments": []
+}

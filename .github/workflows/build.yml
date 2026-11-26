@@ -15,6 +15,7 @@ jobs:
         with:
           node-version: '22'
       - run: npm install --no-audit --no-fund
+      - run: npm run test:import
       - run: npm run build
       - run: test -f dist/index.html && test -f dist/judgments/index.html && test -f dist/404.html
       - run: npx playwright install --with-deps chromium

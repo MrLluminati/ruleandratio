@@ -10,7 +10,9 @@
     "dev": "astro dev",
     "build": "astro build && pagefind --site dist && node scripts/seo.mjs",
     "preview": "astro preview",
-    "test:publishing": "node scripts/test-publishing.mjs"
+    "test:publishing": "node scripts/test-publishing.mjs",
+    "import:statute": "node scripts/import-statute.mjs",
+    "test:import": "node --test scripts/test-import.mjs"
   },
   "dependencies": {
     "astro": "^6.0.0"

@@ -65,11 +65,13 @@ export async function testSearch(){
    assert.ok(await page.evaluate(()=>document.documentElement.classList.contains('rr-menu-open')));
    await page.keyboard.press('Escape');
    await drawer.waitFor({state:'hidden'});
+   await page.waitForFunction(()=>document.querySelector('.mobile-menu-toggle')?.getAttribute('aria-expanded')==='false'&&!document.documentElement.classList.contains('rr-menu-open'));
    assert.equal(await toggle.getAttribute('aria-expanded'),'false');
    assert.ok(await toggle.evaluate(el=>document.activeElement===el));
    await toggle.click();
    await drawer.locator('.mobile-menu-close').click();
    await drawer.waitFor({state:'hidden'});
+   await page.waitForFunction(()=>document.querySelector('.mobile-menu-toggle')?.getAttribute('aria-expanded')==='false');
    await toggle.click();
    await drawer.locator('a[href="/judgments/"]').click();
    await page.waitForURL('**/judgments/');
@@ -79,7 +81,7 @@ export async function testSearch(){
    await page.locator('#rr-mobile-menu').waitFor({state:'hidden'});
    assert.ok(await page.locator('.editorial-nav').isVisible());
    assert.ok(!(await page.locator('.mobile-menu-toggle').isVisible()));
-   assert.ok(await page.evaluate(()=>!document.documentElement.classList.contains('rr-menu-open')));
+   await page.waitForFunction(()=>!document.documentElement.classList.contains('rr-menu-open'));
   }
   await page.setViewportSize({width:390,height:844});
   await page.goto(host+'/');
