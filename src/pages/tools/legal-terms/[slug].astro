@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import raw from '../../../data/legal-terms.json';
+import {validateDictionary} from '../../../lib/dictionary.mjs';
+export function getStaticPaths(){return validateDictionary(raw).map(entry=>({params:{slug:entry.slug},props:{entry}}))}
+const {entry:e}=Astro.props;
+const related=raw.filter(r=>e.related.includes(r.slug));
+---
+<BaseLayout title={e.term+' — Meaning and Indian Law'} description={e.translation+' '+e.meaning} eligible={e.status==='reviewed'} searchType={e.status==='reviewed'?'Legal reference':undefined} breadcrumbs={[{name:'Home',path:'/'},{name:'Legal Tools',path:'/tools/'},{name:'Legal Terminology Dictionary',path:'/tools/legal-terms/'},{name:e.term,path:Astro.url.pathname}]}>
+<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/tools/legal-terms/">Legal Terminology Dictionary</a><span>/</span><span aria-current="page">{e.term}</span></nav>
+<article class="article-shell"><header class="article-header"><p class="kicker">{e.category} · Legal term</p><h1>{e.term}</h1><p class="intro">{e.translation}</p><p class="notice">{e.status==='reviewed'?'Reviewed legal reference':'Editorial preview — independent human review pending.'}</p></header>
+<div class="article-main prose"><h2>Legal meaning</h2><p>{e.meaning}</p><h2>Hypothetical illustration</h2><p>{e.example}</p><h2>Limits and qualifications</h2><p>{e.caution}</p><h2>Statutory references</h2><ul>{e.sources.map(s=><li><a href={s.url}>{s.title}</a><p>{s.pinpoint} · {s.kind}</p></li>)}</ul>{e.aliases.length>0&&<><h2>Alternative terms and abbreviations</h2><p>{e.aliases.join('; ')}</p></>}{related.length>0&&<><h2>Related legal terms</h2><ul>{related.map(r=><li><a href={'/tools/legal-terms/'+r.slug+'/'}>{r.term}</a></li>)}</ul></>}<p class="notice">General legal education. Definitions are educational summaries, not verbatim statutory definitions. Verify the original provisions, applicable amendments and binding precedent before relying on them.</p><p><a href="/tools/legal-terms/">Browse all legal terms</a></p></div></article>
+</BaseLayout>

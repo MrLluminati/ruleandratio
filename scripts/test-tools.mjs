@@ -58,3 +58,6 @@ import {validateDictionary,normalizeDictionaryQuery,dictionarySearchText} from '
 const maxims=JSON.parse(readFileSync(new URL('../src/data/legal-maxims.json',import.meta.url),'utf8'));
 test('maxim data has unique routes, sources and resolvable related entries',()=>{const list=validateDictionary(maxims);assert.equal(list.length,11);assert.throws(()=>validateDictionary([...maxims,maxims[0]]));assert.throws(()=>validateDictionary([{...maxims[0],status:'reviewed'}]));assert.throws(()=>validateDictionary([{...maxims[0],related:['missing']}]))});
 test('dictionary search normalization',()=>{assert.equal(normalizeDictionaryQuery('  FALSUS, IN UNO '),'falsus in uno');assert.match(dictionarySearchText(maxims.find(e=>e.slug==='audi-alteram-partem')),/hear the other side/)});
+
+const terms=JSON.parse(readFileSync(new URL('../src/data/legal-terms.json',import.meta.url),'utf8'));
+test('legal terminology records validate across seven subjects',()=>{const list=validateDictionary(terms);assert.equal(list.length,28);assert.equal(new Set(list.map(e=>e.category)).size,7);assert.ok(list.every(e=>e.status==='preview'));assert.match(dictionarySearchText(list.find(e=>e.slug==='first-information-report')),/\bfir\b/);assert.match(dictionarySearchText(list.find(e=>e.slug==='special-leave-petition')),/\bslp\b/)});

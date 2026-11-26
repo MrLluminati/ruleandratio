@@ -211,6 +211,18 @@ export async function testSearch(){
   assert.equal(await page.locator('meta[name="robots"]').getAttribute('content'),'noindex, follow');
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Maxim page overflow');
   console.log('Legal maxim dictionary browser checks passed.');
+  await page.goto(host+'/tools/legal-terms/');
+  await page.locator('#maxim-filters').waitFor({state:'visible'});
+  await page.locator('#maxim-filters [name="query"]').fill('FIR');
+  await page.locator('#maxim-filters [name="category"]').selectOption('Criminal procedure');
+  await page.locator('#maxim-filters [name="letter"]').selectOption('F');
+  assert.equal(await page.locator('.maxim-entry:visible').count(),1);
+  await page.locator('.maxim-entry:visible a').click();
+  assert.match(await page.locator('h1').innerText(),/First information report/);
+  assert.ok(await page.locator('a[href="/tools/legal-terms/cognizable-offence/"]').isVisible());
+  assert.equal(await page.locator('meta[name="robots"]').getAttribute('content'),'noindex, follow');
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Terminology page overflow');
+  console.log('Legal terminology dictionary browser checks passed.');
   await page.goto(host+'/research/rr-test-article/');
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Mobile article overflow');
   console.log('Browser tests passed: provision full-text search, type/subject filters, draft exclusion, mobile layout overflow checks.');

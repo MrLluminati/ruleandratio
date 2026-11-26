@@ -1,0 +1,653 @@
+[
+  {
+    "slug": "plaint",
+    "term": "Plaint",
+    "category": "Civil procedure",
+    "translation": "A pleading initiating a civil suit.",
+    "meaning": "A plaint sets out the plaintiff's material facts, cause of action and requested relief in accordance with procedural requirements.",
+    "example": "A supplier seeks recovery of an unpaid price by presenting a plaint before a competent civil court.",
+    "caution": "Presentation does not itself establish maintainability or entitlement.",
+    "aliases": [],
+    "related": [
+      "written-statement",
+      "decree"
+    ],
+    "sources": [
+      {
+        "title": "Code of Civil Procedure, 1908",
+        "url": "https://www.indiacode.nic.in/indiacode/handle/123456789/2191?view_type=browse",
+        "kind": "India Code statutory reference",
+        "pinpoint": "Section 26; Order VII"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "written-statement",
+    "term": "Written statement",
+    "category": "Civil procedure",
+    "translation": "The defendant’s responsive pleading.",
+    "meaning": "It states the defence, including admissions, denials and material facts supporting objections.",
+    "example": "A buyer disputes the supplier's allegations in a written statement.",
+    "caution": "Filing deadlines and consequences differ under the applicable procedural regime, including commercial suits.",
+    "aliases": [],
+    "related": [
+      "plaint"
+    ],
+    "sources": [
+      {
+        "title": "Code of Civil Procedure, 1908",
+        "url": "https://www.indiacode.nic.in/indiacode/handle/123456789/2191?view_type=browse",
+        "kind": "India Code statutory reference",
+        "pinpoint": "Order VIII"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "decree",
+    "term": "Decree",
+    "category": "Civil procedure",
+    "translation": "Formal expression of a conclusive adjudication of rights in a suit.",
+    "meaning": "A decree records a judicial determination meeting the statutory definition; it may be preliminary or final.",
+    "example": "A court conclusively determines a plaintiff’s entitlement to a specified sum.",
+    "caution": "Not every judicial order is a decree; check statutory inclusions and exclusions.",
+    "aliases": [],
+    "related": [
+      "judgment",
+      "execution"
+    ],
+    "sources": [
+      {
+        "title": "Code of Civil Procedure, 1908",
+        "url": "https://www.indiacode.nic.in/indiacode/handle/123456789/2191?view_type=browse",
+        "kind": "India Code statutory reference",
+        "pinpoint": "Section 2(2)"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "judgment",
+    "term": "Judgment",
+    "category": "Civil procedure",
+    "translation": "The judge’s statement of grounds for a decree or order.",
+    "meaning": "A judgment explains the basis for the court’s decision and is distinct from the formal decree.",
+    "example": "A court gives reasons for rejecting a contractual defence before issuing its decree.",
+    "caution": "Judgments have different procedural consequences depending on the decision and forum.",
+    "aliases": [],
+    "related": [
+      "decree"
+    ],
+    "sources": [
+      {
+        "title": "Code of Civil Procedure, 1908",
+        "url": "https://www.indiacode.nic.in/indiacode/handle/123456789/2191?view_type=browse",
+        "kind": "India Code statutory reference",
+        "pinpoint": "Section 2(9); Order XX"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "execution",
+    "term": "Execution",
+    "category": "Civil procedure",
+    "translation": "Process for enforcing a decree or enforceable order.",
+    "meaning": "Execution invokes the court's enforcement mechanisms to realize relief already granted.",
+    "example": "A decree-holder applies for attachment of property to enforce a money decree.",
+    "caution": "The executing court's powers, exemptions and limitation are governed by applicable law.",
+    "aliases": [],
+    "related": [
+      "decree"
+    ],
+    "sources": [
+      {
+        "title": "Code of Civil Procedure, 1908",
+        "url": "https://www.indiacode.nic.in/indiacode/handle/123456789/2191?view_type=browse",
+        "kind": "India Code statutory reference",
+        "pinpoint": "Sections 36–74; Order XXI"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "bail",
+    "term": "Bail",
+    "category": "Criminal procedure",
+    "translation": "Conditional release from legal custody.",
+    "meaning": "Bail allows an accused or suspected person to remain outside custody subject to the prescribed process and conditions.",
+    "example": "A court releases an accused on a bond with conditions to attend hearings.",
+    "caution": "Bail is not an acquittal; eligibility and discretion depend on the offence and applicable statute.",
+    "aliases": [],
+    "related": [
+      "anticipatory-bail",
+      "cognizable-offence"
+    ],
+    "sources": [
+      {
+        "title": "Bharatiya Nagarik Suraksha Sanhita, 2023",
+        "url": "https://www.indiacode.nic.in/indiacode/handle/123456789/20099?view_type=browse",
+        "kind": "India Code statutory reference",
+        "pinpoint": "Section 2; Chapter XXXV"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "anticipatory-bail",
+    "term": "Anticipatory bail",
+    "category": "Criminal procedure",
+    "translation": "Direction for release on bail in the event of arrest.",
+    "meaning": "A person apprehending arrest for a non-bailable offence may seek such a direction from the competent High Court or Court of Session.",
+    "example": "An individual anticipates arrest in a criminal investigation and applies for pre-arrest protection.",
+    "caution": "Statutory exceptions, special enactments and conditions must be checked; protection is not automatic.",
+    "aliases": [
+      "Pre-arrest bail"
+    ],
+    "related": [
+      "bail"
+    ],
+    "sources": [
+      {
+        "title": "Bharatiya Nagarik Suraksha Sanhita, 2023",
+        "url": "https://www.indiacode.nic.in/indiacode/handle/123456789/20099?view_type=browse",
+        "kind": "India Code statutory reference",
+        "pinpoint": "Section 482"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "cognizable-offence",
+    "term": "Cognizable offence",
+    "category": "Criminal procedure",
+    "translation": "An offence for which police may arrest without warrant under applicable law.",
+    "meaning": "Cognizability concerns police authority to arrest without a warrant and investigate under the procedural framework.",
+    "example": "Police investigate a cognizable offence reported to them.",
+    "caution": "Cognizable does not mean arrest is mandatory; statutory arrest safeguards remain applicable.",
+    "aliases": [],
+    "related": [
+      "first-information-report",
+      "bail"
+    ],
+    "sources": [
+      {
+        "title": "Bharatiya Nagarik Suraksha Sanhita, 2023",
+        "url": "https://www.indiacode.nic.in/indiacode/handle/123456789/20099?view_type=browse",
+        "kind": "India Code statutory reference",
+        "pinpoint": "Sections 2, 35, 173 and 175; First Schedule"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "first-information-report",
+    "term": "First information report",
+    "category": "Criminal procedure",
+    "translation": "Record of information relating to a cognizable offence.",
+    "meaning": "Information concerning a cognizable offence is recorded under the prescribed procedure, including provisions for electronic information.",
+    "example": "A victim reports a cognizable theft to the police, which record the information.",
+    "caution": "An FIR is not a finding of guilt; preliminary inquiry provisions and statutory conditions may apply.",
+    "aliases": [
+      "FIR"
+    ],
+    "related": [
+      "cognizable-offence"
+    ],
+    "sources": [
+      {
+        "title": "Bharatiya Nagarik Suraksha Sanhita, 2023",
+        "url": "https://www.indiacode.nic.in/indiacode/handle/123456789/20099?view_type=browse",
+        "kind": "India Code statutory reference",
+        "pinpoint": "Section 173"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "habeas-corpus",
+    "term": "Habeas corpus",
+    "category": "Constitutional law",
+    "translation": "Writ addressing unlawful detention.",
+    "meaning": "A constitutional court may examine the legality of detention and direct release where the detention is unlawful.",
+    "example": "A family member challenges detention allegedly unsupported by legal authority.",
+    "caution": "Availability and relief depend on the legal basis for custody and the court's jurisdiction.",
+    "aliases": [],
+    "related": [
+      "mandamus",
+      "certiorari"
+    ],
+    "sources": [
+      {
+        "title": "Constitution of India",
+        "url": "https://www.legislative.gov.in/documents",
+        "kind": "Legislative Department Constitution register",
+        "pinpoint": "Articles 32 and 226"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "mandamus",
+    "term": "Mandamus",
+    "category": "Constitutional law",
+    "translation": "Writ directing performance of a public duty.",
+    "meaning": "Constitutional writ jurisdiction may compel performance of a legally enforceable public obligation.",
+    "example": "An eligible applicant seeks a direction requiring a public authority to decide a pending statutory application.",
+    "caution": "It does not ordinarily dictate a particular discretionary outcome or enforce a purely private obligation.",
+    "aliases": [],
+    "related": [
+      "habeas-corpus",
+      "certiorari"
+    ],
+    "sources": [
+      {
+        "title": "Constitution of India",
+        "url": "https://www.legislative.gov.in/documents",
+        "kind": "Legislative Department Constitution register",
+        "pinpoint": "Articles 32 and 226"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "certiorari",
+    "term": "Certiorari",
+    "category": "Constitutional law",
+    "translation": "Writ used to quash an unlawful decision in appropriate circumstances.",
+    "meaning": "A constitutional court may review a qualifying decision for jurisdictional or other recognized public-law errors.",
+    "example": "A person challenges a tribunal's decision allegedly reached in excess of jurisdiction.",
+    "caution": "It is not a general appeal on merits; jurisdiction, alternative remedies and the nature of the impugned act matter.",
+    "aliases": [],
+    "related": [
+      "mandamus",
+      "habeas-corpus"
+    ],
+    "sources": [
+      {
+        "title": "Constitution of India",
+        "url": "https://www.legislative.gov.in/documents",
+        "kind": "Legislative Department Constitution register",
+        "pinpoint": "Articles 32 and 226"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "special-leave-petition",
+    "term": "Special leave petition",
+    "category": "Constitutional law",
+    "translation": "Request for discretionary leave to appeal to the Supreme Court.",
+    "meaning": "Article 136 empowers the Supreme Court to grant special leave against qualifying decisions.",
+    "example": "A litigant seeks leave to appeal a High Court judgment.",
+    "caution": "Special leave is discretionary, not an ordinary appeal as of right; Article 136(2) excludes specified armed-forces matters.",
+    "aliases": [
+      "SLP"
+    ],
+    "related": [],
+    "sources": [
+      {
+        "title": "Constitution of India",
+        "url": "https://www.legislative.gov.in/documents",
+        "kind": "Legislative Department Constitution register",
+        "pinpoint": "Article 136"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "arbitration-agreement",
+    "term": "Arbitration agreement",
+    "category": "Arbitration",
+    "translation": "Agreement to submit disputes to arbitration.",
+    "meaning": "A written agreement may cover disputes already arisen or future disputes arising from a defined legal relationship.",
+    "example": "A supply contract contains a clause referring contractual disputes to arbitration.",
+    "caution": "Validity, scope and arbitrability require separate assessment.",
+    "aliases": [
+      "Arbitration clause"
+    ],
+    "related": [
+      "arbitral-award",
+      "arbitral-tribunal"
+    ],
+    "sources": [
+      {
+        "title": "Arbitration and Conciliation Act, 1996",
+        "url": "https://www.indiacode.nic.in/indiacode/handle/123456789/1978?view_type=browse",
+        "kind": "India Code statutory reference",
+        "pinpoint": "Section 7"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "arbitral-tribunal",
+    "term": "Arbitral tribunal",
+    "category": "Arbitration",
+    "translation": "Sole arbitrator or panel of arbitrators.",
+    "meaning": "The tribunal conducts arbitral proceedings and adjudicates disputes within its jurisdiction.",
+    "example": "Two parties appoint a sole arbitrator to determine a payment dispute.",
+    "caution": "The tribunal's composition, independence and jurisdiction are subject to the Act and agreement.",
+    "aliases": [
+      "Arbitrator"
+    ],
+    "related": [
+      "arbitration-agreement",
+      "arbitral-award"
+    ],
+    "sources": [
+      {
+        "title": "Arbitration and Conciliation Act, 1996",
+        "url": "https://www.indiacode.nic.in/indiacode/handle/123456789/1978?view_type=browse",
+        "kind": "India Code statutory reference",
+        "pinpoint": "Sections 2(1)(d), 10–16"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "arbitral-award",
+    "term": "Arbitral award",
+    "category": "Arbitration",
+    "translation": "Decision constituting an award in arbitration.",
+    "meaning": "An award determines matters submitted to the arbitral tribunal and may include an interim award.",
+    "example": "A tribunal determines that one party owes the other a specified amount.",
+    "caution": "Distinguish an award from a procedural order; challenge and enforcement have separate statutory requirements.",
+    "aliases": [],
+    "related": [
+      "arbitral-tribunal",
+      "setting-aside"
+    ],
+    "sources": [
+      {
+        "title": "Arbitration and Conciliation Act, 1996",
+        "url": "https://www.indiacode.nic.in/indiacode/handle/123456789/1978?view_type=browse",
+        "kind": "India Code statutory reference",
+        "pinpoint": "Sections 2(1)(c), 31, 34–36"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "setting-aside",
+    "term": "Setting aside",
+    "category": "Arbitration",
+    "translation": "Statutory challenge to an arbitral award.",
+    "meaning": "Section 34 provides limited grounds for applying to a court to set aside an award.",
+    "example": "A party challenges an award on an asserted statutory procedural ground.",
+    "caution": "This is not a general merits appeal; limitation and statutory grounds require separate review.",
+    "aliases": [
+      "Section 34 challenge"
+    ],
+    "related": [
+      "arbitral-award"
+    ],
+    "sources": [
+      {
+        "title": "Arbitration and Conciliation Act, 1996",
+        "url": "https://www.indiacode.nic.in/indiacode/handle/123456789/1978?view_type=browse",
+        "kind": "India Code statutory reference",
+        "pinpoint": "Section 34"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "agreement",
+    "term": "Agreement",
+    "category": "Contract law",
+    "translation": "Promises forming consideration for one another.",
+    "meaning": "An agreement is distinct from a legally enforceable contract; its enforceability depends on statutory requirements.",
+    "example": "Two parties agree on the supply and price of goods.",
+    "caution": "Not every agreement is enforceable.",
+    "aliases": [],
+    "related": [
+      "contract",
+      "consideration"
+    ],
+    "sources": [
+      {
+        "title": "Indian Contract Act, 1872",
+        "url": "https://www.indiacode.nic.in/handle/123456789/12845",
+        "kind": "India Code statutory reference",
+        "pinpoint": "Section 2(e)"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "contract",
+    "term": "Contract",
+    "category": "Contract law",
+    "translation": "An agreement enforceable by law.",
+    "meaning": "An agreement becomes a contract if the applicable requirements for enforceability are satisfied.",
+    "example": "Competent parties freely agree to a lawful sale for consideration.",
+    "caution": "Capacity, free consent, lawful object and other requirements must be assessed.",
+    "aliases": [],
+    "related": [
+      "agreement",
+      "consideration",
+      "breach-of-contract"
+    ],
+    "sources": [
+      {
+        "title": "Indian Contract Act, 1872",
+        "url": "https://www.indiacode.nic.in/handle/123456789/12845",
+        "kind": "India Code statutory reference",
+        "pinpoint": "Sections 2(h), 10"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "consideration",
+    "term": "Consideration",
+    "category": "Contract law",
+    "translation": "The act, abstinence or promise exchanged at the promisor's desire.",
+    "meaning": "Consideration may take forms other than payment and may move from the promisee or another person.",
+    "example": "A purchaser promises payment in exchange for delivery of goods.",
+    "caution": "The lawfulness of consideration and exceptions to the consideration requirement must be examined.",
+    "aliases": [],
+    "related": [
+      "agreement",
+      "contract"
+    ],
+    "sources": [
+      {
+        "title": "Indian Contract Act, 1872",
+        "url": "https://www.indiacode.nic.in/handle/123456789/12845",
+        "kind": "India Code statutory reference",
+        "pinpoint": "Sections 2(d), 23, 25"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "breach-of-contract",
+    "term": "Breach of contract",
+    "category": "Contract law",
+    "translation": "Failure to perform a contractual obligation.",
+    "meaning": "A breach can give rise to legally available remedies, including compensation for qualifying loss.",
+    "example": "A supplier fails to deliver goods in accordance with a binding contract.",
+    "caution": "Liability, causation, mitigation and agreed remedies require legal assessment.",
+    "aliases": [],
+    "related": [
+      "contract"
+    ],
+    "sources": [
+      {
+        "title": "Indian Contract Act, 1872",
+        "url": "https://www.indiacode.nic.in/handle/123456789/12845",
+        "kind": "India Code statutory reference",
+        "pinpoint": "Sections 39, 73–75"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "sale",
+    "term": "Sale",
+    "category": "Property law",
+    "translation": "Transfer of ownership in exchange for a price.",
+    "meaning": "A sale of immovable property transfers ownership for a price under the applicable conveyancing requirements.",
+    "example": "A landowner executes a registered sale deed conveying land to a purchaser.",
+    "caution": "An agreement for sale does not by itself create an interest or charge in the property.",
+    "aliases": [
+      "Sale deed"
+    ],
+    "related": [
+      "mortgage",
+      "lease"
+    ],
+    "sources": [
+      {
+        "title": "Transfer of Property Act, 1882",
+        "url": "https://session.delhi.gov.in/session/transfer-property-act",
+        "kind": "Government statutory reference",
+        "pinpoint": "Section 54"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "mortgage",
+    "term": "Mortgage",
+    "category": "Property law",
+    "translation": "Transfer of an interest in property as security.",
+    "meaning": "A mortgage secures a debt or other qualifying pecuniary obligation through an interest in specified immovable property.",
+    "example": "A borrower creates a mortgage to secure a loan.",
+    "caution": "Rights, registration and enforcement vary with the type of mortgage and governing law.",
+    "aliases": [],
+    "related": [
+      "sale"
+    ],
+    "sources": [
+      {
+        "title": "Transfer of Property Act, 1882",
+        "url": "https://session.delhi.gov.in/session/transfer-property-act",
+        "kind": "Government statutory reference",
+        "pinpoint": "Section 58"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "lease",
+    "term": "Lease",
+    "category": "Property law",
+    "translation": "Transfer of a right to enjoy immovable property.",
+    "meaning": "A lease grants the right to enjoy property for a term, express or implied, or in perpetuity, against specified consideration.",
+    "example": "A landlord grants a tenant the right to occupy premises for rent.",
+    "caution": "Distinguish a lease from a licence; registration and rent-control rules may apply.",
+    "aliases": [
+      "Tenancy"
+    ],
+    "related": [
+      "sale"
+    ],
+    "sources": [
+      {
+        "title": "Transfer of Property Act, 1882",
+        "url": "https://session.delhi.gov.in/session/transfer-property-act",
+        "kind": "Government statutory reference",
+        "pinpoint": "Sections 105–107"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "gift",
+    "term": "Gift",
+    "category": "Property law",
+    "translation": "Voluntary transfer without consideration.",
+    "meaning": "A gift involves voluntary transfer of existing property, accepted by or on behalf of the recipient.",
+    "example": "A donor transfers land without payment by a valid registered gift instrument accepted by the donee.",
+    "caution": "Formalities, acceptance and statutory exceptions require examination.",
+    "aliases": [],
+    "related": [
+      "sale"
+    ],
+    "sources": [
+      {
+        "title": "Transfer of Property Act, 1882",
+        "url": "https://session.delhi.gov.in/session/transfer-property-act",
+        "kind": "Government statutory reference",
+        "pinpoint": "Sections 122–123, 129"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "evidence",
+    "term": "Evidence",
+    "category": "Evidence",
+    "translation": "Material presented for judicial proof.",
+    "meaning": "The statutory concept includes permitted witness statements and documents, including electronic and digital records, produced for the court's inspection.",
+    "example": "A party presents witness testimony and relevant records to establish a disputed transaction.",
+    "caution": "Relevance, admissibility, authenticity and weight are distinct inquiries.",
+    "aliases": [],
+    "related": [
+      "burden-of-proof",
+      "electronic-record"
+    ],
+    "sources": [
+      {
+        "title": "Bharatiya Sakshya Adhiniyam, 2023",
+        "url": "https://www.indiacode.nic.in/indiacode/handle/123456789/20063?col=123456789%2F1362&view_type=search",
+        "kind": "India Code statutory reference",
+        "pinpoint": "Section 2(1)(e)"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "burden-of-proof",
+    "term": "Burden of proof",
+    "category": "Evidence",
+    "translation": "Responsibility for establishing a fact or entitlement.",
+    "meaning": "A person asserting facts on which a requested legal determination depends generally must prove them, subject to applicable rules.",
+    "example": "A claimant alleging a debt produces evidence of the transaction.",
+    "caution": "Presumptions, special statutes and shifting evidential burdens may alter the position.",
+    "aliases": [
+      "Onus of proof"
+    ],
+    "related": [
+      "evidence"
+    ],
+    "sources": [
+      {
+        "title": "Bharatiya Sakshya Adhiniyam, 2023",
+        "url": "https://www.indiacode.nic.in/indiacode/handle/123456789/20063?col=123456789%2F1362&view_type=search",
+        "kind": "India Code statutory reference",
+        "pinpoint": "Sections 104–106"
+      }
+    ],
+    "status": "preview"
+  },
+  {
+    "slug": "electronic-record",
+    "term": "Electronic record",
+    "category": "Evidence",
+    "translation": "Information recorded or stored in electronic form.",
+    "meaning": "Electronic material may be documentary evidence subject to the applicable proof and admissibility rules.",
+    "example": "A party seeks to rely on a digital communication or electronic transaction record.",
+    "caution": "Do not assume every screenshot or printout is admissible; examine provenance and statutory certificate requirements.",
+    "aliases": [
+      "Digital evidence"
+    ],
+    "related": [
+      "evidence",
+      "burden-of-proof"
+    ],
+    "sources": [
+      {
+        "title": "Bharatiya Sakshya Adhiniyam, 2023",
+        "url": "https://www.indiacode.nic.in/indiacode/handle/123456789/20063?col=123456789%2F1362&view_type=search",
+        "kind": "India Code statutory reference",
+        "pinpoint": "Sections 2, 61–63"
+      }
+    ],
+    "status": "preview"
+  }
+]
