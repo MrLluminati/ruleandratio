@@ -1,0 +1,11 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import {elapsedDays,interestEstimate} from '../src/lib/interest.mjs';
+const p={principal:100000,rate:12,days:365};
+test('simple interest one year',()=>{assert.equal(interestEstimate(p).interest,12000);assert.equal(interestEstimate(p).total,112000)});
+test('monthly compound interest',()=>{const r=interestEstimate({...p,method:'compound',frequency:12});assert.ok(Math.abs(r.total-112682.5030132)<0.0001)});
+test('annual compounding and leap year convention',()=>{assert.equal(elapsedDays('2024-01-01','2025-01-01'),366);assert.ok(Math.abs(interestEstimate({...p,method:'compound',frequency:1}).total-112000)<1e-7)});
+test('zero duration and zero rate',()=>{assert.equal(interestEstimate({...p,days:0}).interest,0);assert.equal(interestEstimate({...p,rate:0,method:'compound'}).interest,0)});
+test('fractional periods',()=>{const r=interestEstimate({...p,days:30,method:'compound',frequency:12});assert.ok(Math.abs(r.interest-100000*((1.01)**(12*30/365)-1))<1e-8)});
+test('calendar validation',()=>{assert.throws(()=>elapsedDays('2023-02-29','2023-03-01'));assert.throws(()=>elapsedDays('2024-03-01','2024-02-29'));assert.equal(elapsedDays('2024-02-29','2024-03-01'),1)});
+test('reject invalid and excessive inputs',()=>{for(const x of [{principal:0},{principal:NaN},{rate:-1},{days:1.5},{method:'unknown'},{method:'compound',frequency:3},{rate:1000,days:100000,method:'compound'}])assert.throws(()=>interestEstimate({...p,...x}))});

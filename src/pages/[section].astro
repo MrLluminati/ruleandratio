@@ -1,6 +1,7 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import JudgmentDirectory from '../components/JudgmentDirectory.astro';
+import ToolsDirectory from '../components/ToolsDirectory.astro';
 import ArticleList from '../components/ArticleList.astro';
 import {sections} from '../data/sections';
 import {publicationTypes} from '../data/publication';
@@ -16,10 +17,10 @@ export async function getStaticPaths(){
 const {section,entries}=Astro.props;
 const acts=publishedStatutes();
 ---
-<BaseLayout title={section.title} description={section.summary} eligible={entries.length>0||((section.slug==='bare-acts'||section.slug==='areas-of-law')&&acts.length>0)} searchType={section.slug==='journal'||section.slug==='tools'?undefined:'Directory'} breadcrumbs={[{name:'Home',path:'/'},{name:section.title,path:Astro.url.pathname}]}>
+<BaseLayout title={section.title} description={section.summary} eligible={section.slug==='tools'||entries.length>0||((section.slug==='bare-acts'||section.slug==='areas-of-law')&&acts.length>0)} searchType={section.slug==='journal'?undefined:'Directory'} breadcrumbs={[{name:'Home',path:'/'},{name:section.title,path:Astro.url.pathname}]}>
 <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">{section.title}</span></nav>
 <header class="section-heading section-page-header"><div><p class="kicker">Rule &amp; Ratio</p><h1>{section.title}</h1><p class="intro">{section.summary}</p></div></header>
-{section.slug==='journal' ? <p>Rule &amp; Ratio Review is a planned academic journal. No issues or calls for submissions have opened.</p> : section.slug==='tools' ? <p>Legal calculators and other utilities are in development.</p> : <>
+{section.slug==='journal' ? <p>Rule &amp; Ratio Review is a planned academic journal. No issues or calls for submissions have opened.</p> : section.slug==='tools' ? <ToolsDirectory/> : <>
  {section.slug==='areas-of-law' && <section class="home-section"><h2>Browse legal knowledge hubs</h2>{hubGroups.map(group=><div class="chapter-group"><h3>{group.title}</h3><ul class="subject-list">{group.slugs.map(slug=><li><a href={hubPath(slug)}>{areas.find(a=>a.slug===slug)?.title}</a></li>)}</ul></div>)}</section>}
  {section.slug==='bare-acts'&&<section class="home-section"><h2>Statutory texts</h2><StatuteList acts={acts}/></section>}
  <section class="home-section section-publications"><h2>{section.slug==='areas-of-law'?'All published reading':section.slug==='bare-acts'?'Legislative analysis':'Latest publications'}</h2>{section.slug==='judgments'?<JudgmentDirectory entries={entries}/>:<ArticleList entries={entries}/>}</section>

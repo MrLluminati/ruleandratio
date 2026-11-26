@@ -26,3 +26,6 @@ Pre-launch noindex is deliberate. Before removing it: register production host, 
 - RR-015 Reviewed initial content.
 - RR-016 Monetization (conditional).
 - RR-017 Academic journal (separate governance and registration checks).
+
+## Legal tools
+General interest calculator and tools directory are implemented at /tools/. Client-side, fixed-rate arithmetic, actual/365 and fractional compounding periods. No external service, input persistence or legal entitlement inference. See docs/legal-tools.md. Statutory calculators remain separate and must receive legal review.

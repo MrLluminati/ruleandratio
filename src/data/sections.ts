@@ -7,6 +7,6 @@ export const sections = [
  {slug:'research', title:'Research', summary:'Legal analysis, interpretation and jurisprudence.'},
  {slug:'education', title:'Legal Education', summary:'Legal terms, concepts and study resources.'},
  {slug:'institutions', title:'Legal Institutions', summary:'Courts, tribunals and statutory authorities.'},
- {slug:'tools', title:'Legal Tools', summary:'Planned calculators, checklists and reference utilities.'},
+ {slug:'tools', title:'Legal Tools', summary:'Calculators, checklists and legal reference utilities.'},
  {slug:'journal', title:'Journal', summary:'Future home of Rule & Ratio Review.'},
 ] as const;

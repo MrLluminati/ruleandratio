@@ -91,6 +91,26 @@ export async function testSearch(){
   await page.locator('#rr-mobile-menu').waitFor({state:'hidden'});
   console.log('Responsive navigation tests passed: phone, tablets, desktop, menu links, Escape, close, backdrop and resizing.');
 
+  await page.goto(host+'/tools/');
+  await page.locator('a[href="/tools/interest-calculator/"]').click();
+  await page.locator('#interest-form').waitFor({state:'visible'});
+  await page.locator('[name="start"]').fill('2025-01-01');
+  await page.locator('[name="end"]').fill('2026-01-01');
+  await page.locator('#interest-form button[type="submit"]').click();
+  assert.equal(await page.locator('#total-amount').innerText(),'₹1,12,000.00');
+  await page.locator('[name="method"][value="compound"]').check();
+  assert.ok(await page.locator('#frequency-field').isVisible());
+  assert.ok(!(await page.locator('#interest-result').isVisible()));
+  await page.locator('#interest-form button[type="submit"]').click();
+  assert.equal(await page.locator('#total-amount').innerText(),'₹1,12,682.50');
+  const [download]=await Promise.all([page.waitForEvent('download'),page.locator('#download-result').click()]);
+  assert.equal(download.suggestedFilename(),'rule-and-ratio-interest-estimate.txt');
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Mobile calculator overflow');
+  await page.locator('[name="end"]').fill('2024-01-01');
+  await page.locator('#interest-form button[type="submit"]').click();
+  assert.match(await page.locator('#interest-status').innerText(),/must not precede/);
+  assert.ok(!(await page.locator('#interest-result').isVisible()));
+  console.log('Interest calculator browser checks passed.');
   await page.goto(host+'/research/rr-test-article/');
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Mobile article overflow');
   console.log('Browser tests passed: provision full-text search, type/subject filters, draft exclusion, mobile layout overflow checks.');

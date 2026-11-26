@@ -1,0 +1,74 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Interest Calculator" description="Estimate simple or compound interest in Indian rupees using a fixed annual rate and actual elapsed days on a 365-day basis." eligible={true} searchType="Legal tool" breadcrumbs={[{name:'Home',path:'/'},{name:'Legal Tools',path:'/tools/'},{name:'Interest Calculator',path:'/tools/interest-calculator/'}]}>
+<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/tools/">Legal Tools</a><span>/</span><span aria-current="page">Interest Calculator</span></nav>
+<header class="article-header"><p class="kicker">Legal tools · General calculation</p><h1>Interest Calculator</h1><p class="intro">Estimate simple or compound interest on a fixed principal using your own annual interest rate and date range.</p></header>
+<div class="rr-tool-grid">
+ <section class="rr-tool-panel" aria-labelledby="inputs-title">
+  <h2 id="inputs-title">Calculation details</h2>
+  <form id="interest-form" hidden>
+   <div class="rr-tool-fields">
+    <label>Principal amount (₹)<input name="principal" type="number" min="0.01" max="1000000000000" step="0.01" inputmode="decimal" value="100000" required/></label>
+    <label>Annual interest rate (%)<input name="rate" type="number" min="0" max="1000" step="0.0001" inputmode="decimal" value="12" required/></label>
+    <label>Start date<input name="start" type="date" min="1900-01-01" max="2200-12-31" required/></label>
+    <label>End date<input name="end" type="date" min="1900-01-01" max="2200-12-31" required/></label>
+    <fieldset class="rr-tool-full"><legend>Interest method</legend><div class="rr-tool-radio"><label><input type="radio" name="method" value="simple" checked/> Simple</label><label><input type="radio" name="method" value="compound"/> Compound</label></div></fieldset>
+    <label id="frequency-field" class="rr-tool-full" hidden>Compounding frequency<select name="frequency"><option value="1">Annually</option><option value="2">Half-yearly</option><option value="4">Quarterly</option><option value="12" selected>Monthly</option></select></label>
+   </div>
+   <div class="rr-tool-actions"><button class="rr-button" type="submit">Calculate interest</button><button type="reset" class="rr-tool-secondary">Reset</button></div>
+   <p class="notice">Actual elapsed days ÷ 365, with the start date excluded. Fixed rate and principal throughout. No information is sent to a server.</p>
+  </form>
+  <noscript><p>Enable JavaScript to use the calculator. The formula and assumptions are available below.</p></noscript>
+ </section>
+ <section class="rr-tool-panel rr-tool-result" aria-labelledby="result-title">
+  <h2 id="result-title">Estimated amount</h2>
+  <p id="interest-status" role="status" aria-live="polite">Enter your details and calculate.</p>
+  <div id="interest-result" hidden>
+   <p class="rr-tool-result-label">Total principal and interest</p><p id="total-amount" class="rr-tool-total"></p>
+   <div class="rr-tool-bar" role="img" aria-label="Principal and interest proportions"><span id="principal-bar"></span><span id="interest-bar"></span></div>
+   <dl class="rr-tool-breakdown"><dt>Principal</dt><dd id="principal-amount"></dd><dt>Estimated interest</dt><dd id="interest-amount"></dd><dt>Elapsed days</dt><dd id="elapsed-days"></dd><dt>Method</dt><dd id="interest-method"></dd></dl>
+   <p id="result-assumptions" class="notice"></p>
+   <div class="rr-tool-actions"><button id="copy-result" type="button" class="rr-tool-secondary">Copy calculation</button><button id="download-result" type="button" class="rr-tool-secondary">Download calculation (.txt)</button></div>
+   <p id="export-status" role="status" class="notice"></p>
+  </div>
+ </section>
+</div>
+<section class="home-section prose"><h2>Formula and assumptions</h2><p><strong>Simple:</strong> Interest = P × r × d / 365.</p><p><strong>Compound:</strong> Interest = P × [(1 + r / n)<sup>n × d / 365</sup> − 1].</p><p>P is principal, r is the annual rate as a decimal, d is elapsed days, and n is compounding periods per year. Compound interest uses fractional periods and a fixed 365-day year, including during leap years. It does not model calendar-month posting or the treatment of incomplete periods under a particular contract.</p><p>Amounts are rounded to two decimal places for display only. The calculator does not handle changing rates, partial payments, costs, penalties or multiple invoices.</p><h2>Legal caution</h2><p>Use the rate, period and method authorized by the applicable contract, award, decree or statute. This estimate does not determine entitlement to interest, the legally correct accrual dates, or the amount recoverable. Do not use this as an MSMED statutory interest calculator.</p></section>
+</BaseLayout>
+<script>
+ import {elapsedDays,interestEstimate} from '../../lib/interest.mjs';
+ const form=document.querySelector<HTMLFormElement>('#interest-form')!;
+ const result=document.querySelector<HTMLElement>('#interest-result')!;
+ const status=document.querySelector<HTMLElement>('#interest-status')!;
+ const exportStatus=document.querySelector<HTMLElement>('#export-status')!;
+ const frequencyField=document.querySelector<HTMLElement>('#frequency-field')!;
+ const money=new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',minimumFractionDigits:2,maximumFractionDigits:2});
+ const today=()=>{const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Kolkata',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());return ['year','month','day'].map(t=>parts.find(p=>p.type===t)?.value).join('-')};
+ const field=(name:string)=>form.elements.namedItem(name) as HTMLInputElement;
+ let report='';
+ function defaults(){field('end').value=today();field('start').value=today();frequencyField.hidden=true;result.hidden=true;status.textContent='Enter your details and calculate.';exportStatus.textContent='';report=''}
+ function invalidate(){frequencyField.hidden=new FormData(form).get('method')!=='compound';result.hidden=true;report='';status.textContent='Details changed. Calculate again.';exportStatus.textContent=''}
+ defaults();form.hidden=false;
+ form.addEventListener('input',invalidate);
+ form.addEventListener('reset',()=>queueMicrotask(defaults));
+ function put(id:string,value:string){document.getElementById(id)!.textContent=value}
+ form.addEventListener('submit',event=>{
+  event.preventDefault();result.hidden=true;report='';exportStatus.textContent='';
+  try{
+   const data=new FormData(form),start=String(data.get('start')),end=String(data.get('end')),method=String(data.get('method'));
+   const rate=Number(data.get('rate')),frequency=Number(data.get('frequency'));
+   const r=interestEstimate({principal:Number(data.get('principal')),rate,days:elapsedDays(start,end),method,frequency});
+   const name=r.method==='simple'?'Simple':({1:'Compound — annually',2:'Compound — half-yearly',4:'Compound — quarterly',12:'Compound — monthly'}[frequency]??'Compound');
+   put('total-amount',money.format(r.total));put('principal-amount',money.format(r.principal));put('interest-amount',money.format(r.interest));put('elapsed-days',String(r.days));put('interest-method',name);
+   const assumptions='Fixed '+rate+'% p.a. · '+start+' to '+end+' · actual/365 · '+name;
+   put('result-assumptions',assumptions);
+   document.getElementById('principal-bar')!.style.width=(r.principal/r.total*100)+'%';
+   document.getElementById('interest-bar')!.style.width=(r.interest/r.total*100)+'%';
+   report=['Rule & Ratio — General Interest Estimate',assumptions,'Principal: '+money.format(r.principal),'Interest: '+money.format(r.interest),'Total: '+money.format(r.total),'Elapsed days: '+r.days,'Arithmetic estimate only; not a determination of legal entitlement. No partial payments or changing rates.'].join('\n');
+   result.hidden=false;status.textContent='Calculation complete.';
+  }catch(e){status.textContent=e instanceof Error?e.message:'Unable to calculate.'}
+ });
+ document.getElementById('copy-result')!.addEventListener('click',async()=>{if(!report)return;try{await navigator.clipboard.writeText(report);exportStatus.textContent='Calculation copied.'}catch{exportStatus.textContent='Clipboard unavailable. Use the download option.'}});
+ document.getElementById('download-result')!.addEventListener('click',()=>{if(!report)return;const url=URL.createObjectURL(new Blob([report],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='rule-and-ratio-interest-estimate.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);exportStatus.textContent='Download requested.'});
+</script>
