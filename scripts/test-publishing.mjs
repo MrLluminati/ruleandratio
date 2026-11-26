@@ -142,7 +142,7 @@ jurisdiction: TEST ONLY
 author: Synthetic test author
 draft: true
 ---
-Not a public article.
+Not a public article. rrhiddenquartzxylophone
 `);
  expectBuild(true);
  const article=html('research/rr-test-article');

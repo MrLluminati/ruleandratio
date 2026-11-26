@@ -28,9 +28,12 @@ export async function testSearch(){
   assert.equal(await page.locator('#search-results a').count(),1);
   await page.goto(host+'/search/?q='+encodeURIComponent('RR TEST ARTICLE')+'&type='+encodeURIComponent('Research & analysis'));
   await page.locator('#search-results a[href="/research/rr-test-article/"]').waitFor({timeout:30000});
-  await page.goto(host+'/search/?q='+encodeURIComponent('RR TEST HIDDEN DRAFT'));
-  await page.waitForFunction(()=>document.querySelector('#search-status')?.textContent?.includes('No matching results'));
+  await page.goto(host+'/search/?q='+encodeURIComponent('rrhiddenquartzxylophone'));
+  await page.waitForFunction(()=>{const t=document.querySelector('#search-status')?.textContent??'';return t.startsWith('No matching results')||/^\d+ results?/.test(t)||t.startsWith('Unable')||t.startsWith('Search is unavailable')});
+  assert.match(await page.locator('#search-status').innerText(),/^No matching results/,'Unique draft-only search term must not be indexed');
   assert.equal(await page.locator('#search-results a').count(),0);
+  await page.goto(host+'/research/rr-test-hidden/');
+  assert.equal(await page.locator('body').innerText(),'Not found');
   await page.goto(host+'/');
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Mobile homepage overflow');
   await page.goto(host+'/research/rr-test-article/');
