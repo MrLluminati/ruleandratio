@@ -49,8 +49,8 @@ const safeJson=(v:unknown)=>JSON.stringify(v).replace(/</g,'\\u003c');
 <a class="skip" href="#main">Skip to content</a>
 <Masthead />
 <main id="main" class="wrap" data-pagefind-body={searchType?'':undefined}>
- {searchType&&<span hidden data-pagefind-filter="Type">{searchType}</span>}
- {searchSubjects.map(subject=><span hidden data-pagefind-filter="Subject">{subject}</span>)}
+ {searchType&&<span hidden data-pagefind-filter="Type[data-filter-value]" data-filter-value={searchType}>{searchType}</span>}
+ {searchSubjects.map(subject=><span hidden data-pagefind-filter="Subject[data-filter-value]" data-filter-value={subject}>{subject}</span>)}
  <slot />
 </main>
 <footer class="site-footer"><div class="wrap footer-inner">

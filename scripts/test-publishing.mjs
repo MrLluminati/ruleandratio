@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {mkdtempSync,writeFileSync,readFileSync,existsSync,rmSync} from 'node:fs';
 import {join} from 'node:path';
+import {testSearch} from './test-search.mjs';
 import {spawnSync} from 'node:child_process';
 
 const root='src/content/articles';
@@ -80,9 +81,9 @@ const statute={
   ]
 };
 const npm=process.platform==='win32'?'npm.cmd':'npm';
-const build=()=>spawnSync(npm,['run','build'],{stdio:'inherit',shell:process.platform==='win32'});
-function expectBuild(success){
- const result=build();
+const build=(launch=false)=>spawnSync(npm,['run','build'],{stdio:'inherit',shell:process.platform==='win32',env:{...process.env,PUBLIC_RR_INDEXING:launch?'true':'false',PUBLIC_RR_SITE_URL:launch?'https://example.invalid':''}});
+function expectBuild(success,launch=false){
+ const result=build(launch);
  if(result.error)throw result.error;
  if(result.status===null)throw new Error('Build terminated: '+result.signal);
  assert.equal(result.status===0,success,success?'Build must succeed':'Invalid publication must fail validation');
@@ -179,6 +180,29 @@ Not a public article.
  if(home.includes('RR TEST ARTICLE'))assert.match(home,/href="\/research\/rr-test-article\/"/);
  for(const page of [article,judgment,home,html('research')])assert.doesNotMatch(page,/RR TEST HIDDEN DRAFT/);
  assert.ok(!existsSync('dist/research/rr-test-hidden/index.html'));
+ assert.ok(existsSync('dist/pagefind/pagefind.js'));
+ assert.match(article,/noindex, follow/);
+ assert.ok(!existsSync('dist/sitemap.xml'));
+ assert.ok(!existsSync('dist/rss.xml'));
+ if(process.env.RR_TEST_BROWSER==='1')await testSearch();
+ expectBuild(true,true);
+ const sitemap=readFileSync('dist/sitemap.xml','utf8');
+ const rss=readFileSync('dist/rss.xml','utf8');
+ const prodArticle=html('research/rr-test-article');
+ assert.ok(sitemap.includes('https://example.invalid/research/rr-test-article/'));
+ assert.ok(sitemap.includes('https://example.invalid/bare-acts/acts/rr-test-act/provisions/section-1/'));
+ assert.ok(sitemap.includes('https://example.invalid/areas-of-law/msme-law/'));
+ assert.ok(!sitemap.includes('/areas-of-law/legal-ethics/'));
+ assert.ok(!sitemap.includes('/search/'));
+ assert.ok(!sitemap.includes('rr-test-hidden'));
+ assert.ok(rss.includes('https://example.invalid/research/rr-test-article/'));
+ assert.ok(!rss.includes('rr-test-hidden'));
+ assert.ok(!rss.includes('/bare-acts/acts/rr-test-act/'));
+ assert.match(prodArticle,/https:\/\/example\.invalid\/research\/rr-test-article\//);
+ assert.match(prodArticle,/application\/ld\+json/);
+ assert.match(html('search'),/noindex, follow/);
+ assert.match(html('areas-of-law/legal-ethics'),/noindex, follow/);
+ assert.match(readFileSync('dist/robots.txt','utf8'),/Sitemap: https:\/\/example\.invalid\/sitemap\.xml/);
  // An unresolved reference must fail even if the article metadata is otherwise valid.
  writeFileSync(join(fixture,'broken-ref.md'),basic('research','rr-broken-ref','Broken reference fixture')+`statuteRefs:
   - act: rr-test-act
@@ -217,5 +241,7 @@ Invalid publication.
  assert.ok(!existsSync('dist/judgments/rr-test-case/index.html'));
  assert.doesNotMatch(html(''),/RR TEST (ARTICLE|CASE|HIDDEN DRAFT)/);
  assert.ok(!existsSync('dist/bare-acts/acts/rr-test-act/index.html'));
+ assert.ok(!existsSync('dist/sitemap.xml'));
+ assert.ok(!existsSync('dist/rss.xml'));
  assert.doesNotMatch(html('areas-of-law/msme-law'),/RR TEST (ARTICLE|CASE|STATUTE)/);
 }
