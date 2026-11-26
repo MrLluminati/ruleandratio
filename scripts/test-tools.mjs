@@ -61,3 +61,7 @@ test('dictionary search normalization',()=>{assert.equal(normalizeDictionaryQuer
 
 const terms=JSON.parse(readFileSync(new URL('../src/data/legal-terms.json',import.meta.url),'utf8'));
 test('legal terminology records validate across seven subjects',()=>{const list=validateDictionary(terms);assert.equal(list.length,28);assert.equal(new Set(list.map(e=>e.category)).size,7);assert.ok(list.every(e=>e.status==='preview'));assert.match(dictionarySearchText(list.find(e=>e.slug==='first-information-report')),/\bfir\b/);assert.match(dictionarySearchText(list.find(e=>e.slug==='special-leave-petition')),/\bslp\b/)});
+
+import {validateComparison,comparisonMatches} from '../src/lib/comparison.mjs';
+const ipcBns=JSON.parse(readFileSync(new URL('../src/data/ipc-bns.json',import.meta.url),'utf8'));
+test('comparison validates records and supports bidirectional exact section search',()=>{const rows=validateComparison(ipcBns);assert.equal(rows.length,23);assert.deepEqual(rows.filter(r=>comparisonMatches(r,'420','old')).map(r=>r.slug),['cheating']);assert.deepEqual(rows.filter(r=>comparisonMatches(r,'318(4)','new')).map(r=>r.slug),['cheating']);assert.equal(rows.filter(r=>comparisonMatches(r,'106','new')).length,2);assert.equal(rows.filter(r=>comparisonMatches(r,'30','old')).length,0);assert.throws(()=>validateComparison({...ipcBns,entries:[...rows,rows[0]]}))});

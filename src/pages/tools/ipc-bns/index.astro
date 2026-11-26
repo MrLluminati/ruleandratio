@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import data from '../../../data/ipc-bns.json';
+import {validateComparison,relationshipLabels} from '../../../lib/comparison.mjs';
+const entries=validateComparison(data);
+const categories=[...new Set(entries.map(e=>e.category))].sort();
+---
+<BaseLayout title="IPC–BNS Comparison Tool" description="Search selected corresponding IPC and BNS provisions, subsection mappings and substantive changes." eligible={false} breadcrumbs={[{name:'Home',path:'/'},{name:'Legal Tools',path:'/tools/'},{name:'IPC–BNS Comparison',path:'/tools/ipc-bns/'}]}>
+<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/tools/">Legal Tools</a><span>/</span><span aria-current="page">IPC–BNS Comparison</span></nav>
+<header class="article-header"><p class="kicker">Legal reference · Editorial preview</p><h1>IPC–BNS Comparison Tool</h1><p class="intro">Compare selected Indian Penal Code, 1860 provisions with the Bharatiya Nyaya Sanhita, 2023. Search either code or an offence name.</p><p class="notice">Selected coverage only. No result does not mean a provision was repealed or has no counterpart. Correspondence is not equivalence. Human legal review pending.</p></header>
+<form id="comparison-filters" class="judgment-filters" hidden><label>Section or topic<input name="query" type="search" placeholder="e.g. 420, 318(4), theft"/></label><label>Search in<select name="side"><option value="both">Both codes</option><option value="old">IPC</option><option value="new">BNS</option></select></label><label>Relationship<select name="relation"><option value="">All relationships</option>{Object.entries(relationshipLabels).map(([v,l])=><option value={v}>{l}</option>)}</select></label><label>Subject<select name="category"><option value="">All subjects</option>{categories.map(c=><option value={c}>{c}</option>)}</select></label><button class="rr-tool-secondary" type="reset">Clear filters</button></form>
+<p id="comparison-count" role="status">{entries.length} comparison records</p>
+<div class="msme-table-wrap"><table class="msme-table comparison-table"><thead><tr><th>Subject</th><th>IPC</th><th>BNS</th><th>Relationship</th></tr></thead><tbody>{entries.map((r,i)=><tr data-record={i}><td><a href={'/tools/ipc-bns/'+r.slug+'/'}>{r.title}</a></td><td>{r.oldSections.join(', ')||'—'}</td><td>{r.newSections.join(', ')||'—'}</td><td>{relationshipLabels[r.relation]}</td></tr>)}</tbody></table></div>
+<section class="home-section prose"><h2>Transitional applicability</h2><p>The original commencement notification S.O. 850(E) appointed 1 July 2024, excluding Section 106(2). Verify later notifications and amendments. BNS Section 358 addresses repeal and savings. Article 20(1) of the Constitution limits retrospective penal liability. Determine the legally relevant offence date, savings and applicable law independently; this tool does not decide which code applies.</p><h2>Sources</h2><ul><li><a href={data.sources.table}>NCRB correspondence table</a> — mapping reference</li><li><a href={data.sources.ipc}>India Code: IPC</a></li><li><a href={data.sources.bns}>NCRB: BNS statutory text</a></li><li><a href={data.sources.gazette}>Commencement notification S.O. 850(E), 23 February 2024</a></li></ul></section>
+</BaseLayout>
+<script>
+ import data from '../../../data/ipc-bns.json';
+ import {comparisonMatches} from '../../../lib/comparison.mjs';
+ const form=document.querySelector<HTMLFormElement>('#comparison-filters')!;
+ const rows=Array.from(document.querySelectorAll<HTMLElement>('[data-record]'));
+ function update(){const f=new FormData(form),query=String(f.get('query')??''),side=String(f.get('side')??'both'),relation=String(f.get('relation')??''),category=String(f.get('category')??'');let n=0;for(const row of rows){const r=data.entries[Number(row.dataset.record)];row.hidden=!(comparisonMatches(r,query,side)&&(!relation||r.relation===relation)&&(!category||r.category===category));if(!row.hidden)n++}document.getElementById('comparison-count')!.textContent=n+' of '+rows.length+' comparison records';}
+ form.hidden=false;form.addEventListener('input',update);form.addEventListener('change',update);form.addEventListener('submit',e=>{e.preventDefault();update()});form.addEventListener('reset',()=>queueMicrotask(update));
+</script>
+<style>.comparison-table td{white-space:normal;min-width:90px;overflow-wrap:anywhere}.comparison-table tr[hidden],#comparison-filters[hidden]{display:none}#comparison-filters{grid-template-columns:repeat(auto-fit,minmax(145px,1fr))}</style>
