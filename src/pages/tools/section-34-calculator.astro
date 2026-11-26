@@ -1,0 +1,63 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Section 34 Arbitration Limitation Calculator (Beta)" description="Estimate the ordinary three-month deadline and separate conditional 30-day window for an Indian arbitration award challenge." eligible={false} searchType="Legal tool" breadcrumbs={[{name:'Home',path:'/'},{name:'Legal Tools',path:'/tools/'},{name:'Section 34 Calculator',path:'/tools/section-34-calculator/'}]}>
+<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/tools/">Legal Tools</a><span>/</span><span aria-current="page">Section 34 Calculator</span></nav>
+<header class="article-header"><p class="kicker">Legal tools · Arbitration · Beta</p><h1>Section 34 Arbitration Limitation Calculator</h1><p class="intro">Estimate the prescribed three-calendar-month period and the separate 30-day discretionary window under Section 34(3) of the Arbitration and Conciliation Act, 1996. Not a filing-date certification.</p></header>
+<div class="rr-tool-grid"><section class="rr-tool-panel"><h2>Case dates</h2>
+<form id="s34-form" hidden><div class="rr-tool-fields">
+<label class="rr-tool-full">Receipt of signed award by relevant party<input type="date" name="receipt" required min="1996-08-22" max="2200-12-31"/></label>
+<label class="rr-tool-full">Trigger<select name="mode"><option value="receipt">Signed award receipt — no qualifying Section 33 request</option><option value="section33">Disposal of qualifying Section 33 request</option></select></label>
+<div id="s34-correction" class="rr-tool-full rr-tool-fields" hidden>
+<label>Section 33 request date<input type="date" name="requestDate" required/></label><label>Tribunal disposal date<input type="date" name="disposal" required/></label>
+<label class="rr-tool-full"><input type="checkbox" name="formal" required/> Formal Section 33 request entertained by tribunal, within standard 30-day period from relevant receipt.</label>
+<label class="rr-tool-full"><input type="checkbox" name="notice" required/> Notice given to the other party.</label>
+<p class="notice rr-tool-full">Successive requests, different parties’ receipt dates, agreed alternate periods, pending requests and disputed service require individual review. Do not assume a later application resets limitation.</p>
+</div>
+<label>Verified additional excluded days<input name="excluded" type="number" min="0" max="110000" step="1" required value="0"/></label>
+<label>Legal basis for exclusion<input name="exclusionBasis" maxlength="500" placeholder="e.g. verified Section 14 period"/></label>
+<label>Verified closure on ordinary expiry<input type="date" name="closureDate"/></label><label>First reopening date<input type="date" name="reopening"/></label>
+<label class="rr-tool-full">Court closure authority<input name="closureBasis" maxlength="500"/></label>
+<label class="rr-tool-full">Proposed / actual filing date (optional)<input type="date" name="filing"/></label>
+<label class="rr-tool-full"><input type="checkbox" required/> I have verified the dates, legal basis and applicability of exclusions. I understand the 30-day period is discretionary, not automatic.</label>
+</div><div class="rr-tool-actions"><button type="submit" class="rr-button">Calculate indicative deadlines</button></div></form><noscript>Enable JavaScript to calculate.</noscript></section>
+<section class="rr-tool-panel rr-tool-result"><h2>Limitation estimate</h2><p id="s34-status" role="status">Enter verified dates.</p><div id="s34-result" hidden>
+<p class="rr-tool-result-label">Ordinary three-month deadline (after entered exclusions)</p><p id="s34-ordinary" class="rr-tool-total"></p>
+<p class="rr-tool-result-label">End of conditional 30-day window</p><p id="s34-outer" class="rr-tool-total"></p>
+<dl class="rr-tool-breakdown" id="s34-details"></dl><p id="s34-filing"></p><p class="notice" id="s34-warning"></p>
+<p class="notice">No automatic holiday extension to the 30-day window. A verified Section 4 reopening is shown separately and does not restart the 30 days. Seek sufficient-cause condonation where required.</p>
+<div class="rr-tool-actions"><button id="s34-download" type="button" class="rr-tool-secondary">Download estimate (.txt)</button></div></div></section></div>
+<section class="home-section prose"><h2>Legal basis and limitations</h2>
+<p><a href="https://upload.indiacode.nic.in/showfile?actid=AC_CEN_3_46_00004_199626_1517807323919&amp;filename=a1996-26.pdf&amp;type=actfile">Arbitration and Conciliation Act, 1996</a>, Sections 31(5), 33, 34(3), 43. Use actual legally effective receipt of the signed award, not the award date alone. The trigger is excluded; three calendar months are added, clamping to the final day of a shorter month. The additional period is 30 days, not a month. Section 5 of the Limitation Act does not extend that statutory condonation limit.</p>
+<p>Where qualifying Section 33 proceedings are concluded, the model uses tribunal disposal, not receipt of the disposal order. The 2026 Younis judgment also discusses receipt in its application to the facts; independently review any contested commencement date. The model deliberately uses the earlier disposal date. It does not establish whether a request qualifies or whether successive requests reset time. For caution the original receipt-only three-month date is separately shown.</p>
+<p>Section 4 of the Limitation Act can protect filing on the first reopening day if the ordinary prescribed period ends during closure. It cannot extend the 30-day period merely because that period ends on a holiday. Section 14 exclusions may apply if legally established. Enter only non-overlapping excluded days independently confirmed as applicable to the ordinary period; complex exclusions, COVID orders, court-specific filing defects and re-filing are not computed automatically. No assumption of weekend closure.</p>
+<h2>Judicial authorities</h2><ul class="reference-list">
+<li><a href="https://indiankanoon.org/doc/1248572/">State of H.P. v. Himachal Techno Engineers, (2010) 12 SCC 210</a> — calendar months and exclusion of receipt day (public judgment reproduction).</li>
+<li><a href="https://api.sci.gov.in/supremecourt/2024/15925/15925_2024_12_1502_58501_Judgement_10-Jan-2025.pdf">My Preferred Transformation &amp; Hospitality, 2025 INSC 56</a> — paragraphs 18–21, 35, ordinary limitation and court closure.</li>
+<li><a href="https://api.sci.gov.in/supremecourt/2024/48408/48408_2024_11_1501_60626_Judgement_03-Apr-2025.pdf">Supreme Court judgment dated 3 April 2025</a> — paragraphs 10–14, ordinary expiry on court holiday.</li>
+<li><a href="https://api.sci.gov.in/supremecourt/2021/13430/13430_2021_6_17_63523_FinalOrder_19-Aug-2025.pdf">Geojit, 2025 INSC 1021</a> — paragraph 35, Section 33 disposal.</li>
+<li><a href="https://indiankanoon.org/doc/28425722/">NHAI v. T. Younis, 2026 INSC 616</a> — paragraphs 13–19, formal Section 33 proceedings (public judgment reproduction).</li></ul>
+<p>Beta: human legal review pending. All calculations are local in the browser.</p></section>
+</BaseLayout>
+<script>
+ import {section34Estimate} from '../../lib/section34.mjs';
+ const el=(id:string)=>document.getElementById(id)!;
+ const form=el('s34-form') as HTMLFormElement,result=el('s34-result'),status=el('s34-status');
+ const field=(name:string)=>form.elements.namedItem(name) as HTMLInputElement;
+ let report='';
+ function invalidate(){report='';result.hidden=true;status.textContent='Details changed. Calculate again.'}
+ function sync(){const active=field('mode').value==='section33';el('s34-correction').hidden=!active;for(const name of ['requestDate','disposal','formal','notice'])field(name).disabled=!active;invalidate()}
+ form.hidden=false;sync();form.addEventListener('input',invalidate);field('mode').addEventListener('change',sync);
+ form.addEventListener('submit',e=>{e.preventDefault();invalidate();try{
+ const r=section34Estimate({receipt:field('receipt').value,mode:field('mode').value,requestDate:field('requestDate').value,disposal:field('disposal').value,formal:field('formal').checked,notice:field('notice').checked,excluded:Number(field('excluded').value),exclusionBasis:field('exclusionBasis').value,closureDate:field('closureDate').value,reopening:field('reopening').value,closureBasis:field('closureBasis').value,filing:field('filing').value});
+ el('s34-ordinary').textContent=r.ordinary;el('s34-outer').textContent=r.outer;
+ const rows=[['Signed award received',r.receipt],['Selected trigger',r.trigger],['Section 33 request',r.requestDate||'Not selected'],['Receipt-only ordinary date (before exclusions)',r.receiptOnlyOrdinary],['Unadjusted three-month date',r.raw],['Verified excluded days',String(r.excluded)],['Exclusion basis',r.exclusionBasis||'None'],['Ordinary deadline weekday',r.ordinaryWeekday],['Verified Section 4 reopening',r.reopeningDay||'None'],['Closure basis',r.closureBasis||'None'],['Conditional window end weekday',r.outerWeekday],['Compared filing date',r.filing||'None']];
+ const dl=el('s34-details');dl.replaceChildren();for(const [k,v] of rows){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=k;dd.textContent=v;dl.append(dt,dd)}
+ el('s34-filing').textContent=r.status+(r.delay===null?'':' · '+Math.abs(r.delay)+' calendar days '+(r.delay>0?'after':r.delay<0?'before':'from')+' ordinary expiry.');
+ const warning=r.historicalWarning?'Period overlaps COVID limitation orders. No automatic adjustment; verify independently.':'';
+ el('s34-warning').textContent=warning;
+ report=['Rule & Ratio — Section 34 estimate (beta)',...rows.map(([k,v])=>k+': '+v),'Ordinary deadline: '+r.ordinary,'Conditional window end: '+r.outer,'Filing assessment: '+r.status,warning,'No automatic condonation or extension of the 30-day window. Human legal review required.'].join('\n');
+ result.hidden=false;status.textContent='Estimate complete. Independently verify.';
+ }catch(error){status.textContent=error instanceof Error?error.message:'Calculation failed.'}});
+ el('s34-download').addEventListener('click',()=>{if(!report)return;const url=URL.createObjectURL(new Blob([report],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='rule-and-ratio-section-34-estimate.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)});
+</script>
