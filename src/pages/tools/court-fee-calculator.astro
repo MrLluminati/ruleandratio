@@ -1,0 +1,42 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import {fixedFees,feeSources} from '../../lib/court-fees.mjs';
+---
+<BaseLayout title="Bihar Court Fee Calculator (Beta)" description="Estimate selected Bihar scheduled court fees using the earlier ad valorem table and fixed petition entries; surcharge and source discrepancies disclosed." eligible={false} breadcrumbs={[{name:'Home',path:'/'},{name:'Legal Tools',path:'/tools/'},{name:'Court Fee Calculator',path:'/tools/court-fee-calculator/'}]}>
+<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/tools/">Legal Tools</a><span>/</span><span aria-current="page">Court Fee Calculator</span></nav>
+<header class="article-header"><p class="kicker">Legal tools · Bihar · Research beta</p><h1>Court Fee Calculator</h1><p class="intro">Estimate the scheduled fee for a selected Bihar proceeding. This is a source-based reference calculation, not the final filing amount.</p><p class="notice">Important: the enhanced 2007 scale was retrospectively repealed by Bihar Act 32 of 2008. The earlier printed schedule contains discrepancies, and surcharge applicability is unresolved. Verify with the filing or taxing office.</p></header>
+<div class="rr-tool-grid"><section class="rr-tool-panel"><h2>Proceeding details</h2><form id="fee-form" hidden><div class="rr-tool-fields">
+<label class="rr-tool-full">State<select name="state"><option value="bihar">Bihar</option></select></label>
+<label class="rr-tool-full">Proceeding<select name="type"><option value="money-suit">Ordinary money suit — Schedule I, Article 1</option>{fixedFees.map(f=><option value={f.id}>{f.label}</option>)}</select></label>
+<label id="fee-valuation-field" class="rr-tool-full">Verified court-fee valuation (₹)<input name="valuation" type="number" min="5.01" max="1000000000000" step="0.01" required value="100000"/></label>
+<label class="rr-tool-full">Surcharge scenario<select name="surcharge"><option value="no">Scheduled base fee only — not a final payable amount</option><option value="yes">Illustrate additional 10% under Section 30-A</option></select></label>
+<p class="notice rr-tool-full">The 10% surcharge scenario is optional arithmetic only. Neither its present applicability nor a particular remission is established here. No rounding of surcharge is inferred.</p>
+<label class="rr-tool-full"><input type="checkbox" required/> I have verified the proceeding and valuation and understand this is an unreviewed schedule estimate.</label>
+</div><div class="rr-tool-actions"><button class="rr-button" type="submit">Calculate scheduled fee</button></div></form><noscript>Enable JavaScript to calculate.</noscript></section>
+<section class="rr-tool-panel rr-tool-result"><h2>Scheduled fee estimate</h2><p id="fee-status" role="status">Enter details and calculate.</p><div id="fee-result" hidden><p class="rr-tool-result-label">Scheduled base fee — printed table reading</p><p id="fee-base" class="rr-tool-total"></p><dl class="rr-tool-breakdown" id="fee-details"></dl><p class="notice" id="fee-warning"></p><div class="rr-tool-actions"><button id="fee-download" type="button" class="rr-tool-secondary">Download estimate (.txt)</button></div></div></section></div>
+<section class="home-section prose"><h2>Statutory source and limitations</h2><p>The <a href={feeSources.manual}>Bihar Stamp Manual extract (printed pp. 37–44, 46)</a> reproduces the earlier Schedule I table and Schedule II fixed entries. The <a href={feeSources.repealedScale}>2007 amendment, Bihar Act 4 of 2008</a>, was <a href={feeSources.repeal}>repealed retrospectively by Bihar Act 32 of 2008</a>, subject to savings. This calculator does not apply the repealed ₹3 lakh scale. The table expressly caps the base fee at ₹50,000 above ₹29.4 lakh. The continuation of the ₹80-per-₹5,000 step differs by ₹2 from the manual's higher examples; for values above ₹2,05,000 through ₹29,40,000 both readings are displayed. These scenarios are not a determination of the correct fee. The original 1995 Gazette and current consolidated state law need independent authentication.</p>
+<p>Section 30-A was introduced by the <a href={feeSources.surcharge}>1977 amendment</a>. Its current applicability and any remission are not verified. No process fee, welfare stamp, service fee, exemptions, interest, valuation determination, multiple claims or special-law fees are automatically included. The 2010 rounding amendment is noted in the manual; fractional surcharge scenarios remain unrounded. A Section 34 challenge, partition, declaration, probate, succession, possession, appeal or other proceeding is not supported by this calculator. Fixed entries assume a single fee-bearing petition; check court rules and multiplicity.</p>
+<h2>Judicial cross-checks</h2><p><a href={feeSources.writ}>M/s Laxman Kumar v. Union of India (Patna High Court, 24 July 2025)</a> discusses the ₹250 Article 226 entry and separate fees in multi-petitioner cases. <a href={feeSources.suitExample}>Umesh Prasad v. Sujit Kumar (2018)</a> records a ₹2,440 fee on a ₹20,000 valuation; <a href={feeSources.capExample}>Indian Oil Corporation Ltd. v. State of Bihar (2016)</a> records ₹50,000 paid on a ₹35 lakh suit. These recorded payments are cross-checks, not determinations of the surcharge or all current filing fees.</p><p>Other states and types will be configured separately only after source and legal review. Inputs stay in the browser.</p></section>
+</BaseLayout>
+<script>
+ import {courtFeeEstimate} from '../../lib/court-fees.mjs';
+ const el=(id:string)=>document.getElementById(id)!;
+ const form=el('fee-form') as HTMLFormElement,result=el('fee-result'),status=el('fee-status');
+ const field=(name:string)=>form.elements.namedItem(name) as HTMLInputElement;
+ const money=new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',minimumFractionDigits:2,maximumFractionDigits:2});
+ let report='';
+ function invalidate(){report='';result.hidden=true;status.textContent='Details changed. Calculate again.'}
+ function sync(){const active=field('type').value==='money-suit';el('fee-valuation-field').hidden=!active;field('valuation').disabled=!active;invalidate()}
+ form.hidden=false;sync();form.addEventListener('input',invalidate);field('type').addEventListener('change',sync);
+ form.addEventListener('submit',e=>{e.preventDefault();invalidate();try{
+ const r=courtFeeEstimate({state:field('state').value,type:field('type').value,valuation:Number(field('valuation').value),surcharge:field('surcharge').value==='yes'});
+ el('fee-base').textContent=money.format(r.baseFee);
+ const rows=[['State','Bihar'],['Proceeding',(field('type') as unknown as HTMLSelectElement).selectedOptions[0].text],['Valuation',r.valuation===null?'Not applicable':money.format(r.valuation)],['Authority',r.authority],['Method',r.explanation],['Alternate example reading',r.alternate===null?'Not applicable':money.format(r.alternate)],['10% surcharge scenario',r.surcharge?money.format(r.surchargeAmount):'Not calculated'],['Base plus selected surcharge scenario',money.format(r.scenarioTotal)]];
+ if(r.alternateTotal!==null)rows.push(['Alternate total scenario',money.format(r.alternateTotal)]);
+ const dl=el('fee-details');dl.replaceChildren();for(const [k,v] of rows){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=k;dd.textContent=v;dl.append(dt,dd)}
+ const warning=r.warning+' Verify surcharge, exemptions, other charges and current registry practice; not the final fee payable.';
+ el('fee-warning').textContent=warning;report=['Rule & Ratio — Bihar scheduled court fee estimate (beta)',...rows.map(([k,v])=>k+': '+v),'Scheduled base: '+money.format(r.baseFee),warning].join('\n');
+ result.hidden=false;status.textContent='Reference estimate complete.';
+ }catch(error){status.textContent=error instanceof Error?error.message:'Calculation failed.'}});
+ el('fee-download').addEventListener('click',()=>{if(!report)return;const url=URL.createObjectURL(new Blob([report],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='rule-and-ratio-bihar-court-fee-estimate.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)});
+</script>
