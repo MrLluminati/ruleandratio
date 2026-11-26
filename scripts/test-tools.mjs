@@ -9,3 +9,12 @@ test('zero duration and zero rate',()=>{assert.equal(interestEstimate({...p,days
 test('fractional periods',()=>{const r=interestEstimate({...p,days:30,method:'compound',frequency:12});assert.ok(Math.abs(r.interest-100000*((1.01)**(12*30/365)-1))<1e-8)});
 test('calendar validation',()=>{assert.throws(()=>elapsedDays('2023-02-29','2023-03-01'));assert.throws(()=>elapsedDays('2024-03-01','2024-02-29'));assert.equal(elapsedDays('2024-02-29','2024-03-01'),1)});
 test('reject invalid and excessive inputs',()=>{for(const x of [{principal:0},{principal:NaN},{rate:-1},{days:1.5},{method:'unknown'},{method:'compound',frequency:3},{rate:1000,days:100000,method:'compound'}])assert.throws(()=>interestEstimate({...p,...x}))});
+
+import {msmeDueDate,msmeEstimate} from '../src/lib/msme-interest.mjs';
+const inv={id:'A',amount:100000,acceptance:'2025-01-01',terms:null};
+const bank={from:'2025-01-01',to:'2026-01-01',rate:6,source:'Synthetic test only'};
+test('MSME appointed day and maximum terms',()=>{assert.deepEqual(msmeDueDate('2025-01-01',null),{due:'2025-01-16',defaultDate:'2025-01-17'});assert.equal(msmeDueDate('2025-01-01',45).defaultDate,'2025-02-16');assert.throws(()=>msmeDueDate('2025-01-01',46))});
+test('MSME monthly rests',()=>{const r=msmeEstimate([inv],[bank],'2025-03-17').rows[0];const a=100000*.18*31/365,b=(100000+a)*.18*28/365;assert.ok(Math.abs(r.interest-a-b)<1e-8)});
+test('MSME changes within a rest',()=>{const r=msmeEstimate([inv],[{...bank,to:'2025-02-01'},{...bank,from:'2025-02-01',rate:5}],'2025-02-17').rows[0];assert.ok(Math.abs(r.interest-100000*(.18*15+.15*16)/365)<1e-8)});
+test('MSME coverage and multiple invoices',()=>{assert.throws(()=>msmeEstimate([inv],[],'2025-02-17'),/coverage/);assert.throws(()=>msmeEstimate([inv],[bank,bank],'2025-02-17'),/overlap/);assert.equal(msmeEstimate([inv],[],'2025-01-16').totals.interest,0);assert.equal(msmeEstimate([inv,{...inv,id:'B'}],[bank],'2025-02-17').totals.principal,200000)});
+test('MSME month-end clamp',()=>{const r=msmeEstimate([{...inv,acceptance:'2025-01-30',terms:0}],[bank],'2025-03-31').rows[0];const a=100000*.18*28/365,b=(100000+a)*.18*31/365;assert.ok(Math.abs(r.interest-a-b)<1e-8)});
