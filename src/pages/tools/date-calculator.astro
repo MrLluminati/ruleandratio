@@ -1,0 +1,60 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+---
+<BaseLayout title="Date and Duration Calculator" description="Find elapsed calendar days, inclusive day counts, or a date after adding or subtracting years, months, weeks and days." eligible={true} searchType="Legal tool" breadcrumbs={[{name:'Home',path:'/'},{name:'Legal Tools',path:'/tools/'},{name:'Date and Duration Calculator',path:'/tools/date-calculator/'}]}>
+<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/tools/">Legal Tools</a><span>/</span><span aria-current="page">Date and Duration Calculator</span></nav>
+<header class="article-header"><p class="kicker">Legal tools · Calendar arithmetic</p><h1>Date and Duration Calculator</h1><p class="intro">Calculate the duration between two dates or find a date by adding or subtracting a calendar period.</p></header>
+<div class="rr-tool-grid">
+<section class="rr-tool-panel"><h2>Calculation details</h2>
+<form id="date-tool-form" hidden>
+<div class="rr-tool-fields">
+<label class="rr-tool-full">Calculation type<select name="mode"><option value="duration">Duration between dates</option><option value="add">Add a period to a date</option><option value="subtract">Subtract a period from a date</option></select></label>
+<label>Start date<input type="date" name="start" required min="1900-01-01" max="2200-12-31"/></label>
+<label id="date-end-field">End date<input type="date" name="end" required min="1900-01-01" max="2200-12-31"/></label>
+<div id="date-offset-fields" class="rr-tool-full rr-tool-fields" hidden>
+<label>Years<input type="number" name="years" min="0" max="300" step="1" value="0" required/></label>
+<label>Months<input type="number" name="months" min="0" max="3600" step="1" value="0" required/></label>
+<label>Weeks<input type="number" name="weeks" min="0" max="16000" step="1" value="0" required/></label>
+<label>Days<input type="number" name="days" min="0" max="110000" step="1" value="0" required/></label>
+</div>
+</div>
+<div class="rr-tool-actions"><button class="rr-button" type="submit">Calculate</button><button type="reset" class="rr-tool-secondary">Reset</button></div>
+<p class="notice">Dates are Gregorian calendar dates. No court-holiday or statutory exclusions are applied.</p>
+</form><noscript><p>Enable JavaScript to use this calculator.</p></noscript></section>
+<section class="rr-tool-panel rr-tool-result"><h2>Result</h2><p id="date-tool-status" role="status" aria-live="polite">Enter dates and calculate.</p>
+<div id="date-tool-result" hidden><p class="rr-tool-result-label" id="date-tool-label"></p><p class="rr-tool-total" id="date-tool-main"></p><dl class="rr-tool-breakdown" id="date-tool-details"></dl><div class="rr-tool-actions"><button id="date-tool-copy" type="button" class="rr-tool-secondary">Copy result</button><button id="date-tool-download" type="button" class="rr-tool-secondary">Download result (.txt)</button></div><p id="date-tool-export-status" class="notice" role="status"></p></div>
+</section></div>
+<section class="home-section prose"><h2>How dates are counted</h2><p>Elapsed days are the difference between the two calendar dates; the same date gives zero elapsed days. Counting both endpoints gives elapsed days plus one. Calendar duration is the greatest whole number of calendar months that can be added to the start date without exceeding the end date, followed by the remaining days. Twelve months are expressed as one year.</p><p>For addition or subtraction, years and months are combined into a single month shift. If the target month lacks the original day number, the result is clamped to its final day. Weeks and days are then applied. For example, adding one month to 31 January 2025 gives 28 February 2025; adding one year to 29 February 2024 gives 28 February 2025. Month-end clamping is not always reversible.</p><h2>Legal use and limitations</h2><p>This tool performs calendar arithmetic only. A legal filing deadline may depend on the applicable enactment, triggering event, exclusion of time, court closure, certified-copy periods, extensions or special judicial orders. It does not decide limitation, condonation or working days. Verify those rules separately. Dates and results are calculated locally in your browser.</p></section>
+</BaseLayout>
+<script>
+ import {dateDuration,shiftCalendarDate} from '../../lib/calendar.mjs';
+ const el=(id:string)=>document.getElementById(id)!;
+ const form=el('date-tool-form') as HTMLFormElement,result=el('date-tool-result'),status=el('date-tool-status');
+ const field=(name:string)=>form.elements.namedItem(name) as HTMLInputElement;
+ const format=(date:string)=>new Intl.DateTimeFormat('en-GB',{day:'2-digit',month:'short',year:'numeric',timeZone:'UTC'}).format(new Date(date+'T00:00:00Z'));
+ const today=()=>{const parts=new Intl.DateTimeFormat('en-CA',{timeZone:'Asia/Kolkata',year:'numeric',month:'2-digit',day:'2-digit'}).formatToParts(new Date());return ['year','month','day'].map(t=>parts.find(p=>p.type===t)?.value).join('-')};
+ let report='';
+ function invalidate(){report='';result.hidden=true;status.textContent='Details changed. Calculate again.';el('date-tool-export-status').textContent=''}
+ function sync(){const duration=field('mode').value==='duration';el('date-end-field').hidden=!duration;field('end').disabled=!duration;el('date-offset-fields').hidden=duration;for(const name of ['years','months','weeks','days'])field(name).disabled=duration;invalidate()}
+ function defaults(){field('start').value=today();field('end').value=today();sync();status.textContent='Enter dates and calculate.'}
+ defaults();form.hidden=false;form.addEventListener('input',invalidate);field('mode').addEventListener('change',sync);form.addEventListener('reset',()=>queueMicrotask(defaults));
+ form.addEventListener('submit',e=>{e.preventDefault();invalidate();try{
+  const mode=field('mode').value,start=field('start').value;
+  let main='',label='',rows:[string,string][]=[];
+  if(mode==='duration'){
+   const r=dateDuration(start,field('end').value);
+   label='Elapsed days';main=r.days.toLocaleString('en-IN')+' days';
+   rows=[['Start date',format(r.start)+' · '+r.startWeekday],['End date',format(r.end)+' · '+r.endWeekday],['Both dates included',String(r.inclusiveDays)+' days'],['Weeks and days',r.weeks+' weeks, '+r.weekRemainder+' days'],['Calendar duration',r.years+' years, '+r.months+' months, '+r.calendarRemainder+' days']];
+  }else{
+   const r=shiftCalendarDate(start,{direction:mode,years:Number(field('years').value),months:Number(field('months').value),weeks:Number(field('weeks').value),days:Number(field('days').value)});
+   label=mode==='add'?'Resulting date after addition':'Resulting date after subtraction';main=format(r.result);
+   rows=[['Start date',format(r.start)],['Period',r.years+' years, '+r.months+' months, '+r.weeks+' weeks, '+r.days+' days'],['Result date',r.result],['Day of week',r.weekday],['Elapsed distance',String(r.elapsed)+' days']];
+  }
+  el('date-tool-label').textContent=label;el('date-tool-main').textContent=main;
+  const dl=el('date-tool-details');dl.replaceChildren();for(const [key,value] of rows){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=key;dd.textContent=value;dl.append(dt,dd)}
+  report=['Rule & Ratio — Calendar calculation',label+': '+main,...rows.map(([k,v])=>k+': '+v),'Calendar arithmetic only; no statutory or court-holiday adjustments.'].join('\n');
+  result.hidden=false;status.textContent='Calculation complete.';
+ }catch(error){status.textContent=error instanceof Error?error.message:'Calculation failed.'}});
+ el('date-tool-copy').addEventListener('click',async()=>{if(!report)return;try{await navigator.clipboard.writeText(report);el('date-tool-export-status').textContent='Result copied.'}catch{el('date-tool-export-status').textContent='Clipboard unavailable. Use download.'}});
+ el('date-tool-download').addEventListener('click',()=>{if(!report)return;const url=URL.createObjectURL(new Blob([report],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='rule-and-ratio-date-calculation.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)});
+</script>
