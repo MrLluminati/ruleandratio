@@ -8,3 +8,5 @@ The publication is editorially distinct from Chambers of AK. No solicitation, mi
 
 ## Discovery and attribution
 Use the secondary-source policy in docs/content-acquisition.md. Produce independent legal analysis from authenticated documents; cite discovery sources when relied upon, respect publisher terms and copyright, and verify statutory reproduction rights (including Section 52(1)(q)(ii) of the Copyright Act). Do not publish confidential or restricted court material.
+
+Licensed databases including SCC OnLine and Manupatra may be used for citation and precedent research only within authorized access and license terms. Verify actual judicial treatment from the judgments, do not copy proprietary editorial material, and do not claim a database check was performed unless it was actually performed.
