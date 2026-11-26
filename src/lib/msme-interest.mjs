@@ -30,21 +30,47 @@ export function msmeEstimate(invoices,rates,asOf){
   if(end<parseCalendarDate(inv.acceptance))throw new Error('Calculation date precedes acceptance: '+id);
   const dates=msmeDueDate(inv.acceptance,inv.terms),start=parseCalendarDate(dates.defaultDate);
   if(end-start>36525*DAY)throw new Error('Maximum interest duration is 100 years.');
-  let cursor=start,i=0,k=1,balance=inv.amount,accrued=0;
+  const payments=(inv.payments??[]).map((p,index)=>{
+   const at=parseCalendarDate(p.date);
+   if(at<parseCalendarDate(inv.acceptance)||at>end)throw new Error('Payment date outside invoice period: '+id);
+   if(!Number.isFinite(p.amount)||p.amount<=0||p.amount>1e12)throw new Error('Invalid payment amount: '+id);
+   if(!['principal-only','interest-first','principal-first','interest-only'].includes(p.mode))throw new Error('Select payment appropriation: '+id);
+   return {...p,at,index};
+  }).sort((a,b)=>a.at-b.at||a.index-b.index);
+  if(payments.length>200)throw new Error('Maximum 200 payments per invoice.');
+  let cursor=start,i=0,k=1,principal=inv.amount,capitalized=0,accrued=0,pi=0,principalPaid=0,interestPaid=0,interestEarned=0;
+  const allocations=[],ledger=[];
+  const takePrincipal=amount=>{const used=Math.min(principal,amount);principal-=used;principalPaid+=used;return used};
+  const takeInterest=amount=>{const unposted=Math.min(accrued,amount);accrued-=unposted;const posted=Math.min(capitalized,amount-unposted);capitalized-=posted;interestPaid+=unposted+posted;return unposted+posted};
+  function apply(at){
+   while(pi<payments.length&&payments[pi].at<=at){
+    const p=payments[pi++];let pp=0,ip=0;
+    if(p.mode==='interest-first'||p.mode==='interest-only'){ip=takeInterest(p.amount);if(p.mode==='interest-first')pp=takePrincipal(p.amount-ip)}
+    else{pp=takePrincipal(p.amount);if(p.mode==='principal-first')ip=takeInterest(p.amount-pp)}
+    if(p.amount-pp-ip>0.000001)throw new Error('Payment exceeds selected available balance for '+id+' on '+p.date+'. Check allocation and dates.');
+    allocations.push({date:p.date,amount:p.amount,mode:p.mode,principal:pp,interest:ip,principalRemaining:principal,interestRemaining:capitalized+accrued});
+   }
+  }
+  apply(Math.min(start,end));
   while(cursor<end){
    while(i<periods.length&&periods[i].to<=cursor)i++;
+   if(principal===0&&capitalized===0&&accrued===0){apply(end);break}
    const p=periods[i];
    if(!p||p.from>cursor)throw new Error('Missing bank-rate coverage from '+iso(cursor)+' for '+id);
-   const next=rest(start,k),stop=Math.min(end,p.to,next);
-   accrued+=balance*3*p.rate/100*(stop-cursor)/DAY/365;
+   const next=rest(start,k),stop=Math.min(end,p.to,next,payments[pi]?.at??Infinity);
+   const opening=principal+capitalized,earned=opening*3*p.rate/100*(stop-cursor)/DAY/365;
+   accrued+=earned;interestEarned+=earned;
+   ledger.push({from:iso(cursor),to:iso(stop),days:(stop-cursor)/DAY,bankRate:p.rate,opening,earned,rest:stop===next});
    cursor=stop;
-   if(cursor===next){balance+=accrued;accrued=0;k++}
-   if(!Number.isFinite(balance+accrued)||balance+accrued>1e14)throw new Error('Result exceeds supported range.');
+   if(cursor===next){capitalized+=accrued;accrued=0;k++}
+   apply(cursor);
+   if(!Number.isFinite(principal+capitalized+accrued)||principal+capitalized+accrued>1e14)throw new Error('Result exceeds supported range.');
   }
-  const interest=balance-inv.amount+accrued;
-  return {id,amount:inv.amount,acceptance:inv.acceptance,terms:inv.terms,...dates,days:Math.max(0,(end-start)/DAY),interest,total:inv.amount+interest};
+  apply(end);
+  const interest=capitalized+accrued;
+  return {id,amount:inv.amount,acceptance:inv.acceptance,terms:inv.terms,...dates,days:Math.max(0,(end-start)/DAY),principal,principalPaid,interestPaid,interestEarned,interest,total:principal+interest,allocations,ledger};
  });
- const totals=rows.reduce((a,r)=>({principal:a.principal+r.amount,interest:a.interest+r.interest,total:a.total+r.total}),{principal:0,interest:0,total:0});
+ const totals=rows.reduce((a,r)=>({original:a.original+r.amount,principal:a.principal+r.principal,principalPaid:a.principalPaid+r.principalPaid,interestPaid:a.interestPaid+r.interestPaid,interestEarned:a.interestEarned+r.interestEarned,interest:a.interest+r.interest,total:a.total+r.total}),{original:0,principal:0,principalPaid:0,interestPaid:0,interestEarned:0,interest:0,total:0});
  if(totals.total>1e14)throw new Error('Combined result exceeds supported range.');
  return {rows,totals,asOf};
 }
