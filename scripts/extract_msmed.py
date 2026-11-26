@@ -10,6 +10,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 
 URL = "https://www.indiacode.nic.in/bitstream/123456789/5872/1/a2006-27.pdf"
+ALLOWED_URLS = ["https://upload.indiacode.nic.in/showfile?actid=AC_MH_166_1466_00019_00019_1683182806520&filename=msme_act_2006.pdf&type=actfile","https://www.indiacode.nic.in/bitstream/123456789/19412/1/msme_act_2006.pdf","https://www.indiacode.nic.in/bitstream/123456789/5872/1/a2006-27.pdf"]
 ROOT = Path(__file__).resolve().parents[1]
 
 def split_sections(pages):
@@ -48,6 +49,7 @@ def split_sections(pages):
 def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("pdf", type=Path)
+    ap.add_argument("--source-url", choices=ALLOWED_URLS, default=URL)
     ap.add_argument("--output", type=Path, default=ROOT / ".rr-sources" / "msmed-act-2006")
     args = ap.parse_args()
     pdf = args.pdf.resolve()
@@ -83,9 +85,9 @@ def main():
         provisions.append({"slug":f"section-{n}","number":str(n),"kind":"section","heading":heading,"chapter":"chapter-v","commentary":commentary,"versions":[{"id":"recorded","sourceId":"india-code","startLine":start,"endLine":end,"pinpoint":f"Printed page(s) {page}, section {n}"}]})
     (out / "source.txt").write_text("\n".join(normalized)+"\n",encoding="utf-8")
     captured = datetime.now(timezone.utc).date().isoformat()
-    manifest = {"slug":"msmed-act-2006","title":"Micro, Small and Medium Enterprises Development Act, 2006","shortTitle":"MSMED Act, 2006","actNumber":"27 of 2006","year":2006,"jurisdiction":"India","areas":["msme-law","commercial-law","arbitration"],"mainSourceId":"india-code","sources":[{"id":"india-code","title":"India Code — MSMED Act 2006","url":URL,"file":"source.txt","capturedAt":captured}],"chapters":[{"slug":"chapter-v","label":"Chapter V","title":"Delayed payments to micro and small enterprises"}],"provisions":provisions,"amendments":[]}
+    manifest = {"slug":"msmed-act-2006","title":"Micro, Small and Medium Enterprises Development Act, 2006","shortTitle":"MSMED Act, 2006","actNumber":"27 of 2006","year":2006,"jurisdiction":"India","areas":["msme-law","commercial-law","arbitration"],"mainSourceId":"india-code","sources":[{"id":"india-code","title":"India Code — MSMED Act 2006","url":args.source_url,"file":"source.txt","capturedAt":captured}],"chapters":[{"slug":"chapter-v","label":"Chapter V","title":"Delayed payments to micro and small enterprises"}],"provisions":provisions,"amendments":[]}
     (out / "manifest.json").write_text(json.dumps(manifest,indent=2,ensure_ascii=False)+"\n", encoding="utf-8")
-    (out / "pdf-provenance.json").write_text(json.dumps({"sourceUrl":URL,"pdfSha256":hashlib.sha256(data).hexdigest(),"byteLength":len(data),"processedAt":captured,"pages":[9,10,11],"note":"Local file identity only; official authenticity, text accuracy, amendments and legal review pending. Extracted text retains layout and section headings. No effective dates inferred."},indent=2)+"\n",encoding="utf-8")
+    (out / "pdf-provenance.json").write_text(json.dumps({"sourceUrl":args.source_url,"pdfSha256":hashlib.sha256(data).hexdigest(),"byteLength":len(data),"processedAt":captured,"pages":[9,10,11],"note":"Local file identity only; official authenticity, text accuracy, amendments and legal review pending. Extracted text retains layout and section headings. No effective dates inferred."},indent=2)+"\n",encoding="utf-8")
     subprocess.run(["node",str(ROOT/"scripts/import-statute.mjs"),str(out/"manifest.json")],cwd=ROOT,check=True)
     print("MSMED draft package prepared; no publication performed.")
 

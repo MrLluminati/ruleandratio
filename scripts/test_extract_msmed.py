@@ -14,6 +14,10 @@ class SectionBoundaryTests(unittest.TestCase):
         self.assertIn("(3) Continued section.",result[6][2])
         self.assertNotIn("10",result[6][2])
         self.assertEqual(result[0][1],"Alpha")
+    def test_no_space_after_number(self):
+        pages=self.pages()
+        pages[0]=pages[0].replace("15. Alpha","15.Alpha")
+        self.assertEqual(split_sections(pages)[0][1],"Alpha")
     def test_missing_boundary(self):
         pages=self.pages()
         pages[0]=pages[0].replace("16.","")
