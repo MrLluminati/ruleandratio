@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import {sections} from '../data/sections';
+---
+<BaseLayout title="Home" description="Rule & Ratio is a developing independent Indian legal knowledge and research publication.">
+<section class="hero">
+ <p class="kicker">Independent legal publication · In development</p>
+ <h1>Understand the law.<br />Explore the reasoning.</h1>
+ <p class="intro">A structured resource for Indian law, judicial decisions, legislation and legal scholarship. We are building a reference platform for practitioners, students and the public.</p>
+</section>
+<section aria-labelledby="explore">
+ <h2 id="explore">Explore the publication</h2>
+ <div class="section-grid">
+ {sections.map(s=><a class="section-card" href={`/${s.slug}/`}><h3>{s.title}</h3><p>{s.summary}</p></a>)}
+ </div>
+</section>
+</BaseLayout>
