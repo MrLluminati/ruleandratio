@@ -1,0 +1,766 @@
+{
+  "version": "2026-11-26",
+  "coverage": "Selected provisions only",
+  "sources": {
+    "table": "https://bprd.mha.gov.in/uploads/pdf/Comparison%20Summary%20BSA%20to%20IEA.pdf",
+    "ipc": "https://www.indiacode.nic.in/repealedfileopen?rfilename=A1872-1.pdf",
+    "bns": "https://www.indiacode.nic.in/indiacode/handle/123456789/20063?col=123456789%2F1362&view_type=search",
+    "gazette": "https://www.mha.gov.in/files/whats_new_documents/BharatiyaSakshyaAdhiniyam_24022024.pdf"
+  },
+  "entries": [
+    {
+      "slug": "definitions",
+      "title": "Document and evidence definitions",
+      "category": "Foundations",
+      "oldSections": [
+        "3"
+      ],
+      "newSections": [
+        "2(1)(d)",
+        "2(1)(e)"
+      ],
+      "relation": "split",
+      "analysis": "Selected definitions expressly encompass digital material and electronically given testimony. This record covers only the document and evidence limbs.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "3",
+          "new": "2(1)(d)"
+        },
+        {
+          "old": "3",
+          "new": "2(1)(e)"
+        }
+      ]
+    },
+    {
+      "slug": "relevant-facts",
+      "title": "Facts in issue and relevant facts",
+      "category": "Relevance",
+      "oldSections": [
+        "5"
+      ],
+      "newSections": [
+        "3"
+      ],
+      "relation": "corresponding",
+      "analysis": "Relevance and admissibility must be established under the applicable rules.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "5",
+          "new": "3"
+        }
+      ]
+    },
+    {
+      "slug": "same-transaction",
+      "title": "Facts forming part of same transaction",
+      "category": "Relevance",
+      "oldSections": [
+        "6"
+      ],
+      "newSections": [
+        "4"
+      ],
+      "relation": "corresponding",
+      "analysis": "Assess the connection between events; proximity alone need not establish a single transaction.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "6",
+          "new": "4"
+        }
+      ]
+    },
+    {
+      "slug": "motive",
+      "title": "Motive, preparation and conduct",
+      "category": "Relevance",
+      "oldSections": [
+        "8"
+      ],
+      "newSections": [
+        "6"
+      ],
+      "relation": "corresponding",
+      "analysis": "Consider the connection of the conduct to a relevant fact.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "8",
+          "new": "6"
+        }
+      ]
+    },
+    {
+      "slug": "admission",
+      "title": "Admission",
+      "category": "Admissions and confessions",
+      "oldSections": [
+        "17"
+      ],
+      "newSections": [
+        "15"
+      ],
+      "relation": "corresponding",
+      "analysis": "Distinguish an admission from conclusive proof.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "17",
+          "new": "15"
+        }
+      ]
+    },
+    {
+      "slug": "involuntary-confession",
+      "title": "Inducement, threat, coercion or promise",
+      "category": "Admissions and confessions",
+      "oldSections": [
+        "24",
+        "28",
+        "29"
+      ],
+      "newSections": [
+        "22"
+      ],
+      "relation": "merged",
+      "analysis": "Coercion is expressly addressed; the earlier sections on removal of inducement and otherwise relevant confessions are incorporated as provisos.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "24",
+          "new": "22"
+        },
+        {
+          "old": "28",
+          "new": "22"
+        },
+        {
+          "old": "29",
+          "new": "22"
+        }
+      ]
+    },
+    {
+      "slug": "police-confession",
+      "title": "Police confession, custody and discovery",
+      "category": "Admissions and confessions",
+      "oldSections": [
+        "25",
+        "26",
+        "27"
+      ],
+      "newSections": [
+        "23(1)",
+        "23(2)"
+      ],
+      "relation": "merged",
+      "analysis": "The discovery exception is located in the proviso to subsection (2). The exception is limited to information distinctly related to the discovery.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "25",
+          "new": "23(1)"
+        },
+        {
+          "old": "26",
+          "new": "23(2)"
+        },
+        {
+          "old": "27",
+          "new": "23(2)"
+        }
+      ]
+    },
+    {
+      "slug": "joint-trial-confession",
+      "title": "Confession affecting jointly tried persons",
+      "category": "Admissions and confessions",
+      "oldSections": [
+        "30"
+      ],
+      "newSections": [
+        "24"
+      ],
+      "relation": "changed",
+      "analysis": "An added explanation addresses certain proceedings in the absence of an accused. Check the statutory prerequisites.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "30",
+          "new": "24"
+        }
+      ]
+    },
+    {
+      "slug": "dying-declaration",
+      "title": "Dying declarations and statements of unavailable persons",
+      "category": "Relevance",
+      "oldSections": [
+        "32",
+        "32(1)"
+      ],
+      "newSections": [
+        "26",
+        "26(a)"
+      ],
+      "relation": "corresponding",
+      "analysis": "Death-related statements are only one category of this provision; check relevance and reliability in the particular case.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "32",
+          "new": "26"
+        },
+        {
+          "old": "32(1)",
+          "new": "26(a)"
+        }
+      ]
+    },
+    {
+      "slug": "previous-testimony",
+      "title": "Evidence from earlier proceedings",
+      "category": "Relevance",
+      "oldSections": [
+        "33"
+      ],
+      "newSections": [
+        "27"
+      ],
+      "relation": "corresponding",
+      "analysis": "Verify the conditions for using earlier testimony, including the opportunity to cross-examine.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "33",
+          "new": "27"
+        }
+      ]
+    },
+    {
+      "slug": "accounts",
+      "title": "Entries in books of account",
+      "category": "Documentary evidence",
+      "oldSections": [
+        "34"
+      ],
+      "newSections": [
+        "28"
+      ],
+      "relation": "corresponding",
+      "analysis": "Account entries alone do not establish liability.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "34",
+          "new": "28"
+        }
+      ]
+    },
+    {
+      "slug": "expert-opinion",
+      "title": "Expert opinions and electronic evidence examiner",
+      "category": "Expert evidence",
+      "oldSections": [
+        "45",
+        "45A"
+      ],
+      "newSections": [
+        "39(1)",
+        "39(2)"
+      ],
+      "relation": "merged",
+      "analysis": "The expert-opinion field is broadened and electronic evidence expertise is incorporated separately.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "45",
+          "new": "39(1)"
+        },
+        {
+          "old": "45A",
+          "new": "39(2)"
+        }
+      ]
+    },
+    {
+      "slug": "admitted-facts",
+      "title": "Admitted facts",
+      "category": "Proof",
+      "oldSections": [
+        "58"
+      ],
+      "newSections": [
+        "53"
+      ],
+      "relation": "corresponding",
+      "analysis": "The court retains discretion to require proof.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "58",
+          "new": "53"
+        }
+      ]
+    },
+    {
+      "slug": "direct-oral-evidence",
+      "title": "Direct oral evidence",
+      "category": "Proof",
+      "oldSections": [
+        "60"
+      ],
+      "newSections": [
+        "55"
+      ],
+      "relation": "corresponding",
+      "analysis": "Identify how the witness personally perceived the fact.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "60",
+          "new": "55"
+        }
+      ]
+    },
+    {
+      "slug": "primary-evidence",
+      "title": "Primary evidence",
+      "category": "Documentary evidence",
+      "oldSections": [
+        "62"
+      ],
+      "newSections": [
+        "57"
+      ],
+      "relation": "changed",
+      "analysis": "Additional explanations address multiple digital files, storage locations and other digital-record situations. Examine the precise explanation.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "62",
+          "new": "57"
+        }
+      ]
+    },
+    {
+      "slug": "secondary-evidence",
+      "title": "Secondary evidence",
+      "category": "Documentary evidence",
+      "oldSections": [
+        "63"
+      ],
+      "newSections": [
+        "58"
+      ],
+      "relation": "changed",
+      "analysis": "Additional forms of secondary evidence are recognized; admissibility still depends on the applicable conditions.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "63",
+          "new": "58"
+        }
+      ]
+    },
+    {
+      "slug": "secondary-evidence-conditions",
+      "title": "Conditions for secondary evidence",
+      "category": "Documentary evidence",
+      "oldSections": [
+        "65"
+      ],
+      "newSections": [
+        "60"
+      ],
+      "relation": "corresponding",
+      "analysis": "Establish the relevant statutory ground before relying on a substitute for the original.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "65",
+          "new": "60"
+        }
+      ]
+    },
+    {
+      "slug": "digital-record",
+      "title": "Electronic or digital record",
+      "category": "Electronic evidence",
+      "oldSections": [],
+      "newSections": [
+        "61"
+      ],
+      "relation": "new",
+      "analysis": "A separately numbered rule recognizes digital records, subject to the statutory electronic-evidence conditions.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": null,
+          "new": "61"
+        }
+      ]
+    },
+    {
+      "slug": "electronic-special-rule",
+      "title": "Special rule for electronic evidence",
+      "category": "Electronic evidence",
+      "oldSections": [
+        "65A"
+      ],
+      "newSections": [
+        "62"
+      ],
+      "relation": "corresponding",
+      "analysis": "Read with the following electronic-record provision.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "65A",
+          "new": "62"
+        }
+      ]
+    },
+    {
+      "slug": "electronic-certificate",
+      "title": "Electronic record admissibility and certificate",
+      "category": "Electronic evidence",
+      "oldSections": [
+        "65B",
+        "65B(4)"
+      ],
+      "newSections": [
+        "63",
+        "63(4)"
+      ],
+      "relation": "changed",
+      "analysis": "The device and output framework is revised. Review the scheduled certificate, submission timing and signatures of the responsible person and expert. The comparison does not decide the proof route for every original device or output.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "65B",
+          "new": "63"
+        },
+        {
+          "old": "65B(4)",
+          "new": "63(4)"
+        }
+      ]
+    },
+    {
+      "slug": "attestation",
+      "title": "Proof of execution of attested documents",
+      "category": "Documentary evidence",
+      "oldSections": [
+        "68"
+      ],
+      "newSections": [
+        "67"
+      ],
+      "relation": "corresponding",
+      "analysis": "Check the statutory attestation requirements and exceptions.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "68",
+          "new": "67"
+        }
+      ]
+    },
+    {
+      "slug": "public-private",
+      "title": "Public and private documents",
+      "category": "Documentary evidence",
+      "oldSections": [
+        "74",
+        "75"
+      ],
+      "newSections": [
+        "74(1)",
+        "74(2)"
+      ],
+      "relation": "merged",
+      "analysis": "The public and private document categories now occupy one section.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "74",
+          "new": "74(1)"
+        },
+        {
+          "old": "75",
+          "new": "74(2)"
+        }
+      ]
+    },
+    {
+      "slug": "electronic-messages",
+      "title": "Presumption regarding electronic messages",
+      "category": "Presumptions",
+      "oldSections": [
+        "88A"
+      ],
+      "newSections": [
+        "90"
+      ],
+      "relation": "corresponding",
+      "analysis": "Do not infer the sender's identity merely from the statutory presumption.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "88A",
+          "new": "90"
+        }
+      ]
+    },
+    {
+      "slug": "written-contract",
+      "title": "Proof of written contract terms",
+      "category": "Documentary evidence",
+      "oldSections": [
+        "91",
+        "92"
+      ],
+      "newSections": [
+        "94",
+        "95"
+      ],
+      "relation": "corresponding",
+      "analysis": "Distinguish proof of written terms from restrictions on contradictory oral evidence, including exceptions.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "91",
+          "new": "94"
+        },
+        {
+          "old": "92",
+          "new": "95"
+        }
+      ]
+    },
+    {
+      "slug": "burden",
+      "title": "Burden of proof",
+      "category": "Burden and presumptions",
+      "oldSections": [
+        "101",
+        "102",
+        "103",
+        "104"
+      ],
+      "newSections": [
+        "104",
+        "105",
+        "106",
+        "107"
+      ],
+      "relation": "corresponding",
+      "analysis": "Identify the fact to be established and the party bearing the relevant burden.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "101",
+          "new": "104"
+        },
+        {
+          "old": "102",
+          "new": "105"
+        },
+        {
+          "old": "103",
+          "new": "106"
+        },
+        {
+          "old": "104",
+          "new": "107"
+        }
+      ]
+    },
+    {
+      "slug": "special-knowledge",
+      "title": "Facts especially within knowledge",
+      "category": "Burden and presumptions",
+      "oldSections": [
+        "106"
+      ],
+      "newSections": [
+        "109"
+      ],
+      "relation": "corresponding",
+      "analysis": "Special knowledge does not automatically displace the prosecution's initial burden.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "106",
+          "new": "109"
+        }
+      ]
+    },
+    {
+      "slug": "dowry-death",
+      "title": "Presumption concerning dowry death",
+      "category": "Burden and presumptions",
+      "oldSections": [
+        "113B"
+      ],
+      "newSections": [
+        "118"
+      ],
+      "relation": "corresponding",
+      "analysis": "Establish the statutory foundational facts and examine the updated substantive-law reference.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "113B",
+          "new": "118"
+        }
+      ]
+    },
+    {
+      "slug": "general-presumptions",
+      "title": "Court's discretionary presumptions",
+      "category": "Burden and presumptions",
+      "oldSections": [
+        "114"
+      ],
+      "newSections": [
+        "119"
+      ],
+      "relation": "corresponding",
+      "analysis": "Distinguish discretionary inference from mandatory presumptions.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "114",
+          "new": "119"
+        }
+      ]
+    },
+    {
+      "slug": "professional-privilege",
+      "title": "Professional communications",
+      "category": "Witnesses and privilege",
+      "oldSections": [
+        "126",
+        "127"
+      ],
+      "newSections": [
+        "132"
+      ],
+      "relation": "merged",
+      "analysis": "The rules concerning advocates and associated persons are consolidated. Check the exceptions to privilege.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "126",
+          "new": "132"
+        },
+        {
+          "old": "127",
+          "new": "132"
+        }
+      ]
+    },
+    {
+      "slug": "accomplice",
+      "title": "Accomplice testimony",
+      "category": "Witnesses and privilege",
+      "oldSections": [
+        "133"
+      ],
+      "newSections": [
+        "138"
+      ],
+      "relation": "changed",
+      "analysis": "The statutory wording concerning corroboration changes. Read together with the applicable presumptions and current judicial interpretation.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "133",
+          "new": "138"
+        }
+      ]
+    },
+    {
+      "slug": "leading-questions",
+      "title": "Leading questions",
+      "category": "Witness examination",
+      "oldSections": [
+        "141",
+        "142",
+        "143"
+      ],
+      "newSections": [
+        "146(1)",
+        "146(2)",
+        "146(3)",
+        "146(4)"
+      ],
+      "relation": "merged",
+      "analysis": "The rules on definition and permitted use of leading questions are combined.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "141",
+          "new": "146(1)"
+        },
+        {
+          "old": "142",
+          "new": "146(2)"
+        },
+        {
+          "old": "142",
+          "new": "146(3)"
+        },
+        {
+          "old": "143",
+          "new": "146(4)"
+        }
+      ]
+    },
+    {
+      "slug": "previous-written-statements",
+      "title": "Cross-examination on earlier written statements",
+      "category": "Witness examination",
+      "oldSections": [
+        "145"
+      ],
+      "newSections": [
+        "148"
+      ],
+      "relation": "corresponding",
+      "analysis": "Observe the procedural requirements when using a statement to contradict a witness.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "145",
+          "new": "148"
+        }
+      ]
+    },
+    {
+      "slug": "own-witness",
+      "title": "Questions to one's own witness",
+      "category": "Witness examination",
+      "oldSections": [
+        "154"
+      ],
+      "newSections": [
+        "157"
+      ],
+      "relation": "corresponding",
+      "analysis": "Permission to question one's own witness is distinct from rejecting all of that witness's evidence.",
+      "status": "preview",
+      "pairs": [
+        {
+          "old": "154",
+          "new": "157"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,24 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import data from '../../../data/iea-bsa.json';
+import {validateComparison,relationshipLabels} from '../../../lib/comparison.mjs';
+const entries=validateComparison(data);
+const categories=[...new Set(entries.map(e=>e.category))].sort();
+---
+<BaseLayout title="IEA–BSA Comparison Tool" description="Search selected corresponding IEA and BSA provisions, subsection mappings and substantive changes." eligible={false} breadcrumbs={[{name:'Home',path:'/'},{name:'Legal Tools',path:'/tools/'},{name:'IEA–BSA Comparison',path:'/tools/iea-bsa/'}]}>
+<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/tools/">Legal Tools</a><span>/</span><span aria-current="page">IEA–BSA Comparison</span></nav>
+<header class="article-header"><p class="kicker">Legal reference · Editorial preview</p><h1>IEA–BSA Comparison Tool</h1><p class="intro">Compare selected Indian Evidence Act, 1872 provisions with the Bharatiya Sakshya Adhiniyam, 2023. Search either code or an evidence-law topic.</p><p class="notice">Selected coverage only. No result does not mean a provision has no counterpart. Correspondence is not equivalence. Human legal review pending.</p></header>
+<form id="comparison-filters" class="judgment-filters" hidden><label>Section or topic<input name="query" type="search" placeholder="e.g. 65B, 63(4), certificate"/></label><label>Search in<select name="side"><option value="both">Both codes</option><option value="old">IEA</option><option value="new">BSA</option></select></label><label>Relationship<select name="relation"><option value="">All relationships</option>{Object.entries(relationshipLabels).map(([v,l])=><option value={v}>{l}</option>)}</select></label><label>Subject<select name="category"><option value="">All subjects</option>{categories.map(c=><option value={c}>{c}</option>)}</select></label><button class="rr-tool-secondary" type="reset">Clear filters</button></form>
+<p id="comparison-count" role="status">{entries.length} comparison records</p>
+<div class="msme-table-wrap"><table class="msme-table comparison-table"><thead><tr><th>Subject</th><th>IEA</th><th>BSA</th><th>Relationship</th></tr></thead><tbody>{entries.map((r,i)=><tr data-record={i}><td><a href={'/tools/iea-bsa/'+r.slug+'/'}>{r.title}</a></td><td>{r.oldSections.join(', ')||'—'}</td><td>{r.newSections.join(', ')||'—'}</td><td>{relationshipLabels[r.relation]}</td></tr>)}</tbody></table></div>
+<section class="home-section prose"><h2>Transitional applicability</h2><p>S.O. 849(E), dated 23 February 2024, appointed 1 July 2024 as the commencement date. Section 170 BSA provides for repeal and savings, including specified pending applications, trials, inquiries, investigations, proceedings and appeals. Verify the applicable statute and procedural history; the comparison does not decide admissibility or transitional applicability.</p><h2>Sources</h2><ul><li><a href={data.sources.table}>BPR&D correspondence summary</a> — mapping reference</li><li><a href={data.sources.ipc}>India Code: IEA</a></li><li><a href={data.sources.bns}>India Code: BSA</a></li><li><a href={data.sources.gazette}>Commencement notification S.O. 849(E), 23 February 2024</a></li></ul></section>
+</BaseLayout>
+<script>
+ import data from '../../../data/iea-bsa.json';
+ import {comparisonMatches} from '../../../lib/comparison.mjs';
+ const form=document.querySelector<HTMLFormElement>('#comparison-filters')!;
+ const rows=Array.from(document.querySelectorAll<HTMLElement>('[data-record]'));
+ function update(){const f=new FormData(form),query=String(f.get('query')??''),side=String(f.get('side')??'both'),relation=String(f.get('relation')??''),category=String(f.get('category')??'');let n=0;for(const row of rows){const r=data.entries[Number(row.dataset.record)];row.hidden=!(comparisonMatches(r,query,side,['IEA','BSA'])&&(!relation||r.relation===relation)&&(!category||r.category===category));if(!row.hidden)n++}document.getElementById('comparison-count')!.textContent=n+' of '+rows.length+' comparison records';}
+ form.hidden=false;form.addEventListener('input',update);form.addEventListener('change',update);form.addEventListener('submit',e=>{e.preventDefault();update()});form.addEventListener('reset',()=>queueMicrotask(update));
+</script>
+<style>.comparison-table td{white-space:normal;min-width:90px;overflow-wrap:anywhere}.comparison-table tr[hidden],#comparison-filters[hidden]{display:none}#comparison-filters{grid-template-columns:repeat(auto-fit,minmax(145px,1fr))}</style>

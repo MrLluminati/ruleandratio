@@ -1,0 +1,13 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import data from '../../../data/iea-bsa.json';
+import {validateComparison,relationshipLabels} from '../../../lib/comparison.mjs';
+export function getStaticPaths(){return validateComparison(data).map(entry=>({params:{slug:entry.slug},props:{entry}}))}
+const {entry:r}=Astro.props;
+---
+<BaseLayout title={r.title+' — IEA and BSA comparison'} description={'Selected statutory correspondence: '+r.title} eligible={false} breadcrumbs={[{name:'Home',path:'/'},{name:'Legal Tools',path:'/tools/'},{name:'IEA–BSA Comparison',path:'/tools/iea-bsa/'},{name:r.title,path:Astro.url.pathname}]}>
+<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/tools/iea-bsa/">IEA–BSA Comparison</a><span>/</span><span aria-current="page">{r.title}</span></nav>
+<header class="article-header"><p class="kicker">{r.category} · Editorial preview</p><h1>{r.title}</h1><p class="intro">{relationshipLabels[r.relation]}</p></header>
+<div class="rr-tool-grid"><section class="rr-tool-panel"><h2>Indian Evidence Act, 1872</h2><p class="rr-tool-total">{r.oldSections.join(', ')||'No direct mapped section'}</p><a href={data.sources.ipc}>Read IEA statutory text</a></section><section class="rr-tool-panel"><h2>Bharatiya Sakshya Adhiniyam, 2023</h2><p class="rr-tool-total">{r.newSections.join(', ')||'No direct mapped section'}</p><a href={data.sources.bns}>Read BSA statutory text</a></section></div>
+<section class="home-section prose"><h2>Section-by-section correspondence</h2><div class="msme-table-wrap"><table class="msme-table"><thead><tr><th>IEA</th><th>BSA</th></tr></thead><tbody>{r.pairs.map(p=><tr><td>{p.old??'No direct counterpart recorded'}</td><td>{p.new??'No direct counterpart recorded'}</td></tr>)}</tbody></table></div><p>Additional subsections are identified separately; the absence of a direct counterpart does not imply the earlier Act lacked a related evidentiary rule.</p><h2>Comparison notes</h2><p>{r.analysis}</p><p>These section groups identify the related statutory subject, not a one-to-one conversion of every listed section. Check the exact subsection, evidentiary requirements and applicable law.</p><h2>Source and review status</h2><p><a href={data.sources.table}>BPR&D correspondence summary</a>. Original editorial comparison notes; not full statutory text or independently reviewed legal advice. Check amendments and notifications before use.</p><p><a href="/tools/iea-bsa/">Back to comparison directory</a></p></section>
+</BaseLayout>

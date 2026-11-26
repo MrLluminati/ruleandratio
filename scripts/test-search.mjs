@@ -248,6 +248,17 @@ export async function testSearch(){
   assert.equal(await page.locator('meta[name="robots"]').getAttribute('content'),'noindex, follow');
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'BNSS comparison overflow');
   console.log('CrPC–BNSS comparison browser checks passed.');
+  await page.goto(host+'/tools/iea-bsa/');
+  await page.locator('#comparison-filters').waitFor({state:'visible'});
+  await page.locator('#comparison-filters [name="query"]').fill('IEA 65B');
+  assert.equal(await page.locator('[data-record]:visible').count(),1);
+  await page.locator('#comparison-filters [name="query"]').fill('BSA 63(4)');
+  assert.equal(await page.locator('[data-record]:visible').count(),1);
+  await page.locator('[data-record]:visible a').click();
+  assert.equal(await page.locator('h1').innerText(),'Electronic record admissibility and certificate');
+  assert.equal(await page.locator('meta[name="robots"]').getAttribute('content'),'noindex, follow');
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Evidence comparison overflow');
+  console.log('IEA–BSA comparison browser checks passed.');
   await page.goto(host+'/research/rr-test-article/');
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'Mobile article overflow');
   console.log('Browser tests passed: provision full-text search, type/subject filters, draft exclusion, mobile layout overflow checks.');

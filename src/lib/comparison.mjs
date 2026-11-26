@@ -18,7 +18,7 @@ export function comparisonMatches(r,query,side='both',codes=['IPC','BNS']){
  const prefixPattern=new RegExp('^('+codes.join('|')+')(?=\\s|\\d)','i');
  const prefix=query.trim().match(prefixPattern)?.[1]?.toUpperCase();
  if(prefix)side=prefix===codes[0].toUpperCase()?'old':'new';
- const q=query.trim().toUpperCase().replace(prefixPattern,'').replace(/^(SECTION|SEC\.?|S\.)\s*/,'').replace(/\s+/g,'');
+ const q=query.trim().toUpperCase().replace(prefixPattern,'').trim().replace(/^(SECTION|SEC\.?|S\.)\s*/,'').replace(/\s+/g,'');
  if(!q)return true;
  if(/^[0-9]+[A-Z]?(?:\([0-9A-Z]+\))*$/.test(q))return (side!=='new'&&r.oldSections.some(s=>sectionMatches(s,q)))||(side!=='old'&&r.newSections.some(s=>sectionMatches(s,q)));
  return [r.title,r.category,r.analysis].join(' ').toLowerCase().includes(query.trim().toLowerCase());
