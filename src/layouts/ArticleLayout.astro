@@ -1,15 +1,16 @@
 ---
 import BaseLayout from './BaseLayout.astro';
 import ArticleList from '../components/ArticleList.astro';
+import JudgmentRelationships from '../components/JudgmentRelationships.astro';
 import JudgmentDetails from '../components/JudgmentDetails.astro';
 import {publicationTypes} from '../data/publication';
 import {sections} from '../data/sections';
 import {hubPath} from '../data/hubs';
 import {publishedStatutes,actPath,provisionPath,provisionLabel} from '../lib/statutes';
 import {areaTitle} from '../data/areas';
-import {type Article,formatDate,isoDate} from '../lib/publications';
-interface Props {entry:Article;related:Article[];headings:{depth:number;slug:string;text:string}[]}
-const {entry,related,headings}=Astro.props;
+import {type Article,formatDate,isoDate,judgmentRelationships} from '../lib/publications';
+interface Props {entry:Article;related:Article[];headings:{depth:number;slug:string;text:string}[];relationships:ReturnType<typeof judgmentRelationships>}
+const {entry,related,headings,relationships}=Astro.props;
 const d=entry.data;
 const info=publicationTypes[d.type];
 const section=sections.find(s=>s.slug===info.section);
@@ -34,6 +35,7 @@ const toc=headings.filter(h=>h.depth===2||h.depth===3);
    <div class="article-main">
     {d.type==='judgment' && d.judgment && <JudgmentDetails judgment={d.judgment}/>}
     <div class="prose article-body"><slot/></div>
+    {d.type==='judgment'&&d.judgment&&<JudgmentRelationships entry={entry} relationships={relationships}/>}
     {statuteLinks.length>0&&<section class="article-sources"><h2>Statutory references</h2><ul class="reference-list">{statuteLinks.map(ref=><li><a href={ref.href}>{ref.label}</a></li>)}</ul></section>}
     <section class="article-sources" id="sources" aria-labelledby="source-title">
      <h2 id="source-title">Sources and references</h2>

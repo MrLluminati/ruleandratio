@@ -8,12 +8,22 @@ const nonempty=z.string().trim().min(1);
 const url=z.string().url().refine(value=>/^https?:\/\//i.test(value),'Only HTTP(S) source links are allowed');
 const date=z.coerce.date();
 const source=z.object({title:nonempty,url,kind:z.enum(['primary','secondary']),pinpoint:nonempty.optional()});
+const treatmentTypes=['cited','followed','relied-on','distinguished','explained','approved','overruled','partly-overruled','doubted','referred-to-larger-bench'] as const;
+const treatment=z.object({
+ relation:z.enum(treatmentTypes),targetCase:nonempty,targetSlug:z.string().regex(slugPattern).optional(),
+ targetUrl:url.optional(),targetDecisionDate:date.optional(),issue:nonempty,pinpoint:nonempty,explanation:nonempty,
+}).superRefine((r,ctx)=>{
+ if(!r.targetSlug&&!r.targetUrl)ctx.addIssue({code:'custom',message:'Provide an internal case slug or external judgment URL',path:['targetSlug']});
+ if(!r.targetSlug&&!r.targetDecisionDate)ctx.addIssue({code:'custom',message:'External target requires verified decision date',path:['targetDecisionDate']});
+});
 const judgment=z.object({
  caseName:nonempty,court:nonempty,decisionDate:date,
- citation:nonempty.optional(),caseNumber:nonempty.optional(),
- bench:z.array(nonempty).optional(),disposition:nonempty.optional(),
+ citation:nonempty.optional(),equivalentCitations:z.array(nonempty).default([]),caseNumber:nonempty.optional(),
+ bench:z.array(nonempty).optional(),benchStrength:z.number().int().positive().optional(),disposition:nonempty.optional(),
+ decisionKind:z.enum(['judgment','order','reference-order','interim-order']).optional(),
+ treatments:z.array(treatment).default([]),
  judgmentUrl:url,
-}).refine(d=>Boolean(d.citation || d.caseNumber),'Provide a verified citation or case number');
+}).refine(d=>Boolean(d.citation || d.caseNumber || d.equivalentCitations.length),'Provide a verified citation or case number');
 const articles=defineCollection({
  loader:glob({base:'./src/content/articles',pattern:'**/*.md'}),
  schema:z.object({
@@ -42,6 +52,18 @@ const articles=defineCollection({
  if(data.type==='judgment'){
   if(!data.judgment)fail('Judgment metadata is required',['judgment']);
   else {
+   const j=data.judgment;
+   if(j.benchStrength&&j.bench?.length&&j.benchStrength!==j.bench.length)fail('Bench strength does not match listed coram',['judgment','benchStrength']);
+   const citations=[j.citation,...j.equivalentCitations].filter(Boolean).map(v=>v!.trim().toLowerCase());
+   if(new Set(citations).size!==citations.length)fail('Duplicate judgment citation',['judgment','equivalentCitations']);
+   const relationships=new Set<string>();
+   for(const r of j.treatments){
+    if(r.targetSlug===data.slug)fail('Self-referential treatment',['judgment','treatments']);
+    if(r.targetDecisionDate&&r.targetDecisionDate>j.decisionDate)fail('Treatment cannot predate its target',['judgment','treatments']);
+    const key=JSON.stringify([r.targetSlug??r.targetUrl,r.relation,r.issue.toLowerCase(),r.pinpoint]);
+    if(relationships.has(key))fail('Duplicate judicial relationship',['judgment','treatments']);
+    relationships.add(key);
+   }
    if(data.publishedAt && data.judgment.decisionDate>data.publishedAt)fail('Decision date cannot follow publication',['judgment','decisionDate']);
    if(!data.sources.some(s=>s.kind==='primary' && s.url===data.judgment?.judgmentUrl))fail('Include the judgment text URL as a primary source',['sources']);
   }

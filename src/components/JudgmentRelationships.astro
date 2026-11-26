@@ -1,0 +1,25 @@
+---
+import {articlePath,formatDate,type Article,judgmentRelationships} from '../lib/publications';
+interface Props{entry:Article;relationships:ReturnType<typeof judgmentRelationships>}
+const {entry,relationships:{incoming,outgoing}}=Astro.props;
+const labels={'cited':'Cited','followed':'Followed','relied-on':'Relied on','distinguished':'Distinguished','explained':'Explained','approved':'Approved','overruled':'Overruled','partly-overruled':'Partly overruled','doubted':'Doubted','referred-to-larger-bench':'Issue referred to larger Bench'};
+---
+<section class="article-sources judgment-relationships" aria-labelledby="judicial-treatment">
+ <h2 id="judicial-treatment">Judicial relationships</h2>
+ <p class="notice">Recorded, issue-specific relationships only. This is not a comprehensive citator or certification of current precedential status. A reference to a larger Bench is not itself an overruling.</p>
+ <h3>Authorities considered</h3>
+ {outgoing.length?<ul class="treatment-list">{outgoing.map(({t,target})=><li>
+  <p class="treatment-type">{labels[t.relation]}</p>
+  <h4><a href={target?articlePath(target):t.targetUrl}>{target?.data.judgment?.caseName??t.targetCase}</a></h4>
+  <p><strong>Issue:</strong> {t.issue}</p><p>{t.explanation}</p>
+  <a href={entry.data.judgment!.judgmentUrl} class="text-link">Source judgment · {t.pinpoint}</a>
+ </li>)}</ul>:<p class="notice">No reviewed outgoing relationships recorded.</p>}
+ <h3>Subsequent judicial treatment</h3>
+ {incoming.length?<ul class="treatment-list">{incoming.map(({t,source})=><li>
+  <p class="treatment-type">{labels[t.relation]}</p>
+  <h4><a href={articlePath(source)}>{source.data.judgment!.caseName}</a></h4>
+  <p class="notice">{formatDate(source.data.judgment!.decisionDate)}</p>
+  <p><strong>Issue:</strong> {t.issue}</p><p>{t.explanation}</p>
+  <a href={source.data.judgment!.judgmentUrl} class="text-link">Treating judgment · {t.pinpoint}</a>
+ </li>)}</ul>:<p class="notice">No reviewed subsequent treatment recorded. This does not establish that the decision remains good law.</p>}
+</section>

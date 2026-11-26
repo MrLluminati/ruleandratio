@@ -1,0 +1,43 @@
+---
+import ArticleCard from './ArticleCard.astro';
+import type {Article} from '../lib/publications';
+interface Props{entries:Article[]}
+const {entries}=Astro.props;
+const courts=[...new Set(entries.map(e=>e.data.judgment!.court))].sort();
+const years=[...new Set(entries.map(e=>e.data.judgment!.decisionDate.getUTCFullYear()))].sort((a,b)=>b-a);
+const ordered=[...entries].sort((a,b)=>b.data.judgment!.decisionDate.getTime()-a.data.judgment!.decisionDate.getTime());
+---
+{entries.length?<div class="judgment-directory">
+ <form class="judgment-filters" hidden>
+  <label>Case name or citation<input name="query" type="search" placeholder="Search cases or citations"/></label>
+  <label>Court<select name="court"><option value="">All courts</option>{courts.map(c=><option value={c}>{c}</option>)}</select></label>
+  <label>Decision year<select name="year"><option value="">All years</option>{years.map(y=><option value={y}>{y}</option>)}</select></label>
+  <button type="reset" class="text-link">Clear filters</button>
+ </form>
+ <p class="notice judgment-count" role="status">{entries.length} reviewed case {entries.length===1?'analysis':'analyses'}</p>
+ <div class="publication-grid">{ordered.map(entry=><div class="judgment-directory-entry" data-court={entry.data.judgment!.court} data-year={entry.data.judgment!.decisionDate.getUTCFullYear()} data-search={[entry.data.title,entry.data.judgment!.caseName,entry.data.judgment!.citation,entry.data.judgment!.caseNumber,...entry.data.judgment!.equivalentCitations].filter(Boolean).join(' ').toLowerCase()}><ArticleCard entry={entry}/><p class="directory-case-meta">{entry.data.judgment!.court} · {entry.data.judgment!.decisionDate.getUTCFullYear()}{entry.data.judgment!.citation?' · '+entry.data.judgment!.citation:''}</p></div>)}</div>
+ </div>:<p class="notice publication-empty">Reviewed judgments will appear here when available.</p>}
+<script>
+ for(const directory of document.querySelectorAll('.judgment-directory')){
+  const form=directory.querySelector<HTMLFormElement>('.judgment-filters');
+  if(!form)continue;
+  form.hidden=false;
+  const cards=Array.from(directory.querySelectorAll<HTMLElement>('.judgment-directory-entry'));
+  const update=()=>{
+   const data=new FormData(form);
+   const query=String(data.get('query')??'').trim().toLowerCase().split(/\s+/).filter(Boolean);
+   const court=String(data.get('court')??''),year=String(data.get('year')??'');
+   let visible=0;
+   for(const card of cards){
+    card.hidden=!(query.every(q=>card.dataset.search?.includes(q))&&(!court||card.dataset.court===court)&&(!year||card.dataset.year===year));
+    if(!card.hidden)visible++;
+   }
+   const status=directory.querySelector('.judgment-count');
+   if(status)status.textContent=visible+' of '+cards.length+' reviewed case analyses';
+  };
+  form.addEventListener('input',update);
+  form.addEventListener('change',update);
+  form.addEventListener('submit',e=>{e.preventDefault();update()});
+  form.addEventListener('reset',()=>queueMicrotask(update));
+ }
+</script>

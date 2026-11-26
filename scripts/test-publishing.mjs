@@ -127,12 +127,36 @@ Test article body.
   court: Synthetic court
   decisionDate: 2020-01-01
   caseNumber: TEST-ONLY
+  citation: RR TEST CITATION
+  equivalentCitations: [RR TEST PARALLEL]
+  bench: [Synthetic Judge A, Synthetic Judge B]
+  benchStrength: 2
+  decisionKind: judgment
   judgmentUrl: https://example.invalid/fixture
 ---
 ## Test reasoning
 
 Synthetic body; never publish.
 `);
+ const treating=basic('judgment','rr-test-later-case','RR TEST LATER CASE')+`judgment:
+  caseName: Synthetic later case
+  court: Synthetic court
+  decisionDate: 2020-01-02
+  caseNumber: TEST-LATER
+  decisionKind: reference-order
+  judgmentUrl: https://example.invalid/fixture
+  treatments:
+    - relation: distinguished
+      targetCase: Synthetic case, not a real judgment
+      targetSlug: rr-test-case
+      issue: Synthetic issue only
+      pinpoint: Paragraph 99
+      explanation: Synthetic treatment, not law.
+---
+## Synthetic later reasoning
+Test only.
+`;
+ writeFileSync(join(fixture,'later-case.md'),treating);
  writeFileSync(join(fixture,'hidden.md'),`---
 title: RR TEST HIDDEN DRAFT
 description: Synthetic draft
@@ -174,6 +198,18 @@ Not a public article. rrhiddenquartzxylophone
  assert.match(article,/href="\/judgments\/rr-test-case\/"/);
  assert.match(judgment,/Synthetic court/);
  assert.match(judgment,/TEST-ONLY/);
+ assert.match(judgment,/RR TEST PARALLEL/);
+ assert.match(judgment,/2 judges/);
+ assert.match(judgment,/Subsequent judicial treatment/);
+ assert.match(judgment,/Distinguished/);
+ assert.match(judgment,/Paragraph 99/);
+ assert.ok(judgment.includes('/judgments/rr-test-later-case/'));
+ const later=html('judgments/rr-test-later-case');
+ assert.match(later,/Reference order/);
+ assert.match(later,/Authorities considered/);
+ assert.ok(later.includes('/judgments/rr-test-case/'));
+ assert.match(html('judgments'),/judgment-filters/);
+ assert.match(html('judgments'),/rr test parallel/);
  assert.match(judgment,/Read the judgment text/);
  assert.match(judgment,/href="\/research\/rr-test-article\/"/);
  assert.match(html('research'),/RR TEST ARTICLE/);
@@ -214,6 +250,10 @@ Test only.
 `);
  expectBuild(false);
  rmSync(join(fixture,'broken-ref.md'));
+ // Internal judicial references cannot resolve to an unpublished or nonexistent case.
+ writeFileSync(join(fixture,'later-case.md'),treating.replace('targetSlug: rr-test-case','targetSlug: missing-judgment'));
+ expectBuild(false);
+ writeFileSync(join(fixture,'later-case.md'),treating);
  // Overlapping effective intervals must fail.
  const invalidStatute=structuredClone(statute);
  invalidStatute.provisions[0].versions[0].effectiveUntil='2020-01-01';
@@ -241,6 +281,7 @@ Invalid publication.
  expectBuild(true);
  assert.ok(!existsSync('dist/research/rr-test-article/index.html'));
  assert.ok(!existsSync('dist/judgments/rr-test-case/index.html'));
+ assert.ok(!existsSync('dist/judgments/rr-test-later-case/index.html'));
  assert.doesNotMatch(html(''),/RR TEST (ARTICLE|CASE|HIDDEN DRAFT)/);
  assert.ok(!existsSync('dist/bare-acts/acts/rr-test-act/index.html'));
  assert.ok(!existsSync('dist/sitemap.xml'));

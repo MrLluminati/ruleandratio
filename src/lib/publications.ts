@@ -16,7 +16,29 @@ export async function publishedArticles(){
   paths.add(path);
   for(const ref of entry.data.statuteRefs){const act=statutes.find(a=>a.slug===ref.act);if(!act || (ref.provision&&!act.provisions.some(p=>p.slug===ref.provision)))throw new Error('Unresolved statutory reference in '+path+': '+ref.act+'/'+(ref.provision??''));}
  }
+ const judgments=new Map(entries.filter(e=>e.data.type==='judgment').map(e=>[e.data.slug!,e]));
+ for(const entry of judgments.values()){
+  const j=entry.data.judgment!;
+  for(const r of j.treatments){
+   if(!r.targetSlug)continue;
+   const target=judgments.get(r.targetSlug);
+   if(!target)throw new Error('Unresolved judicial relationship in '+articlePath(entry)+': '+r.targetSlug);
+   if(target.id===entry.id)throw new Error('Self-referential judicial relationship: '+r.targetSlug);
+   const tj=target.data.judgment!;
+   if(tj.decisionDate>j.decisionDate)throw new Error('Judicial treatment predates target: '+r.targetSlug);
+   if(r.targetDecisionDate&&r.targetDecisionDate.getTime()!==tj.decisionDate.getTime())throw new Error('Judicial target date mismatch: '+r.targetSlug);
+   if(r.targetUrl&&r.targetUrl!==tj.judgmentUrl)throw new Error('Judicial target URL mismatch: '+r.targetSlug);
+  }
+ }
  return entries.sort((a,b)=>(b.data.publishedAt?.getTime()??0)-(a.data.publishedAt?.getTime()??0)||articlePath(a).localeCompare(articlePath(b)));
+}
+export type JudicialTreatment=NonNullable<Article['data']['judgment']>['treatments'][number];
+export function judgmentRelationships(entry:Article,entries:Article[]){
+ const published=entries.filter(e=>e.data.type==='judgment'&&!e.data.draft);
+ const outgoing=(entry.data.judgment?.treatments??[]).map(t=>({t,target:published.find(e=>e.data.slug===t.targetSlug)}));
+ const incoming=published.flatMap(source=>(source.data.judgment?.treatments??[]).filter(t=>t.targetSlug===entry.data.slug).map(t=>({t,source})))
+ .sort((a,b)=>b.source.data.judgment!.decisionDate.getTime()-a.source.data.judgment!.decisionDate.getTime());
+ return {outgoing,incoming};
 }
 export function relatedArticles(entry:Article,entries:Article[],limit=4){
  const subjects=new Set(entry.data.areas.filter(a=>a!=='general'));

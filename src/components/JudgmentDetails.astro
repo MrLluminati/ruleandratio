@@ -10,6 +10,9 @@ const {judgment:j}=Astro.props;
   <dt>Court</dt><dd>{j.court}</dd>
   <dt>Decision date</dt><dd><time datetime={isoDate(j.decisionDate)}>{formatDate(j.decisionDate)}</time></dd>
   {j.citation && <><dt>Citation</dt><dd>{j.citation}</dd></>}
+  {j.equivalentCitations.length>0 && <><dt>Parallel citations</dt><dd><ul class="citation-list">{j.equivalentCitations.map(c=><li>{c}</li>)}</ul></dd></>}
+  {j.decisionKind&&<><dt>Decision type</dt><dd>{{'judgment':'Judgment','order':'Order','reference-order':'Reference order','interim-order':'Interim order'}[j.decisionKind]}</dd></>}
+  {j.benchStrength&&<><dt>Bench strength</dt><dd>{j.benchStrength} {j.benchStrength===1?'judge':'judges'}</dd></>}
   {j.caseNumber && <><dt>Case number</dt><dd>{j.caseNumber}</dd></>}
   {j.bench?.length && <><dt>Bench</dt><dd>{j.bench.join('; ')}</dd></>}
   {j.disposition && <><dt>Disposition</dt><dd>{j.disposition}</dd></>}

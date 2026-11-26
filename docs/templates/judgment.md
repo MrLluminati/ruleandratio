@@ -30,3 +30,5 @@ Identify the rule necessary to the decision; distinguish obiter.
 Verify later decisions and amendments.
 
 <!-- Add judgment metadata: caseName, court, decisionDate, citation or caseNumber, judgmentUrl, optional bench and disposition. Add judgmentUrl as a primary source. Add actual reviewer, publishedAt and reviewedAt and set draft:false only after review. -->
+
+<!-- Optional advanced fields under judgment: equivalentCitations, benchStrength, decisionKind, treatments. Treatment fields: relation, targetCase, targetSlug or targetUrl, targetDecisionDate (required for external-only cases), issue, pinpoint, explanation. See docs/publishing.md. Never invent metadata or assign treatment without checking the source judgment. -->
