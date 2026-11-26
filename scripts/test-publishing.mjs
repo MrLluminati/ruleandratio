@@ -5,6 +5,80 @@ import {spawnSync} from 'node:child_process';
 
 const root='src/content/articles';
 const fixture=mkdtempSync(join(root,'rr-test-'));
+const statuteFixture=join('src/content/statutes','rr-test-act.json');
+assert.ok(!existsSync(statuteFixture),'Refusing to overwrite existing statute');
+const statute={
+  "slug": "rr-test-act",
+  "title": "RR TEST STATUTE",
+  "jurisdiction": "TEST ONLY",
+  "areas": [
+    "msme-law"
+  ],
+  "reviewer": "Synthetic test reviewer",
+  "reviewedAt": "2020-01-02",
+  "status": "uncertain",
+  "source": {
+    "title": "Synthetic statute source",
+    "url": "https://example.invalid/act"
+  },
+  "coverage": "selected-provisions",
+  "draft": false,
+  "chapters": [
+    {
+      "slug": "chapter-one",
+      "label": "Chapter I",
+      "title": "Synthetic chapter"
+    }
+  ],
+  "provisions": [
+    {
+      "slug": "section-1",
+      "number": "1",
+      "kind": "section",
+      "heading": "Synthetic provision",
+      "chapter": "chapter-one",
+      "versions": [
+        {
+          "id": "original",
+          "effectiveFrom": "2018-01-01",
+          "effectiveUntil": "2019-01-01",
+          "text": "RR TEST ORIGINAL TEXT",
+          "source": {
+            "title": "Original fixture",
+            "url": "https://example.invalid/original"
+          }
+        },
+        {
+          "id": "revised",
+          "effectiveFrom": "2019-01-01",
+          "text": "RR TEST REVISED TEXT",
+          "source": {
+            "title": "Amendment fixture",
+            "url": "https://example.invalid/amendment"
+          },
+          "amendmentIds": [
+            "revision"
+          ]
+        }
+      ]
+    }
+  ],
+  "amendments": [
+    {
+      "slug": "revision",
+      "title": "RR TEST AMENDMENT",
+      "description": "Synthetic amendment, not law.",
+      "effectiveDate": "2019-01-01",
+      "source": {
+        "title": "Amendment fixture",
+        "url": "https://example.invalid/amendment"
+      },
+      "affectedProvisions": [
+        "section-1"
+      ]
+    }
+  ]
+};
 const npm=process.platform==='win32'?'npm.cmd':'npm';
 const build=()=>spawnSync(npm,['run','build'],{stdio:'inherit',shell:process.platform==='win32'});
 function expectBuild(success){
@@ -33,7 +107,11 @@ sources:
 draft: false
 `;
 try{
- writeFileSync(join(fixture,'article.md'),basic('research','rr-test-article','RR TEST ARTICLE')+`---
+ writeFileSync(statuteFixture,JSON.stringify(statute));
+ writeFileSync(join(fixture,'article.md'),basic('research','rr-test-article','RR TEST ARTICLE')+`statuteRefs:
+  - act: rr-test-act
+    provision: section-1
+---
 ## Synthetic section
 
 Fixture only, not legal information.
@@ -69,6 +147,24 @@ Not a public article.
  const article=html('research/rr-test-article');
  const judgment=html('judgments/rr-test-case');
  const home=html('');
+ const hub=html('areas-of-law/msme-law');
+ const act=html('bare-acts/acts/rr-test-act');
+ const provision=html('bare-acts/acts/rr-test-act/provisions/section-1');
+ const amendment=html('bare-acts/acts/rr-test-act/amendments/revision');
+ assert.match(hub,/RR TEST ARTICLE/);
+ assert.match(hub,/RR TEST CASE/);
+ assert.match(hub,/RR TEST STATUTE/);
+ assert.match(html('bare-acts'),/RR TEST STATUTE/);
+ assert.ok(act.includes('/bare-acts/acts/rr-test-act/provisions/section-1/'));
+ assert.ok(act.includes('/bare-acts/acts/rr-test-act/amendments/revision/'));
+ assert.match(provision,/RR TEST ORIGINAL TEXT/);
+ assert.match(provision,/RR TEST REVISED TEXT/);
+ assert.ok(provision.includes('/research/rr-test-article/'));
+ assert.ok(provision.includes('/bare-acts/acts/rr-test-act/amendments/revision/'));
+ assert.ok(amendment.includes('/bare-acts/acts/rr-test-act/provisions/section-1/'));
+ assert.ok(article.includes('/bare-acts/acts/rr-test-act/provisions/section-1/'));
+ assert.ok(article.includes('/areas-of-law/msme-law/'));
+ assert.ok(!existsSync('dist/bare-acts/acts/example-draft/index.html'));
  assert.match(article,/Synthetic test reviewer/);
  assert.match(article,/Synthetic test reference/);
  assert.match(article,/href="#synthetic-section"/);
@@ -83,6 +179,21 @@ Not a public article.
  if(home.includes('RR TEST ARTICLE'))assert.match(home,/href="\/research\/rr-test-article\/"/);
  for(const page of [article,judgment,home,html('research')])assert.doesNotMatch(page,/RR TEST HIDDEN DRAFT/);
  assert.ok(!existsSync('dist/research/rr-test-hidden/index.html'));
+ // An unresolved reference must fail even if the article metadata is otherwise valid.
+ writeFileSync(join(fixture,'broken-ref.md'),basic('research','rr-broken-ref','Broken reference fixture')+`statuteRefs:
+  - act: rr-test-act
+    provision: missing
+---
+Test only.
+`);
+ expectBuild(false);
+ rmSync(join(fixture,'broken-ref.md'));
+ // Overlapping effective intervals must fail.
+ const invalidStatute=structuredClone(statute);
+ invalidStatute.provisions[0].versions[0].effectiveUntil='2020-01-01';
+ writeFileSync(statuteFixture,JSON.stringify(invalidStatute));
+ expectBuild(false);
+ writeFileSync(statuteFixture,JSON.stringify(statute));
  writeFileSync(join(fixture,'invalid.md'),`---
 title: Invalid fixture
 description: Missing required publication metadata
@@ -98,10 +209,13 @@ Invalid publication.
  console.log('Publication tests passed (routing, review metadata, citations, contents, related links, draft exclusion and invalid-entry rejection).');
 }finally{
  rmSync(fixture,{recursive:true,force:true});
+ rmSync(statuteFixture,{force:true});
  // Always discard synthetic output and restore a clean production build.
  rmSync('dist',{recursive:true,force:true});
  expectBuild(true);
  assert.ok(!existsSync('dist/research/rr-test-article/index.html'));
  assert.ok(!existsSync('dist/judgments/rr-test-case/index.html'));
  assert.doesNotMatch(html(''),/RR TEST (ARTICLE|CASE|HIDDEN DRAFT)/);
+ assert.ok(!existsSync('dist/bare-acts/acts/rr-test-act/index.html'));
+ assert.doesNotMatch(html('areas-of-law/msme-law'),/RR TEST (ARTICLE|CASE|STATUTE)/);
 }
