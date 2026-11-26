@@ -1,13 +1,21 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import ArticleList from '../components/ArticleList.astro';
 import {sections} from '../data/sections';
-export function getStaticPaths(){return sections.map(section=>({params:{section:section.slug},props:{section}}));}
-const {section}=Astro.props;
+import {publicationTypes} from '../data/publication';
+import {publishedArticles} from '../lib/publications';
+import {areas} from '../data/areas';
+export async function getStaticPaths(){
+ const entries=await publishedArticles();
+ return sections.map(section=>({params:{section:section.slug},props:{section,entries:section.slug==='areas-of-law'?entries:entries.filter(e=>publicationTypes[e.data.type].section===section.slug)}}));
+}
+const {section,entries}=Astro.props;
 ---
 <BaseLayout title={section.title} description={section.summary}>
-<p class="kicker">Rule &amp; Ratio · Section preview</p>
-<h1>{section.title}</h1>
-<p class="intro">{section.summary}</p>
-<p>We're developing this section. Reviewed content will appear here when it is ready.</p>
-<a href="/">Return to the homepage</a>
+<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><span aria-current="page">{section.title}</span></nav>
+<header class="section-heading section-page-header"><div><p class="kicker">Rule &amp; Ratio</p><h1>{section.title}</h1><p class="intro">{section.summary}</p></div></header>
+{section.slug==='journal' ? <p>Rule &amp; Ratio Review is a planned academic journal. No issues or calls for submissions have opened.</p> : section.slug==='tools' ? <p>Legal calculators and other utilities are in development.</p> : <>
+ {section.slug==='areas-of-law' && <section class="home-section"><h2>Planned knowledge hubs</h2><ul class="subject-list">{areas.filter(a=>a.slug!=='general').map(a=><li>{a.title}</li>)}</ul></section>}
+ <section class="home-section section-publications"><h2>{section.slug==='areas-of-law'?'All published reading':'Latest publications'}</h2><ArticleList entries={entries}/></section>
+</>}
 </BaseLayout>

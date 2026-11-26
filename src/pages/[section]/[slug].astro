@@ -1,0 +1,13 @@
+---
+import {render} from 'astro:content';
+import ArticleLayout from '../../layouts/ArticleLayout.astro';
+import {publishedArticles,relatedArticles} from '../../lib/publications';
+import {publicationTypes} from '../../data/publication';
+export async function getStaticPaths(){
+ const entries=await publishedArticles();
+ return entries.map(entry=>({params:{section:publicationTypes[entry.data.type].section,slug:entry.data.slug!},props:{entry,related:relatedArticles(entry,entries)}}));
+}
+const {entry,related}=Astro.props;
+const {Content,headings}=await render(entry);
+---
+<ArticleLayout entry={entry} related={related} headings={headings}><Content/></ArticleLayout>

@@ -1,6 +1,9 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
 import { sections } from '../data/sections';
+import {publishedArticles} from '../lib/publications';
+import ArticleList from '../components/ArticleList.astro';
+const latest=(await publishedArticles()).slice(0,6);
 const lead=sections.filter(s=>['news','judgments','bare-acts'].includes(s.slug));
 const knowledge=sections.filter(s=>['procedures','areas-of-law','research','education','institutions','tools'].includes(s.slug));
 const subjects=['Constitutional law','Criminal law','Civil procedure','Arbitration & ADR','MSME law','Commercial law','Property & RERA','Consumer protection','Corporate law','Labour & employment','Family law','Taxation'];
@@ -18,10 +21,11 @@ const subjects=['Constitutional law','Criminal law','Civil procedure','Arbitrati
     <aside class="lead-aside" aria-labelledby="desk-title">
       <p class="kicker">Editorial desk</p>
       <h2 id="desk-title">Follow the law</h2>
-      <p class="notice">Our first reviewed publications are in preparation.</p>
+      <p class="notice">{latest.length?'Explore our reviewed legal publications.':'Our first reviewed publications are in preparation.'}</p>
       {lead.map(s=><a class="desk-link" href={`/${s.slug}/`}><span><strong>{s.title}</strong><small>{s.summary}</small></span><span aria-hidden="true">↗</span></a>)}
     </aside>
   </section>
+  {latest.length>0 && <section class="home-section" aria-labelledby="latest-title"><div class="section-heading"><div><p class="kicker">Latest reading</p><h2 id="latest-title">Recent publications</h2></div></div><ArticleList entries={latest}/></section>}
   <section class="home-section" id="knowledge" aria-labelledby="knowledge-title">
     <div class="section-heading"><div><p class="kicker">The knowledge library</p><h2 id="knowledge-title">Understand law in depth</h2></div><span class="notice">Explore the planned collection</span></div>
     <div class="knowledge-grid">

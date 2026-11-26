@@ -1,0 +1,7 @@
+---
+import ArticleCard from './ArticleCard.astro';
+import type {Article} from '../lib/publications';
+interface Props {entries:Article[];emptyMessage?:string}
+const {entries,emptyMessage='Reviewed publications will appear here when available.'}=Astro.props;
+---
+{entries.length ? <div class="publication-grid">{entries.map(entry=><ArticleCard entry={entry}/>)}</div> : <p class="notice publication-empty">{emptyMessage}</p>}

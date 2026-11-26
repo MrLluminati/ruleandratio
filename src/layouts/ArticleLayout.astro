@@ -1,0 +1,41 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import ArticleList from '../components/ArticleList.astro';
+import JudgmentDetails from '../components/JudgmentDetails.astro';
+import {publicationTypes} from '../data/publication';
+import {sections} from '../data/sections';
+import {areaTitle} from '../data/areas';
+import {type Article,formatDate,isoDate} from '../lib/publications';
+interface Props {entry:Article;related:Article[];headings:{depth:number;slug:string;text:string}[]}
+const {entry,related,headings}=Astro.props;
+const d=entry.data;
+const info=publicationTypes[d.type];
+const section=sections.find(s=>s.slug===info.section);
+const toc=headings.filter(h=>h.depth===2||h.depth===3);
+---
+<BaseLayout title={d.title} description={d.description}>
+ <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span aria-hidden="true">/</span><a href={`/${info.section}/`}>{section?.title}</a><span aria-hidden="true">/</span><span aria-current="page">{d.title}</span></nav>
+ <article class="article-shell">
+  <header class="article-header">
+   <p class="kicker">{info.label} · {d.jurisdiction}</p>
+   <h1>{d.title}</h1>
+   <p class="intro">{d.description}</p>
+   <div class="byline"><span>By <strong>{d.author}</strong></span><span>Reviewed by <strong>{d.reviewer}</strong></span></div>
+   <div class="publication-meta">{d.publishedAt && <span>Published <time datetime={isoDate(d.publishedAt)}>{formatDate(d.publishedAt)}</time></span>}{d.reviewedAt && <span>Last reviewed <time datetime={isoDate(d.reviewedAt)}>{formatDate(d.reviewedAt)}</time></span>}</div>
+   <div class="article-topics">{d.areas.map(area=><span>{areaTitle(area)}</span>)}</div>
+  </header>
+  <div class="article-columns">
+   <div class="article-main">
+    {d.type==='judgment' && d.judgment && <JudgmentDetails judgment={d.judgment}/>}
+    <div class="prose article-body"><slot/></div>
+    <section class="article-sources" id="sources" aria-labelledby="source-title">
+     <h2 id="source-title">Sources and references</h2>
+     <ol>{d.sources.map(source=><li><a href={source.url}>{source.title}</a> <span class="source-kind">{source.kind==='primary'?'Primary source':'Secondary source'}</span>{source.pinpoint && <span class="pinpoint">{source.pinpoint}</span>}</li>)}</ol>
+    </section>
+    <p class="notice article-disclaimer">This publication provides general legal information, not advice on individual matters. Consult the original legal sources and verify subsequent developments before relying on it.</p>
+   </div>
+   {toc.length>0 && <aside class="article-toc"><nav aria-label="Article contents"><h2>In this article</h2><ol>{toc.map(h=><li class:list={[h.depth===3&&'toc-sub']}><a href={'#'+h.slug}>{h.text}</a></li>)}<li><a href="#sources">Sources and references</a></li></ol></nav></aside>}
+  </div>
+ </article>
+ {related.length>0 && <section class="home-section" aria-labelledby="related-title"><h2 id="related-title">Related reading</h2><ArticleList entries={related}/></section>}
+</BaseLayout>

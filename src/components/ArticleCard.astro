@@ -1,0 +1,15 @@
+---
+import {type Article,articlePath,formatDate,isoDate} from '../lib/publications';
+import {publicationTypes} from '../data/publication';
+import {areaTitle} from '../data/areas';
+interface Props {entry:Article}
+const {entry}=Astro.props;
+const d=entry.data;
+---
+<article class="publication-card">
+ <p class="kicker">{publicationTypes[d.type].label}</p>
+ <h3><a href={articlePath(entry)}>{d.title}</a></h3>
+ <p>{d.description}</p>
+ <div class="publication-meta"><span>{d.author}</span>{d.publishedAt && <time datetime={isoDate(d.publishedAt)}>{formatDate(d.publishedAt)}</time>}</div>
+ <p class="publication-subjects">{d.areas.map(areaTitle).join(' · ')}</p>
+</article>
