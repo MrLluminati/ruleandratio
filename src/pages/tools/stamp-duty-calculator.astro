@@ -1,0 +1,45 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import data from '../../data/bihar-stamp-rates.json';
+---
+<BaseLayout title="Bihar Stamp Duty Calculator (Research Beta)" description="Estimate ordinary Bihar sale and gift deed stamp duty and registration charges under the June 2026 reference scenario." eligible={false} breadcrumbs={[{name:'Home',path:'/'},{name:'Legal Tools',path:'/tools/'},{name:'Bihar Stamp Duty Calculator',path:'/tools/stamp-duty-calculator/'}]}>
+<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/tools/">Legal Tools</a><span>/</span><span aria-current="page">Stamp Duty Calculator</span></nav>
+<header class="article-header"><p class="kicker">Legal tools · Bihar · Research beta</p><h1>Stamp Duty and Registration Fee Calculator</h1><p class="intro">Estimate ordinary sale and gift deed charges using the June 2026 stamp-duty rate scenario and the department's published registration-fee reference rates.</p><p class="notice">Not a final payable amount. The original June notification and subsequent amendments have not been fully authenticated. Confirm rates and classification with the registration office before relying on results.</p></header>
+<div class="rr-tool-grid"><section class="rr-tool-panel"><h2>Transaction details</h2><form id="stamp-form" hidden><div class="rr-tool-fields">
+<label>State<select name="state"><option value="bihar">Bihar</option></select></label>
+<label>Instrument<select name="instrument"><option value="sale">Ordinary sale deed</option><option value="gift">Ordinary gift deed</option></select></label>
+<label class="rr-tool-full">Relevant instrument date<input type="date" name="date" required min={data.scenarioFrom} max={data.scenarioThrough} value={data.scenarioThrough}/></label>
+<label class="rr-tool-full">Transfer category<select name="transfer" required><option value="">Select verified category</option>{data.rates.map(r=><option value={r.id}>{r.label}</option>)}</select></label>
+<label id="stamp-consideration">Sale consideration (₹)<input name="consideration" type="number" min="0.01" max="1000000000000" step="0.01" required/></label>
+<label>Verified assessed property value / MVR (₹)<input name="mvr" type="number" min="0.01" max="1000000000000" step="0.01" required/></label>
+<p class="notice rr-tool-full">For an ordinary sale, the model uses the higher of the sale consideration and independently assessed value. For a gift, enter the verified chargeable property value. Enter the value of the entire transferred interest, not a rate per unit of area.</p>
+<label class="rr-tool-full">Separate verified registration-fee base (₹, optional)<input name="registrationBase" type="number" min="0.01" max="1000000000000" step="0.01" placeholder="Blank = same base as stamp duty"/></label>
+<label class="rr-tool-full"><input name="confirmed" type="checkbox" required/> I have verified the instrument classification, relevant date and chargeable valuation. I understand these reference rates and rounding are research assumptions, and exemptions and later amendments are not determined.</label>
+</div><div class="rr-tool-actions"><button type="submit" class="rr-button">Calculate reference charges</button></div></form><noscript>Enable JavaScript to calculate.</noscript></section>
+<section class="rr-tool-panel rr-tool-result"><h2>Estimated charges</h2><p id="stamp-status" role="status" aria-live="polite">Enter verified transaction details.</p><div id="stamp-result" hidden><p class="rr-tool-result-label">Combined reference estimate</p><p id="stamp-total" class="rr-tool-total"></p><dl id="stamp-details" class="rr-tool-breakdown"></dl><p class="notice">Excludes scanning, service, mutation and other charges. Not a registry assessment or payment challan.</p><div class="rr-tool-actions"><button type="button" id="stamp-download" class="rr-tool-secondary">Download estimate (.txt)</button></div></div></section></div>
+<section class="home-section prose"><h2>Reference rates and sources</h2><div class="msme-table-wrap"><table class="msme-table"><thead><tr><th>Transfer category</th><th>Stamp duty scenario</th><th>Registration fee reference</th></tr></thead><tbody>{data.rates.map(r=><tr><td>{r.label}</td><td>{r.stampBps/100}%</td><td>{r.registrationBps/100}%</td></tr>)}</tbody></table></div>
+<p><a href={data.sources.department}>Bihar Registration Department notifications</a>: notification 4060, 18 June 2026. <a href={data.sources.gazetteTranscript}>Indexed reproduction of Bihar Gazette, 19 June 2026, no. 636</a>: revised stamp rates for sale and gift deeds. The original document could not be directly opened. <a href={data.sources.feeChart}>Department fee chart, pp. 3–4</a>: older registration reference rates (dated 29 July 2015), not the current stamp-duty scale. The <a href={data.sources.acts}>Acts and Rules register</a> lists subsequent 2026 changes that need independent authentication. The permitted date range is a reference scenario, not certification of uninterrupted legal coverage.</p>
+<h2>Valuation and limitations</h2><p>Use the independently verified chargeable property value after applicable MVR rules, land classification, area, construction, location and other valuation adjustments. The calculator does not retrieve MVR automatically. Joint, mixed or disputed transfer classifications require separate determination; no concession is inferred solely from a woman's involvement. Gifts with special exemptions, leases, mortgages, powers of attorney, conversion deeds, partition, settlements and other instruments are unsupported. The model calculates percentage charges and rounds each component to two decimal places; statutory rounding and minimum charges are not determined. Confirm rates and obtain the official assessment from the <a href={data.sources.portal}>Bihar Registration Department</a>. No inputs are transmitted by this calculator.</p></section>
+</BaseLayout>
+<script>
+ import data from '../../data/bihar-stamp-rates.json';
+ import {stampDutyEstimate} from '../../lib/stamp-duty.mjs';
+ const el=(id:string)=>document.getElementById(id)!;
+ const form=el('stamp-form') as HTMLFormElement,result=el('stamp-result'),status=el('stamp-status');
+ const field=(name:string)=>form.elements.namedItem(name) as HTMLInputElement;
+ const money=new Intl.NumberFormat('en-IN',{style:'currency',currency:'INR',minimumFractionDigits:2,maximumFractionDigits:2});
+ let report='';
+ function invalidate(){report='';result.hidden=true;status.textContent='Details changed. Calculate again.'}
+ function sync(){const sale=field('instrument').value==='sale';el('stamp-consideration').hidden=!sale;field('consideration').disabled=!sale;invalidate()}
+ form.hidden=false;sync();form.addEventListener('input',invalidate);field('instrument').addEventListener('change',sync);
+ form.addEventListener('submit',e=>{e.preventDefault();invalidate();try{
+ const r=stampDutyEstimate(data,{state:field('state').value,instrument:field('instrument').value,transfer:field('transfer').value,date:field('date').value,consideration:Number(field('consideration').value),mvr:Number(field('mvr').value),registrationBase:field('registrationBase').value===''?undefined:Number(field('registrationBase').value),confirmed:field('confirmed').checked});
+ el('stamp-total').textContent=money.format(r.total);
+ const rows=[['Instrument',r.instrument==='sale'?'Sale deed':'Gift deed'],['Relevant date',r.date],['Transfer',r.transfer],['Article',r.article],['Consideration',r.instrument==='sale'?money.format(r.consideration):'Not applicable'],['Assessed value',money.format(r.mvr)],['Stamp-duty base',money.format(r.base)],['Stamp rate scenario',r.stampRate+'%'],['Stamp duty',money.format(r.stamp)],['Registration base',money.format(r.registrationBase)],['Registration rate reference',r.registrationRate+'%'],['Registration fee',money.format(r.registration)],['Dataset version',r.version]];
+ const dl=el('stamp-details');dl.replaceChildren();for(const [k,v] of rows){const dt=document.createElement('dt'),dd=document.createElement('dd');dt.textContent=k;dd.textContent=v;dl.append(dt,dd)}
+ report=['Rule & Ratio — Bihar stamp-duty reference estimate',...rows.map(([k,v])=>k+': '+v),'Combined estimate: '+money.format(r.total),'Research beta: verify original notification, subsequent amendments, valuation, exemptions and other charges. Not certified.',...Object.values(data.sources)].join('\n');
+ result.hidden=false;status.textContent='Reference estimate complete.';
+ }catch(error){status.textContent=error instanceof Error?error.message:'Calculation failed.'}});
+ el('stamp-download').addEventListener('click',()=>{if(!report)return;const url=URL.createObjectURL(new Blob([report],{type:'text/plain;charset=utf-8'}));const a=document.createElement('a');a.href=url;a.download='rule-and-ratio-bihar-stamp-duty-estimate.txt';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)});
+</script>
+<style>#stamp-form[hidden],#stamp-result[hidden],#stamp-consideration[hidden]{display:none!important}</style>
