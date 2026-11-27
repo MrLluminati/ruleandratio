@@ -98,7 +98,7 @@ async function getDoc(db,actor,id){
  return {d,ctx};
 }
 function docGuard(d,actor,cap){
- return {sql:'EXISTS (SELECT 1 FROM editorial_documents d WHERE d.id=? AND d.current_revision_hash=? AND d.review_plan_hash=? AND d.status=? AND '+accessSQL+')',args:[d.id,d.current_revision_hash,d.review_plan_hash,d.status,actor.role,actor.id,cap]};
+ return {sql:'EXISTS (SELECT 1 FROM editorial_documents d WHERE d.id=? AND d.current_revision_hash=? AND d.review_plan_hash=? AND d.status=? AND d.generation=? AND '+accessSQL+')',args:[d.id,d.current_revision_hash,d.review_plan_hash,d.status,d.generation,actor.role,actor.id,cap]};
 }
 export async function editorialRoute(req,db,actor,now){
  try{
@@ -115,7 +115,7 @@ export async function editorialRoute(req,db,actor,now){
    if(!canStaff(actor,'document:create'))problem('Access denied',403);
    const f=await readForm(req),kind=f.get('kind'),raw=f.get('raw'),draft=await inspectDraft(kind,raw),p=await planFor(kind,f.get('issues')??''),id=uuid();
    await mutation(db,actor,"? IN ('owner','admin')",[actor.role],[
-    statement(db,'INSERT INTO editorial_documents(id,kind,current_revision_hash,created_at,updated_at,title,review_plan_json,review_plan_hash) VALUES (?,?,?,?,?,?,?,?)',id,kind,draft.hash,now,now,draft.data.title,JSON.stringify(p.plan),p.hash),
+    statement(db,'INSERT INTO editorial_documents(id,kind,current_revision_hash,created_at,updated_at,title,review_plan_json,review_plan_hash,last_editor_id) VALUES (?,?,?,?,?,?,?,?,?)',id,kind,draft.hash,now,now,draft.data.title,JSON.stringify(p.plan),p.hash,actor.id),
     statement(db,'INSERT INTO editorial_revisions(document_id,sha256,content,author_id,created_at) VALUES (?,?,?,?,?)',id,draft.hash,raw,actor.id,now)
    ],'draft-created',id,draft.hash,now);
    return go(path(id));
@@ -126,7 +126,7 @@ export async function editorialRoute(req,db,actor,now){
   const plan=JSON.parse(d.review_plan_json);
   if(!Array.isArray(plan)||!plan.length||await hash(JSON.stringify(plan))!==d.review_plan_hash||draft.hash!==d.current_revision_hash)problem('Stored revision or review plan failed integrity check',409);
   const editable=canStaff(actor,'document:edit',ctx),reviewable=canStaff(actor,'document:review',ctx);
-  const versionFields=hidden('hash',d.current_revision_hash)+hidden('plan',d.review_plan_hash)+hidden('status',d.status);
+  const versionFields=hidden('hash',d.current_revision_hash)+hidden('plan',d.review_plan_hash)+hidden('status',d.status)+hidden('generation',d.generation);
   if(req.method==='GET'&&!action){
    const sourceList=draft.sources.map(s=>'<div class="row"><a href="'+esc(s.url)+'" target="_blank" rel="noopener noreferrer">'+esc(s.title)+'</a><br><small>'+esc(s.kind)+' · '+esc(s.pinpoint||'Missing pinpoint')+'</small></div>').join('');
    const preview=d.kind==='statute'?draft.data.provisions.map(p=>'<h3>'+esc(p.number)+' — '+esc(p.heading)+'</h3>'+ (p.versions??[]).map(v=>'<p class="muted">Recorded from: '+esc(v.effectiveFrom??'Undated')+'</p><pre>'+esc(v.text)+'</pre>').join('')+'<p>'+esc(p.commentary)+'</p>').join(''):md.render(draft.body);
@@ -146,7 +146,7 @@ export async function editorialRoute(req,db,actor,now){
   }
   if(req.method!=='POST'||!action)problem('Method not allowed',405);
   const f=await readForm(req);
-  if(f.get('hash')!==d.current_revision_hash||f.get('plan')!==d.review_plan_hash||f.get('status')!==d.status)problem('Document changed. Reload.',409);
+  if(f.get('hash')!==d.current_revision_hash||f.get('plan')!==d.review_plan_hash||f.get('status')!==d.status||f.get('generation')!==String(d.generation))problem('Document changed. Reload.',409);
   const guard=docGuard(d,actor,action==='review'?'review':'edit');
   if(action==='edit'){
    if(!editable)problem('Access denied',403);
@@ -155,31 +155,31 @@ export async function editorialRoute(req,db,actor,now){
    if(next.hash===draft.hash)return go(path(id));
    await mutation(db,actor,guard.sql,guard.args,[
     statement(db,'INSERT INTO editorial_revisions(document_id,sha256,content,author_id,created_at) VALUES (?,?,?,?,?) ON CONFLICT(document_id,sha256) DO NOTHING',id,next.hash,raw,actor.id,now),
-    statement(db,"UPDATE editorial_documents SET current_revision_hash=?,title=?,status='draft',updated_at=? WHERE id=?",next.hash,next.data.title,now,id)
+    statement(db,"UPDATE editorial_documents SET current_revision_hash=?,title=?,status='draft',updated_at=?,generation=generation+1,last_editor_id=? WHERE id=?",next.hash,next.data.title,now,actor.id,id)
    ],'draft-edited',id,next.hash,now);
   }else if(action==='submit'){
    if(!editable||d.status!=='draft')problem('Access denied',403);
-   await mutation(db,actor,guard.sql,guard.args,[statement(db,"UPDATE editorial_documents SET status='in-review',updated_at=? WHERE id=?",now,id)],'submitted-for-review',id,draft.hash,now);
+   await mutation(db,actor,guard.sql,guard.args,[statement(db,"UPDATE editorial_documents SET status='in-review',updated_at=?,generation=generation+1 WHERE id=?",now,id)],'submitted-for-review',id,draft.hash,now);
   }else if(action==='review'){
    if(!reviewable)problem('Access denied',403);
    const decision=f.get('decision'),summary=f.get('summary'),reviewerName=f.get('reviewerName');
    if(!['approved','blocked'].includes(decision)||!clean(summary,4000)||!clean(reviewerName,200)||f.get('confirm')!=='yes')problem('Explicit named review and summary required',422);
-   const self=d.author_id===actor.id;
+   const self=d.author_id===actor.id||d.last_editor_id===actor.id;
    if(decision==='approved'&&self&&(actor.role!=='owner'||f.get('solo')!=='yes'))problem('Independent review required, except explicitly acknowledged owner self-review',422);
    const evidence={reviewerName,summary,selfReview:self,...(decision==='approved'?validateEvidence(draft,plan,f):{checks:[],sources:[]})};
    await mutation(db,actor,guard.sql,guard.args,[
     statement(db,'INSERT INTO editorial_reviews(id,document_id,revision_hash,reviewer_id,decision,evidence_json,review_plan_hash,created_at) VALUES (?,?,?,?,?,?,?,?)',uuid(),id,draft.hash,actor.id,decision,JSON.stringify(evidence),d.review_plan_hash,now),
-    statement(db,'UPDATE editorial_documents SET status=?,updated_at=? WHERE id=?',decision==='approved'?'approved':'draft',now,id)
+    statement(db,'UPDATE editorial_documents SET status=?,updated_at=?,generation=generation+1 WHERE id=?',decision==='approved'?'approved':'draft',now,id)
    ],'review-'+decision,id,draft.hash,now);
   }else if(action==='reopen'){
    if(!boss(actor)||d.status!=='approved'||!clean(f.get('reason'),4000))problem('Administrator and reason required',403);
-   await mutation(db,actor,guard.sql,guard.args,[statement(db,"UPDATE editorial_documents SET status='draft',updated_at=? WHERE id=?",now,id)],'approval-reopened',id,draft.hash,now,{reason:f.get('reason')});
+   await mutation(db,actor,guard.sql,guard.args,[statement(db,"UPDATE editorial_documents SET status='draft',updated_at=?,generation=generation+1 WHERE id=?",now,id)],'approval-reopened',id,draft.hash,now,{reason:f.get('reason')});
   }else if(action==='assign'){
    if(!boss(actor)||!isId(f.get('staffId'))||!['grant','revoke'].includes(f.get('operation')))problem('Invalid assignment',403);
    const target=await first(db,'SELECT id,role,status FROM staff_accounts WHERE id=?',f.get('staffId'));
    if(!target||target.status!=='active'||!['author','reviewer'].includes(target.role))problem('Select active author or reviewer',422);
    const cap=target.role==='author'?'edit':'review',grant=f.get('operation')==='grant';
-   await mutation(db,actor,guard.sql+" AND EXISTS(SELECT 1 FROM staff_accounts WHERE id=? AND status='active' AND role=?)",[...guard.args,target.id,target.role],[grant?statement(db,'INSERT INTO editorial_assignments(document_id,staff_id,capability) VALUES (?,?,?) ON CONFLICT DO NOTHING',id,target.id,cap):statement(db,'DELETE FROM editorial_assignments WHERE document_id=? AND staff_id=? AND capability=?',id,target.id,cap)],grant?'assignment-granted':'assignment-revoked',id,draft.hash,now,{staffId:target.id,capability:cap});
+   await mutation(db,actor,guard.sql+" AND EXISTS(SELECT 1 FROM staff_accounts WHERE id=? AND status='active' AND role=?)",[...guard.args,target.id,target.role],[grant?statement(db,'INSERT INTO editorial_assignments(document_id,staff_id,capability) VALUES (?,?,?) ON CONFLICT DO NOTHING',id,target.id,cap):statement(db,'DELETE FROM editorial_assignments WHERE document_id=? AND staff_id=? AND capability=?',id,target.id,cap),statement(db,'UPDATE editorial_documents SET generation=generation+1,updated_at=? WHERE id=?',now,id)],grant?'assignment-granted':'assignment-revoked',id,draft.hash,now,{staffId:target.id,capability:cap});
   }else problem('Not found',404);
   return go(path(id));
  }catch(e){return layout('Request not completed','<p>'+esc(e.status?e.message:'The workspace could not complete the request.')+'</p><a href="/studio">Return to queue</a>',e.status??503)}
