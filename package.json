@@ -24,17 +24,17 @@
     "test:editorial": "node --test scripts/test-editorial.mjs scripts/test-editorial-cms.mjs",
     "editorial:cms": "node scripts/editorial-cms.mjs",
     "test:statutes": "node --test scripts/test-statute-versions.mjs",
-    "test:studio": "node --test scripts/test-studio.mjs scripts/test-auth-worker.mjs"
+    "test:studio": "node --test scripts/test-studio.mjs scripts/test-auth-worker.mjs scripts/test-editorial-workspace.mjs"
   },
   "dependencies": {
     "astro": "7.4.13",
-    "jose": "^6.2.10"
+    "jose": "^6.2.10",
+    "yaml": "^2.8.0",
+    "markdown-it": "^14.1.0"
   },
   "devDependencies": {
     "pagefind": "^1.4.0",
     "cheerio": "^1.1.0",
-    "playwright": "^1.55.0",
-    "yaml": "^2.8.0",
-    "markdown-it": "^14.1.0"
+    "playwright": "^1.55.0"
   }
 }

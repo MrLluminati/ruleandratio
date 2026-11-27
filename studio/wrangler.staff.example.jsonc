@@ -8,7 +8,8 @@
     "APP_MODE": "staff",
     "APP_ORIGIN": "https://admin.example.invalid",
     "ACCESS_ISSUER": "https://REPLACE.cloudflareaccess.com",
-    "ACCESS_AUDIENCE": "REPLACE"
+    "ACCESS_AUDIENCE": "REPLACE",
+    "STUDIO_ENABLED": "false"
   },
   "d1_databases": [
     {

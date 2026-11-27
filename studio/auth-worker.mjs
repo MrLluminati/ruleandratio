@@ -1,5 +1,6 @@
 import {createRemoteJWKSet,jwtVerify} from 'jose';
 import {canStaff,canMember} from './permissions.mjs';
+import {editorialRoute} from './editorial-workspace.mjs';
 
 const loginCookie='__Host-rr-login',sessionCookie='__Host-rr-member';
 const nowSeconds=()=>Math.floor(Date.now()/1000);
@@ -62,13 +63,15 @@ export function makeWorker({keyset=keys,fetchToken=fetch,clock=nowSeconds}={}){
    if(env.APP_MODE==='staff'){
     const issuer=origin(env.ACCESS_ISSUER);
     if(!/^https:\/\/[a-z0-9-]+\.cloudflareaccess\.com$/.test(issuer)||!env.ACCESS_AUDIENCE)return unavailable();
-    if(req.method!=='GET')return response('Method not allowed',405,{allow:'GET'});
-    if(!['/','/api/session'].includes(u.pathname))return page('Not found','<p>No such staff route.</p>',404);
     const claims=await verifyStaffToken(req.headers.get('cf-access-jwt-assertion'),issuer,env.ACCESS_AUDIENCE,keyset(issuer+'/cdn-cgi/access/certs'));
     if(!claims)return unauthorized();
     const row=await first(db,'SELECT id,role,status FROM staff_accounts WHERE issuer=? AND subject=?',issuer,claims.sub);
     const actor=row&&{...row,kind:'staff'};
     if(!canStaff(actor,'studio:read'))return forbidden();
+    if(env.STUDIO_ENABLED==='true'&&(u.pathname==='/studio'||u.pathname.startsWith('/studio/')))return editorialRoute(req,db,actor,now);
+    if(req.method!=='GET')return response('Method not allowed',405,{allow:'GET'});
+    if(!['/','/api/session'].includes(u.pathname))return page('Not found','<p>No such staff route.</p>',404);
+    if(u.pathname==='/'&&env.STUDIO_ENABLED==='true')return redirect('/studio');
     if(u.pathname==='/api/session')return response(JSON.stringify({kind:'staff',role:actor.role}),200,{'content-type':'application/json; charset=utf-8'});
     return page('Editorial Studio','<p>Signed in as authorised staff: <strong>'+esc(actor.role)+'</strong>.</p><p>Editorial tools will be connected in the next phase. No content editing or publication is enabled here.</p><a href="/cdn-cgi/access/logout">Sign out of staff access</a>');
    }
