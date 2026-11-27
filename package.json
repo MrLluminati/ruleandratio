@@ -21,7 +21,8 @@
     "editorial:queue": "node scripts/editorial.mjs queue",
     "editorial:template": "node scripts/editorial.mjs template",
     "editorial:prepare": "node scripts/editorial.mjs prepare",
-    "test:editorial": "node --test scripts/test-editorial.mjs"
+    "test:editorial": "node --test scripts/test-editorial.mjs scripts/test-editorial-cms.mjs",
+    "editorial:cms": "node scripts/editorial-cms.mjs"
   },
   "dependencies": {
     "astro": "^6.0.0"
@@ -30,6 +31,7 @@
     "pagefind": "^1.4.0",
     "cheerio": "^1.1.0",
     "playwright": "^1.55.0",
-    "yaml": "^2.8.0"
+    "yaml": "^2.8.0",
+    "markdown-it": "^14.1.0"
   }
 }

@@ -24,3 +24,6 @@ The desk reads the ten acquisition source maps and associates their explicit dra
 ## Tests
 
 npm run test:editorial checks missing/changed review records, explicit approval, safe candidate preparation, statute checks, duplicate IDs and escaped report rendering. CI runs these tests and builds a local report; no report artifact is uploaded. Existing publishing tests continue to exercise public draft exclusion and invalid link rejection.
+
+## Visual editorial CMS
+See [editorial-cms.md](editorial-cms.md) for the local browser-based editor and interactive review workflow. The static dashboard remains available.
