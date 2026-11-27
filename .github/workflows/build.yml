@@ -15,6 +15,7 @@ jobs:
         with:
           node-version: '22'
       - run: npm install --no-audit --no-fund
+      - run: npm audit --audit-level=low
       - run: npm run test:import
       - run: npm run test:tools
       - run: npm run test:news
@@ -27,3 +28,15 @@ jobs:
       - run: npm run test:publishing
         env:
           RR_TEST_BROWSER: '1'
+
+  windows-security:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '26'
+      - run: npm install --no-audit --no-fund
+      - run: npm audit --audit-level=low
+      - run: npm run test:editorial
+      - run: npm run build

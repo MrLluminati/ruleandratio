@@ -26,7 +26,7 @@
     "test:statutes": "node --test scripts/test-statute-versions.mjs"
   },
   "dependencies": {
-    "astro": "^6.0.0"
+    "astro": "7.4.13"
   },
   "devDependencies": {
     "pagefind": "^1.4.0",
