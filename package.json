@@ -15,7 +15,9 @@
     "test:import": "node --test scripts/test-import.mjs",
     "test:tools": "node --test scripts/test-tools.mjs",
     "news:intake": "node scripts/news-intake.mjs",
-    "test:news": "node --test scripts/test-news.mjs"
+    "test:news": "node --test scripts/test-news.mjs",
+    "news:queue": "node scripts/news-queue.mjs",
+    "news:check": "node scripts/news-check.mjs"
   },
   "dependencies": {
     "astro": "^6.0.0"

@@ -17,5 +17,8 @@ export function validateLead(lead,registry,today=new Date().toISOString().slice(
  let url;try{url=new URL(lead.url)}catch{throw Error('Document-specific URL required')}
  if(url.protocol!=='https:'||url.username||url.password||(!url.pathname.replaceAll('/','')&&!url.search))throw Error('Document-specific HTTPS URL required');
  if(lead.status!=='unverified'||typeof lead.notes!=='string'||!Array.isArray(lead.areas)||!lead.areas.length||lead.areas.some(a=>!slug.test(a)))throw Error('Leads must be unverified and identify subjects');
+ if(lead.authority!==undefined&&(typeof lead.authority!=='string'||!lead.authority.trim())||lead.identifier!==undefined&&(typeof lead.identifier!=='string'||!lead.identifier.trim()))throw Error('Optional authority and identifier must be nonempty text');
+ if(lead.editorPriority!==undefined&&!['normal','high','urgent'].includes(lead.editorPriority))throw Error('Invalid editorial priority');
+ if(['high','urgent'].includes(lead.editorPriority)&& (typeof lead.priorityReason!=='string'||!lead.priorityReason.trim()))throw Error('Elevated priority requires editorial rationale');
  return {...lead,sourceName:known.name,sourceKind:known.kind};
 }

@@ -10,5 +10,7 @@
     "general"
   ],
   "status": "unverified",
-  "notes": "Synthetic template — replace all placeholders."
+  "notes": "Synthetic template — replace all placeholders.",
+  "editorPriority": "normal",
+  "priorityReason": ""
 }
