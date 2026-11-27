@@ -1,0 +1,55 @@
+{
+  "state": "draft-research-only",
+  "researchDate": "2026-11-27",
+  "cases": [
+    {
+      "slug": "trimex-international-v-vedanta-aluminium-2010",
+      "name": "Trimex International FZE Ltd., Dubai v. Vedanta Aluminium Ltd., India",
+      "date": "2010-01-22",
+      "sourceUrl": "https://indiankanoon.org/doc/658803/",
+      "pinpoint": "Paras 9–10 and conclusion",
+      "status": "Public judgment reproduction consulted; official signed copy pending",
+      "topics": [
+        "sections-2-9",
+        "sections-10-12"
+      ]
+    },
+    {
+      "slug": "energy-watchdog-v-cerc-2017",
+      "name": "Energy Watchdog v. Central Electricity Regulatory Commission & Ors.",
+      "date": "2017-04-11",
+      "sourceUrl": "https://api.sci.gov.in/jonew/judis/44760.pdf",
+      "pinpoint": "Paras 32–45 and concluding directions",
+      "status": "Official PDF indexed text and title page visually inspected; full comparison pending",
+      "topics": [
+        "sections-31-36",
+        "section-56"
+      ]
+    },
+    {
+      "slug": "kailash-nath-associates-v-dda-2015",
+      "name": "Kailash Nath Associates v. Delhi Development Authority & Anr.",
+      "date": "2015-01-09",
+      "sourceUrl": "https://indiankanoon.org/doc/70828540/",
+      "pinpoint": "Paras 43–47",
+      "status": "Public judgment reproduction consulted; official signed copy pending",
+      "topics": [
+        "section-73",
+        "section-74"
+      ]
+    },
+    {
+      "slug": "bank-of-bihar-v-damodar-prasad-1968",
+      "name": "Bank of Bihar Ltd. v. Damodar Prasad & Anr.",
+      "date": "1968-08-08",
+      "sourceUrl": "https://indiankanoon.org/doc/743049/",
+      "pinpoint": "Discussion of Sections 128 and 140; SCR (1969) 1 SCR 620",
+      "status": "Public judgment reproduction consulted; official original pending",
+      "topics": [
+        "sections-126-129",
+        "sections-130-141"
+      ]
+    }
+  ],
+  "notes": "No comprehensive subsequent-treatment check. No licensed database access or approved statutory links. All entries remain draft."
+}

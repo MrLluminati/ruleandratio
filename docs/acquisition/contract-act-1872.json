@@ -1,0 +1,206 @@
+{
+  "slug": "indian-contract-act-1872",
+  "title": "Indian Contract Act, 1872",
+  "actNumber": "9 of 1872",
+  "researchDate": "2026-11-27",
+  "state": "source-map-only",
+  "coverage": "selected-provisions",
+  "source": {
+    "url": "https://www.indiacode.nic.in/bitstream/123456789/2187/2/A187209.pdf",
+    "status": "Official India Code PDF indexed text and printed page 10 inspected; no original-file checksum or current-version certification"
+  },
+  "provisions": [
+    {
+      "id": "sections-2-9",
+      "pinpoint": "Sections 2–9",
+      "topic": "Offer, acceptance and consideration",
+      "draftArticle": "src/content/articles/contract/contract-act-sections-2-9.md"
+    },
+    {
+      "id": "sections-10-12",
+      "pinpoint": "Sections 10–12",
+      "topic": "Enforceability and contractual capacity",
+      "draftArticle": "src/content/articles/contract/contract-act-sections-10-12.md"
+    },
+    {
+      "id": "sections-13-19a",
+      "pinpoint": "Sections 13–19A",
+      "topic": "Consent, coercion, undue influence, fraud and misrepresentation",
+      "draftArticle": "src/content/articles/contract/contract-act-sections-13-19a.md"
+    },
+    {
+      "id": "sections-20-22",
+      "pinpoint": "Sections 20–22",
+      "topic": "Mistake",
+      "draftArticle": "src/content/articles/contract/contract-act-sections-20-22.md"
+    },
+    {
+      "id": "sections-23-24",
+      "pinpoint": "Sections 23–24",
+      "topic": "Unlawful object and consideration",
+      "draftArticle": "src/content/articles/contract/contract-act-sections-23-24.md"
+    },
+    {
+      "id": "section-25",
+      "pinpoint": "Section 25",
+      "topic": "Agreements without consideration",
+      "draftArticle": "src/content/articles/contract/contract-act-section-25.md"
+    },
+    {
+      "id": "section-27",
+      "pinpoint": "Section 27",
+      "topic": "Restraint of trade",
+      "draftArticle": "src/content/articles/contract/contract-act-section-27.md"
+    },
+    {
+      "id": "section-28",
+      "pinpoint": "Section 28",
+      "topic": "Restraint of legal proceedings",
+      "draftArticle": "src/content/articles/contract/contract-act-section-28.md"
+    },
+    {
+      "id": "sections-29-30",
+      "pinpoint": "Sections 29–30",
+      "topic": "Uncertainty and wagering",
+      "draftArticle": "src/content/articles/contract/contract-act-sections-29-30.md"
+    },
+    {
+      "id": "sections-31-36",
+      "pinpoint": "Sections 31–36",
+      "topic": "Contingent contracts",
+      "draftArticle": "src/content/articles/contract/contract-act-sections-31-36.md"
+    },
+    {
+      "id": "sections-37-39",
+      "pinpoint": "Sections 37–39",
+      "topic": "Performance, tender and repudiation",
+      "draftArticle": "src/content/articles/contract/contract-act-sections-37-39.md"
+    },
+    {
+      "id": "sections-51-54",
+      "pinpoint": "Sections 51–54",
+      "topic": "Reciprocal promises",
+      "draftArticle": "src/content/articles/contract/contract-act-sections-51-54.md"
+    },
+    {
+      "id": "section-55",
+      "pinpoint": "Section 55",
+      "topic": "Time for performance",
+      "draftArticle": "src/content/articles/contract/contract-act-section-55.md"
+    },
+    {
+      "id": "section-56",
+      "pinpoint": "Section 56",
+      "topic": "Impossibility and frustration",
+      "draftArticle": "src/content/articles/contract/contract-act-section-56.md"
+    },
+    {
+      "id": "sections-59-61",
+      "pinpoint": "Sections 59–61",
+      "topic": "Appropriation of payments",
+      "draftArticle": "src/content/articles/contract/contract-act-sections-59-61.md"
+    },
+    {
+      "id": "sections-62-63",
+      "pinpoint": "Sections 62–63",
+      "topic": "Novation, alteration and remission",
+      "draftArticle": "src/content/articles/contract/contract-act-sections-62-63.md"
+    },
+    {
+      "id": "sections-64-65",
+      "pinpoint": "Sections 64–65",
+      "topic": "Rescission and restitution",
+      "draftArticle": "src/content/articles/contract/contract-act-sections-64-65.md"
+    },
+    {
+      "id": "sections-68-72",
+      "pinpoint": "Sections 68–72",
+      "topic": "Obligations resembling contract",
+      "draftArticle": "src/content/articles/contract/contract-act-sections-68-72.md"
+    },
+    {
+      "id": "section-73",
+      "pinpoint": "Section 73",
+      "topic": "Compensation for breach",
+      "draftArticle": "src/content/articles/contract/contract-act-section-73.md"
+    },
+    {
+      "id": "section-74",
+      "pinpoint": "Section 74",
+      "topic": "Stipulated damages and penalties",
+      "draftArticle": "src/content/articles/contract/contract-act-section-74.md"
+    },
+    {
+      "id": "section-75",
+      "pinpoint": "Section 75",
+      "topic": "Compensation on rightful rescission",
+      "draftArticle": "src/content/articles/contract/contract-act-section-75.md"
+    },
+    {
+      "id": "sections-124-125",
+      "pinpoint": "Sections 124–125",
+      "topic": "Indemnity",
+      "draftArticle": "src/content/articles/contract/contract-act-sections-124-125.md"
+    },
+    {
+      "id": "sections-126-129",
+      "pinpoint": "Sections 126–129",
+      "topic": "Guarantee and surety liability",
+      "draftArticle": "src/content/articles/contract/contract-act-sections-126-129.md"
+    },
+    {
+      "id": "sections-130-141",
+      "pinpoint": "Sections 130–141",
+      "topic": "Revocation, discharge and rights of surety",
+      "draftArticle": "src/content/articles/contract/contract-act-sections-130-141.md"
+    },
+    {
+      "id": "sections-148-152",
+      "pinpoint": "Sections 148–152",
+      "topic": "Bailment and standard of care",
+      "draftArticle": "src/content/articles/contract/contract-act-sections-148-152.md"
+    },
+    {
+      "id": "sections-160-171",
+      "pinpoint": "Sections 160–171",
+      "topic": "Return of goods and liens",
+      "draftArticle": "src/content/articles/contract/contract-act-sections-160-171.md"
+    },
+    {
+      "id": "sections-172-177",
+      "pinpoint": "Sections 172–177",
+      "topic": "Pledge and redemption",
+      "draftArticle": "src/content/articles/contract/contract-act-sections-172-177.md"
+    },
+    {
+      "id": "sections-182-188",
+      "pinpoint": "Sections 182–188",
+      "topic": "Agency and authority",
+      "draftArticle": "src/content/articles/contract/contract-act-sections-182-188.md"
+    },
+    {
+      "id": "sections-196-200",
+      "pinpoint": "Sections 196–200",
+      "topic": "Ratification",
+      "draftArticle": "src/content/articles/contract/contract-act-sections-196-200.md"
+    },
+    {
+      "id": "sections-201-208",
+      "pinpoint": "Sections 201–208",
+      "topic": "Termination of agency",
+      "draftArticle": "src/content/articles/contract/contract-act-sections-201-208.md"
+    },
+    {
+      "id": "sections-226-238",
+      "pinpoint": "Sections 226–238",
+      "topic": "Principal and third-party liability",
+      "draftArticle": "src/content/articles/contract/contract-act-sections-226-238.md"
+    }
+  ],
+  "review": [
+    "Check every selected provision and footnote against original PDF",
+    "Verify current amendments and special statutes",
+    "Do not include repealed sale-of-goods or partnership provisions as operative law",
+    "Obtain human approval before publication"
+  ]
+}
