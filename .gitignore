@@ -11,3 +11,6 @@ dist/
 .rr-sources/
 
 .rr-news/
+
+# Local review records, dashboard and publication candidates
+.rr-editorial/

@@ -17,7 +17,11 @@
     "news:intake": "node scripts/news-intake.mjs",
     "test:news": "node --test scripts/test-news.mjs",
     "news:queue": "node scripts/news-queue.mjs",
-    "news:check": "node scripts/news-check.mjs"
+    "news:check": "node scripts/news-check.mjs",
+    "editorial:queue": "node scripts/editorial.mjs queue",
+    "editorial:template": "node scripts/editorial.mjs template",
+    "editorial:prepare": "node scripts/editorial.mjs prepare",
+    "test:editorial": "node --test scripts/test-editorial.mjs"
   },
   "dependencies": {
     "astro": "^6.0.0"
@@ -25,6 +29,7 @@
   "devDependencies": {
     "pagefind": "^1.4.0",
     "cheerio": "^1.1.0",
-    "playwright": "^1.55.0"
+    "playwright": "^1.55.0",
+    "yaml": "^2.8.0"
   }
 }
