@@ -1,5 +1,5 @@
 {
-  "state": "historical-and-dated-2026-versions-staged-review-pending",
+  "state": "all-requested-documents-received-section18-enacted-chain-staged-review-pending",
   "asOf": "2026-11-27",
   "act": "msmed-act-2006",
   "coverage": "selected-provisions",
@@ -26,8 +26,9 @@
     },
     {
       "role": "Mediation Act",
-      "url": "https://www.indiacode.nic.in/bitstream/123456789/19637/1/aA2023-32.pdf",
-      "pinpoint": "Section 62 and Seventh Schedule"
+      "url": "https://egazette.gov.in/WriteReadData/2023/248775.pdf",
+      "pinpoint": "Section 62, p. 19; Seventh Schedule, p. 26",
+      "status": "Supplied commercial reproduction cross-checked against official Gazette indexed text; p. 26 image retrieval failed; no publisher content copied"
     },
     {
       "role": "Mediation initial commencement",
@@ -223,18 +224,32 @@
       "pages": 10,
       "signature": "No signatures",
       "inspection": "Historical reproduction; pages 5–7 extracted, pages 5–6 rendered and visually inspected; discrepancies recorded separately"
+    },
+    {
+      "file": "Mediation Act, 2023.pdf",
+      "sha256": "cbfc377d8c7df77909af31a53bbe09fdca1a0cd67568cab5375ef44577dbf4c3",
+      "bytes": 216229,
+      "pages": 44,
+      "signature": "none",
+      "inspection": "Commercial Capital Law House reproduction; metadata creation 17 September 2023, copyright page states first edition 2032 (apparent anomaly, not authenticated). PDF pp. 39–40 (printed 31–32) visually inspected and extracted; section 62 on PDF p. 35. Official Gazette indexed p. 26 text compared; p. 19 image inspected; p. 26 screenshot failed twice."
     }
   ],
   "partialStatutoryDraft": "src/content/statutes/msmed-act-2006.json",
   "enactedOnlyRecord": "docs/acquisition/msmed-2026-enacted-only.json",
   "outstanding": [
-    "Mediation Act original PDF",
-    "Authenticated principal Gazette and full comparison with supplied reproduction",
-    "Subsequent commencement notifications",
-    "Complete human legal review and publication approval"
+    "Authenticate principal 2006 Gazette and compare complete historical text",
+    "Authenticate certificate chains for supplied 2026 Gazette PDFs",
+    "Verify any subsequent central commencement notifications, savings and state rules; investigate Bihar 2026 apparent inconsistency",
+    "Human legal review, statutory reproduction rights and publication approval"
   ],
   "principalSourceReview": "docs/acquisition/msmed-principal-source-review.json",
   "historicalVersionCount": 10,
   "datedVersionCount": 14,
-  "provisionCount": 12
+  "provisionCount": 12,
+  "section18EnactedChain": {
+    "record": "docs/acquisition/msmed-2026-enacted-only.json",
+    "versions": 2,
+    "commencement": "No subsequent appointing notification located in targeted searches on 27 November 2026. No effective dates inferred; no current-law certification.",
+    "biharRulesResearch": "https://egazette.bihar.gov.in/GazettePrinting/GazettePublished/1320_2_2026.pdf"
+  }
 }

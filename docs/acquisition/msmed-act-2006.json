@@ -9,7 +9,7 @@
     "retrieval": "Supplied unsigned historical reproduction msmedact.pdf, compared in part to indexed India Code text; see msmed-principal-source-review.json; no original Gazette authentication"
   },
   "coverage": "selected-provisions",
-  "state": "historical-2006-and-dated-2026-versions-staged-review-pending",
+  "state": "dated-versions-and-section18-enacted-chain-staged-review-pending",
   "chapter": "V",
   "provisions": [
     {
@@ -149,7 +149,7 @@
   "researchDate": "2026-11-27",
   "amendmentReview": {
     "record": "docs/acquisition/msmed-version-plan.json",
-    "status": "supplied amendment and commencement Gazette PDFs inspected; partial draft exists, not reviewed",
+    "status": "All four requested documents received; section 18 enacted chain reconstructed, operative dates unverified; human review pending",
     "note": "2006 extraction alone is not current-law verification."
   }
 }
