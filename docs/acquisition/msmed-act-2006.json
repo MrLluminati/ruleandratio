@@ -9,7 +9,7 @@
     "retrieval": "Printed pages 9–11 visually inspected in web PDF; direct byte download failed; no PDF checksum; not a current consolidated Act"
   },
   "coverage": "selected-provisions",
-  "state": "historical-pages-inspected-original-bytes-unavailable-amendments-pending",
+  "state": "partial-2026-text-staged-original-principal-act-pending",
   "chapter": "V",
   "provisions": [
     {
@@ -149,7 +149,7 @@
   "researchDate": "2026-11-27",
   "amendmentReview": {
     "record": "docs/acquisition/msmed-version-plan.json",
-    "status": "pending",
+    "status": "supplied amendment and commencement Gazette PDFs inspected; partial draft exists, not reviewed",
     "note": "2006 extraction alone is not current-law verification."
   }
 }

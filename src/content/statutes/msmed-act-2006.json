@@ -1,0 +1,183 @@
+{
+  "slug": "msmed-act-2006",
+  "title": "Micro, Small and Medium Enterprises Development Act, 2006",
+  "shortTitle": "MSMED Act, 2006",
+  "actNumber": "27 of 2006",
+  "year": 2006,
+  "jurisdiction": "India",
+  "areas": [
+    "msme-law",
+    "commercial-law",
+    "arbitration"
+  ],
+  "draft": true,
+  "coverage": "selected-provisions",
+  "source": {
+    "title": "Gazette of India, MSMED (Amendment) Act 2026, Act 16 of 2026 (supplied signed PDF)",
+    "url": "https://egazette.gov.in/WriteReadData/2026/275448.pdf",
+    "pinpoint": "Gazette CG-DL-E-13082026-275448; sections 7–13, pp. 3–6"
+  },
+  "chapters": [
+    {
+      "slug": "chapter-v",
+      "label": "Chapter V",
+      "title": "Delayed payments to micro and small enterprises"
+    }
+  ],
+  "provisions": [
+    {
+      "slug": "section-15a",
+      "number": "15A",
+      "kind": "section",
+      "heading": "Mandatory settlement of receivables through Trade Receivables Discounting System.",
+      "chapter": "chapter-v",
+      "commentary": "Check the purchaser category, the specific designation notification where required, and applicable central or state prescribed procedures. This provision extends to covered procurement from medium enterprises; that does not by itself confer eligibility for delayed-payment remedies.",
+      "versions": [
+        {
+          "id": "amendment-2026",
+          "effectiveFrom": "2026-10-15",
+          "text": "15A. (1) Notwithstanding anything contained in this Act or any other law for the time being in force, every Central Public Sector Enterprise shall, in respect of procurement of goods or services from micro, small and medium enterprises, route the settlement of invoices through a Trade Receivables Discounting System platform, authorised by the Reserve Bank, in such form and manner as may be prescribed by the Central Government.\n\n(2) The Central Government may, by notification, specify any other authority, body, or entity other than Central Public Sector Enterprise, in respect of procurement of goods or services from micro, small and medium enterprises, who shall thereafter route the settlement of invoices as provided for in sub-section (1), in such form and manner as may be prescribed by the Central Government.\n\n(3) The State Government may, by notification, specify such State Public Sector Enterprise, any other authority, body, or entity, in respect of procurement of goods or services from micro, small and medium enterprises, who shall thereafter route the settlement of invoices as provided for in sub-section (1), in such form and manner as may be prescribed by the State Government.\n\nExplanation.––For the purposes of this section, the expression “Trade Receivables Discounting System” means an electronic platform for facilitating the financing or discounting of trade receivables of micro, small and medium enterprises in accordance with the guidelines issued by the Reserve Bank from time to time.",
+          "source": {
+            "title": "Gazette of India, MSMED (Amendment) Act 2026, Act 16 of 2026 (supplied signed PDF)",
+            "url": "https://egazette.gov.in/WriteReadData/2026/275448.pdf",
+            "pinpoint": "Amending section 7, printed page(s) 3"
+          },
+          "amendmentIds": [
+            "amendment-2026-7"
+          ],
+          "note": "Date appointed in supplied S.O. 5575(E), clause (a). Later notifications and historical completeness not certified."
+        }
+      ]
+    },
+    {
+      "slug": "section-20",
+      "number": "20",
+      "kind": "section",
+      "heading": "Establishment of Micro and Small Enterprises Facilitation Council.",
+      "chapter": "chapter-v",
+      "commentary": "Verify the applicable state notification, territorial jurisdiction and meeting rules. The earlier version is not included in this partial draft and must be acquired before publishing a historical comparison.",
+      "versions": [
+        {
+          "id": "amendment-2026",
+          "effectiveFrom": "2026-10-15",
+          "text": "20. (1) The State Government shall, by notification, establish adequate number of Micro and Small Enterprises Facilitation Council, in addition to the existing Council, at such places, exercising such jurisdiction, and for such areas, as may be specified in that notification.\n\n(2) The Micro and Small Enterprises Facilitation Council shall meet on regular basis for timely resolution of references made under section 18, at such intervals and in accordance with such procedure as may be prescribed by the State Government.\n\n(3) The State Government may provide adequate infrastructure and resources, including physical infrastructure, digital systems and trained manpower, as may be necessary for effective and timely disposal of references, to the Council established under this section.",
+          "source": {
+            "title": "Gazette of India, MSMED (Amendment) Act 2026, Act 16 of 2026 (supplied signed PDF)",
+            "url": "https://egazette.gov.in/WriteReadData/2026/275448.pdf",
+            "pinpoint": "Amending section 11, printed page(s) 5"
+          },
+          "amendmentIds": [
+            "amendment-2026-11"
+          ],
+          "note": "Date appointed in supplied S.O. 5575(E), clause (a). Later notifications and historical completeness not certified."
+        }
+      ]
+    },
+    {
+      "slug": "section-21",
+      "number": "21",
+      "kind": "section",
+      "heading": "Composition of Micro and Small Enterprises Facilitation Council.",
+      "chapter": "chapter-v",
+      "commentary": "Scheduled commencement under the supplied notification is 15 December 2026, later than the review date. Do not present this as the operative composition before commencement. Historical text and state rules remain required.",
+      "versions": [
+        {
+          "id": "amendment-2026",
+          "effectiveFrom": "2026-12-15",
+          "text": "21. (1) The Micro and Small Enterprises Facilitation Council shall consist of not less than three but not more than five members.\n\n(2) Each Micro and Small Enterprises Facilitation Council constituted by the State Government shall include the following members, namely:––\n\n(a) an officer not below the rank of Joint Director as the Chairperson of the Micro and Small Enterprises Facilitation Council; and\n\n(b) one or more office-bearers or representatives of associations of micro or small industry or enterprises; and\n\n(c) at least one member from the field of law.\n\n(3) Subject to the provisions of sub-sections (1) and (2), the composition of the Micro and Small Enterprises Facilitation Council, the manner of filling vacancies of its members and the procedure to be followed in the discharge of their functions by the members shall be such, as may be prescribed by the State Government.",
+          "source": {
+            "title": "Gazette of India, MSMED (Amendment) Act 2026, Act 16 of 2026 (supplied signed PDF)",
+            "url": "https://egazette.gov.in/WriteReadData/2026/275448.pdf",
+            "pinpoint": "Amending section 12, printed page(s) 5"
+          },
+          "amendmentIds": [
+            "amendment-2026-12"
+          ],
+          "note": "Date appointed in supplied S.O. 5575(E), clause (b). Later notifications and historical completeness not certified."
+        }
+      ]
+    },
+    {
+      "slug": "section-22a",
+      "number": "22A",
+      "kind": "section",
+      "heading": "Reporting of compliance.",
+      "chapter": "chapter-v",
+      "commentary": "Identify the purchasing entity, designation and prescribed disclosure procedure. This is distinct from the annual accounts disclosures under section 22.",
+      "versions": [
+        {
+          "id": "amendment-2026",
+          "effectiveFrom": "2026-10-15",
+          "text": "22A. (1) Every Central Public Sector Enterprise or any other authority, body or entity, notified by the Central Government, shall disclose the details of invoices of micro, small and medium enterprises routed and settled through Trade Receivables Discounting System platform as referred to in sub-sections (1) and (2) of section 15A, in such form and manner as may be prescribed by the Central Government.\n\n(2) Every State Public Sector Enterprise or any other authority, body, or entity, notified by the State Government, shall disclose the details of invoices of micro, small and medium enterprises routed and settled through Trade Receivables Discounting System platform as referred to in sub-section (3) of section 15A, in such form and manner as may be prescribed by the State Government.",
+          "source": {
+            "title": "Gazette of India, MSMED (Amendment) Act 2026, Act 16 of 2026 (supplied signed PDF)",
+            "url": "https://egazette.gov.in/WriteReadData/2026/275448.pdf",
+            "pinpoint": "Amending section 13, printed page(s) 5–6"
+          },
+          "amendmentIds": [
+            "amendment-2026-13"
+          ],
+          "note": "Date appointed in supplied S.O. 5575(E), clause (a). Later notifications and historical completeness not certified."
+        }
+      ]
+    }
+  ],
+  "amendments": [
+    {
+      "slug": "amendment-2026-7",
+      "title": "Act 16 of 2026 — section 7",
+      "description": "Insertion of principal Act section 15A. Date appointed by S.O. 5575(E); subsequent notifications pending check.",
+      "effectiveDate": "2026-10-15",
+      "source": {
+        "title": "Gazette of India, S.O. 5575(E) (supplied signed PDF)",
+        "url": "https://egazette.gov.in/WriteReadData/2026/277080.pdf",
+        "pinpoint": "CG-DL-E-12102026-277080, p. 2, clauses (a) and (b)"
+      },
+      "affectedProvisions": [
+        "section-15a"
+      ]
+    },
+    {
+      "slug": "amendment-2026-11",
+      "title": "Act 16 of 2026 — section 11",
+      "description": "Substitution of principal Act section 20. Date appointed by S.O. 5575(E); subsequent notifications pending check.",
+      "effectiveDate": "2026-10-15",
+      "source": {
+        "title": "Gazette of India, S.O. 5575(E) (supplied signed PDF)",
+        "url": "https://egazette.gov.in/WriteReadData/2026/277080.pdf",
+        "pinpoint": "CG-DL-E-12102026-277080, p. 2, clauses (a) and (b)"
+      },
+      "affectedProvisions": [
+        "section-20"
+      ]
+    },
+    {
+      "slug": "amendment-2026-12",
+      "title": "Act 16 of 2026 — section 12",
+      "description": "Substitution of principal Act section 21. Date appointed by S.O. 5575(E); subsequent notifications pending check.",
+      "effectiveDate": "2026-12-15",
+      "source": {
+        "title": "Gazette of India, S.O. 5575(E) (supplied signed PDF)",
+        "url": "https://egazette.gov.in/WriteReadData/2026/277080.pdf",
+        "pinpoint": "CG-DL-E-12102026-277080, p. 2, clauses (a) and (b)"
+      },
+      "affectedProvisions": [
+        "section-21"
+      ]
+    },
+    {
+      "slug": "amendment-2026-13",
+      "title": "Act 16 of 2026 — section 13",
+      "description": "Insertion of principal Act section 22A. Date appointed by S.O. 5575(E); subsequent notifications pending check.",
+      "effectiveDate": "2026-10-15",
+      "source": {
+        "title": "Gazette of India, S.O. 5575(E) (supplied signed PDF)",
+        "url": "https://egazette.gov.in/WriteReadData/2026/277080.pdf",
+        "pinpoint": "CG-DL-E-12102026-277080, p. 2, clauses (a) and (b)"
+      },
+      "affectedProvisions": [
+        "section-22a"
+      ]
+    }
+  ]
+}

@@ -1,5 +1,5 @@
 {
-  "state": "research-only-no-statutory-text-imported",
+  "state": "supplied-gazette-text-extracted-partial-statutory-draft",
   "asOf": "2026-11-27",
   "act": "msmed-act-2006",
   "coverage": "selected-provisions",
@@ -11,18 +11,18 @@
     },
     {
       "role": "amendment Act 16 of 2026",
-      "url": "https://www.ricago.com/assets/front/base/file/file_management/7028.pdf",
+      "url": "https://egazette.gov.in/WriteReadData/2026/275448.pdf",
       "officialCandidate": "https://egazette.gov.in/WriteReadData/2026/275448.pdf",
       "gazetteId": "CG-DL-E-13082026-275448",
-      "status": "privately hosted Gazette reproduction text and selected page images inspected; official candidate timed out"
+      "status": "Supplied signed Gazette PDF inspected; signature integrity valid; certificate chain and independent URL retrieval not authenticated"
     },
     {
       "role": "commencement",
-      "url": "https://policyindex.ai/in/gazette/appointment-of-the-date-15th-october-2026-for-msmed-amendment-act-2026-agylgz",
+      "url": "https://egazette.gov.in/WriteReadData/2026/277080.pdf",
       "officialCandidate": "https://egazette.gov.in/WriteReadData/2026/277080.pdf",
       "gazetteId": "CG-DL-E-12102026-277080",
       "identifier": "S.O. 5575(E)",
-      "status": "reproduced notification text inspected; official candidate timed out"
+      "status": "Supplied signed Gazette PDF inspected; signature integrity valid; certificate chain and independent URL retrieval not authenticated"
     },
     {
       "role": "Mediation Act",
@@ -43,7 +43,7 @@
       "change": "inserted",
       "identifiedEffectiveDate": "2026-10-15",
       "note": "Date identified in reproduced notification; verify original and later notices",
-      "verification": "pending original notification authentication and subsequent-notification check"
+      "verification": "Confirmed against supplied Gazette documents only; subsequent notification search and human review pending"
     },
     {
       "section": "18",
@@ -51,7 +51,7 @@
       "change": "amends 2023 substituted provision",
       "identifiedEffectiveDate": null,
       "note": "Not covered by S.O. 5575(E); independently establish commencement of Mediation Act section 62 and Seventh Schedule",
-      "verification": "pending original notification authentication and subsequent-notification check"
+      "verification": "Confirmed against supplied Gazette documents only; subsequent notification search and human review pending"
     },
     {
       "section": "18A",
@@ -59,7 +59,7 @@
       "change": "inserted",
       "identifiedEffectiveDate": null,
       "note": "Not covered by S.O. 5575(E); check later notices",
-      "verification": "pending original notification authentication and subsequent-notification check"
+      "verification": "Confirmed against supplied Gazette documents only; subsequent notification search and human review pending"
     },
     {
       "section": "19",
@@ -67,7 +67,7 @@
       "change": "substituted",
       "identifiedEffectiveDate": null,
       "note": "Not covered by S.O. 5575(E); check later notices",
-      "verification": "pending original notification authentication and subsequent-notification check"
+      "verification": "Confirmed against supplied Gazette documents only; subsequent notification search and human review pending"
     },
     {
       "section": "20",
@@ -75,7 +75,7 @@
       "change": "substituted",
       "identifiedEffectiveDate": "2026-10-15",
       "note": "Historical and substituted text required",
-      "verification": "pending original notification authentication and subsequent-notification check"
+      "verification": "Confirmed against supplied Gazette documents only; subsequent notification search and human review pending"
     },
     {
       "section": "21",
@@ -83,7 +83,7 @@
       "change": "substituted",
       "identifiedEffectiveDate": "2026-12-15",
       "note": "Scheduled future date at review date; verify any subsequent change",
-      "verification": "pending original notification authentication and subsequent-notification check"
+      "verification": "Confirmed against supplied Gazette documents only; subsequent notification search and human review pending"
     },
     {
       "section": "22A",
@@ -91,7 +91,7 @@
       "change": "inserted",
       "identifiedEffectiveDate": "2026-10-15",
       "note": "Check implementation rules and designated entities",
-      "verification": "pending original notification authentication and subsequent-notification check"
+      "verification": "Confirmed against supplied Gazette documents only; subsequent notification search and human review pending"
     }
   ],
   "unchangedInAct16WithinPilot": [
@@ -196,5 +196,33 @@
       "provision": "section-18"
     }
   ],
-  "relationshipStatus": "Manual candidates only; no live statuteRefs inserted."
+  "relationshipStatus": "Manual candidates only; no live statuteRefs inserted.",
+  "uploadedDocuments": [
+    {
+      "gazetteId": "CG-DL-E-13082026-275448",
+      "file": "275448.pdf",
+      "sha256": "ddff2df33262f2396eba7d27a713bd1dfa67b2893c78384bb590c3dcbcdc5063",
+      "bytes": 500505,
+      "pages": 8,
+      "signature": "Valid cryptographic signature covering entire document; issuer not trusted by local pdfsig",
+      "inspection": "English text extracted; selected pages 3–6 visually inspected"
+    },
+    {
+      "gazetteId": "CG-DL-E-12102026-277080",
+      "file": "277080.pdf",
+      "sha256": "17f43a7340ed6e255f7d3b5db5683dcb42eacaa79a6db7954bb3802fcfdf2260",
+      "bytes": 401709,
+      "pages": 2,
+      "signature": "Valid cryptographic signature covering entire document; issuer not trusted by local pdfsig",
+      "inspection": "English text of page 2 inspected"
+    }
+  ],
+  "partialStatutoryDraft": "src/content/statutes/msmed-act-2006.json",
+  "enactedOnlyRecord": "docs/acquisition/msmed-2026-enacted-only.json",
+  "outstanding": [
+    "Principal Act original PDF",
+    "Mediation Act original PDF",
+    "Subsequent commencement notifications",
+    "Complete historical versions, exact-text comparison and human approval"
+  ]
 }

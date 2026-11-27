@@ -1,0 +1,39 @@
+{
+  "state": "enacted-text-only-not-for-publication",
+  "source": {
+    "title": "Gazette of India, MSMED (Amendment) Act 2026, Act 16 of 2026 (supplied signed PDF)",
+    "url": "https://egazette.gov.in/WriteReadData/2026/275448.pdf",
+    "pinpoint": "Gazette CG-DL-E-13082026-275448; sections 7–13, pp. 3–6"
+  },
+  "notification": {
+    "title": "Gazette of India, S.O. 5575(E) (supplied signed PDF)",
+    "url": "https://egazette.gov.in/WriteReadData/2026/277080.pdf",
+    "pinpoint": "CG-DL-E-12102026-277080, p. 2, clauses (a) and (b)"
+  },
+  "provisions": [
+    {
+      "number": "18A",
+      "heading": "Enforcement of mediated settlement agreements and arbitral awards.",
+      "amendingSection": 9,
+      "pinpoint": "Printed page(s) 4",
+      "text": "18A. (1) The mediated settlement agreement or arbitral award made by the Micro and Small Enterprises Facilitation Council itself or mediation service provider or any institution or centre providing alternative dispute resolution services to which a reference is made under section 18, may be recovered as an arrear of land revenue by the State Government through District Collector or Deputy Commissioner or any such authority notified by the State in this behalf, where the assets of the buyer is located.\n\n(2) The amount determined by the mediated settlement agreement or arbitral award shall constitute a valid and legally enforceable debt and is liable to be recognised under the provisions of the Insolvency and Bankruptcy Code, 2016.",
+      "commentary": "Enacted-only research. The supplied notification does not commence amending section 9. Verify the applicable Section 18 regime, subsequent notifications and insolvency requirements separately.",
+      "identifiedEffectiveDate": null
+    },
+    {
+      "number": "19",
+      "heading": "Application for setting aside decree, award or mediated settlement agreement.",
+      "amendingSection": 10,
+      "pinpoint": "Printed page(s) 4–5",
+      "text": "19. (1) No application for setting aside any decree, award, other order or mediated settlement agreement made under section 18 shall be entertained by any court unless the applicant (not being a supplier) has mandatorily deposited with it seventy-five per cent. of the amount in terms of the award or the mediated settlement agreement, as the case may be.\n\n(2) Pending disposal of the application to set aside the decree, award, other order or mediated settlement agreement, as the case may be, the court shall order that such percentage of the amount deposited shall be paid to the supplier, as it considers reasonable under the circumstances of the case:\n\nProvided that if the application has been pending for more than six months, the court shall order to pay to the supplier a sum equivalent to at least fifty per cent. of the amount awarded from the amount deposited by the applicant.\n\n(3) The application under sub-section (1) shall be filed within the jurisdiction of the court where official address of the supplier is located as referred to in section 8.",
+      "commentary": "Enacted-only research. Do not apply the substituted interim-release or jurisdiction rule unless commencement is independently verified. The six-month proviso measures fifty per cent of the amount awarded, not fifty per cent of the deposit.",
+      "identifiedEffectiveDate": null
+    }
+  ],
+  "section18": {
+    "amendingSection": 8,
+    "pinpoint": "Pages 3–4",
+    "note": "Partial amendment instructions; do not consolidate without authenticated Mediation Act section 62 and Seventh Schedule and verify commencement."
+  },
+  "normalization": "Paragraph line wrapping and outer Gazette quotation delimiters removed; words retained. Final human comparison pending."
+}
