@@ -1,0 +1,44 @@
+{
+  "state": "draft-research-only",
+  "researchDate": "2026-11-27",
+  "cases": [
+    {
+      "slug": "ssangyong-engineering-v-nhai-2019",
+      "name": "Ssangyong Engineering & Construction Co. Ltd. v. National Highways Authority of India",
+      "date": "2019-05-08",
+      "sourceUrl": "https://www.api.sci.gov.in/supremecourt/2017/19190/19190_2017_Judgement_08-May-2019.pdf",
+      "pinpoint": "Paras 12, 26–32, 48–50",
+      "sourceStatus": "official-host indexed text; page rendering failed; signed-copy and subsequent-treatment review pending",
+      "statutoryTopics": [
+        "34",
+        "37"
+      ]
+    },
+    {
+      "slug": "delhi-metro-rail-v-delhi-airport-metro-express-2024",
+      "name": "Delhi Metro Rail Corporation Ltd. v. Delhi Airport Metro Express Pvt. Ltd.",
+      "date": "2024-04-10",
+      "sourceUrl": "https://api.sci.gov.in/supremecourt/2022/23751/23751_2022_1_1501_52296_Judgement_10-Apr-2024.pdf",
+      "pinpoint": "Paras 67–73",
+      "sourceStatus": "official-host indexed text; page rendering failed; signed-copy and subsequent-treatment review pending",
+      "statutoryTopics": [
+        "34",
+        "37"
+      ]
+    },
+    {
+      "slug": "gayatri-balasamy-v-isg-novasoft-2025",
+      "name": "Gayatri Balasamy v. ISG Novasoft Technologies Ltd.",
+      "date": "2025-04-30",
+      "sourceUrl": "https://api.sci.gov.in/supremecourt/2021/20788/20788_2021_1_1501_61506_Judgement_30-Apr-2025.pdf",
+      "pinpoint": "Majority opinion, paras 39–40, 79, 84–85",
+      "sourceStatus": "official-host indexed text; page rendering failed; signed-copy and subsequent-treatment review pending",
+      "statutoryTopics": [
+        "33",
+        "34",
+        "37"
+      ]
+    }
+  ],
+  "notes": "No publication, reviewer assignment, original PDF checksum or current precedential status certification. No licensed database access."
+}

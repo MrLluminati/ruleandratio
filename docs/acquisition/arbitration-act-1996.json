@@ -1,0 +1,44 @@
+{
+  "slug": "arbitration-and-conciliation-act-1996",
+  "title": "Arbitration and Conciliation Act, 1996",
+  "state": "source-map-only-awaiting-original-download-extraction-and-review",
+  "researchDate": "2026-11-27",
+  "source": {
+    "url": "https://upload.indiacode.nic.in/showfile?actid=AC_CEN_3_46_00004_199626_1517807323919&filename=a1996-26.pdf&type=actfile",
+    "registry": "https://www.indiacode.nic.in/indiacode/handle/123456789/1978?view_type=browse",
+    "retrieval": "Official-host indexed PDF text available; page screenshot failed; no bytes or checksum claimed"
+  },
+  "coverage": "selected-provisions",
+  "provisions": [
+    {
+      "number": "31",
+      "heading": "Form and contents of arbitral award",
+      "draftArticle": "src/content/articles/arbitration/arbitration-act-section-31.md"
+    },
+    {
+      "number": "33",
+      "heading": "Correction and interpretation of award; additional award",
+      "draftArticle": "src/content/articles/arbitration/arbitration-act-section-33.md"
+    },
+    {
+      "number": "34",
+      "heading": "Application for setting aside arbitral award",
+      "draftArticle": "src/content/articles/arbitration/arbitration-act-section-34.md"
+    },
+    {
+      "number": "36",
+      "heading": "Enforcement",
+      "draftArticle": "src/content/articles/arbitration/arbitration-act-section-36.md"
+    },
+    {
+      "number": "37",
+      "heading": "Appealable orders",
+      "draftArticle": "src/content/articles/arbitration/arbitration-act-section-37.md"
+    }
+  ],
+  "review": [
+    "Obtain original PDF and compare provision boundaries including amendment footnotes",
+    "Check latest amendments, commencement and state adaptations independently",
+    "Prepare reviewed commentary and import only after verified source extraction and genuine human approval"
+  ]
+}
