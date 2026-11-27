@@ -1,6 +1,6 @@
 ---
 title: "Silpi Industries v. Kerala State Road Transport Corporation"
-description: "Draft case analysis of Silpi Industries v. Kerala State Road Transport Corporation and its significance for MSMED proceedings."
+description: "Limitation, counterclaims and registration in MSMED statutory arbitration, with the later NBCC referral distinguished."
 slug: silpi-industries-v-ksrtc-2021
 type: judgment
 areas: [msme-law, arbitration, commercial-law]
@@ -12,30 +12,34 @@ judgment:
   caseName: "Silpi Industries v. Kerala State Road Transport Corporation"
   court: Supreme Court of India
   decisionDate: 2021-06-29
+  caseNumber: "Civil Appeal Nos. 1570–1578 and 1620–1622 of 2021"
   citation: "(2021) 18 SCC 790"
-  caseNumber: "Civil Appeal Nos. 1570–1578 of 2021 and connected appeals"
-  judgmentUrl: https://indiankanoon.org/doc/134928159/
+  bench: ["Ashok Bhushan","R. Subhash Reddy"]
+  benchStrength: 2
+  decisionKind: judgment
+  judgmentUrl: "https://api.sci.gov.in/supremecourt/2017/36008/36008_2017_35_1501_28105_Judgement_29-Jun-2021.pdf"
 sources:
-  - title: "Judicial text — Silpi Industries v. Kerala State Road Transport Corporation"
-    url: https://indiankanoon.org/doc/134928159/
+  - title: "Official Supreme Court judgment"
+    url: "https://api.sci.gov.in/supremecourt/2017/36008/36008_2017_35_1501_28105_Judgement_29-Jun-2021.pdf"
     kind: primary
-    pinpoint: "Judgment, concluding discussion and paragraph 28"
-  - title: "NBCC (India) Ltd. v. State of West Bengal"
-    url: https://indiankanoon.org/doc/79643818/
+    pinpoint: "Discussion of limitation, counterclaims and registration; concluding paragraphs"
+  - title: "NBCC — Supreme Court judgment"
+    url: "https://api.sci.gov.in/supremecourt/2022/24558/24558_2022_12_1501_58501_Judgement_10-Jan-2025.pdf"
     kind: primary
-    pinpoint: "Paras 17–18, 29–30"
+    pinpoint: "Paras 18, 29–30"
 ---
 ## Background
-The connected appeals arose out of supply and contractual disputes, including questions about the statutory arbitral process and the effect of the timing of registration. The first batch involved tyre-rebuilding material and disputed payment obligations.
+
+The first batch involved the unpaid balance on tyre-rebuilding material and arbitral awards that the High Court had remanded. The second involved a hydro-mechanical equipment contract and the effect of registration timing.
 
 ## Decision
-The Court accepted the applicability of the Limitation Act to arbitration under Section 18(3) and recognized the availability of counterclaims and set-off in the statutory arbitration. The claimant in the connected registration dispute could not establish supplies after obtaining registration. The appeals were dismissed.
 
-## Practical relevance
-A case file should distinguish contract date, actual supply dates, registration date, cause of action and the date of reference. A respondent should consider pleading its counterclaim or set-off with supporting evidence.
+The Supreme Court recognised that the Limitation Act governs arbitration under the original Section 18(3), and that counterclaims and set-off can be considered in that arbitral process. In the connected registration dispute, the claimant had not established supplies after registration and could not claim retrospective statutory benefits. The appeals were dismissed.
 
 ## Subsequent treatment
-In NBCC (2025), the Court distinguished the question actually decided in Silpi from the broader question of eligibility to make a reference and sought an authoritative larger-bench ruling. Do not present the registration issue as conclusively resolved merely by citing Silpi.
 
-## Verification before publication
-Confirm official signed text, precise citation and paragraph pinpoints, subsequent judicial treatment and current status of relevant references. No human legal review or paid SCC/Manupatra database check has been claimed. This is an unpublished research draft.
+In NBCC (2025), the Court distinguished the question of substantive benefits from access to the reference mechanism and referred the issue for larger-bench resolution. This referral is not itself an overruling of Silpi. A definitive later disposition has not been established in this targeted research.
+
+## Practical scope
+
+Separate contract date, supply dates, registration, accrual of the claim and reference date. Analyse the applicable statutory version and the scope of the counterclaim independently.

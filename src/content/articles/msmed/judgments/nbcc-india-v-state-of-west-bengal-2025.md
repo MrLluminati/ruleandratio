@@ -1,6 +1,6 @@
 ---
 title: "NBCC (India) Ltd. v. State of West Bengal"
-description: "Draft case analysis of NBCC (India) Ltd. v. State of West Bengal and its significance for MSMED proceedings."
+description: "Reference concerning registration as a precondition for invoking Section 18 of the MSMED Act, distinct from entitlement to delayed-payment benefits."
 slug: nbcc-india-v-state-of-west-bengal-2025
 type: judgment
 areas: [msme-law, arbitration, commercial-law]
@@ -12,29 +12,36 @@ judgment:
   caseName: "NBCC (India) Ltd. v. State of West Bengal"
   court: Supreme Court of India
   decisionDate: 2025-01-10
-  citation: "2025 INSC 54; (2025) 3 SCC 440"
-  judgmentUrl: https://indiankanoon.org/doc/79643818/
+  caseNumber: "Civil Appeal No. 3705 of 2024"
+  citation: "2025 INSC 54"
+  decisionKind: judgment
+  judgmentUrl: "https://api.sci.gov.in/supremecourt/2022/24558/24558_2022_12_1501_58501_Judgement_10-Jan-2025.pdf"
 sources:
-  - title: "Judicial text — NBCC (India) Ltd. v. State of West Bengal"
-    url: https://indiankanoon.org/doc/79643818/
+  - title: "Official Supreme Court judgment"
+    url: "https://api.sci.gov.in/supremecourt/2022/24558/24558_2022_12_1501_58501_Judgement_10-Jan-2025.pdf"
     kind: primary
-    pinpoint: "Paras 1.2, 5, 17–19, 29–30"
-  - title: "Tamil Nadu Cements Corporation Ltd. — reference order"
-    url: https://api.sci.gov.in/supremecourt/2023/3776/3776_2023_1_1501_58592_Order_22-Jan-2025.pdf
+    pinpoint: "Paras 17–30; conclusion and reference"
+  - title: "Tamil Nadu Cements reference order"
+    url: "https://api.sci.gov.in/supremecourt/2023/3776/3776_2023_1_1501_58592_Order_22-Jan-2025.pdf"
     kind: primary
-    pinpoint: "Page 3, connected matters"
+    pinpoint: "Page 3"
+  - title: "Supreme Court connected tagging order"
+    url: "https://api.sci.gov.in/supremecourt/2024/51994/51994_2024_12_21_67596_Order_20-Jan-2026.pdf"
+    kind: primary
+    pinpoint: "20 January 2026, page 2"
 ---
 ## Background
-Several contracts preceded the enterprise's registration, while performance and billing continued afterwards. The buyer challenged the Council's jurisdiction.
+
+The proceedings raised whether a micro or small enterprise could invoke the reference mechanism where the relevant contract or supplies preceded filing of the memorandum.
 
 ## Reasoning and referral
-The Bench distinguished the earlier supplier-benefit cases from the broader language governing access to dispute resolution. It expressed the view that filing a memorandum was not a universal precondition to making a reference. Nevertheless, it directed a reference to a three-judge Bench for certainty concerning earlier authorities.
 
-## Practical relevance
-Separate eligibility for substantive delayed-payment benefits from maintainability of a reference. Record supply and registration chronology. The reasoned opinion and the referral must both be reported; do not label earlier decisions overruled or the reference conclusively decided.
+The Bench considered the distinction between substantive statutory benefits and access to dispute resolution. It expressed the view that Section 18 did not impose a universal registration precondition in the manner argued, while distinguishing Silpi and Mahakali Foods. The issue was referred to a larger Bench rather than finally settled as a conflict of precedent.
 
-## Subsequent procedural development
-The Tamil Nadu Cements order subsequently directed placement of the NBCC file with connected matters before the Chief Justice. Obtain the current docket and any authoritative later pronouncement before publication.
+## Connected development
 
-## Verification before publication
-Confirm official signed text, precise citation and paragraph pinpoints, subsequent judicial treatment and current status of relevant references. No human legal review or paid SCC/Manupatra database check has been claimed. This is an unpublished research draft.
+The January 2025 Tamil Nadu Cements reference order directed placement of the connected papers before the Chief Justice. A January 2026 tagging order demonstrates continued related procedural activity. The targeted search did not establish a final larger-bench disposition; this is not a comprehensive docket certification.
+
+## Practical scope
+
+Do not state that registration is irrelevant or that the prior judgments were overruled. Examine contract and supply dates, the legal definition of supplier, the registration regime and the specific relief sought.

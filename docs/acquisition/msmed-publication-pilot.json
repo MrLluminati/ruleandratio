@@ -1,0 +1,222 @@
+{
+  "state": "editorial-preflight-not-approval",
+  "date": "2026-11-27",
+  "scope": "one statutory record, 13 explanatory articles and seven case notes",
+  "batchA": "Three payment/recovery articles plus Aska; proposed for first human review, not ready or approved",
+  "entries": [
+    {
+      "id": "article-msmed-act-section-15",
+      "group": "A",
+      "state": "prepared-for-human-review",
+      "blockers": [
+        "Verify complete amendment and savings chain, current eligibility and legal accuracy",
+        "Actual named human approval"
+      ]
+    },
+    {
+      "id": "article-msmed-act-section-16",
+      "group": "A",
+      "state": "prepared-for-human-review",
+      "blockers": [
+        "Verify complete amendment and savings chain, current eligibility and legal accuracy",
+        "Actual named human approval"
+      ]
+    },
+    {
+      "id": "article-msmed-act-section-17",
+      "group": "A",
+      "state": "prepared-for-human-review",
+      "blockers": [
+        "Verify complete amendment and savings chain, current eligibility and legal accuracy",
+        "Actual named human approval"
+      ]
+    },
+    {
+      "id": "article-gujarat-state-disaster-management-authority-v-aska-2021",
+      "group": "A",
+      "state": "source-upgraded-draft",
+      "blockers": [
+        "Authenticate and compare complete official PDF",
+        "Check subsequent treatment and applicable statutory version",
+        "Actual named human approval"
+      ]
+    },
+    {
+      "id": "article-silpi-industries-v-ksrtc-2021",
+      "group": "B",
+      "state": "source-upgraded-draft",
+      "blockers": [
+        "Authenticate and compare complete official PDF",
+        "Check subsequent treatment and applicable statutory version",
+        "Actual named human approval",
+        "Confirm current larger-bench docket"
+      ]
+    },
+    {
+      "id": "article-nbcc-india-v-state-of-west-bengal-2025",
+      "group": "B",
+      "state": "source-upgraded-draft",
+      "blockers": [
+        "Authenticate and compare complete official PDF",
+        "Check subsequent treatment and applicable statutory version",
+        "Actual named human approval",
+        "Confirm current larger-bench docket"
+      ]
+    },
+    {
+      "id": "article-tamil-nadu-cements-v-msefc-2025-reference",
+      "group": "B",
+      "state": "source-upgraded-draft",
+      "blockers": [
+        "Authenticate and compare complete official PDF",
+        "Check subsequent treatment and applicable statutory version",
+        "Actual named human approval",
+        "Confirm current larger-bench docket"
+      ]
+    },
+    {
+      "id": "article-msmed-act-section-15a",
+      "group": "B",
+      "state": "deferred",
+      "blockers": [
+        "Authenticate Gazette and current commencement, rules and implementation",
+        "Actual human approval"
+      ]
+    },
+    {
+      "id": "article-msmed-act-section-18",
+      "group": "B",
+      "state": "deferred",
+      "blockers": [
+        "Resolve commencement and relevant judicial treatment",
+        "Actual human approval"
+      ]
+    },
+    {
+      "id": "article-msmed-act-section-18a",
+      "group": "B",
+      "state": "deferred",
+      "blockers": [
+        "Resolve commencement and relevant judicial treatment",
+        "Actual human approval"
+      ]
+    },
+    {
+      "id": "article-msmed-act-section-19",
+      "group": "B",
+      "state": "deferred",
+      "blockers": [
+        "Resolve commencement and relevant judicial treatment",
+        "Actual human approval"
+      ]
+    },
+    {
+      "id": "article-msmed-act-section-20",
+      "group": "B",
+      "state": "deferred",
+      "blockers": [
+        "Authenticate Gazette and current commencement, rules and implementation",
+        "Actual human approval"
+      ]
+    },
+    {
+      "id": "article-msmed-act-section-21",
+      "group": "B",
+      "state": "deferred",
+      "blockers": [
+        "Authenticate Gazette and current commencement, rules and implementation",
+        "Actual human approval"
+      ]
+    },
+    {
+      "id": "article-msmed-act-section-22",
+      "group": "B",
+      "state": "deferred",
+      "blockers": [
+        "Complete primary statutory comparison and related compliance checks",
+        "Actual human approval"
+      ]
+    },
+    {
+      "id": "article-msmed-act-section-22a",
+      "group": "B",
+      "state": "deferred",
+      "blockers": [
+        "Authenticate Gazette and current commencement, rules and implementation",
+        "Actual human approval"
+      ]
+    },
+    {
+      "id": "article-msmed-act-section-23",
+      "group": "B",
+      "state": "deferred",
+      "blockers": [
+        "Verify current tax legislation and savings",
+        "Actual human approval"
+      ]
+    },
+    {
+      "id": "article-msmed-act-section-24",
+      "group": "B",
+      "state": "deferred",
+      "blockers": [
+        "Resolve commencement and relevant judicial treatment",
+        "Actual human approval"
+      ]
+    },
+    {
+      "id": "article-goodyear-india-v-norton-intech-rubbers-2012",
+      "group": "B",
+      "state": "deferred",
+      "blockers": [
+        "Authenticate official primary judgment and exact metadata",
+        "Subsequent treatment and actual human approval"
+      ]
+    },
+    {
+      "id": "article-gujarat-state-civil-supplies-v-mahakali-foods-2022",
+      "group": "B",
+      "state": "deferred",
+      "blockers": [
+        "Authenticate official primary judgment and exact metadata",
+        "Subsequent treatment and actual human approval"
+      ]
+    },
+    {
+      "id": "article-india-glycols-v-msefc-2023",
+      "group": "B",
+      "state": "deferred",
+      "blockers": [
+        "Authenticate official primary judgment and exact metadata",
+        "Subsequent treatment and actual human approval"
+      ]
+    },
+    {
+      "id": "statute-msmed-act-2006",
+      "group": "B",
+      "state": "deferred",
+      "blockers": [
+        "Original principal Gazette comparison, certificate authentication, current commencement and statutory reproduction review",
+        "Unresolved enacted-only versions and missing status metadata",
+        "Actual human approval"
+      ]
+    }
+  ],
+  "sourceAudit": {
+    "historical": {
+      "url": "https://www.indiacode.nic.in/bitstream/123456789/19412/1/msme_act_2006.pdf",
+      "inspection": "Printed pp. 3 and 9 page images inspected; official indexed text consulted"
+    },
+    "amendment": {
+      "url": "https://www.compliedai.com/updates/msme/msmed-amendment-act-2026-dpywum",
+      "status": "Public Gazette reproduction; official URL returned 502. Do not certify completeness."
+    },
+    "notice": {
+      "url": "https://www.gazettetracker.com/g/CG-DL-E-12102026-277080",
+      "status": "Public reproduction of earlier supplied notification; later notices not exhaustively verified"
+    },
+    "judgments": "Four official PDFs retrieved in indexed form; selected pages visually inspected. Full checksums, later-treatment and licensed database checks not claimed."
+  },
+  "linkPolicy": "No statuteRefs or internal treatment links added until target is published. Suggested relationships in existing version plan; later publications must be separately checked. SEO descriptions and judgment decisionKind updated for edited articles; no index settings changed.",
+  "approval": "All draft flags remain true; no reviewer/date fabrication or approval."
+}

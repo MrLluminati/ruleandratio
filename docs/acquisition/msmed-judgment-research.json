@@ -1,13 +1,13 @@
 {
   "state": "draft-research-only",
-  "researchDate": "2026-11-26",
+  "researchDate": "2026-11-27",
   "cases": [
     {
       "slug": "silpi-industries-v-ksrtc-2021",
       "name": "Silpi Industries v. Kerala State Road Transport Corporation",
       "date": "2021-06-29",
-      "sourceUrl": "https://indiankanoon.org/doc/134928159/",
-      "sourceStatus": "public judgment reproduction; official copy pending",
+      "sourceUrl": "https://api.sci.gov.in/supremecourt/2017/36008/36008_2017_35_1501_28105_Judgement_29-Jun-2021.pdf",
+      "sourceStatus": "Official court PDF indexed text and selected page visually inspected; full original comparison, current subsequent treatment and human review pending",
       "statutoryTopics": [
         "18",
         "2",
@@ -19,7 +19,9 @@
           "url": "https://indiankanoon.org/doc/79643818/",
           "pinpoint": "Paras 17–18, 29–30"
         }
-      ]
+      ],
+      "previousSourceUrl": "https://indiankanoon.org/doc/134928159/",
+      "pinpoint": "Discussion of limitation, counterclaims and registration; concluding paragraphs"
     },
     {
       "slug": "gujarat-state-civil-supplies-v-mahakali-foods-2022",
@@ -50,12 +52,14 @@
       "slug": "gujarat-state-disaster-management-authority-v-aska-2021",
       "name": "Gujarat State Disaster Management Authority v. Aska Equipments Ltd.",
       "date": "2021-10-08",
-      "sourceUrl": "https://indiankanoon.org/doc/12942739/",
-      "sourceStatus": "public judgment reproduction; official copy pending",
+      "sourceUrl": "https://api.sci.gov.in/supremecourt/2019/37891/37891_2019_43_39_30702_Judgement_08-Oct-2021.pdf",
+      "sourceStatus": "Official court PDF indexed text and selected page visually inspected; full original comparison, current subsequent treatment and human review pending",
       "statutoryTopics": [
         "19"
       ],
-      "relatedSources": []
+      "relatedSources": [],
+      "previousSourceUrl": "https://indiankanoon.org/doc/12942739/",
+      "pinpoint": "Paras 9.2–12"
     },
     {
       "slug": "goodyear-india-v-norton-intech-rubbers-2012",
@@ -96,8 +100,8 @@
       "slug": "nbcc-india-v-state-of-west-bengal-2025",
       "name": "NBCC (India) Ltd. v. State of West Bengal",
       "date": "2025-01-10",
-      "sourceUrl": "https://indiankanoon.org/doc/79643818/",
-      "sourceStatus": "public judgment reproduction; official copy pending",
+      "sourceUrl": "https://api.sci.gov.in/supremecourt/2022/24558/24558_2022_12_1501_58501_Judgement_10-Jan-2025.pdf",
+      "sourceStatus": "Official court PDF indexed text and selected page visually inspected; full original comparison, current subsequent treatment and human review pending",
       "statutoryTopics": [
         "2",
         "8",
@@ -109,32 +113,37 @@
           "url": "https://api.sci.gov.in/supremecourt/2023/3776/3776_2023_1_1501_58592_Order_22-Jan-2025.pdf",
           "pinpoint": "Page 3, connected matters"
         }
-      ]
+      ],
+      "previousSourceUrl": "https://indiankanoon.org/doc/79643818/",
+      "pinpoint": "Paras 17–30; conclusion and reference"
     },
     {
       "slug": "tamil-nadu-cements-v-msefc-2025-reference",
       "name": "Tamil Nadu Cements Corporation Ltd. v. Micro and Small Enterprises Facilitation Council",
       "date": "2025-01-22",
-      "sourceUrl": "https://api.sci.gov.in/supremecourt/2023/3776/3776_2023_1_1501_58592_Order_22-Jan-2025.pdf",
-      "sourceStatus": "official reference order inspected",
+      "sourceUrl": "https://api.sci.gov.in/supremecourt/2023/3776/3776_2023_1_1501_58592_Judgement_22-Jan-2025.pdf",
+      "sourceStatus": "Official court PDF indexed text and selected page visually inspected; full original comparison, current subsequent treatment and human review pending",
       "statutoryTopics": [
         "18",
         "19"
       ],
-      "relatedSources": []
+      "relatedSources": [],
+      "previousSourceUrl": "https://api.sci.gov.in/supremecourt/2023/3776/3776_2023_1_1501_58592_Order_22-Jan-2025.pdf",
+      "pinpoint": "Paras 19–20; pp. 23–24"
     }
   ],
   "watchIssues": [
     {
       "topic": "Registration and maintainability under Section 18",
       "authority": "2025 INSC 54",
-      "status": "larger-bench referral verified; latest docket/final disposition not established"
+      "status": "Reference verified; targeted search found related tagging order 20 January 2026; final disposition not established, comprehensive docket check pending"
     },
     {
       "topic": "Writ maintainability and same Council member conciliation/arbitration",
       "authority": "2025 INSC 91",
-      "status": "five-judge referral verified; latest docket/final disposition not established"
+      "status": "Reference verified; targeted search found related tagging order 20 January 2026; final disposition not established, comprehensive docket check pending"
     }
   ],
-  "notes": "Do not infer overruling or automatic suspension of precedential effect. No statutory links added until reviewed statutory records exist. No paid database access."
+  "notes": "Do not infer overruling or automatic suspension of precedential effect. No statutory links added until reviewed statutory records exist. No paid database access. Official PDFs located for Aska, Silpi, NBCC and the reasoned Tamil Nadu Cements judgment. Three other primary copies remain pending.",
+  "additionalDocketSource": "https://api.sci.gov.in/supremecourt/2024/51994/51994_2024_12_21_67596_Order_20-Jan-2026.pdf"
 }

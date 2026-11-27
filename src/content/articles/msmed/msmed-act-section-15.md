@@ -1,6 +1,6 @@
 ---
-title: "When must a buyer pay a micro or small enterprise under Section 15?"
-description: "Editorial draft explaining Section 15 of the MSMED Act, 2006, and identifying practical verification points."
+title: "MSME payment deadline under Section 15: 15 days or 45 days?"
+description: "Understand the appointed day, written credit terms, acceptance of goods and the maximum payment period under Section 15 of the MSMED Act."
 slug: msmed-act-section-15
 type: education
 areas: [msme-law, commercial-law]
@@ -9,23 +9,35 @@ author: Rule & Ratio Editorial Draft
 authorType: Organization
 draft: true
 sources:
-  - title: MSMED Act 2006 — India Code
-    url: https://www.indiacode.nic.in/bitstream/123456789/5872/1/a2006-27.pdf
+  - title: "India Code — historical MSMED Act compilation"
+    url: "https://www.indiacode.nic.in/bitstream/123456789/19412/1/msme_act_2006.pdf"
     kind: primary
-    pinpoint: "Section 15; printed page 9"
+    pinpoint: "Printed pages 3 and 9; sections 2(b), 15–17"
+  - title: "MSMED Amendment Act 2026 — public Gazette reproduction"
+    url: "https://www.compliedai.com/updates/msme/msmed-amendment-act-2026-dpywum"
+    kind: secondary
+    pinpoint: "Amending sections 2, 4, 5, 7 and 17 (complete Act and savings require final comparison)"
+  - title: "S.O. 5575(E) — reproduced commencement notification"
+    url: "https://www.gazettetracker.com/g/CG-DL-E-12102026-277080"
+    kind: secondary
+    pinpoint: "Clauses (a)–(b), 12 October 2026"
 ---
-## Payment obligation
+## Two different payment rules
 
-A written payment arrangement is relevant, but its permitted duration cannot exceed 45 days measured from acceptance or deemed acceptance. Without such an arrangement, the appointed-day framework applies.
+For an eligible supplier, Section 15 distinguishes a written payment agreement from a transaction without one. If the parties agreed in writing, the buyer must pay by the agreed date, subject to a ceiling of 45 days from acceptance or deemed acceptance. Without such an agreement, payment must be made before the appointed day.
 
-## Documents to examine
+## When does the clock start?
 
-Check the supply contract, delivery or service records, and written objections. Preserve evidence showing when defects were resolved, if disputed. Establish the relevant dates before calculating any interest.
+Section 2(b) fixes the appointed day immediately after the 15-day period from acceptance or deemed acceptance. Actual delivery or rendering of services ordinarily establishes the starting point. A buyer's written objection about acceptance within 15 days may move the acceptance date to the date the supplier removes that objection. Where no such timely written objection is made, deemed acceptance is linked to the original delivery or service date, not to day 15.
 
-## Related provisions
+## Illustrative chronology
 
-Read the definition in Section 2 alongside Sections 16 and 17. Do not assume every registered enterprise qualifies as a supplier for Chapter V.
+Assume goods are delivered and accepted on 1 November, with no timely written objection. With no written credit agreement, the ordinary appointed day is 17 November, so payment is due before that day. If a valid written agreement provides 30 days, the agreed period governs rather than an automatic 45-day allowance. Check the actual terms and applicable computation rules for a live dispute.
 
-## Editorial verification pending
+## Evidence and eligibility
 
-Compare the text and applicable commencement/amendments with authenticated sources. Verify any relevant judicial developments, particularly before giving procedural or tax guidance. Add genuine review metadata before publication.
+Preserve purchase orders, invoices, delivery acknowledgments, objections, proof of rectification and payment records. Determine whether the claimant falls within the statutory supplier definition and applicable registration regime. The 2026 amendments affect classification and registration provisions; a registration certificate alone does not resolve every question of eligibility or transitional application. The 45-day ceiling is not a universal deadline for every commercial invoice.
+
+## Related reading
+
+Section 16 governs delayed-payment interest and Section 17 addresses recovery of the principal and interest. The 2026 insertion of Section 15A creates separate TReDS obligations for covered purchasers; it does not turn every medium enterprise into a Chapter V supplier.

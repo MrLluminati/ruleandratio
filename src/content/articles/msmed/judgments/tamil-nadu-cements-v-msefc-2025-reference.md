@@ -1,6 +1,6 @@
 ---
 title: "Tamil Nadu Cements Corporation Ltd. v. Micro and Small Enterprises Facilitation Council"
-description: "Draft case analysis of Tamil Nadu Cements Corporation Ltd. v. Micro and Small Enterprises Facilitation Council and its significance for MSMED proceedings."
+description: "Five-judge reference on writ maintainability against MSEFC orders and whether conciliating Council members may subsequently arbitrate."
 slug: tamil-nadu-cements-v-msefc-2025-reference
 type: judgment
 areas: [msme-law, arbitration, commercial-law]
@@ -12,26 +12,38 @@ judgment:
   caseName: "Tamil Nadu Cements Corporation Ltd. v. Micro and Small Enterprises Facilitation Council"
   court: Supreme Court of India
   decisionDate: 2025-01-22
-  citation: "2025 INSC 91"
   caseNumber: "Civil Appeal No. 1016 of 2025"
-  judgmentUrl: https://api.sci.gov.in/supremecourt/2023/3776/3776_2023_1_1501_58592_Order_22-Jan-2025.pdf
+  citation: "2025 INSC 91"
+  bench: ["Sanjiv Khanna","Sanjay Kumar","Manmohan"]
+  benchStrength: 3
+  decisionKind: reference-order
+  judgmentUrl: "https://api.sci.gov.in/supremecourt/2023/3776/3776_2023_1_1501_58592_Judgement_22-Jan-2025.pdf"
 sources:
-  - title: "Judicial text — Tamil Nadu Cements Corporation Ltd. v. Micro and Small Enterprises Facilitation Council"
-    url: https://api.sci.gov.in/supremecourt/2023/3776/3776_2023_1_1501_58592_Order_22-Jan-2025.pdf
+  - title: "Official Supreme Court judgment"
+    url: "https://api.sci.gov.in/supremecourt/2023/3776/3776_2023_1_1501_58592_Judgement_22-Jan-2025.pdf"
     kind: primary
-    pinpoint: "Official reference order, pp. 2–3"
+    pinpoint: "Paras 19–20; pp. 23–24"
+  - title: "Separate reference order"
+    url: "https://api.sci.gov.in/supremecourt/2023/3776/3776_2023_1_1501_58592_Order_22-Jan-2025.pdf"
+    kind: primary
+    pinpoint: "Pages 2–3"
+  - title: "Subsequent tagging order"
+    url: "https://api.sci.gov.in/supremecourt/2024/51994/51994_2024_12_21_67596_Order_20-Jan-2026.pdf"
+    kind: primary
+    pinpoint: "20 January 2026, page 2"
 ---
-## Procedural character
-This entry describes the Supreme Court's official reference order, not a final larger-bench ruling on the merits.
+## Nature of the decision
+
+The three-judge Bench issued a reasoned reportable judgment and a separate record of proceedings referring questions to five judges. It did not finally determine the referred questions.
 
 ## Questions referred
-The Court referred three issues to five judges: whether writ jurisdiction over MSEFC orders or awards is categorically excluded; when exceptions to the alternative-remedy rule may apply; and whether Council members who conciliated may subsequently arbitrate the dispute.
 
-## Connected cases
-The registry was directed to place the NBCC file and other related matters before the Chief Justice for administrative consideration of the Bench's constitution.
+The first concerns whether India Glycols creates an absolute bar on a writ petition against an MSEFC order or award. The second asks when the alternative-remedy restriction may be relaxed. The third concerns whether members who conducted unsuccessful conciliation can subsequently act as arbitrators in light of Section 80 of the Arbitration Act.
 
-## Editorial caution
-A reference does not itself invalidate an earlier judgment. Obtain the signed reasoned judgment and verify the latest docket and any later disposition before publishing a current-law account.
+## Subsequent procedural development
 
-## Verification before publication
-Confirm official signed text, precise citation and paragraph pinpoints, subsequent judicial treatment and current status of relevant references. No human legal review or paid SCC/Manupatra database check has been claimed. This is an unpublished research draft.
+The Court directed the papers to be placed before the Chief Justice for constitution of a larger Bench. An official order dated 20 January 2026 tagged another SLP with Civil Appeal No. 1016 of 2025. A final answer to the referred questions was not located in this targeted search.
+
+## Practical scope
+
+A reference does not automatically overrule the decisions it questions. Identify the precise order challenged, the statutory remedy, any alleged jurisdictional defect and the applicable statutory version.
