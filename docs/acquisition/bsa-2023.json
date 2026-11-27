@@ -1,0 +1,150 @@
+{
+  "slug": "bsa-2023",
+  "title": "Bharatiya Sakshya Adhiniyam, 2023",
+  "actNumber": "47 of 2023",
+  "researchDate": "2026-11-27",
+  "state": "source-map-only",
+  "coverage": "selected-provisions",
+  "source": {
+    "url": "https://www.indiacode.nic.in/indiacode/bitstream/123456789/20063/1/aa202347.pdf",
+    "status": "Official India Code PDF extracted text and first-page screenshot consulted; no original-file checksum or exhaustive provision comparison"
+  },
+  "comparison": {
+    "url": "https://www.ncrb.mha.gov.in/uploads/SankalanPortal/SectionTableBSA.html",
+    "status": "Official NCRB research aid; legacy pointers require clause-level comparison and are not automatic equivalences"
+  },
+  "provisions": [
+    {
+      "provision": "Sections 2–3",
+      "legacyResearchReference": "IEA 3–5",
+      "topic": "Definitions and relevance",
+      "articleSlug": "bsa-section-2-3",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 4–9",
+      "legacyResearchReference": "IEA 6–11",
+      "topic": "Connected facts, conduct and identification",
+      "articleSlug": "bsa-section-4-9",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 15–21",
+      "legacyResearchReference": "IEA 17–23",
+      "topic": "Admissions",
+      "articleSlug": "bsa-section-15-21",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 22–24",
+      "legacyResearchReference": "IEA 24–30 (consolidated and changed)",
+      "topic": "Confessions",
+      "articleSlug": "bsa-section-22-24",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Section 26",
+      "legacyResearchReference": "IEA 32",
+      "topic": "Statements of persons unavailable as witnesses",
+      "articleSlug": "bsa-section-26",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 39–45",
+      "legacyResearchReference": "IEA 45–51 (selected counterparts)",
+      "topic": "Expert and other opinion evidence",
+      "articleSlug": "bsa-section-39-45",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 54–55",
+      "legacyResearchReference": "IEA 59–60",
+      "topic": "Oral evidence",
+      "articleSlug": "bsa-section-54-55",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 56–60",
+      "legacyResearchReference": "IEA 61–65",
+      "topic": "Primary and secondary documentary evidence",
+      "articleSlug": "bsa-section-56-60",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 61–63 and Schedule",
+      "legacyResearchReference": "IEA 65A–65B (partial counterparts)",
+      "topic": "Electronic and digital evidence",
+      "articleSlug": "bsa-section-61-63",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 74–76",
+      "legacyResearchReference": "IEA 74–77",
+      "topic": "Public documents and certified copies",
+      "articleSlug": "bsa-section-74-76",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 85–93",
+      "legacyResearchReference": "IEA 85A–90A and other selected counterparts",
+      "topic": "Electronic and documentary presumptions",
+      "articleSlug": "bsa-section-85-93",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 94–95",
+      "legacyResearchReference": "IEA 91–92",
+      "topic": "Documentary terms and oral evidence",
+      "articleSlug": "bsa-section-94-95",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 104–109",
+      "legacyResearchReference": "IEA 101–106",
+      "topic": "Burden of proof",
+      "articleSlug": "bsa-section-104-109",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 117–120",
+      "legacyResearchReference": "IEA 113A, 113B, 114 and 114A",
+      "topic": "Presumptions in specified offences and other cases",
+      "articleSlug": "bsa-section-117-120",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 138–139",
+      "legacyResearchReference": "IEA 133–134",
+      "topic": "Accomplice and number of witnesses",
+      "articleSlug": "bsa-section-138-139",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 143–148",
+      "legacyResearchReference": "IEA 137–145 (selected counterparts)",
+      "topic": "Witness examination and previous statements",
+      "articleSlug": "bsa-section-143-148",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Section 157",
+      "legacyResearchReference": "IEA 154",
+      "topic": "Questions by party to own witness",
+      "articleSlug": "bsa-section-157",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Section 170",
+      "legacyResearchReference": "IEA repeal; no direct equivalence",
+      "topic": "Repeal and savings",
+      "articleSlug": "bsa-section-170",
+      "status": "research cross-reference; not certified equivalent"
+    }
+  ],
+  "review": [
+    "Verify current amendments and commencement notifications, including BNS 106(2) if relevant",
+    "Verify savings and Article 20(1) independently",
+    "Check local rules and special enactments",
+    "Human legal review before publication; no approved statutory reproduction"
+  ]
+}

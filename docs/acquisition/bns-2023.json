@@ -1,0 +1,150 @@
+{
+  "slug": "bns-2023",
+  "title": "Bharatiya Nyaya Sanhita, 2023",
+  "actNumber": "45 of 2023",
+  "researchDate": "2026-11-27",
+  "state": "source-map-only",
+  "coverage": "selected-provisions",
+  "source": {
+    "url": "https://www.indiacode.nic.in/bitstream/123456789/20062/1/a2023-45.pdf",
+    "status": "Official India Code PDF extracted text and first-page screenshot consulted; no original-file checksum or exhaustive provision comparison"
+  },
+  "comparison": {
+    "url": "https://www.ncrb.mha.gov.in/uploads/SankalanPortal/SectionTableBNS.html",
+    "status": "Official NCRB research aid; legacy pointers require clause-level comparison and are not automatic equivalences"
+  },
+  "provisions": [
+    {
+      "provision": "Section 3(5)",
+      "legacyResearchReference": "IPC 34",
+      "topic": "Common intention",
+      "articleSlug": "bns-section-3-5",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Section 4",
+      "legacyResearchReference": "IPC 53",
+      "topic": "Punishments",
+      "articleSlug": "bns-section-4",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 14–44",
+      "legacyResearchReference": "IPC 76–106",
+      "topic": "General exceptions and private defence",
+      "articleSlug": "bns-section-14-44",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 45–62",
+      "legacyResearchReference": "IPC 107–120B and 511",
+      "topic": "Abetment, conspiracy and attempt",
+      "articleSlug": "bns-section-45-62",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 63–70",
+      "legacyResearchReference": "IPC 375–376E (selected counterparts)",
+      "topic": "Sexual offences",
+      "articleSlug": "bns-section-63-70",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Section 80",
+      "legacyResearchReference": "IPC 304B",
+      "topic": "Dowry death",
+      "articleSlug": "bns-section-80",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 85–86",
+      "legacyResearchReference": "IPC 498A",
+      "topic": "Cruelty by husband or relatives",
+      "articleSlug": "bns-section-85-86",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 100–105",
+      "legacyResearchReference": "IPC 299–304",
+      "topic": "Culpable homicide and murder",
+      "articleSlug": "bns-section-100-105",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Section 106",
+      "legacyResearchReference": "IPC 304A (partial counterpart)",
+      "topic": "Death caused by negligence",
+      "articleSlug": "bns-section-106",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 108–109",
+      "legacyResearchReference": "IPC 306 and 307",
+      "topic": "Abetment of suicide and attempt to murder",
+      "articleSlug": "bns-section-108-109",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 115–118",
+      "legacyResearchReference": "IPC 319–326 (selected counterparts)",
+      "topic": "Hurt and grievous hurt",
+      "articleSlug": "bns-section-115-118",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 303–304",
+      "legacyResearchReference": "IPC 378–379 (theft); snatching has distinct BNS provision",
+      "topic": "Theft and snatching",
+      "articleSlug": "bns-section-303-304",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 308–310",
+      "legacyResearchReference": "IPC 383–392 and 395–402 (selected counterparts)",
+      "topic": "Extortion, robbery and dacoity",
+      "articleSlug": "bns-section-308-310",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Section 316",
+      "legacyResearchReference": "IPC 405–409",
+      "topic": "Criminal breach of trust",
+      "articleSlug": "bns-section-316",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 318–319",
+      "legacyResearchReference": "IPC 415–420",
+      "topic": "Cheating and cheating by personation",
+      "articleSlug": "bns-section-318-319",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 336–340",
+      "legacyResearchReference": "IPC 463–471 (selected counterparts)",
+      "topic": "Forgery and use of forged records",
+      "articleSlug": "bns-section-336-340",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 351–356",
+      "legacyResearchReference": "IPC 503–510 and 499–502 (selected counterparts)",
+      "topic": "Criminal intimidation and defamation",
+      "articleSlug": "bns-section-351-356",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Section 358",
+      "legacyResearchReference": "IPC repeal; no direct equivalence",
+      "topic": "Repeal and savings",
+      "articleSlug": "bns-section-358",
+      "status": "research cross-reference; not certified equivalent"
+    }
+  ],
+  "review": [
+    "Verify current amendments and commencement notifications, including BNS 106(2) if relevant",
+    "Verify savings and Article 20(1) independently",
+    "Check local rules and special enactments",
+    "Human legal review before publication; no approved statutory reproduction"
+  ]
+}

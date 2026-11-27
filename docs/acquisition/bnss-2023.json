@@ -1,0 +1,199 @@
+{
+  "slug": "bnss-2023",
+  "title": "Bharatiya Nagarik Suraksha Sanhita, 2023",
+  "actNumber": "46 of 2023",
+  "researchDate": "2026-11-27",
+  "state": "source-map-only",
+  "coverage": "selected-provisions",
+  "source": {
+    "url": "https://www.indiacode.nic.in/bitstream/123456789/20335/1/a2023-46.pdf",
+    "status": "Official India Code PDF extracted text and first-page screenshot consulted; no original-file checksum or exhaustive provision comparison"
+  },
+  "comparison": {
+    "url": "https://www.ncrb.mha.gov.in/uploads/SankalanPortal/SectionTableBNSS.html",
+    "status": "Official NCRB research aid; legacy pointers require clause-level comparison and are not automatic equivalences"
+  },
+  "provisions": [
+    {
+      "provision": "Section 35",
+      "legacyResearchReference": "CrPC 41 and 41A",
+      "topic": "Arrest without warrant and notice",
+      "articleSlug": "bnss-section-35",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 47–48",
+      "legacyResearchReference": "CrPC 50 and 50A",
+      "topic": "Grounds of arrest and information to relatives",
+      "articleSlug": "bnss-section-47-48",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 57–58",
+      "legacyResearchReference": "CrPC 56–57",
+      "topic": "Production before Magistrate and custody limits",
+      "articleSlug": "bnss-section-57-58",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 84–85",
+      "legacyResearchReference": "CrPC 82–83",
+      "topic": "Proclamation and attachment",
+      "articleSlug": "bnss-section-84-85",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Section 105",
+      "legacyResearchReference": "New express recording provision",
+      "topic": "Audio-video recording of search and seizure",
+      "articleSlug": "bnss-section-105",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Section 144",
+      "legacyResearchReference": "CrPC 125",
+      "topic": "Maintenance",
+      "articleSlug": "bnss-section-144",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Section 173",
+      "legacyResearchReference": "CrPC 154",
+      "topic": "Information concerning cognizable offences",
+      "articleSlug": "bnss-section-173",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 174–175",
+      "legacyResearchReference": "CrPC 155–156",
+      "topic": "Non-cognizable cases and investigation powers",
+      "articleSlug": "bnss-section-174-175",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 180–183",
+      "legacyResearchReference": "CrPC 161–164",
+      "topic": "Police examination and judicial statements",
+      "articleSlug": "bnss-section-180-183",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Section 187",
+      "legacyResearchReference": "CrPC 167",
+      "topic": "Remand and default bail",
+      "articleSlug": "bnss-section-187",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Section 193",
+      "legacyResearchReference": "CrPC 173",
+      "topic": "Police report upon completion of investigation",
+      "articleSlug": "bnss-section-193",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Section 210",
+      "legacyResearchReference": "CrPC 190",
+      "topic": "Cognizance by Magistrate",
+      "articleSlug": "bnss-section-210",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Section 223",
+      "legacyResearchReference": "CrPC 200 (materially changed)",
+      "topic": "Examination of complainant and pre-cognizance hearing",
+      "articleSlug": "bnss-section-223",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Section 230",
+      "legacyResearchReference": "CrPC 207",
+      "topic": "Supply of police report and documents",
+      "articleSlug": "bnss-section-230",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 250–251",
+      "legacyResearchReference": "CrPC 227–228",
+      "topic": "Sessions discharge and charge",
+      "articleSlug": "bnss-section-250-251",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 262–263",
+      "legacyResearchReference": "CrPC 239–240",
+      "topic": "Discharge and charge in warrant cases on police report",
+      "articleSlug": "bnss-section-262-263",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Section 356",
+      "legacyResearchReference": "New distinct procedure",
+      "topic": "Trial in absentia of proclaimed offender",
+      "articleSlug": "bnss-section-356",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Section 359",
+      "legacyResearchReference": "CrPC 320",
+      "topic": "Compounding of offences",
+      "articleSlug": "bnss-section-359",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 415–419",
+      "legacyResearchReference": "CrPC 374–378",
+      "topic": "Appeals against conviction and acquittal",
+      "articleSlug": "bnss-section-415-419",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Section 430",
+      "legacyResearchReference": "CrPC 389",
+      "topic": "Suspension of sentence and appellate bail",
+      "articleSlug": "bnss-section-430",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 478–480",
+      "legacyResearchReference": "CrPC 436, 436A, 437 (with changes)",
+      "topic": "Bailable offences, undertrial detention and regular bail",
+      "articleSlug": "bnss-section-478-480",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Sections 482–483",
+      "legacyResearchReference": "CrPC 438–439",
+      "topic": "Anticipatory bail and superior court bail powers",
+      "articleSlug": "bnss-section-482-483",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Section 528",
+      "legacyResearchReference": "CrPC 482",
+      "topic": "Inherent powers of High Court",
+      "articleSlug": "bnss-section-528",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Section 530",
+      "legacyResearchReference": "New express general provision",
+      "topic": "Electronic mode of proceedings",
+      "articleSlug": "bnss-section-530",
+      "status": "research cross-reference; not certified equivalent"
+    },
+    {
+      "provision": "Section 531",
+      "legacyResearchReference": "CrPC repeal; no direct equivalence",
+      "topic": "Repeal and savings",
+      "articleSlug": "bnss-section-531",
+      "status": "research cross-reference; not certified equivalent"
+    }
+  ],
+  "review": [
+    "Verify current amendments and commencement notifications, including BNS 106(2) if relevant",
+    "Verify savings and Article 20(1) independently",
+    "Check local rules and special enactments",
+    "Human legal review before publication; no approved statutory reproduction"
+  ]
+}

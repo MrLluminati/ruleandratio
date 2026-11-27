@@ -1,0 +1,49 @@
+{
+  "state": "draft-research-only",
+  "researchDate": "2026-11-27",
+  "cases": [
+    {
+      "slug": "parvinder-singh-v-directorate-of-enforcement-2026",
+      "name": "Parvinder Singh v. Directorate of Enforcement",
+      "date": "2026-05-19",
+      "sourceUrl": "https://api.sci.gov.in/supremecourt/2025/44465/44465_2025_5_1501_71414_Judgement_19-May-2026.pdf",
+      "pinpoint": "Paras 26–29, 36–39",
+      "topics": [
+        "223",
+        "531"
+      ],
+      "status": "official PDF text and first page inspected; later-treatment review pending"
+    },
+    {
+      "slug": "neeharika-infrastructure-v-state-of-maharashtra-2021",
+      "name": "Neeharika Infrastructure Pvt. Ltd. v. State of Maharashtra & Ors.",
+      "date": "2021-04-13",
+      "sourceUrl": "https://api.sci.gov.in/supremecourt/2020/21426/21426_2020_36_1502_27516_Judgement_13-Apr-2021.pdf",
+      "pinpoint": "Paras 23–25",
+      "topics": [
+        "528",
+        "482"
+      ],
+      "status": "official PDF text and first page inspected; later-treatment review pending"
+    },
+    {
+      "slug": "arjun-panditrao-khotkar-v-kailash-kushanrao-gorantyal-2020",
+      "name": "Arjun Panditrao Khotkar v. Kailash Kushanrao Gorantyal & Ors.",
+      "date": "2020-07-14",
+      "sourceUrl": "https://api.sci.gov.in/supremecourt/2017/39058/39058_2017_34_1501_22897_Judgement_14-Jul-2020.pdf",
+      "pinpoint": "Paras 57–60, 73; discussion of original electronic records",
+      "topics": [
+        "56-60",
+        "61-63"
+      ],
+      "status": "official PDF text and first page inspected; later-treatment review pending"
+    }
+  ],
+  "followUp": [
+    "Research current bail, arrest and default-bail authorities under BNSS",
+    "Add BNS-specific substantive judgments; no BNS judgment drafted in this batch",
+    "Verify judicial treatment of BSA Section 63 certificate requirements",
+    "Check later commencement notifications and all legacy comparison pointers"
+  ],
+  "notes": "No human review or current-law certification."
+}
