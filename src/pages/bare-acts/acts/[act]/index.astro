@@ -1,5 +1,7 @@
 ---
 import BaseLayout from '../../../../layouts/BaseLayout.astro';
+import StatuteDirectory from '../../../../components/StatuteDirectory.astro';
+import StatuteInstruments from '../../../../components/StatuteInstruments.astro';
 import ArticleList from '../../../../components/ArticleList.astro';
 import {publishedStatutes,actPath,provisionPath,amendmentPath,provisionLabel} from '../../../../lib/statutes';
 import {publishedArticles} from '../../../../lib/publications';
@@ -10,14 +12,14 @@ export async function getStaticPaths(){
  return publishedStatutes().map(act=>({params:{act:act.slug},props:{act,related:entries.filter(e=>e.data.statuteRefs.some(r=>r.act===act.slug))}}));
 }
 const {act,related}=Astro.props;
-const groups=[...act.chapters.map(c=>({title:c.label+' — '+c.title,provisions:act.provisions.filter(p=>p.chapter===c.slug)})),{title:'Other provisions',provisions:act.provisions.filter(p=>!p.chapter)}].filter(g=>g.provisions.length);
 ---
 <BaseLayout title={act.title} eligible={true} searchType="Act" searchSubjects={act.areas.map(areaTitle)} breadcrumbs={[{name:'Home',path:'/'},{name:'Bare Acts',path:'/bare-acts/'},{name:act.title,path:Astro.url.pathname}]} description={`Reviewed statutory text and provision directory for ${act.title}.`}>
 <nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/bare-acts/">Bare Acts</a><span>/</span><span aria-current="page">{act.title}</span></nav>
 <header class="article-header"><p class="kicker">Statutory library · {act.jurisdiction}</p><h1>{act.title}</h1><p class="intro">{[act.actNumber,act.year].filter(Boolean).join(' · ')}</p><div class="publication-meta"><span>Recorded status: {act.status?.replaceAll('-',' ')}</span><span>Reviewed: {act.reviewedAt}</span><span>Reviewer: {act.reviewer}</span></div><div class="article-topics">{act.areas.map(a=><a href={hubPath(a)}>{areaTitle(a)}</a>)}</div></header>
 <p class="notice">{act.coverage==='complete'?'Editor-declared complete coverage.':'Selected provisions only; this is not a complete consolidated text.'} Verify commencement, amendments and applicability against official sources.</p>
-{act.source && <p><a class="text-link" href={act.source.url}>{act.source.title} ↗</a></p>}
-<section class="home-section"><h2>Chapters and provisions</h2>{groups.map(group=><div class="chapter-group"><h3>{group.title}</h3><ul class="provision-list">{group.provisions.map(p=><li><a href={provisionPath(act,p)}><strong>{provisionLabel(p)}</strong><span>{p.heading}</span></a></li>)}</ul></div>)}</section>
+{act.source && <p><a class="text-link" href={act.source.url}>{act.source.title} ↗</a>{act.source.pinpoint&&<span class="pinpoint">{act.source.pinpoint}</span>}</p>}
+<StatuteDirectory act={act}/>
 <section class="home-section"><h2>Recorded amendments</h2>{act.amendments.length?<ul class="reference-list">{act.amendments.map(a=><li><a href={amendmentPath(act,a)}>{a.title}</a></li>)}</ul>:<p class="notice">No amendment records have been added; this does not establish that there are no amendments.</p>}</section>
+<StatuteInstruments act={act}/>
 {related.length>0&&<section class="home-section"><h2>Related judgments and commentary</h2><ArticleList entries={related}/></section>}
 </BaseLayout>

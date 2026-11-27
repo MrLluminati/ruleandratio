@@ -1,0 +1,20 @@
+---
+import {type Statute,provisionPath,provisionLabel} from '../lib/statutes';
+interface Props {act:Statute;provisionSlug?:string}
+const {act,provisionSlug}=Astro.props;
+const entries=act.instruments.filter(i=>!provisionSlug||i.provisionSlugs.includes(provisionSlug));
+const jurisdictions=[...new Set(entries.map(i=>i.jurisdiction))].sort();
+---
+<section class="home-section" data-instrument-directory>
+ <h2>Rules, notifications and orders</h2>
+ <p class="notice">Recorded instruments only; absence from this list does not establish absence of a rule or notification. Verify jurisdiction, commencement and later instruments independently.</p>
+ {entries.length>0?<><div class="rr-statute-controls" data-instrument-controls hidden data-pagefind-ignore><label>Jurisdiction<select data-instrument-jurisdiction><option value="">All jurisdictions</option>{jurisdictions.map(j=><option value={j}>{j}</option>)}</select></label><p class="notice" data-instrument-count aria-live="polite"></p></div><div class="rr-instrument-list">{entries.map(i=><article data-instrument-row data-jurisdiction={i.jurisdiction}><p class="kicker">{i.jurisdiction} · {i.kind}</p><h3>{i.title}</h3><p>{i.description}</p><p class="notice">Issued: {i.issuedOn??'Not recorded'} · Effective from: {i.effectiveFrom??'Not recorded'} · Effective until (exclusive): {i.effectiveUntil??'Not recorded'}</p><p><a href={i.source.url}>{i.source.title} ↗</a><span class="pinpoint">{i.source.pinpoint}</span></p>{i.provisionSlugs.length>0&&<p class="rr-instrument-links">{act.provisions.filter(p=>i.provisionSlugs.includes(p.slug)).map(p=><a href={provisionPath(act,p)}>{provisionLabel(p)}</a>)}</p>}</article>)}</div></>:<p class="notice">No reviewed instruments are recorded for {provisionSlug?'this provision':'this Act'}.</p>}
+</section>
+<script>
+ for(const root of document.querySelectorAll<HTMLElement>('[data-instrument-directory]')){
+  const select=root.querySelector<HTMLSelectElement>('[data-instrument-jurisdiction]');if(!select)continue;
+  const rows=[...root.querySelectorAll<HTMLElement>('[data-instrument-row]')],count=root.querySelector<HTMLElement>('[data-instrument-count]')!;
+  const filter=()=>{let n=0;for(const row of rows){row.hidden=!!select.value&&row.dataset.jurisdiction!==select.value;if(!row.hidden)n++}count.textContent=n+' recorded '+(n===1?'instrument':'instruments')};
+  select.addEventListener('change',filter);root.querySelector<HTMLElement>('[data-instrument-controls]')!.hidden=false;filter();
+ }
+</script>

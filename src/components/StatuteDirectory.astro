@@ -1,0 +1,27 @@
+---
+import {type Statute,provisionPath,provisionLabel} from '../lib/statutes';
+interface Props {act:Statute}
+const {act}=Astro.props;
+const groups=[...act.chapters.map(c=>({id:c.slug,title:c.label+' — '+c.title,provisions:act.provisions.filter(p=>p.chapter===c.slug)})),{id:'other',title:'Other provisions',provisions:act.provisions.filter(p=>!p.chapter)}].filter(g=>g.provisions.length);
+---
+<section class="home-section rr-statute-directory" data-statute-directory>
+ <h2>Chapters and provisions</h2>
+ <div class="rr-statute-controls" data-directory-controls hidden data-pagefind-ignore>
+  <label>Find a provision<input type="search" data-provision-search placeholder="Section number or heading"/></label>
+  <label>Chapter<select data-chapter-filter><option value="">All chapters</option>{groups.map(g=><option value={g.id}>{g.title}</option>)}</select></label>
+  <button type="button" class="rr-statute-button" data-directory-clear>Clear</button>
+  <p class="notice" data-directory-count aria-live="polite"></p>
+ </div>
+ <nav class="rr-statute-jumps" aria-label="Jump to chapter">{groups.map(g=><a href={'#chapter-'+g.id}>{g.title}</a>)}</nav>
+ {groups.map(group=><div class="chapter-group" id={'chapter-'+group.id} data-provision-group={group.id}><h3>{group.title}</h3><ul class="provision-list">{group.provisions.map(p=><li data-provision-row data-search={provisionLabel(p)+' '+p.heading+' '+p.slug}><a href={provisionPath(act,p)}><strong>{provisionLabel(p)}</strong><span>{p.heading}<small class="rr-version-count">{p.versions.length} recorded {p.versions.length===1?'version':'versions'}</small></span></a></li>)}</ul></div>)}
+</section>
+<script>
+ import {matchesQuery} from '../lib/statute-versions.mjs';
+ for(const root of document.querySelectorAll<HTMLElement>('[data-statute-directory]')){
+  const input=root.querySelector<HTMLInputElement>('[data-provision-search]')!, select=root.querySelector<HTMLSelectElement>('[data-chapter-filter]')!, count=root.querySelector<HTMLElement>('[data-directory-count]')!;
+  const groups=[...root.querySelectorAll<HTMLElement>('[data-provision-group]')];
+  function filter(){let n=0;for(const group of groups){let visible=0;for(const row of group.querySelectorAll<HTMLElement>('[data-provision-row]')){row.hidden=!!select.value&&select.value!==group.dataset.provisionGroup||!matchesQuery(row.dataset.search,input.value);if(!row.hidden)visible++}group.hidden=visible===0;n+=visible}count.textContent=n+' matching '+(n===1?'provision':'provisions')}
+  input.addEventListener('input',filter);select.addEventListener('change',filter);root.querySelector('[data-directory-clear]')?.addEventListener('click',()=>{input.value='';select.value='';filter();input.focus()});root.querySelector<HTMLElement>('[data-directory-controls]')!.hidden=false;filter();
+  for(const a of root.querySelectorAll<HTMLAnchorElement>('.rr-statute-jumps a'))a.addEventListener('click',()=>{input.value='';select.value='';filter()});
+ }
+</script>

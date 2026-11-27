@@ -8,13 +8,14 @@ const date=z.string().regex(/^\d{4}-\d{2}-\d{2}$/).refine(v=>{const d=new Date(v
 const source=z.object({title:text,url,pinpoint:text.optional()});
 const version=z.object({id:slug,effectiveFrom:date.optional(),effectiveUntil:date.optional(),text,source,amendmentIds:z.array(slug).default([]),note:text.optional()});
 const provision=z.object({slug,number:text,kind:z.enum(['section','article','rule','schedule','order','regulation','other']),heading:text,chapter:slug.optional(),commentary:text.optional(),versions:z.array(version).min(1)});
+const instrument=z.object({slug,title:text,kind:z.enum(['rule','notification','order','regulation','other']),jurisdiction:text,description:text,source,issuedOn:date.optional(),effectiveFrom:date.optional(),effectiveUntil:date.optional(),provisionSlugs:z.array(slug).default([])});
 const amendment=z.object({slug,title:text,description:text,source,effectiveDate:date.optional(),affectedProvisions:z.array(slug).default([])});
 export const statuteSchema=z.object({
  slug,title:text,shortTitle:text.optional(),jurisdiction:text,areas:z.array(text.refine(v=>areas.some(a=>a.slug===v),'Unknown subject')).min(1),
  actNumber:text.optional(),year:z.number().int().positive().optional(),status:z.enum(['in-force','partly-in-force','repealed','not-commenced','uncertain']).optional(),
  source:source.optional(),reviewedAt:date.optional(),reviewer:text.optional(),coverage:z.enum(['selected-provisions','complete']).default('selected-provisions'),
  chapters:z.array(z.object({slug,label:text,title:text})).default([]),
- provisions:z.array(provision).default([]),amendments:z.array(amendment).default([]),draft:z.boolean().default(true)
+ provisions:z.array(provision).default([]),amendments:z.array(amendment).default([]),instruments:z.array(instrument).default([]),draft:z.boolean().default(true)
 });
 export type Statute=z.infer<typeof statuteSchema>;
 export type Provision=Statute['provisions'][number];
@@ -26,7 +27,7 @@ export const provisionLabel=(p:Provision)=>p.kind.charAt(0).toUpperCase()+p.kind
 export function validateStatute(act:Statute){
  const fail=(msg:string)=>{throw new Error('Statute '+act.slug+': '+msg)};
  const unique=(items:string[],label:string)=>{if(new Set(items).size!==items.length)fail('Duplicate '+label)};
- unique(act.chapters.map(c=>c.slug),'chapter');unique(act.provisions.map(p=>p.slug),'provision');unique(act.amendments.map(a=>a.slug),'amendment');
+ unique(act.chapters.map(c=>c.slug),'chapter');unique(act.provisions.map(p=>p.slug),'provision');unique(act.amendments.map(a=>a.slug),'amendment');unique(act.instruments.map(a=>a.slug),'instrument');
  if(act.draft)return;
  if(!act.source||!act.reviewer||!act.reviewedAt||!act.status)fail('Reviewed statute needs source, reviewer, review date and status');
  if(act.reviewedAt!>new Date().toISOString().slice(0,10))fail('Future review date');
@@ -42,6 +43,12 @@ export function validateStatute(act:Statute){
   }
   const dated=p.versions.filter(v=>v.effectiveFrom).sort((a,b)=>a.effectiveFrom!.localeCompare(b.effectiveFrom!));
   for(let i=1;i<dated.length;i++)if(!dated[i-1].effectiveUntil||dated[i-1].effectiveUntil!>dated[i].effectiveFrom!)fail('Overlapping dated versions in '+p.slug);
+ }
+ for(const instrument of act.instruments){
+  if(!instrument.source.pinpoint)fail('Instrument requires a primary-source pinpoint: '+instrument.slug);
+  if(instrument.effectiveUntil&&(!instrument.effectiveFrom||instrument.effectiveUntil<=instrument.effectiveFrom))fail('Invalid instrument date interval: '+instrument.slug);
+  unique(instrument.provisionSlugs,'instrument provision link');
+  for(const id of instrument.provisionSlugs)if(!act.provisions.some(p=>p.slug===id))fail('Unknown instrument provision: '+id);
  }
  for(const a of act.amendments)for(const id of a.affectedProvisions)if(!act.provisions.some(p=>p.slug===id))fail('Unknown affected provision: '+id);
 }

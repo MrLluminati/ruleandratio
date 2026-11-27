@@ -65,6 +65,7 @@ const statute={
       ]
     }
   ],
+  "instruments": [{"slug":"test-rule","title":"RR TEST STATE RULE","kind":"rule","jurisdiction":"TEST STATE","description":"Synthetic rule, not law.","source":{"title":"Synthetic rule source","url":"https://example.invalid/rule","pinpoint":"Rule 1"},"issuedOn":"2019-01-01","effectiveFrom":"2019-01-01","provisionSlugs":["section-1"]}],
   "amendments": [
     {
       "slug": "revision",
@@ -217,6 +218,10 @@ Synthetic digest, not legal information.
  assert.match(html('bare-acts'),/RR TEST STATUTE/);
  assert.ok(act.includes('/bare-acts/acts/rr-test-act/provisions/section-1/'));
  assert.ok(act.includes('/bare-acts/acts/rr-test-act/amendments/revision/'));
+ assert.match(act,/data-statute-directory/);
+ assert.match(act,/RR TEST STATE RULE/);
+ assert.match(provision,/data-version-reader/);
+ assert.match(provision,/RR TEST STATE RULE/);
  assert.match(provision,/RR TEST ORIGINAL TEXT/);
  assert.match(provision,/RR TEST REVISED TEXT/);
  assert.match(provision,/RR TEST ORIGINAL COMMENTARY/);
@@ -226,6 +231,7 @@ Synthetic digest, not legal information.
  assert.ok(article.includes('/bare-acts/acts/rr-test-act/provisions/section-1/'));
  assert.ok(article.includes('/areas-of-law/msme-law/'));
  assert.ok(!existsSync('dist/bare-acts/acts/example-draft/index.html'));
+ assert.ok(!existsSync('dist/bare-acts/acts/msmed-act-2006/index.html'));
  assert.match(article,/Synthetic test reviewer/);
  assert.match(article,/Synthetic test reference/);
  assert.match(article,/href="#synthetic-section"/);
@@ -267,6 +273,7 @@ Synthetic digest, not legal information.
  assert.ok(!sitemap.includes('/areas-of-law/legal-ethics/'));
  assert.ok(!sitemap.includes('/search/'));
  assert.ok(!sitemap.includes('rr-test-hidden'));
+ assert.ok(!sitemap.includes('/bare-acts/acts/msmed-act-2006/'));
  assert.ok(rss.includes('https://example.invalid/research/rr-test-article/'));
  assert.ok(!rss.includes('rr-test-hidden'));
  assert.ok(!rss.includes('/bare-acts/acts/rr-test-act/'));

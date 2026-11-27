@@ -18,6 +18,7 @@ jobs:
       - run: npm run test:import
       - run: npm run test:tools
       - run: npm run test:news
+      - run: npm run test:statutes
       - run: npm run test:editorial
       - run: npm run editorial:queue
       - run: npm run build

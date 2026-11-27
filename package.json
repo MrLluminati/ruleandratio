@@ -22,7 +22,8 @@
     "editorial:template": "node scripts/editorial.mjs template",
     "editorial:prepare": "node scripts/editorial.mjs prepare",
     "test:editorial": "node --test scripts/test-editorial.mjs scripts/test-editorial-cms.mjs",
-    "editorial:cms": "node scripts/editorial-cms.mjs"
+    "editorial:cms": "node scripts/editorial-cms.mjs",
+    "test:statutes": "node --test scripts/test-statute-versions.mjs"
   },
   "dependencies": {
     "astro": "^6.0.0"

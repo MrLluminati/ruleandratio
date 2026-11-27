@@ -1,0 +1,70 @@
+---
+import {type Statute,type Provision,amendmentPath} from '../lib/statutes';
+import {indiaDate,versionStatus,versionLabels} from '../lib/statute-versions.mjs';
+interface Props {act:Statute;provision:Provision}
+const {act,provision}=Astro.props;
+const versions=[...provision.versions].sort((a,b)=>(a.effectiveFrom??'').localeCompare(b.effectiveFrom??'')||a.id.localeCompare(b.id));
+const date=indiaDate();
+const label=(v:Provision['versions'][number])=>v.id+' · '+(v.effectiveFrom??'undated');
+---
+<section data-version-reader class="rr-version-reader" aria-label="Statutory versions">
+ <div class="rr-statute-controls rr-reader-controls" data-reader-controls hidden data-pagefind-ignore>
+  <label>Reference date<input type="date" data-reference-date value={date}/></label>
+  <label>Display<select data-version-mode><option value="all">All recorded versions</option><option value="date">Match reference date</option><option value="single">Select one version</option>{versions.length>1&&<option value="compare">Compare two versions</option>}</select></label>
+  <label data-single-control hidden>Version<select data-single-version>{versions.map(v=><option value={v.id}>{label(v)}</option>)}</select></label>
+  <div class="rr-compare-controls" data-compare-controls hidden>
+   <label>Left version<select data-compare-left>{versions.map(v=><option value={v.id}>{label(v)}</option>)}</select></label>
+   <label>Right version<select data-compare-right>{versions.map((v,i)=><option value={v.id} selected={i===versions.length-1}>{label(v)}</option>)}</select></label>
+  </div>
+  <p class="notice" data-version-result aria-live="polite"></p>
+ </div>
+ <p class="notice">Recorded dates are research aids, not a determination of applicable law. An unrecorded end date does not establish continuing force. Effective-until dates are exclusive. Undated text is never selected automatically as a date match.</p>
+ <div class="rr-version-panels" data-version-panels>
+ {versions.map(v=><section class="statute-version rr-version-panel" id={'version-'+v.id} data-version-id={v.id} data-from={v.effectiveFrom??''} data-until={v.effectiveUntil??''}>
+  <h2>Recorded text — {v.effectiveFrom??'Effective date not recorded'}</h2>
+  <span class="rr-version-state" data-version-state data-pagefind-ignore>{versionLabels[versionStatus(v,date)]}</span>
+  <dl class="rr-version-dates"><dt>Effective from</dt><dd>{v.effectiveFrom??'Not recorded'}</dd><dt>Effective until (exclusive)</dt><dd>{v.effectiveUntil??'Not recorded'}</dd></dl>
+  <div class="statutory-text prose">{v.text}</div>
+  {v.note&&<p class="notice">{v.note}</p>}
+  <p><a class="text-link" href={v.source.url}>{v.source.title} ↗</a>{v.source.pinpoint&&<span class="pinpoint">{v.source.pinpoint}</span>}</p>
+  {v.amendmentIds.map(id=>{const a=act.amendments.find(x=>x.slug===id);return a&&<p><a href={amendmentPath(act,a)}>{a.title}</a></p>})}
+ </section>)}
+ </div>
+ <div class="rr-version-comparison" data-comparison hidden data-pagefind-ignore></div>
+</section>
+<script>
+ import {indiaDate,validDate,versionStatus,versionLabels,matchingVersions} from '../lib/statute-versions.mjs';
+ for(const root of document.querySelectorAll<HTMLElement>('[data-version-reader]')){
+  const get=<T extends HTMLElement>(s:string)=>root.querySelector<T>(s)!;
+  const date=get<HTMLInputElement>('[data-reference-date]'),mode=get<HTMLSelectElement>('[data-version-mode]'),single=get<HTMLSelectElement>('[data-single-version]'),left=get<HTMLSelectElement>('[data-compare-left]'),right=get<HTMLSelectElement>('[data-compare-right]'),result=get<HTMLElement>('[data-version-result]'),comparison=get<HTMLElement>('[data-comparison]'),panelBox=get<HTMLElement>('[data-version-panels]');
+  const panels=[...root.querySelectorAll<HTMLElement>('[data-version-id]')];
+  const versions=panels.map(p=>({id:p.dataset.versionId!,effectiveFrom:p.dataset.from||undefined,effectiveUntil:p.dataset.until||undefined}));
+  const params=new URLSearchParams(location.search);
+  date.value=validDate(params.get('date'))?params.get('date')!:indiaDate();
+  const version=params.get('version');if(version&&versions.some(v=>v.id===version)){mode.value='single';single.value=version}
+  const hash=location.hash;const anchored=panels.find(p=>'#'+p.id===hash);if(anchored){mode.value='single';single.value=anchored.dataset.versionId!}
+  function render(){
+   const day=date.value,which=mode.value,valid=validDate(day),matches=matchingVersions(versions,day);
+   get<HTMLElement>('[data-single-control]').hidden=which!=='single';get<HTMLElement>('[data-compare-controls]').hidden=which!=='compare';
+   for(const [i,p] of panels.entries()){
+    const v=versions[i];p.querySelector<HTMLElement>('[data-version-state]')!.textContent=valid?versionLabels[versionStatus(v,day)]:'Select a valid reference date';
+    p.hidden=which==='single'?v.id!==single.value:which==='date'?!matches.some(m=>m.id===v.id):false;
+   }
+   comparison.hidden=true;comparison.replaceChildren();panelBox.hidden=false;
+   if(which==='compare'){
+    panelBox.hidden=true;
+    if(left.value===right.value){result.textContent='Select two different versions to compare.';return}
+    for(const [side,id] of [['Left',left.value],['Right',right.value]]){
+     const p=panels.find(p=>p.dataset.versionId===id);if(!p)continue;
+     const column=document.createElement('div');column.className='rr-compare-column';const h=document.createElement('p');h.className='kicker';h.textContent=side+' version';
+     const copy=p.cloneNode(true) as HTMLElement;copy.removeAttribute('id');copy.removeAttribute('data-version-id');copy.hidden=false;
+     column.append(h,copy);comparison.append(column);
+    }
+    comparison.hidden=false;result.textContent='Side-by-side recorded wording. Changes are not automatically classified.';return;
+   }
+   result.textContent=which==='date'?(!valid?'Select a valid date.':matches.length===0?'No recorded version matches this date. The record may be incomplete; this does not establish that the provision was not in force.':matches.length+' recorded date match'+(matches.length===1?'':'es')+'. Verify applicability independently.'):which==='single'?'Showing one recorded version.':'Showing all '+versions.length+' recorded versions.';
+  }
+  for(const field of [date,mode,single,left,right])field.addEventListener('change',render);
+  get<HTMLElement>('[data-reader-controls]').hidden=false;render();
+ }
+</script>
