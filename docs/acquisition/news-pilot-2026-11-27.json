@@ -19,6 +19,18 @@
       "eventDate": "2026-10-29",
       "source": "https://egazette.bihar.gov.in/GazettePrinting/GazettePublished/1320_2_2026.pdf",
       "verification": "pending"
+    },
+    {
+      "slug": "stay-conviction-suspension-sentence-kulkarni-2026",
+      "eventDate": "2026-11-25",
+      "source": "https://api.sci.gov.in/supremecourt/2026/56124/56124_2026_11_1502_76393_Judgement_25-Nov-2026.pdf",
+      "verification": "pending"
+    },
+    {
+      "slug": "cisf-departmental-examination-rules-2027",
+      "eventDate": "2026-11-25",
+      "source": "https://egazette.gov.in/WriteReadData/2026/278164.pdf",
+      "verification": "pending"
     }
   ],
   "leads": [
@@ -84,6 +96,33 @@
       "note": "Indexed notice listing only; actual notice date and document needed.",
       "status": "unverified-lead",
       "publicationAllowed": false
+    },
+    {
+      "title": "Deepti Singh v. State of U.P.",
+      "date": "2026-11-25",
+      "reference": "Reported 2026 INSC 1264",
+      "url": "https://indiankanoon.org/doc/115217974/",
+      "note": "Discovery only; obtain complete official judgment before reporting.",
+      "status": "unverified-lead",
+      "publicationAllowed": false
+    },
+    {
+      "title": "Pawankumar Fakirchand Uike v. State of Maharashtra",
+      "date": "2026-11-25",
+      "reference": "Reported 2026 INSC 1268",
+      "url": "https://indiankanoon.org/doc/141208276/",
+      "note": "Discovery only; obtain complete official judgment before reporting.",
+      "status": "unverified-lead",
+      "publicationAllowed": false
+    },
+    {
+      "title": "Union of India v. J. Sekar",
+      "date": "2026-11-26",
+      "reference": "Reported 2026 INSC 1277",
+      "url": "https://lawlibrary.online/judgment/union-of-india-and-others-v-j-sekar/",
+      "note": "Discovery only; obtain complete official judgment before reporting.",
+      "status": "unverified-lead",
+      "publicationAllowed": false
     }
   ],
   "blockers": [
@@ -91,7 +130,8 @@
     "Several secondary pages failed retrieval; no holdings inferred from titles.",
     "PDF text available for Yusuf, Bihar Gazette and private MSMED Act reproduction; screenshot retrieval failed.",
     "Central commencement notification is indexed reproduction only; authenticate original and later notifications.",
-    "Review existing MSME explainers/calculator and source map for changes in operative law before publication."
+    "Review existing MSME explainers/calculator and source map for changes in operative law before publication.",
+    "Two additional official PDF texts retrieved; screenshot retrieval failed. Indian Kanoon document opens failed."
   ],
   "note": "Lead list is research provenance, not validated local intake records. No private client information. No actual reports published."
 }
