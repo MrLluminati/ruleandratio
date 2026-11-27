@@ -9,6 +9,7 @@ test('loopback CMS security, draft edits, review, bulk and publication preparati
  const root=mkdtempSync(join(tmpdir(),'rr-cms-')),path='src/content/articles/test.md';
  const put=(p,value)=>{const f=join(root,p);mkdirSync(dirname(f),{recursive:true});writeFileSync(f,value)};
  put(path,draft);
+ put('docs/acquisition/msmed-publication-pilot.json',JSON.stringify({state:'editorial-preflight-not-approval',entries:[{id:'article-cms-test',group:'A',state:'test-only',blockers:['Synthetic issue']}]}));
  const cms=createCMS(root,0),origin=await cms.start();
  try{
   const html=await (await fetch(origin)).text(),token=html.match(/name="rr-session" content="([a-f0-9]+)"/)[1];
@@ -19,6 +20,7 @@ test('loopback CMS security, draft edits, review, bulk and publication preparati
   assert.equal((await request('queue',{}, {Origin:'https://attacker.invalid'})).status,403);
   assert.equal((await request('queue')).data.counts.queued,1);
   const id='article-cms-test',d=(await request('detail',{id})).data;
+  assert.equal(d.item.pilot.group,'A');assert.equal(d.item.pilot.issues.length,1);
   assert.ok(d.preview.includes('&lt;script&gt;'));assert.ok(!d.preview.includes('<script>'));
   assert.equal((await request('save',{id,hash:d.item.sha256,raw:draft.replace('draft: true','draft: false')})).status,400);
   assert.equal((await request('save',{id,hash:'wrong',raw:draft})).status,409);
@@ -30,14 +32,21 @@ test('loopback CMS security, draft edits, review, bulk and publication preparati
   const updated=(await request('save',{id,hash:d.item.sha256,raw:draft+'\nEdited.\n'})).data;
   assert.equal(updated.state.status,'stale');
   const reset=(await request('reset',{id,hash:updated.item.sha256})).data;
-  const rec=reset.record;rec.decision='approved';rec.reviewer='Synthetic test reviewer';rec.reviewedAt='2020-01-01';rec.note='Test only';
+  const rec=reset.record;rec.decision='approved';rec.confirmApproval=true;rec.reviewer='Synthetic test reviewer';rec.reviewedAt='2020-01-01';rec.note='Test only';
   for(const k of Object.keys(rec.checks))rec.checks[k]=true;
   for(const s of Object.values(rec.sources)){s.verified=true;s.note='Synthetic verification'}
+  const missingPilot=await request('review',{id,hash:updated.item.sha256,record:rec,recordHash:reset.recordHash});assert.equal(missingPilot.status,422);
+  rec.pilotNotes[updated.item.pilot.issues[0].key]='Synthetic evidence';
   const approved=await request('review',{id,hash:updated.item.sha256,record:rec,recordHash:reset.recordHash});
   assert.equal(approved.status,200);assert.equal(approved.data.state.status,'ready');
-  const candidate=await request('prepare',{id,hash:updated.item.sha256,date:'2020-01-02'});
-  assert.equal(candidate.status,200);assert.ok(existsSync(join(root,candidate.data.path)));assert.match(readFileSync(join(root,path),'utf8'),/draft: true/);
+  assert.equal((await request('prepare',{id,hash:updated.item.sha256,date:'2020-01-02',recordHash:'wrong',confirmPrepare:true})).status,409);
+  assert.equal((await request('prepare',{id,hash:updated.item.sha256,date:'2020-01-02',recordHash:approved.data.recordHash})).status,422);
+  const candidate=await request('prepare',{id,hash:updated.item.sha256,date:'2020-01-02',recordHash:approved.data.recordHash,confirmPrepare:true});
+  assert.equal(candidate.status,200);assert.match(candidate.data.sha256,/^[a-f0-9]{64}$/);assert.equal(candidate.data.destination,path);assert.ok(existsSync(join(root,candidate.data.path)));assert.match(readFileSync(join(root,path),'utf8'),/draft: true/);
   assert.equal((await request('links',{id,hash:updated.item.sha256,change:{kind:'statute',action:'add',act:'missing'}})).status,400);
   assert.equal((await request('import',{path:'../../secret'})).status,400);
+  put('docs/acquisition/msmed-publication-pilot.json',JSON.stringify({state:'editorial-preflight-not-approval',entries:[{id,group:'A',state:'test-only',blockers:['Changed issue']}]}));
+  assert.equal((await request('detail',{id})).data.state.status,'stale');
+  assert.equal((await request('reset',{id,hash:updated.item.sha256})).data.state.status,'in-review');
  }finally{await new Promise(resolve=>cms.server.close(resolve));rmSync(root,{recursive:true,force:true})}
 });

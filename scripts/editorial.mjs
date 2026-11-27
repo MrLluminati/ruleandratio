@@ -35,7 +35,7 @@ export function checklist(type){
  return [...common,...(type==='judgment'?['case-metadata-and-pinpoints','ratio-and-separate-opinions','subsequent-judicial-treatment']:type==='news'?['event-date-and-document','reporting-vs-holding','corrections-and-digest-links']:type==='statute'?['verbatim-text-and-provenance','versions-commencement-and-savings','coverage-and-original-commentary']:['provision-or-topic-scope','practical-guidance-and-authorities'])];
 }
 function sourcesFor(d,type){
- const entries=type==='statute'?[d.source,...(d.provisions??[]).flatMap(p=>(p.versions??[]).map(v=>v.source)),...(d.amendments??[]).map(a=>a.source)].filter(Boolean).map(s=>({...s,kind:'primary'})):(d.sources??[]);
+ const entries=type==='statute'?[d.source,...(d.provisions??[]).flatMap(p=>(p.versions??[]).map(v=>v.source)),...(d.amendments??[]).map(a=>a.source),...(d.instruments??[]).map(a=>a.source)].filter(Boolean).map(s=>({...s,kind:'primary'})):(d.sources??[]);
  if(!Array.isArray(entries))fail('Sources must be an array');
  const seen=new Set();
  return entries.map(s=>{
@@ -55,7 +55,7 @@ export function makeItem(path,raw,kind){
  return {id:kind+'-'+(data.slug??'example-draft'),path,kind,type,title:data.title,slug:data.slug??null,areas:data.areas??[],draft:data.draft!==false,template,sha256:hash(raw),sources:sourcesFor(data,type),requiredChecks:checklist(type),data,body,notes:[],candidates:[]};
 }
 export function createReview(item){
- return {version:1,id:item.id,sha256:item.sha256,decision:'in-review',reviewer:'',reviewedAt:'',note:'',checks:Object.fromEntries(item.requiredChecks.map(k=>[k,false])),sources:Object.fromEntries(item.sources.map(s=>[s.key,{verified:false,note:''}]))};
+ return {version:1,id:item.id,sha256:item.sha256,...(item.pilot?{pilotHash:item.pilot.hash,pilotNotes:Object.fromEntries(item.pilot.issues.map(i=>[i.key,'']))}:{}),decision:'in-review',reviewer:'',reviewedAt:'',note:'',checks:Object.fromEntries(item.requiredChecks.map(k=>[k,false])),sources:Object.fromEntries(item.sources.map(s=>[s.key,{verified:false,note:''}]))};
 }
 export function reviewState(item,record){
  if(item.template)return {status:'template',missing:[]};
@@ -63,12 +63,14 @@ export function reviewState(item,record){
  if(!record)return {status:'queued',missing:['No review record']};
  if(record.id!==item.id||record.version!==1)return {status:'invalid',missing:['Review identity/version mismatch']};
  if(record.sha256!==item.sha256)return {status:'stale',missing:['Draft changed after review record creation']};
+ if((item.pilot?.hash??null)!==(record.pilotHash??null))return {status:'stale',missing:['Publication review plan changed or was added; archive the review and start again']};
  if(!['in-review','blocked','approved'].includes(record.decision))return {status:'invalid',missing:['Invalid review decision']};
  const missing=[];
  if(!nonempty(record.reviewer))missing.push('Named human reviewer');
  if(!dateOK(record.reviewedAt))missing.push('Actual non-future review date (YYYY-MM-DD)');
  if(!nonempty(record.note))missing.push('Review summary');
  for(const k of item.requiredChecks)if(record.checks?.[k]!==true)missing.push('Check: '+k);
+ for(const issue of item.pilot?.issues??[])if(!nonempty(record.pilotNotes?.[issue.key]))missing.push('Evidence for pilot issue: '+issue.text);
  if(!item.sources.some(s=>s.kind==='primary'))missing.push('Primary source');
  for(const s of item.sources){
   const v=record.sources?.[s.key];
@@ -94,8 +96,23 @@ export function inventory(root){
  const bySlug=new Map(items.filter(i=>i.kind==='article'&&i.slug).map(i=>[i.slug,i]));
  const byPath=new Map(items.map(i=>[i.path,i]));
  const acquisition=[];
+ const byId=new Map(items.map(i=>[i.id,i]));
  for(const p of walk(join(root,'docs/acquisition'),'.json')){
   const d=loadJSON(p);
+  if(rel(root,p)==='docs/acquisition/msmed-publication-pilot.json'){
+   if(d.state!=='editorial-preflight-not-approval'||!Array.isArray(d.entries))fail('Invalid MSMED publication pilot');
+   const seen=new Set();
+   for(const entry of d.entries){
+    if(!entry||!slugOK(entry.id)||!['A','B'].includes(entry.group)||!nonempty(entry.state)||!Array.isArray(entry.blockers)||!entry.blockers.length||!entry.blockers.every(nonempty)||seen.has(entry.id))fail('Invalid or duplicate pilot entry');
+    seen.add(entry.id);
+    const item=byId.get(entry.id);if(!item||item.template)fail('Unknown pilot entry: '+entry.id);
+    const issues=entry.blockers.map(text=>({key:'pilot-'+hash(text).slice(0,16),text}));
+    if(new Set(issues.map(i=>i.key)).size!==issues.length)fail('Duplicate pilot issue: '+entry.id);
+    item.pilot={group:entry.group,state:entry.state,hash:hash(JSON.stringify({entry,sourceAudit:d.sourceAudit,linkPolicy:d.linkPolicy,date:d.date})),issues};
+    item.requiredChecks.push(...issues.map(i=>i.key));
+    item.notes.push('MSMED publication pilot: batch '+entry.group);
+   }
+  }
   if(Array.isArray(d.provisions)&&nonempty(d.slug)){
    const candidates=[];
    const act=items.find(i=>i.kind==='statute'&&i.slug===d.slug&&!i.draft);

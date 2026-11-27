@@ -62,11 +62,13 @@ function saveDraft(root,i,raw){
 function saveReview(root,i,input,expectedRecordHash){
  const old=record(root,i.id);
  if((old?sha(JSON.stringify(old)):null)!==expectedRecordHash)error('Review record changed. Reload.',409);
- if(old&&old.sha256!==i.sha256)error('Review is stale; reset it explicitly first',409);
+ if(old&&reviewState(i,old).status==='stale')error('Review is stale; reset it explicitly first',409);
  const r=createReview(i);
  if(!input||!['in-review','blocked','approved'].includes(input.decision))error('Invalid review decision');
  for(const k of ['reviewer','reviewedAt','note']){if(typeof input[k]!=='string'||input[k].length>10000)error('Invalid review field: '+k);r[k]=input[k]}
  r.decision=input.decision;
+ if(r.decision==='approved'&&input.confirmApproval!==true)error('Explicit human approval confirmation required',422);
+ if(i.pilot){if(input.pilotHash!==i.pilot.hash)error('Pilot review plan changed. Reload.',409);for(const issue of i.pilot.issues){const note=input.pilotNotes?.[issue.key];if(typeof note!=='string'||note.length>10000)error('Missing or invalid pilot evidence note');r.pilotNotes[issue.key]=note}}
  for(const k of i.requiredChecks){if(typeof input.checks?.[k]!=='boolean')error('Missing checklist field: '+k);r.checks[k]=input.checks[k]}
  for(const s of i.sources){const v=input.sources?.[s.key];if(typeof v?.verified!=='boolean'||typeof v?.note!=='string'||v.note.length>10000)error('Invalid source review: '+s.title);r.sources[s.key]={verified:v.verified,note:v.note}}
  const state=reviewState(i,r);
@@ -76,7 +78,7 @@ function saveReview(root,i,input,expectedRecordHash){
 }
 function resetReview(root,i){
  const old=record(root,i.id);
- if(old&&old.sha256===i.sha256)error('Only stale reviews can be reset',409);
+ if(old&&reviewState(i,old).status!=='stale')error('Only stale reviews can be reset',409);
  if(old)write(root,'.rr-editorial/archive/'+i.id+'-'+randomBytes(8).toString('hex')+'.json',JSON.stringify(old,null,2)+'\n',true);
  write(root,reviewFile(i.id),JSON.stringify(createReview(i),null,2)+'\n');
  return detail(root,itemFor(root,i.id));
@@ -189,8 +191,11 @@ export function createCMS(root=process.cwd(),port=4317){
    if(b.action==='links')return send(200,reviewHash(links(root,i,b.change)));
    if(b.action==='compare')return send(200,comparison(root,i));
    if(b.action==='prepare'){
-    const r=record(root,i.id),candidate=prepare(i,r,b.date),path='.rr-editorial/prepared/'+i.id+'-'+i.sha256.slice(0,12)+(i.kind==='article'?'.md':'.json');
-    write(root,path,candidate,true);return send(200,{path,note:'Candidate only; manually inspect, copy and run build and publishing tests.'});
+    const r=record(root,i.id);
+    if(!r||sha(JSON.stringify(r))!==b.recordHash)error('Review record changed. Reload.',409);
+    if(b.confirmPrepare!==true)error('Explicit candidate confirmation required',422);
+    const candidate=prepare(i,r,b.date),path='.rr-editorial/prepared/'+i.id+'-'+i.sha256.slice(0,12)+(i.kind==='article'?'.md':'.json');
+    write(root,path,candidate,true);return send(200,{path,sha256:sha(candidate),draftSha256:i.sha256,recordHash:b.recordHash,destination:i.kind==='import'?'src/content/statutes/'+i.slug+'.json':i.path,note:'Candidate only; manually inspect, copy and run build and publishing tests.'});
    }
    error('Unknown action');
   }catch(e){send(e.status??(e.code==='EEXIST'?409:400),{error:e.code==='EEXIST'?'File already exists; archive it manually before retrying.':e.message})}
