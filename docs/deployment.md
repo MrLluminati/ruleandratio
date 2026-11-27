@@ -22,3 +22,6 @@ Create a Pages project named ruleandratio (or an available variation) via Git in
 Dashboard: https://dash.cloudflare.com/
 Official Git integration: https://developers.cloudflare.com/pages/get-started/git-integration/
 Build configuration: https://developers.cloudflare.com/pages/configuration/build-configuration/
+
+## RR-016.6 staging
+See [staging rollout](staging-rollout.md) for isolated member and staff Workers, configuration preflight, candidate handoff and deployment acceptance gates. Keep indexing disabled; account navigation remains opt-in.

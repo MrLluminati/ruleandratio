@@ -1,4 +1,4 @@
-import {parseDocument} from 'yaml';
+import {parseDocument,stringify} from 'yaml';
 import MarkdownIt from 'markdown-it';
 import {canStaff} from './permissions.mjs';
 
@@ -109,7 +109,7 @@ export async function editorialRoute(req,db,actor,now){
    if(req.method!=='GET')problem('Method not allowed',405);
    const rows=await all(db,"SELECT d.id,d.title,d.kind,d.status,d.updated_at FROM editorial_documents d WHERE ? IN ('owner','admin') OR EXISTS(SELECT 1 FROM editorial_assignments x WHERE x.document_id=d.id AND x.staff_id=?) ORDER BY d.updated_at DESC,d.id LIMIT 200",actor.role,actor.id);
    const create=boss(actor)?'<section><h2>Create private draft</h2>'+form('/studio/create','<label>Document kind<select name="kind"><option value="article">Article</option><option value="judgment">Judgment</option><option value="statute">Statute</option><option value="news">News</option></select></label>'+area('raw','Draft Markdown with YAML front matter, or statutory JSON')+area('issues','Additional verification issues, one per line'),'Create draft')+'</section>':'';
-   return layout('Editorial queue','<p>Signed in as '+esc(actor.role)+'. Private workspace; publishing and billing are disabled.</p><div class="grid"><section><h2>Assigned and accessible documents</h2><p class="muted">Up to 200 most recently updated records.</p>'+ (rows.map(d=>'<div class="row"><a href="'+path(d.id)+'">'+esc(d.title||d.id)+'</a><br><small>'+esc(d.kind)+' · '+esc(d.status)+'</small></div>').join('')||'<p>No documents yet.</p>')+'</section><aside>'+create+'</aside></div>');
+   return layout('Editorial queue','<p>Signed in as '+esc(actor.role)+'. Private workspace; publication candidate export only. Automatic publication and billing are disabled.</p><div class="grid"><section><h2>Assigned and accessible documents</h2><p class="muted">Up to 200 most recently updated records.</p>'+ (rows.map(d=>'<div class="row"><a href="'+path(d.id)+'">'+esc(d.title||d.id)+'</a><br><small>'+esc(d.kind)+' · '+esc(d.status)+'</small></div>').join('')||'<p>No documents yet.</p>')+'</section><aside>'+create+'</aside></div>');
   }
   if(url.pathname==='/studio/create'&&req.method==='POST'){
    if(!canStaff(actor,'document:create'))problem('Access denied',403);
@@ -120,7 +120,7 @@ export async function editorialRoute(req,db,actor,now){
    ],'draft-created',id,draft.hash,now);
    return go(path(id));
   }
-  const match=url.pathname.match(/^\/studio\/doc\/([a-z0-9-]{1,80})(?:\/(edit|submit|review|reopen|assign))?$/);
+  const match=url.pathname.match(/^\/studio\/doc\/([a-z0-9-]{1,80})(?:\/(edit|submit|review|reopen|assign|candidate))?$/);
   if(!match)problem('Not found',404);
   const [,id,action]=match,{d,ctx}=await getDoc(db,actor,id),draft=await inspectDraft(d.kind,d.content);
   const plan=JSON.parse(d.review_plan_json);
@@ -140,7 +140,7 @@ export async function editorialRoute(req,db,actor,now){
    if(boss(actor)){
     const staff=await all(db,"SELECT id,role FROM staff_accounts WHERE status='active' AND role IN ('author','reviewer') ORDER BY id LIMIT 100");
     const assignments=await all(db,'SELECT staff_id,capability FROM editorial_assignments WHERE document_id=? ORDER BY staff_id',id);
-    admin='<section><h2>Assignments</h2>'+assignments.map(a=>'<p>'+esc(a.staff_id)+' · '+esc(a.capability)+'</p>').join('')+(staff.length?form(path(id)+'/assign',versionFields+'<label>Staff identity<select name="staffId">'+staff.map(s=>'<option value="'+esc(s.id)+'">'+esc(s.id)+' · '+esc(s.role)+'</option>').join('')+'</select></label><label>Action<select name="operation"><option value="grant">Assign role capability</option><option value="revoke">Remove assignment</option></select></label>','Update assignment'):'<p>No active authors or reviewers provisioned.</p>')+(d.status==='approved'?form(path(id)+'/reopen',versionFields+area('reason','Reason for reopening'),'Reopen approved draft'):'')+'</section>';
+    admin=(d.status==='approved'&&d.current_review_id?'<section><h2>Publication candidate</h2><p>Download reviewed public copy for a separate release check. No GitHub write or deployment.</p>'+form(path(id)+'/candidate',versionFields+verifyBox('publicCopy','I have verified this copy is intended for public release and contains no confidential or premium-only material'),'Download publication candidate')+'</section>':'')+'<section><h2>Assignments</h2>'+assignments.map(a=>'<p>'+esc(a.staff_id)+' · '+esc(a.capability)+'</p>').join('')+(staff.length?form(path(id)+'/assign',versionFields+'<label>Staff identity<select name="staffId">'+staff.map(s=>'<option value="'+esc(s.id)+'">'+esc(s.id)+' · '+esc(s.role)+'</option>').join('')+'</select></label><label>Action<select name="operation"><option value="grant">Assign role capability</option><option value="revoke">Remove assignment</option></select></label>','Update assignment'):'<p>No active authors or reviewers provisioned.</p>')+(d.status==='approved'?form(path(id)+'/reopen',versionFields+area('reason','Reason for reopening'),'Reopen approved draft'):'')+'</section>';
    }
    return layout(d.title,'<p class="state">'+esc(d.kind)+' · '+esc(d.status)+'</p><p class="muted">Revision: <code>'+esc(d.current_revision_hash)+'</code></p><div class="warning">Private proof — not a public Astro rendering. Approval does not deploy content.</div><div class="grid"><div><article class="proof"><h2>'+esc(draft.data.title)+'</h2><p>'+esc(draft.data.description)+'</p>'+preview+'</article>'+editor+reviewer+history+'</div><aside><h2>Supporting authorities</h2>'+sourceList+'<h2>Review requirements</h2>'+plan.map(s=>'<p>'+esc(s)+'</p>').join('')+admin+revisionList+'</aside></div>');
   }
@@ -155,11 +155,11 @@ export async function editorialRoute(req,db,actor,now){
    if(next.hash===draft.hash)return go(path(id));
    await mutation(db,actor,guard.sql,guard.args,[
     statement(db,'INSERT INTO editorial_revisions(document_id,sha256,content,author_id,created_at) VALUES (?,?,?,?,?) ON CONFLICT(document_id,sha256) DO NOTHING',id,next.hash,raw,actor.id,now),
-    statement(db,"UPDATE editorial_documents SET current_revision_hash=?,title=?,status='draft',updated_at=?,generation=generation+1,last_editor_id=? WHERE id=?",next.hash,next.data.title,now,actor.id,id)
+    statement(db,"UPDATE editorial_documents SET current_revision_hash=?,title=?,status='draft',updated_at=?,generation=generation+1,last_editor_id=?,current_review_id=NULL WHERE id=?",next.hash,next.data.title,now,actor.id,id)
    ],'draft-edited',id,next.hash,now);
   }else if(action==='submit'){
    if(!editable||d.status!=='draft')problem('Access denied',403);
-   await mutation(db,actor,guard.sql,guard.args,[statement(db,"UPDATE editorial_documents SET status='in-review',updated_at=?,generation=generation+1 WHERE id=?",now,id)],'submitted-for-review',id,draft.hash,now);
+   await mutation(db,actor,guard.sql,guard.args,[statement(db,"UPDATE editorial_documents SET status='in-review',updated_at=?,generation=generation+1,current_review_id=NULL WHERE id=?",now,id)],'submitted-for-review',id,draft.hash,now);
   }else if(action==='review'){
    if(!reviewable)problem('Access denied',403);
    const decision=f.get('decision'),summary=f.get('summary'),reviewerName=f.get('reviewerName');
@@ -167,13 +167,34 @@ export async function editorialRoute(req,db,actor,now){
    const self=d.author_id===actor.id||d.last_editor_id===actor.id;
    if(decision==='approved'&&self&&(actor.role!=='owner'||f.get('solo')!=='yes'))problem('Independent review required, except explicitly acknowledged owner self-review',422);
    const evidence={reviewerName,summary,selfReview:self,...(decision==='approved'?validateEvidence(draft,plan,f):{checks:[],sources:[]})};
+   const reviewId=uuid();
    await mutation(db,actor,guard.sql,guard.args,[
-    statement(db,'INSERT INTO editorial_reviews(id,document_id,revision_hash,reviewer_id,decision,evidence_json,review_plan_hash,created_at) VALUES (?,?,?,?,?,?,?,?)',uuid(),id,draft.hash,actor.id,decision,JSON.stringify(evidence),d.review_plan_hash,now),
-    statement(db,'UPDATE editorial_documents SET status=?,updated_at=?,generation=generation+1 WHERE id=?',decision==='approved'?'approved':'draft',now,id)
+    statement(db,'INSERT INTO editorial_reviews(id,document_id,revision_hash,reviewer_id,decision,evidence_json,review_plan_hash,created_at) VALUES (?,?,?,?,?,?,?,?)',reviewId,id,draft.hash,actor.id,decision,JSON.stringify(evidence),d.review_plan_hash,now),
+    statement(db,'UPDATE editorial_documents SET status=?,updated_at=?,generation=generation+1,current_review_id=? WHERE id=?',decision==='approved'?'approved':'draft',now,decision==='approved'?reviewId:null,id)
    ],'review-'+decision,id,draft.hash,now);
+  }else if(action==='candidate'){
+   if(!boss(actor)||d.status!=='approved'||!d.current_review_id||f.get('publicCopy')!=='yes')problem('Administrator, current approval and public-copy confirmation required',403);
+   const r=await first(db,"SELECT r.*,a.status AS reviewer_status,a.role AS reviewer_role FROM editorial_reviews r JOIN staff_accounts a ON a.id=r.reviewer_id WHERE r.id=? AND r.document_id=?",d.current_review_id,id);
+   if(!r||r.decision!=='approved'||r.revision_hash!==draft.hash||r.review_plan_hash!==d.review_plan_hash||r.reviewer_status!=='active'||!['owner','admin','reviewer'].includes(r.reviewer_role))problem('Current review is unavailable or no longer valid',422);
+   const ev=JSON.parse(r.evidence_json);
+   if(!clean(ev.reviewerName,200)||!clean(ev.summary,4000)||!Array.isArray(ev.checks)||ev.checks.length!==plan.length||plan.some((label,i)=>ev.checks[i]?.label!==label||!clean(ev.checks[i]?.note,4000))||!Array.isArray(ev.sources)||ev.sources.length!==draft.sources.length||draft.sources.some(source=>!ev.sources.some(e=>e.key===source.key&&clean(e.note,4000))))problem('Review evidence is incomplete',422);
+   if(!draft.sources.some(source=>source.kind==='primary')||draft.sources.some(source=>source.kind==='primary'&&!source.pinpoint))problem('Primary sources and pinpoints required',422);
+   const day=seconds=>new Date(seconds*1000).toISOString().slice(0,10);
+   if(r.created_at>now)problem('Invalid review date',422);
+   const data={...draft.data,draft:false,reviewer:ev.reviewerName,reviewedAt:day(r.created_at)};
+   if(d.kind!=='statute')data.publishedAt=day(now);
+   if(d.kind==='news')data.news={...data.news,verification:'verified'};
+   const slug=data.slug;
+   if(!/^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(slug))problem('Invalid publication slug',422);
+   const content=d.kind==='statute'?JSON.stringify(data,null,2)+'\n':'---\n'+stringify(data)+'---\n'+draft.body;
+   const filename=slug+(d.kind==='statute'?'.json':'.md');
+   const candidateHash=await hash(content);
+   // No write to GitHub. Evidence and staff identifiers stay private in the database.
+   await mutation(db,actor,guard.sql+" AND EXISTS(SELECT 1 FROM editorial_documents x JOIN editorial_reviews r ON r.id=x.current_review_id JOIN staff_accounts a ON a.id=r.reviewer_id WHERE x.id=? AND r.id=? AND a.status='active' AND a.role IN ('owner','admin','reviewer'))",[...guard.args,id,r.id],[],'candidate-exported',id,draft.hash,now,{candidateHash,reviewId:r.id,filename});
+   return new Response(content,{status:200,headers:{'content-type':'application/octet-stream','content-disposition':'attachment; filename="'+filename+'"','cache-control':'no-store, private','x-content-type-options':'nosniff','x-robots-tag':'noindex, nofollow','x-rr-candidate-sha256':candidateHash}});
   }else if(action==='reopen'){
    if(!boss(actor)||d.status!=='approved'||!clean(f.get('reason'),4000))problem('Administrator and reason required',403);
-   await mutation(db,actor,guard.sql,guard.args,[statement(db,"UPDATE editorial_documents SET status='draft',updated_at=?,generation=generation+1 WHERE id=?",now,id)],'approval-reopened',id,draft.hash,now,{reason:f.get('reason')});
+   await mutation(db,actor,guard.sql,guard.args,[statement(db,"UPDATE editorial_documents SET status='draft',updated_at=?,generation=generation+1,current_review_id=NULL WHERE id=?",now,id)],'approval-reopened',id,draft.hash,now,{reason:f.get('reason')});
   }else if(action==='assign'){
    if(!boss(actor)||!isId(f.get('staffId'))||!['grant','revoke'].includes(f.get('operation')))problem('Invalid assignment',403);
    const target=await first(db,'SELECT id,role,status FROM staff_accounts WHERE id=?',f.get('staffId'));

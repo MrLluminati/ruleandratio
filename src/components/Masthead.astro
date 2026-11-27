@@ -1,5 +1,6 @@
 ---
 import { sections } from '../data/sections';
+import { memberAccountOrigin } from '../lib/account-origin.mjs';
 const primary=['news','judgments','bare-acts','procedures','areas-of-law','research'];
 const secondary=sections.filter(s=>!primary.includes(s.slug));
 const current=(slug:string)=>Astro.url.pathname===`/${slug}/`?'page':undefined;
@@ -7,7 +8,7 @@ const current=(slug:string)=>Astro.url.pathname===`/${slug}/`?'page':undefined;
 <header class="site-header">
   <div class="wrap utility-bar">
     <span>Independent Indian legal publication</span>
-    <nav aria-label="About the publication"><a href="/about/">About</a><a href="/editorial-policy/">Editorial standards</a></nav>
+    <nav aria-label="About the publication"><a href="/about/">About</a><a href="/editorial-policy/">Editorial standards</a>{memberAccountOrigin&&<a href={memberAccountOrigin+'/'}>My account</a>}</nav>
   </div>
   <div class="wrap masthead masthead-new">
     <a class="masthead-lockup" href="/" aria-label="Rule and Ratio home">
@@ -43,6 +44,7 @@ const current=(slug:string)=>Astro.url.pathname===`/${slug}/`?'page':undefined;
         <p class="mobile-menu-label">More from Rule &amp; Ratio</p>
         {secondary.map(s=><a href={`/${s.slug}/`} aria-current={Astro.url.pathname===`/${s.slug}/`?'page':Astro.url.pathname.startsWith(`/${s.slug}/`)?'location':undefined}>{s.title}</a>)}
         <p class="mobile-menu-label">Publication</p>
+        {memberAccountOrigin&&<a href={memberAccountOrigin+'/'}>My account</a>}
         <a href="/search/" aria-current={Astro.url.pathname==='/search/'?'page':undefined}>Search</a>
         <a href="/about/" aria-current={Astro.url.pathname==='/about/'?'page':undefined}>About</a>
         <a href="/editorial-policy/" aria-current={Astro.url.pathname==='/editorial-policy/'?'page':undefined}>Editorial standards</a>

@@ -24,7 +24,8 @@
     "test:editorial": "node --test scripts/test-editorial.mjs scripts/test-editorial-cms.mjs",
     "editorial:cms": "node scripts/editorial-cms.mjs",
     "test:statutes": "node --test scripts/test-statute-versions.mjs",
-    "test:studio": "node --test scripts/test-studio.mjs scripts/test-auth-worker.mjs scripts/test-editorial-workspace.mjs scripts/test-member-workspace.mjs scripts/test-billing-sandbox.mjs"
+    "test:studio": "node --test scripts/test-studio.mjs scripts/test-auth-worker.mjs scripts/test-editorial-workspace.mjs scripts/test-member-workspace.mjs scripts/test-billing-sandbox.mjs scripts/test-studio-integration.mjs",
+    "studio:preflight": "node scripts/studio-preflight.mjs"
   },
   "dependencies": {
     "astro": "7.4.13",

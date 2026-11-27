@@ -12,7 +12,7 @@ test('draft source guard',async()=>{
 });
 test('private workflow: assignments, immutable revisions, stale writes, review, reopening and audit',async()=>{
  const sql=new DatabaseSync(':memory:');
- for(const file of ['0001_identity_and_editorial.sql','0002_authentication.sql','0003_editorial_workspace.sql','0004_editorial_generation.sql'])sql.exec(readFileSync(new URL('../studio/migrations/'+file,import.meta.url),'utf8'));
+ for(const file of ['0001_identity_and_editorial.sql','0002_authentication.sql','0003_editorial_workspace.sql','0004_editorial_generation.sql','0007_current_review.sql'])sql.exec(readFileSync(new URL('../studio/migrations/'+file,import.meta.url),'utf8'));
  const DB={prepare(query){return {bind(...args){return {first:async()=>sql.prepare(query).get(...args)??null,all:async()=>({results:sql.prepare(query).all(...args)}),run:async()=>sql.prepare(query).run(...args)}}}},async batch(statements){sql.exec('BEGIN');try{for(const s of statements)await s.run();sql.exec('COMMIT')}catch(e){sql.exec('ROLLBACK');throw e}}};
  const actors={};for(const role of ['owner','admin','author','reviewer']){actors[role]={id:role,role,status:'active',kind:'staff'};sql.prepare("INSERT INTO staff_accounts(id,issuer,subject,role,status,created_at) VALUES (?,?,?,?,?,?)").run(role,'issuer',role,role,'active',1)}
  const call=(p,actor,body,origin=site)=>editorialRoute(new Request(site+p,body?{method:'POST',headers:{origin,'content-type':'application/x-www-form-urlencoded'},body:new URLSearchParams(body)}:{}),DB,actor,1700000000);
@@ -39,8 +39,14 @@ test('private workflow: assignments, immutable revisions, stale writes, review, 
   for(let i=0;i<plan.length;i++){basic['check-'+i]='yes';basic['check-note-'+i]='Evidence'}
   for(const s of draft.sources){basic['source-'+s.key]='yes';basic['source-note-'+s.key]='Evidence'}
   assert.equal((await call(p+'/review',actors.reviewer,basic)).status,303);assert.equal(doc().status,'approved');
+  assert.equal((await call(p+'/candidate',actors.reviewer,{...version(),publicCopy:'yes'})).status,403);
+  assert.equal((await call(p+'/candidate',actors.owner,version())).status,403);
+  const exported=await call(p+'/candidate',actors.owner,{...version(),publicCopy:'yes'});
+  assert.equal(exported.status,200);assert.match(exported.headers.get('content-disposition'),/test-note\.md/);
+  const candidate=await exported.text();assert.match(candidate,/draft: false/);assert.match(candidate,/reviewer: Synthetic reviewer/);assert.ok(!candidate.includes('Verified for test'));
   assert.equal((await call(p+'/edit',actors.owner,{...version(),raw:raw+'Edit locked'})).status,403);
   assert.equal((await call(p+'/reopen',actors.owner,{...version(),reason:'Correction'})).status,303);assert.equal(doc().status,'draft');
+  assert.equal((await call(p+'/candidate',actors.owner,{...version(),publicCopy:'yes'})).status,403);
   assert.equal((await call(p+'/submit',actors.author,version())).status,303);
   assert.equal((await call(p+'/review',actors.reviewer,basic)).status,409,'Earlier review form must fail after reopening and resubmission');
   sql.exec("UPDATE staff_accounts SET status='disabled' WHERE id='author'");
