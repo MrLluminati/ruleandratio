@@ -32,3 +32,6 @@ Seven case notes have been staged as drafts in src/content/articles/msmed/judgme
 
 ## News intake and publishing
 See docs/news-workflow.md for the manual source registry, local unverified lead intake and reviewed news publication requirements. No automated external monitoring or publication is configured.
+
+## RR-015H.3 — MSMED version-aware pilot
+See [acquisition/msmed-pilot.md](acquisition/msmed-pilot.md) and [acquisition/msmed-version-plan.json](acquisition/msmed-version-plan.json). Historical pages 9–11 were inspected, but original bytes could not be retrieved. The acquisition workflow is manual-only; the extractor archives the input PDF and includes an explicit historical source pinpoint. The 2026 amendments and commencement must be authenticated independently before publishing any statutory text.

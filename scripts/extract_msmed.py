@@ -71,6 +71,7 @@ def main():
     out.mkdir(parents=True)
     raw = "\f".join(pages)
     (out / "raw-pages.txt").write_text(raw, encoding="utf-8")
+    (out / "original.pdf").write_bytes(data)
     normalized = []
     provisions = []
     for n, heading, group in sections:
@@ -85,11 +86,11 @@ def main():
         provisions.append({"slug":f"section-{n}","number":str(n),"kind":"section","heading":heading,"chapter":"chapter-v","commentary":commentary,"versions":[{"id":"recorded","sourceId":"india-code","startLine":start,"endLine":end,"pinpoint":f"Printed page(s) {page}, section {n}"}]})
     (out / "source.txt").write_text("\n".join(normalized)+"\n",encoding="utf-8")
     captured = datetime.now(timezone.utc).date().isoformat()
-    manifest = {"slug":"msmed-act-2006","title":"Micro, Small and Medium Enterprises Development Act, 2006","shortTitle":"MSMED Act, 2006","actNumber":"27 of 2006","year":2006,"jurisdiction":"India","areas":["msme-law","commercial-law","arbitration"],"mainSourceId":"india-code","sources":[{"id":"india-code","title":"India Code — MSMED Act 2006","url":args.source_url,"file":"source.txt","capturedAt":captured}],"chapters":[{"slug":"chapter-v","label":"Chapter V","title":"Delayed payments to micro and small enterprises"}],"provisions":provisions,"amendments":[]}
+    manifest = {"slug":"msmed-act-2006","title":"Micro, Small and Medium Enterprises Development Act, 2006","shortTitle":"MSMED Act, 2006","actNumber":"27 of 2006","year":2006,"jurisdiction":"India","areas":["msme-law","commercial-law","arbitration"],"mainSourceId":"india-code","mainPinpoint":"Historical compilation, printed pages 9–11; sections 15–24 before the 2026 amendments","sources":[{"id":"india-code","title":"India Code — historical MSMED Act 2006 compilation","url":args.source_url,"file":"source.txt","capturedAt":captured}],"chapters":[{"slug":"chapter-v","label":"Chapter V","title":"Delayed payments to micro and small enterprises"}],"provisions":provisions,"amendments":[]}
     (out / "manifest.json").write_text(json.dumps(manifest,indent=2,ensure_ascii=False)+"\n", encoding="utf-8")
-    (out / "pdf-provenance.json").write_text(json.dumps({"sourceUrl":args.source_url,"pdfSha256":hashlib.sha256(data).hexdigest(),"byteLength":len(data),"processedAt":captured,"pages":[9,10,11],"note":"Local file identity only; official authenticity, text accuracy, amendments and legal review pending. Extracted text retains layout and section headings. No effective dates inferred."},indent=2)+"\n",encoding="utf-8")
+    (out / "pdf-provenance.json").write_text(json.dumps({"sourceUrl":args.source_url,"pdfSha256":hashlib.sha256(data).hexdigest(),"byteLength":len(data),"processedAt":captured,"pages":[9,10,11],"note":"Local file identity only; official authenticity, text accuracy, amendments and legal review pending. Extracted text retains layout and section headings. Historical baseline only; not current consolidated law. See docs/acquisition/msmed-version-plan.json. No effective dates inferred."},indent=2)+"\n",encoding="utf-8")
     subprocess.run(["node",str(ROOT/"scripts/import-statute.mjs"),str(out/"manifest.json")],cwd=ROOT,check=True)
-    print("MSMED draft package prepared; no publication performed.")
+    print("Historical MSMED draft package prepared. Review the 2026 amendments and commencement separately; no publication performed.")
 
 if __name__ == "__main__":
     main()

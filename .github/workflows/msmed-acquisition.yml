@@ -1,13 +1,6 @@
 name: MSMED source acquisition (draft only)
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - '.github/workflows/msmed-acquisition.yml'
-      - 'scripts/extract_msmed.py'
-      - 'scripts/fetch-msmed.sh'
-      - 'scripts/test_extract_msmed.py'
 permissions:
   contents: read
 jobs:
@@ -33,5 +26,6 @@ jobs:
           path: |
             .rr-import/msmed-act-2006/
             .rr-sources/msmed-act-2006/
+          include-hidden-files: true
           retention-days: 7
           if-no-files-found: error

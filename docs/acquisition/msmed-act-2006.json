@@ -4,12 +4,12 @@
   "actNumber": "27 of 2006",
   "jurisdiction": "India",
   "source": {
-    "url": "https://www.indiacode.nic.in/bitstream/123456789/5872/1/a2006-27.pdf",
-    "title": "India Code — MSMED Act 2006",
-    "retrieval": "Web PDF inspected; original bytes not downloaded; no checksum claimed"
+    "url": "https://www.indiacode.nic.in/bitstream/123456789/19412/1/msme_act_2006.pdf",
+    "title": "India Code — historical MSMED Act 2006 compilation",
+    "retrieval": "Printed pages 9–11 visually inspected in web PDF; direct byte download failed; no PDF checksum; not a current consolidated Act"
   },
   "coverage": "selected-provisions",
-  "state": "source-map-only-awaiting-extraction-and-review",
+  "state": "historical-pages-inspected-original-bytes-unavailable-amendments-pending",
   "chapter": "V",
   "provisions": [
     {
@@ -20,6 +20,16 @@
         9
       ],
       "draftArticle": "src/content/articles/msmed/msmed-act-section-15.md"
+    },
+    {
+      "slug": "section-15a",
+      "number": "15A",
+      "headingDescription": "TReDS settlement requirements",
+      "draftArticle": "src/content/articles/msmed/msmed-act-section-15a.md",
+      "sourceUrl": "https://www.ricago.com/assets/front/base/file/file_management/7028.pdf",
+      "sourcePinpoint": "Act 16 of 2026, section 7, Page 3",
+      "identifiedEffectiveDate": "2026-10-15",
+      "versionReview": "Enacted text reproduction; original authentication and commencement review pending"
     },
     {
       "slug": "section-16",
@@ -46,7 +56,18 @@
       "printedPages": [
         10
       ],
-      "draftArticle": "src/content/articles/msmed/msmed-act-section-18.md"
+      "draftArticle": "src/content/articles/msmed/msmed-act-section-18.md",
+      "versionReview": "See amendment plan; compare original and enacted versions and commencement."
+    },
+    {
+      "slug": "section-18a",
+      "number": "18A",
+      "headingDescription": "Enforcement of settlements and awards",
+      "draftArticle": "src/content/articles/msmed/msmed-act-section-18a.md",
+      "sourceUrl": "https://www.ricago.com/assets/front/base/file/file_management/7028.pdf",
+      "sourcePinpoint": "Act 16 of 2026, section 9, Page 4",
+      "identifiedEffectiveDate": null,
+      "versionReview": "Enacted text reproduction; original authentication and commencement review pending"
     },
     {
       "slug": "section-19",
@@ -55,7 +76,8 @@
       "printedPages": [
         10
       ],
-      "draftArticle": "src/content/articles/msmed/msmed-act-section-19.md"
+      "draftArticle": "src/content/articles/msmed/msmed-act-section-19.md",
+      "versionReview": "See amendment plan; compare original and enacted versions and commencement."
     },
     {
       "slug": "section-20",
@@ -64,7 +86,8 @@
       "printedPages": [
         10
       ],
-      "draftArticle": "src/content/articles/msmed/msmed-act-section-20.md"
+      "draftArticle": "src/content/articles/msmed/msmed-act-section-20.md",
+      "versionReview": "See amendment plan; compare original and enacted versions and commencement."
     },
     {
       "slug": "section-21",
@@ -74,7 +97,8 @@
         10,
         11
       ],
-      "draftArticle": "src/content/articles/msmed/msmed-act-section-21.md"
+      "draftArticle": "src/content/articles/msmed/msmed-act-section-21.md",
+      "versionReview": "See amendment plan; compare original and enacted versions and commencement."
     },
     {
       "slug": "section-22",
@@ -84,6 +108,16 @@
         11
       ],
       "draftArticle": "src/content/articles/msmed/msmed-act-section-22.md"
+    },
+    {
+      "slug": "section-22a",
+      "number": "22A",
+      "headingDescription": "TReDS compliance reporting",
+      "draftArticle": "src/content/articles/msmed/msmed-act-section-22a.md",
+      "sourceUrl": "https://www.ricago.com/assets/front/base/file/file_management/7028.pdf",
+      "sourcePinpoint": "Act 16 of 2026, section 13, Pages 5–6",
+      "identifiedEffectiveDate": "2026-10-15",
+      "versionReview": "Enacted text reproduction; original authentication and commencement review pending"
     },
     {
       "slug": "section-23",
@@ -111,5 +145,11 @@
     "Verify current tax law for Section 23",
     "Check other provisions before claiming full coverage",
     "Obtain original PDF, extract and validate text, and add genuine reviewer approval"
-  ]
+  ],
+  "researchDate": "2026-11-27",
+  "amendmentReview": {
+    "record": "docs/acquisition/msmed-version-plan.json",
+    "status": "pending",
+    "note": "2006 extraction alone is not current-law verification."
+  }
 }

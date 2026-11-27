@@ -1,0 +1,200 @@
+{
+  "state": "research-only-no-statutory-text-imported",
+  "asOf": "2026-11-27",
+  "act": "msmed-act-2006",
+  "coverage": "selected-provisions",
+  "sources": [
+    {
+      "role": "historical principal Act",
+      "url": "https://www.indiacode.nic.in/bitstream/123456789/19412/1/msme_act_2006.pdf",
+      "status": "page images 9–11 inspected; byte download failed"
+    },
+    {
+      "role": "amendment Act 16 of 2026",
+      "url": "https://www.ricago.com/assets/front/base/file/file_management/7028.pdf",
+      "officialCandidate": "https://egazette.gov.in/WriteReadData/2026/275448.pdf",
+      "gazetteId": "CG-DL-E-13082026-275448",
+      "status": "privately hosted Gazette reproduction text and selected page images inspected; official candidate timed out"
+    },
+    {
+      "role": "commencement",
+      "url": "https://policyindex.ai/in/gazette/appointment-of-the-date-15th-october-2026-for-msmed-amendment-act-2026-agylgz",
+      "officialCandidate": "https://egazette.gov.in/WriteReadData/2026/277080.pdf",
+      "gazetteId": "CG-DL-E-12102026-277080",
+      "identifier": "S.O. 5575(E)",
+      "status": "reproduced notification text inspected; official candidate timed out"
+    },
+    {
+      "role": "Mediation Act",
+      "url": "https://www.indiacode.nic.in/bitstream/123456789/19637/1/aA2023-32.pdf",
+      "pinpoint": "Section 62 and Seventh Schedule"
+    },
+    {
+      "role": "Mediation initial commencement",
+      "url": "https://www.legalaffairs.gov.in/static/uploads/2025/09/2381ae426c2e0b2ffe4663f813844594.pdf",
+      "pinpoint": "S.O. 4384(E), 9 October 2023, page 2",
+      "status": "official text inspected; section 62 not in listed provisions"
+    }
+  ],
+  "matrix": [
+    {
+      "section": "15A",
+      "amendingSection": 7,
+      "change": "inserted",
+      "identifiedEffectiveDate": "2026-10-15",
+      "note": "Date identified in reproduced notification; verify original and later notices",
+      "verification": "pending original notification authentication and subsequent-notification check"
+    },
+    {
+      "section": "18",
+      "amendingSection": 8,
+      "change": "amends 2023 substituted provision",
+      "identifiedEffectiveDate": null,
+      "note": "Not covered by S.O. 5575(E); independently establish commencement of Mediation Act section 62 and Seventh Schedule",
+      "verification": "pending original notification authentication and subsequent-notification check"
+    },
+    {
+      "section": "18A",
+      "amendingSection": 9,
+      "change": "inserted",
+      "identifiedEffectiveDate": null,
+      "note": "Not covered by S.O. 5575(E); check later notices",
+      "verification": "pending original notification authentication and subsequent-notification check"
+    },
+    {
+      "section": "19",
+      "amendingSection": 10,
+      "change": "substituted",
+      "identifiedEffectiveDate": null,
+      "note": "Not covered by S.O. 5575(E); check later notices",
+      "verification": "pending original notification authentication and subsequent-notification check"
+    },
+    {
+      "section": "20",
+      "amendingSection": 11,
+      "change": "substituted",
+      "identifiedEffectiveDate": "2026-10-15",
+      "note": "Historical and substituted text required",
+      "verification": "pending original notification authentication and subsequent-notification check"
+    },
+    {
+      "section": "21",
+      "amendingSection": 12,
+      "change": "substituted",
+      "identifiedEffectiveDate": "2026-12-15",
+      "note": "Scheduled future date at review date; verify any subsequent change",
+      "verification": "pending original notification authentication and subsequent-notification check"
+    },
+    {
+      "section": "22A",
+      "amendingSection": 13,
+      "change": "inserted",
+      "identifiedEffectiveDate": "2026-10-15",
+      "note": "Check implementation rules and designated entities",
+      "verification": "pending original notification authentication and subsequent-notification check"
+    }
+  ],
+  "unchangedInAct16WithinPilot": [
+    "15",
+    "16",
+    "17",
+    "22",
+    "23",
+    "24"
+  ],
+  "checks": [
+    "Acquire original principal Act and Gazette bytes, retain hashes",
+    "Authenticate commencement and check subsequent notifications; do not infer negative commencement status from one notice",
+    "Check amended definitions, section 8 registration and saving in Act 16 section 17",
+    "Review original and revised sections 20 and 21 separately; future version must not be presented as current",
+    "Do not assign invented effective dates to sections 18, 18A or 19",
+    "Review applicable rules, tax-law cross-references, and subsequent judicial treatment"
+  ],
+  "relationshipCandidates": [
+    {
+      "articleSlug": "msmed-act-section-15",
+      "provision": "section-15"
+    },
+    {
+      "articleSlug": "msmed-act-section-16",
+      "provision": "section-16"
+    },
+    {
+      "articleSlug": "msmed-act-section-17",
+      "provision": "section-17"
+    },
+    {
+      "articleSlug": "msmed-act-section-18",
+      "provision": "section-18"
+    },
+    {
+      "articleSlug": "msmed-act-section-19",
+      "provision": "section-19"
+    },
+    {
+      "articleSlug": "msmed-act-section-20",
+      "provision": "section-20"
+    },
+    {
+      "articleSlug": "msmed-act-section-21",
+      "provision": "section-21"
+    },
+    {
+      "articleSlug": "msmed-act-section-22",
+      "provision": "section-22"
+    },
+    {
+      "articleSlug": "msmed-act-section-23",
+      "provision": "section-23"
+    },
+    {
+      "articleSlug": "msmed-act-section-24",
+      "provision": "section-24"
+    },
+    {
+      "articleSlug": "msmed-act-section-15a",
+      "provision": "section-15a"
+    },
+    {
+      "articleSlug": "msmed-act-section-18a",
+      "provision": "section-18a"
+    },
+    {
+      "articleSlug": "msmed-act-section-22a",
+      "provision": "section-22a"
+    },
+    {
+      "articleSlug": "silpi-industries-v-ksrtc-2021",
+      "provision": "section-18"
+    },
+    {
+      "articleSlug": "gujarat-state-civil-supplies-v-mahakali-foods-2022",
+      "provision": "section-18"
+    },
+    {
+      "articleSlug": "gujarat-state-civil-supplies-v-mahakali-foods-2022",
+      "provision": "section-24"
+    },
+    {
+      "articleSlug": "gujarat-state-disaster-management-authority-v-aska-2021",
+      "provision": "section-19"
+    },
+    {
+      "articleSlug": "goodyear-india-v-norton-intech-rubbers-2012",
+      "provision": "section-19"
+    },
+    {
+      "articleSlug": "india-glycols-v-msefc-2023",
+      "provision": "section-19"
+    },
+    {
+      "articleSlug": "nbcc-india-v-state-of-west-bengal-2025",
+      "provision": "section-18"
+    },
+    {
+      "articleSlug": "tamil-nadu-cements-v-msefc-2025-reference",
+      "provision": "section-18"
+    }
+  ],
+  "relationshipStatus": "Manual candidates only; no live statuteRefs inserted."
+}
