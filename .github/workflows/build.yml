@@ -20,6 +20,7 @@ jobs:
       - run: npm run test:tools
       - run: npm run test:news
       - run: npm run test:statutes
+      - run: npm run test:studio
       - run: npm run test:editorial
       - run: npm run editorial:queue
       - run: npm run build
@@ -38,5 +39,6 @@ jobs:
           node-version: '26'
       - run: npm install --no-audit --no-fund
       - run: npm audit --audit-level=low
+      - run: npm run test:studio
       - run: npm run test:editorial
       - run: npm run build
