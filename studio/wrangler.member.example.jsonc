@@ -8,7 +8,9 @@
     "APP_MODE": "member",
     "APP_ORIGIN": "https://account.example.invalid",
     "MEMBER_ISSUER": "https://REPLACE.auth0.com/",
-    "MEMBER_CLIENT_ID": "REPLACE"
+    "MEMBER_CLIENT_ID": "REPLACE",
+    "MEMBER_WORKSPACE_ENABLED": "false",
+    "PUBLIC_SITE_ORIGIN": "https://www.example.invalid"
   },
   "d1_databases": [
     {

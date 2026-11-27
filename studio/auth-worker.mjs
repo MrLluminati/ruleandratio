@@ -1,6 +1,7 @@
 import {createRemoteJWKSet,jwtVerify} from 'jose';
 import {canStaff,canMember} from './permissions.mjs';
 import {editorialRoute} from './editorial-workspace.mjs';
+import {memberRoute} from './member-workspace.mjs';
 
 const loginCookie='__Host-rr-login',sessionCookie='__Host-rr-member';
 const nowSeconds=()=>Math.floor(Date.now()/1000);
@@ -121,6 +122,7 @@ export function makeWorker({keyset=keys,fetchToken=fetch,clock=nowSeconds}={}){
     const url=new URL(issuer+'oidc/logout');url.search=new URLSearchParams({client_id:client,post_logout_redirect_uri:site+'/'}).toString();
     return redirect(url.href,[cookie(sessionCookie,'',0),cookie(loginCookie,'',0)]);
    }
+   if(env.MEMBER_WORKSPACE_ENABLED==='true'&&(u.pathname==='/account'||u.pathname.startsWith('/account/')))return memberRoute(req,db,actor,token?await hash(token):null,now,env.PUBLIC_SITE_ORIGIN);
    if(req.method!=='GET')return response('Method not allowed',405,{allow:'GET'});
    if(u.pathname==='/api/session'){
     if(!active)return unauthorized();
@@ -128,6 +130,7 @@ export function makeWorker({keyset=keys,fetchToken=fetch,clock=nowSeconds}={}){
    }
    if(u.pathname!=='/')return page('Not found','<p>No such member route.</p>',404);
    if(!active)return page('Member account','<p>Sign in or register to use your personal Rule &amp; Ratio account.</p><nav><a class="button" href="/login">Sign in</a><a href="/register">Create account</a></nav><p><small>Membership never grants editorial access. Payments are not yet enabled.</small></p>');
+   if(env.MEMBER_WORKSPACE_ENABLED==='true')return redirect('/account');
    return page('My account','<p>Signed in'+(member.display_name?' as '+esc(member.display_name):'')+'.</p><p>Member profile and subscription features are being prepared.</p><form method="post" action="/logout"><button type="submit">Sign out</button></form>');
   }catch{return unavailable()}
  }};
