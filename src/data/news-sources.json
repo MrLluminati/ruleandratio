@@ -1,0 +1,155 @@
+[
+  {
+    "id": "supreme-court",
+    "name": "Supreme Court of India",
+    "url": "https://www.sci.gov.in/",
+    "kind": "primary",
+    "scope": "Judgments, orders, notices and cause lists",
+    "access": "manual",
+    "automatedAccess": false
+  },
+  {
+    "id": "patna-high-court",
+    "name": "Patna High Court",
+    "url": "https://patnahighcourt.gov.in/",
+    "kind": "primary",
+    "scope": "Bihar judgments, orders and notices",
+    "access": "manual",
+    "automatedAccess": false
+  },
+  {
+    "id": "high-courts",
+    "name": "High Courts of India",
+    "url": "https://www.ecourts.gov.in/",
+    "kind": "primary",
+    "scope": "Court-specific official orders and notices",
+    "access": "manual",
+    "automatedAccess": false
+  },
+  {
+    "id": "india-code",
+    "name": "India Code",
+    "url": "https://www.indiacode.nic.in/",
+    "kind": "primary",
+    "scope": "Statutory text and amendments",
+    "access": "manual",
+    "automatedAccess": false
+  },
+  {
+    "id": "gazette",
+    "name": "Gazette of India",
+    "url": "https://egazette.gov.in/",
+    "kind": "primary",
+    "scope": "Notifications, enactments and commencement",
+    "access": "manual",
+    "automatedAccess": false
+  },
+  {
+    "id": "legislative-department",
+    "name": "Legislative Department",
+    "url": "https://legislative.gov.in/",
+    "kind": "primary",
+    "scope": "Acts and legislative publications",
+    "access": "manual",
+    "automatedAccess": false
+  },
+  {
+    "id": "parliament",
+    "name": "Parliament of India",
+    "url": "https://sansad.in/",
+    "kind": "primary",
+    "scope": "Bills and parliamentary proceedings",
+    "access": "manual",
+    "automatedAccess": false
+  },
+  {
+    "id": "pib",
+    "name": "Press Information Bureau",
+    "url": "https://www.pib.gov.in/",
+    "kind": "primary",
+    "scope": "Official government announcements; not a substitute for gazette text",
+    "access": "manual",
+    "automatedAccess": false
+  },
+  {
+    "id": "law-commission",
+    "name": "Law Commission of India",
+    "url": "https://lawcommissionofindia.nic.in/",
+    "kind": "primary",
+    "scope": "Official reports and recommendations",
+    "access": "manual",
+    "automatedAccess": false
+  },
+  {
+    "id": "bihar-government",
+    "name": "Government of Bihar",
+    "url": "https://state.bihar.gov.in/",
+    "kind": "primary",
+    "scope": "State department notifications; authenticate exact Gazette",
+    "access": "manual",
+    "automatedAccess": false
+  },
+  {
+    "id": "bar-bench",
+    "name": "Bar & Bench",
+    "url": "https://www.barandbench.com/",
+    "kind": "secondary",
+    "scope": "Discovery and attributed reporting",
+    "access": "manual",
+    "automatedAccess": false
+  },
+  {
+    "id": "livelaw",
+    "name": "LiveLaw",
+    "url": "https://www.livelaw.in/",
+    "kind": "secondary",
+    "scope": "Discovery and attributed reporting",
+    "access": "manual",
+    "automatedAccess": false
+  },
+  {
+    "id": "indian-kanoon",
+    "name": "Indian Kanoon",
+    "url": "https://indiankanoon.org/",
+    "kind": "secondary",
+    "scope": "Case discovery; authenticate hosted judgment text",
+    "access": "manual",
+    "automatedAccess": false
+  },
+  {
+    "id": "scc-online",
+    "name": "SCC OnLine",
+    "url": "https://www.scconline.com/",
+    "kind": "secondary",
+    "scope": "Authorized citation and precedent research",
+    "access": "manual",
+    "automatedAccess": false
+  },
+  {
+    "id": "scc-blog",
+    "name": "SCC OnLine Blog",
+    "url": "https://www.scconline.com/blog/",
+    "kind": "secondary",
+    "scope": "Discovery and attributed commentary",
+    "access": "manual",
+    "automatedAccess": false
+  },
+  {
+    "id": "manupatra",
+    "name": "Manupatra",
+    "url": "https://www.manupatra.com/",
+    "kind": "secondary",
+    "scope": "Authorized citation and precedent research",
+    "access": "manual",
+    "automatedAccess": false
+  },
+  {
+    "id": "prs",
+    "name": "PRS Legislative Research",
+    "url": "https://prsindia.org/",
+    "kind": "secondary",
+    "scope": "Legislative research and context",
+    "access": "manual",
+    "automatedAccess": false
+  }
+]

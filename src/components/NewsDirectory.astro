@@ -1,0 +1,14 @@
+---
+import ArticleList from './ArticleList.astro';
+import ArticleCard from './ArticleCard.astro';
+import {newsKinds} from '../lib/news.mjs';
+import type {Article} from '../lib/publications';
+const {entries}=Astro.props as {entries:Article[]};
+const kinds=[...new Set(entries.map(e=>e.data.news?.kind).filter(Boolean))];
+---
+{entries.length>0?<><form id="news-filter" class="judgment-filters" hidden><label>Development type<select name="kind"><option value="">All developments</option>{kinds.map(k=><option value={k}>{newsKinds[k!]}</option>)}</select></label><label>Search reports<input name="query" type="search" placeholder="Title, authority or case reference"/></label><button class="rr-tool-secondary" type="reset">Clear filters</button></form><p id="news-count" role="status">{entries.length} reports</p><div class="publication-grid">{entries.map(e=><div data-news-kind={e.data.news?.kind} data-news-search={[e.data.title,e.data.description,e.data.news?.authority,e.data.news?.identifier].join(' ').toLowerCase()}><ArticleCard entry={e}/></div>)}</div></>:<ArticleList entries={entries} emptyMessage="Verified legal news reports will appear here after editorial approval."/>}
+<script>
+ const form=document.querySelector<HTMLFormElement>('#news-filter');
+ if(form){const cards=Array.from(document.querySelectorAll<HTMLElement>('[data-news-kind]'));const update=()=>{const f=new FormData(form),kind=String(f.get('kind')??''),query=String(f.get('query')??'').trim().toLowerCase();let count=0;for(const c of cards){c.hidden=!( (!kind||c.dataset.newsKind===kind)&&(!query||c.dataset.newsSearch?.includes(query)));if(!c.hidden)count++}document.getElementById('news-count')!.textContent=count+' of '+cards.length+' reports';};form.hidden=false;form.addEventListener('input',update);form.addEventListener('change',update);form.addEventListener('submit',e=>{e.preventDefault();update()});form.addEventListener('reset',()=>queueMicrotask(update));}
+</script>
+<style>#news-filter[hidden],[data-news-kind][hidden]{display:none!important}</style>

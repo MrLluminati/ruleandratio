@@ -169,7 +169,22 @@ draft: true
 ---
 Not a public article. rrhiddenquartzxylophone
 `);
+ const newsFixture=basic('news','rr-test-news','RR TEST NEWS')+`news:
+  kind: interim-order
+  eventDate: 2020-01-01
+  authority: Synthetic court
+  identifier: TEST NEWS ORDER
+  primaryUrl: https://example.invalid/fixture
+  verification: verified
+---
+## Synthetic interim order
+Test only. No real legal development.
+`;
+ writeFileSync(join(fixture,'news.md'),newsFixture);
  expectBuild(true);
+ assert.match(html('news'),/RR TEST NEWS/);
+ assert.match(html('news/rr-test-news'),/Interim order/);
+ assert.match(html('news/rr-test-news'),/TEST NEWS ORDER/);
  const article=html('research/rr-test-article');
  const judgment=html('judgments/rr-test-case');
  const home=html('');
@@ -241,6 +256,10 @@ Not a public article. rrhiddenquartzxylophone
  assert.match(html('search'),/noindex, follow/);
  assert.match(html('areas-of-law/legal-ethics'),/noindex, follow/);
  assert.match(readFileSync('dist/robots.txt','utf8'),/Sitemap: https:\/\/example\.invalid\/sitemap\.xml/);
+ assert.ok(rss.includes('/news/rr-test-news/'));
+ writeFileSync(join(fixture,'news.md'),newsFixture.replace('verification: verified','verification: pending'));
+ expectBuild(false);
+ writeFileSync(join(fixture,'news.md'),newsFixture);
  // An unresolved reference must fail even if the article metadata is otherwise valid.
  writeFileSync(join(fixture,'broken-ref.md'),basic('research','rr-broken-ref','Broken reference fixture')+`statuteRefs:
   - act: rr-test-act
@@ -279,6 +298,7 @@ Invalid publication.
  // Always discard synthetic output and restore a clean production build.
  rmSync('dist',{recursive:true,force:true});
  expectBuild(true);
+ assert.ok(!existsSync('dist/news/rr-test-news/index.html'));
  assert.ok(!existsSync('dist/research/rr-test-article/index.html'));
  assert.ok(!existsSync('dist/judgments/rr-test-case/index.html'));
  assert.ok(!existsSync('dist/judgments/rr-test-later-case/index.html'));

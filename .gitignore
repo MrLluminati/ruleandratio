@@ -9,3 +9,5 @@ dist/
 # Local editorial source staging and reports
 .rr-import/
 .rr-sources/
+
+.rr-news/

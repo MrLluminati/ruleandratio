@@ -3,6 +3,7 @@ import {glob} from 'astro/loaders';
 import {z} from 'astro/zod';
 import {areas} from './data/areas';
 import {types,slugPattern} from './data/publication';
+import {newsKinds} from './lib/news.mjs';
 
 const nonempty=z.string().trim().min(1);
 const url=z.string().url().refine(value=>/^https?:\/\//i.test(value),'Only HTTP(S) source links are allowed');
@@ -24,6 +25,12 @@ const judgment=z.object({
  treatments:z.array(treatment).default([]),
  judgmentUrl:url,
 }).refine(d=>Boolean(d.citation || d.caseNumber || d.equivalentCitations.length),'Provide a verified citation or case number');
+const news=z.object({
+ kind:nonempty.refine(k=>Object.hasOwn(newsKinds,k),'Unknown news development type'),
+ eventDate:date,authority:nonempty,identifier:nonempty,primaryUrl:url,
+ verification:z.enum(['pending','verified']).default('pending'),
+ corrections:z.array(z.object({date,summary:nonempty})).default([]),
+});
 const articles=defineCollection({
  loader:glob({base:'./src/content/articles',pattern:'**/*.md'}),
  schema:z.object({
@@ -36,6 +43,7 @@ const articles=defineCollection({
  publishedAt:date.optional(),reviewedAt:date.optional(),modifiedAt:date.optional(),
  sources:z.array(source).default([]),
  judgment:judgment.optional(),
+ news:news.optional(),
  statuteRefs:z.array(z.object({act:z.string().regex(slugPattern),provision:z.string().regex(slugPattern).optional()})).default([]),
  draft:z.boolean().default(true),
  }).superRefine((data,ctx)=>{
@@ -49,6 +57,17 @@ const articles=defineCollection({
  if(data.reviewedAt && data.reviewedAt.getTime()>now)fail('Future review dates are not allowed',['reviewedAt']);
  if(data.modifiedAt && (data.modifiedAt.getTime()>now || (data.publishedAt && data.modifiedAt<data.publishedAt)))fail('Invalid substantive modification date',['modifiedAt']);
  if(!data.sources.some(s=>s.kind==='primary'))fail('At least one primary source is required',['sources']);
+ if(data.type==='news'){
+  const n=data.news;
+  if(!n)fail('News publication requires event metadata',['news']);
+  else {
+   if(n.verification!=='verified')fail('News must be verified before publication',['news','verification']);
+   if(data.publishedAt&&n.eventDate>data.publishedAt)fail('Event date cannot follow publication',['news','eventDate']);
+   if(data.reviewedAt&&n.eventDate>data.reviewedAt)fail('Review cannot predate the event',['reviewedAt']);
+   if(!data.sources.some(s=>s.kind==='primary'&&s.url===n.primaryUrl&&s.pinpoint))fail('Include exact primary document and pinpoint',['sources']);
+   for(const c of n.corrections)if(c.date.getTime()>now||!data.modifiedAt||c.date>data.modifiedAt||data.publishedAt&&c.date<data.publishedAt)fail('Correction requires valid dated modification',['news','corrections']);
+  }
+ }else if(data.news)fail('News metadata is reserved for news entries',['news']);
  if(data.type==='judgment'){
   if(!data.judgment)fail('Judgment metadata is required',['judgment']);
   else {

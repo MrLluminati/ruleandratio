@@ -29,3 +29,6 @@ The initial CI download of the India Code PDF timed out (run 45782819668); parse
 
 ## MSMED judgment research pilot
 Seven case notes have been staged as drafts in src/content/articles/msmed/judgments. See docs/acquisition/msmed-judgment-research.json for source status, statutory topics and issue-specific larger-bench referrals. A judgment hosted by a private database is the underlying judicial text, not an authenticated official copy. Check signed copies and current docket before publication; do not mark a judgment overruled based merely on a referral. The official statutory PDF acquisition failed for all candidates in run 45783221828; stop retrying automatically until a manually obtained PDF is available.
+
+## News intake and publishing
+See docs/news-workflow.md for the manual source registry, local unverified lead intake and reviewed news publication requirements. No automated external monitoring or publication is configured.

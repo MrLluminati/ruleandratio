@@ -1,0 +1,14 @@
+{
+  "id": "replace-lead-id",
+  "sourceId": "supreme-court",
+  "title": "REPLACE",
+  "kind": "judicial-decision",
+  "eventDate": "2000-01-01",
+  "capturedOn": "2000-01-01",
+  "url": "https://example.invalid/document",
+  "areas": [
+    "general"
+  ],
+  "status": "unverified",
+  "notes": "Synthetic template — replace all placeholders."
+}

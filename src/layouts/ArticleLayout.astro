@@ -1,5 +1,6 @@
 ---
 import BaseLayout from './BaseLayout.astro';
+import {newsKinds} from '../lib/news.mjs';
 import ArticleList from '../components/ArticleList.astro';
 import JudgmentRelationships from '../components/JudgmentRelationships.astro';
 import JudgmentDetails from '../components/JudgmentDetails.astro';
@@ -34,7 +35,9 @@ const toc=headings.filter(h=>h.depth===2||h.depth===3);
   <div class="article-columns">
    <div class="article-main">
     {d.type==='judgment' && d.judgment && <JudgmentDetails judgment={d.judgment}/>}
+    {d.news&&<section class="article-sources" aria-label="Development details"><p class="kicker">{newsKinds[d.news.kind]}</p><dl class="rr-tool-breakdown"><dt>Event date</dt><dd><time datetime={isoDate(d.news.eventDate)}>{formatDate(d.news.eventDate)}</time></dd><dt>Authority</dt><dd>{d.news.authority}</dd><dt>Document or case reference</dt><dd>{d.news.identifier}</dd></dl><p><a href={d.news.primaryUrl}>Read primary document</a></p></section>}
     <div class="prose article-body"><slot/></div>
+    {d.news&&d.news.corrections.length>0&&<section class="article-sources"><h2>Corrections and updates</h2><ul>{d.news.corrections.map(c=><li><time datetime={isoDate(c.date)}>{formatDate(c.date)}</time> — {c.summary}</li>)}</ul></section>}
     {d.type==='judgment'&&d.judgment&&<JudgmentRelationships entry={entry} relationships={relationships}/>}
     {statuteLinks.length>0&&<section class="article-sources"><h2>Statutory references</h2><ul class="reference-list">{statuteLinks.map(ref=><li><a href={ref.href}>{ref.label}</a></li>)}</ul></section>}
     <section class="article-sources" id="sources" aria-labelledby="source-title">

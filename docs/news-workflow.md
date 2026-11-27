@@ -1,0 +1,14 @@
+# RR-015F — Legal news editorial workflow
+
+This is a manual, zero-cost workflow. No crawler, feed subscription, paid database integration, automatic monitoring or automatic publishing is enabled. Source registry URLs are discovery entry points, not proof of an event or current access.
+
+1. Review official Supreme Court, Patna High Court and other court updates, Gazette, Parliament, India Code and state notifications. Check approved secondary sources for leads only under their terms. Do not copy publisher headlines, text or proprietary headnotes. No paywall bypass.
+2. For a public lead, copy docs/templates/news/lead.json outside the public repository (or into ignored .rr-news/), fill the exact document-specific link, actual event and capture dates, kind, subject and public notes. Run npm run news:intake -- path/to/lead.json. It produces a local unverified record in .rr-news/ and refuses overwrites. The script does not fetch or authenticate the link or generate articles. Never include confidential information.
+3. Obtain and inspect exact official documents. Distinguish oral observations, interim orders, final rulings, bills, enacted laws, notifications and commencement dates. For hearings with no authoritative record, keep a draft rather than imply a holding. Verify current status, case/notification number, court, operative terms, reporting restrictions and subsequent developments. Record secondary sources actually relied on.
+4. Copy docs/templates/news/article.md into src/content/articles/news/ only when ready to stage public-safe draft content. Use actual source URL and pinpoint. Keep draft:true, verification:pending until human approval. Drafts in the public GitHub repo are visible to repository readers, even when absent from the site. No confidential drafts.
+5. Human editor verifies the report, records actual reviewer and date, source URL and pinpoint, changes verification to verified and draft to false. CI rejects missing metadata or pending verification. Automated validation is not legal authentication.
+6. Publish corrections transparently using news.corrections and modifiedAt, preserving original publication date. Recheck subsequent treatment where necessary. For a digest, verify each item individually, cite each primary document and use eventDate for the final covered event, not an invented judgment date.
+
+Suggested cadence (manual): review primary court notices/judgments and Gazette on working days; check secondary discovery sources; prepare a daily digest only if enough verified material exists, and a weekly digest after review. No scheduled job or email delivery is configured. Global indexing gate stays off until launch approval.
+
+News types and source registry live in src/lib/news.mjs and src/data/news-sources.json. The directory filters published reports by development type or text; event dates are displayed separately from publication dates.

@@ -1,5 +1,6 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
+import NewsDirectory from '../components/NewsDirectory.astro';
 import JudgmentDirectory from '../components/JudgmentDirectory.astro';
 import ToolsDirectory from '../components/ToolsDirectory.astro';
 import ArticleList from '../components/ArticleList.astro';
@@ -23,6 +24,6 @@ const acts=publishedStatutes();
 {section.slug==='journal' ? <p>Rule &amp; Ratio Review is a planned academic journal. No issues or calls for submissions have opened.</p> : section.slug==='tools' ? <ToolsDirectory/> : <>
  {section.slug==='areas-of-law' && <section class="home-section"><h2>Browse legal knowledge hubs</h2>{hubGroups.map(group=><div class="chapter-group"><h3>{group.title}</h3><ul class="subject-list">{group.slugs.map(slug=><li><a href={hubPath(slug)}>{areas.find(a=>a.slug===slug)?.title}</a></li>)}</ul></div>)}</section>}
  {section.slug==='bare-acts'&&<section class="home-section"><h2>Statutory texts</h2><StatuteList acts={acts}/></section>}
- <section class="home-section section-publications"><h2>{section.slug==='areas-of-law'?'All published reading':section.slug==='bare-acts'?'Legislative analysis':'Latest publications'}</h2>{section.slug==='judgments'?<JudgmentDirectory entries={entries}/>:<ArticleList entries={entries}/>}</section>
+ <section class="home-section section-publications"><h2>{section.slug==='areas-of-law'?'All published reading':section.slug==='bare-acts'?'Legislative analysis':'Latest publications'}</h2>{section.slug==='judgments'?<JudgmentDirectory entries={entries}/>:section.slug==='news'?<NewsDirectory entries={entries}/>:<ArticleList entries={entries}/>}</section>
 </>}
 </BaseLayout>

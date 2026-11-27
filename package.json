@@ -13,7 +13,9 @@
     "test:publishing": "node scripts/test-publishing.mjs",
     "import:statute": "node scripts/import-statute.mjs",
     "test:import": "node --test scripts/test-import.mjs",
-    "test:tools": "node --test scripts/test-tools.mjs"
+    "test:tools": "node --test scripts/test-tools.mjs",
+    "news:intake": "node scripts/news-intake.mjs",
+    "test:news": "node --test scripts/test-news.mjs"
   },
   "dependencies": {
     "astro": "^6.0.0"
