@@ -181,7 +181,26 @@ Not a public article. rrhiddenquartzxylophone
 Test only. No real legal development.
 `;
  writeFileSync(join(fixture,'news.md'),newsFixture);
+ const digestFixture=basic('news','rr-test-digest','RR TEST DIGEST')+`news:
+  kind: digest
+  eventDate: 2020-01-01
+  authority: Synthetic editorial desk
+  identifier: TEST DIGEST
+  primaryUrl: https://example.invalid/fixture
+  verification: verified
+  digest:
+    frequency: daily
+    start: 2020-01-01
+    end: 2020-01-01
+    reportSlugs: [rr-test-news]
+---
+Synthetic digest, not legal information.
+`;
+ writeFileSync(join(fixture,'digest.md'),digestFixture);
  expectBuild(true);
+ assert.match(html('news/digests'),/RR TEST DIGEST/);
+ assert.match(html('news/rr-test-digest'),/Developments in this edition/);
+ assert.ok(html('news/rr-test-digest').includes('/news/rr-test-news/'));
  assert.match(html('news'),/RR TEST NEWS/);
  assert.match(html('news/rr-test-news'),/Interim order/);
  assert.match(html('news/rr-test-news'),/TEST NEWS ORDER/);
@@ -260,6 +279,10 @@ Test only. No real legal development.
  writeFileSync(join(fixture,'news.md'),newsFixture.replace('verification: verified','verification: pending'));
  expectBuild(false);
  writeFileSync(join(fixture,'news.md'),newsFixture);
+ writeFileSync(join(fixture,'digest.md'),digestFixture.replace('reportSlugs: [rr-test-news]','reportSlugs: [missing-news]'));
+ expectBuild(false);
+ writeFileSync(join(fixture,'digest.md'),digestFixture);
+ assert.ok(rss.includes('/news/rr-test-digest/'));
  // An unresolved reference must fail even if the article metadata is otherwise valid.
  writeFileSync(join(fixture,'broken-ref.md'),basic('research','rr-broken-ref','Broken reference fixture')+`statuteRefs:
   - act: rr-test-act
@@ -299,6 +322,8 @@ Invalid publication.
  rmSync('dist',{recursive:true,force:true});
  expectBuild(true);
  assert.ok(!existsSync('dist/news/rr-test-news/index.html'));
+ assert.ok(!existsSync('dist/news/rr-test-digest/index.html'));
+ assert.doesNotMatch(html('news/digests'),/RR TEST DIGEST/);
  assert.ok(!existsSync('dist/research/rr-test-article/index.html'));
  assert.ok(!existsSync('dist/judgments/rr-test-case/index.html'));
  assert.ok(!existsSync('dist/judgments/rr-test-later-case/index.html'));

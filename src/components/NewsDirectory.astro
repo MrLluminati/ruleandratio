@@ -6,6 +6,7 @@ import type {Article} from '../lib/publications';
 const {entries}=Astro.props as {entries:Article[]};
 const kinds=[...new Set(entries.map(e=>e.data.news?.kind).filter(Boolean))];
 ---
+<p><a href="/news/digests/">Browse daily and weekly legal digests</a></p>
 {entries.length>0?<><form id="news-filter" class="judgment-filters" hidden><label>Development type<select name="kind"><option value="">All developments</option>{kinds.map(k=><option value={k}>{newsKinds[k!]}</option>)}</select></label><label>Search reports<input name="query" type="search" placeholder="Title, authority or case reference"/></label><button class="rr-tool-secondary" type="reset">Clear filters</button></form><p id="news-count" role="status">{entries.length} reports</p><div class="publication-grid">{entries.map(e=><div data-news-kind={e.data.news?.kind} data-news-search={[e.data.title,e.data.description,e.data.news?.authority,e.data.news?.identifier].join(' ').toLowerCase()}><ArticleCard entry={e}/></div>)}</div></>:<ArticleList entries={entries} emptyMessage="Verified legal news reports will appear here after editorial approval."/>}
 <script>
  const form=document.querySelector<HTMLFormElement>('#news-filter');

@@ -1,3 +1,4 @@
+import {resolveDigest} from './digests.mjs';
 import {getCollection,type CollectionEntry} from 'astro:content';
 import {publishedStatutes} from './statutes';
 import {publicationTypes} from '../data/publication';
@@ -15,6 +16,13 @@ export async function publishedArticles(){
   if(paths.has(path))throw new Error('Duplicate publication route: '+path);
   paths.add(path);
   for(const ref of entry.data.statuteRefs){const act=statutes.find(a=>a.slug===ref.act);if(!act || (ref.provision&&!act.provisions.some(p=>p.slug===ref.provision)))throw new Error('Unresolved statutory reference in '+path+': '+ref.act+'/'+(ref.provision??''));}
+ }
+ const editions=new Set<string>();
+ for(const e of entries.filter(e=>e.data.news?.kind==='digest')){
+  const g=e.data.news!.digest!;
+  const key=g.frequency+':'+isoDate(g.start)+':'+isoDate(g.end);
+  if(editions.has(key))throw new Error('Duplicate digest edition: '+key);
+  editions.add(key);resolveDigest(e,entries);
  }
  const judgments=new Map(entries.filter(e=>e.data.type==='judgment').map(e=>[e.data.slug!,e]));
  for(const entry of judgments.values()){

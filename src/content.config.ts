@@ -3,6 +3,7 @@ import {glob} from 'astro/loaders';
 import {z} from 'astro/zod';
 import {areas} from './data/areas';
 import {types,slugPattern} from './data/publication';
+import {digestPeriod} from './lib/digests.mjs';
 import {newsKinds} from './lib/news.mjs';
 
 const nonempty=z.string().trim().min(1);
@@ -29,6 +30,7 @@ const news=z.object({
  kind:nonempty.refine(k=>Object.hasOwn(newsKinds,k),'Unknown news development type'),
  eventDate:date,authority:nonempty,identifier:nonempty,primaryUrl:url,
  verification:z.enum(['pending','verified']).default('pending'),
+ digest:z.object({frequency:z.enum(['daily','weekly']),start:date,end:date,reportSlugs:z.array(z.string().regex(slugPattern)).min(1)}).optional(),
  corrections:z.array(z.object({date,summary:nonempty})).default([]),
 });
 const articles=defineCollection({
@@ -58,9 +60,14 @@ const articles=defineCollection({
  if(data.modifiedAt && (data.modifiedAt.getTime()>now || (data.publishedAt && data.modifiedAt<data.publishedAt)))fail('Invalid substantive modification date',['modifiedAt']);
  if(!data.sources.some(s=>s.kind==='primary'))fail('At least one primary source is required',['sources']);
  if(data.type==='news'){
+  if(data.slug==='digests')fail('Reserved news archive slug',['slug']);
   const n=data.news;
   if(!n)fail('News publication requires event metadata',['news']);
   else {
+   if(n.kind==='digest'){
+    if(!n.digest)fail('Digest requires coverage and report metadata',['news','digest']);
+    else {try{digestPeriod(n.digest.frequency,n.digest.start,n.digest.end)}catch(e){fail(e instanceof Error?e.message:'Invalid digest period',['news','digest'])}}
+   }else if(n.digest)fail('Digest metadata is reserved for digest entries',['news','digest']);
    if(n.verification!=='verified')fail('News must be verified before publication',['news','verification']);
    if(data.publishedAt&&n.eventDate>data.publishedAt)fail('Event date cannot follow publication',['news','eventDate']);
    if(data.reviewedAt&&n.eventDate>data.reviewedAt)fail('Review cannot predate the event',['reviewedAt']);

@@ -1,0 +1,14 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import ArticleList from '../../components/ArticleList.astro';
+import {publishedArticles,isoDate} from '../../lib/publications';
+const editions=(await publishedArticles()).filter(e=>e.data.news?.kind==='digest').sort((a,b)=>isoDate(b.data.news!.digest!.end).localeCompare(isoDate(a.data.news!.digest!.end)));
+const daily=editions.filter(e=>e.data.news!.digest!.frequency==='daily');
+const weekly=editions.filter(e=>e.data.news!.digest!.frequency==='weekly');
+---
+<BaseLayout title="Legal Digests" description="Reviewed daily and weekly editions of selected Indian legal developments." eligible={editions.length>0} searchType={editions.length?'Directory':undefined} breadcrumbs={[{name:'Home',path:'/'},{name:'Legal News',path:'/news/'},{name:'Legal Digests',path:'/news/digests/'}]}>
+<nav class="breadcrumbs" aria-label="Breadcrumb"><a href="/">Home</a><span>/</span><a href="/news/">Legal News</a><span>/</span><span aria-current="page">Legal Digests</span></nav>
+<header class="article-header"><p class="kicker">Rule &amp; Ratio · Editorial roundups</p><h1>Legal Digests</h1><p class="intro">Selected reviewed legal developments, linked to original reports and primary documents. Not exhaustive coverage.</p></header>
+<section class="home-section"><h2>Daily legal digests</h2><ArticleList entries={daily} emptyMessage="No reviewed daily editions have been published yet."/></section>
+<section class="home-section"><h2>Weekly legal digests</h2><ArticleList entries={weekly} emptyMessage="No reviewed weekly editions have been published yet."/></section>
+</BaseLayout>
