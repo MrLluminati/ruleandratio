@@ -1,0 +1,63 @@
+{
+  "state": "draft-research-only",
+  "researchDate": "2026-11-27",
+  "cases": [
+    {
+      "slug": "dahiben-v-arvindbhai-kalyanji-bhanusali-2020",
+      "name": "Dahiben v. Arvindbhai Kalyanji Bhanusali (Gajra) (D) through LRs & Ors.",
+      "date": "2020-07-09",
+      "sourceUrl": "https://api.sci.gov.in/supremecourt/2017/9337/9337_2017_34_1501_22768_Judgement_09-Jul-2020.pdf",
+      "officialCandidate": "https://api.sci.gov.in/supremecourt/2017/9337/9337_2017_34_1501_22768_Judgement_09-Jul-2020.pdf",
+      "inspectedReproduction": null,
+      "pinpoint": "Paras 12–16 in the official PDF",
+      "status": "Official PDF text and selected page inspected; complete visual comparison pending",
+      "topics": [
+        "order-7-rule-11",
+        "section-96"
+      ]
+    },
+    {
+      "slug": "pandurangan-v-t-jayarama-chettiar-2025",
+      "name": "Pandurangan v. T. Jayarama Chettiar & Anr.",
+      "date": "2025-07-14",
+      "sourceUrl": "https://api.sci.gov.in/supremecourt/2021/11882/11882_2021_7_1501_62291_Judgement_14-Jul-2025.pdf",
+      "officialCandidate": "https://api.sci.gov.in/supremecourt/2021/11882/11882_2021_7_1501_62291_Judgement_14-Jul-2025.pdf",
+      "inspectedReproduction": null,
+      "pinpoint": "Paras 8–13",
+      "status": "Official PDF text and selected page inspected; complete visual comparison pending",
+      "topics": [
+        "section-11",
+        "order-7-rule-11"
+      ]
+    },
+    {
+      "slug": "ambalal-sarabhai-v-ks-infraspace-2020",
+      "name": "Ambalal Sarabhai Enterprise Limited v. KS Infraspace LLP Limited and Another",
+      "date": "2020-01-06",
+      "sourceUrl": "https://api.sci.gov.in/pdfdate/index1.php?dno=343622019&dt=2020-01-06&filename=supremecourt%2F2019%2F34362%2F34362_2019_15_1501_19295_Judgement_06-Jan-2020.pdf",
+      "officialCandidate": "https://api.sci.gov.in/pdfdate/index1.php?dno=343622019&dt=2020-01-06&filename=supremecourt%2F2019%2F34362%2F34362_2019_15_1501_19295_Judgement_06-Jan-2020.pdf",
+      "inspectedReproduction": null,
+      "pinpoint": "Paras 15–19",
+      "status": "Official PDF text inspected; screenshot redirected and could not be compared",
+      "topics": [
+        "order-39-rules-1-2"
+      ]
+    },
+    {
+      "slug": "rahul-s-shah-v-jinendra-kumar-gandhi-2021",
+      "name": "Rahul S. Shah v. Jinendra Kumar Gandhi & Ors.",
+      "date": "2021-04-22",
+      "sourceUrl": "https://indiankanoon.org/doc/93073896/",
+      "officialCandidate": "https://api.sci.gov.in/supremecourt/2020/12200/12200_2020_31_301_27757_Judgement_22-Apr-2021.pdf",
+      "inspectedReproduction": "https://pub-138b930c26524cb4bf6e9099898947c0.r2.dev/judgments/2021/Rahul_S_Shah_vs_Jinendrakumar_Gandhi_on_22_April_2021_1.PDF",
+      "pinpoint": "Paras 41–44, especially direction 14",
+      "status": "Public reproduction text and selected page inspected; official URL timed out",
+      "topics": [
+        "section-47",
+        "section-151",
+        "order-21"
+      ]
+    }
+  ],
+  "notes": "No human review or complete subsequent-treatment check; no statutory links until reviewed statutory records exist. No licensed database checks."
+}

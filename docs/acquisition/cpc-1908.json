@@ -1,0 +1,110 @@
+{
+  "slug": "code-of-civil-procedure-1908",
+  "title": "Code of Civil Procedure, 1908",
+  "researchDate": "2026-11-27",
+  "state": "source-map-only",
+  "coverage": "selected-provisions",
+  "source": {
+    "registry": "https://www.indiacode.nic.in/indiacode/handle/123456789/2191?view_type=browse",
+    "url": "https://www.indiacode.nic.in/bitstream/123456789/11087/1/the_code_of_civil_procedure%2C_1908.pdf",
+    "status": "Historical official-host compilation; text and first-page screenshot inspected; no original-file hash; not current consolidated text"
+  },
+  "provisions": [
+    {
+      "id": "section-9",
+      "pinpoint": "Section 9",
+      "topic": "Civil court jurisdiction",
+      "draftArticle": "src/content/articles/cpc/cpc-section-9.md"
+    },
+    {
+      "id": "section-10",
+      "pinpoint": "Section 10",
+      "topic": "Stay of trial of a subsequently instituted suit",
+      "draftArticle": "src/content/articles/cpc/cpc-section-10.md"
+    },
+    {
+      "id": "section-11",
+      "pinpoint": "Section 11",
+      "topic": "Res judicata",
+      "draftArticle": "src/content/articles/cpc/cpc-section-11.md"
+    },
+    {
+      "id": "section-20",
+      "pinpoint": "Section 20",
+      "topic": "Territorial jurisdiction in other suits",
+      "draftArticle": "src/content/articles/cpc/cpc-section-20.md"
+    },
+    {
+      "id": "section-47",
+      "pinpoint": "Section 47",
+      "topic": "Questions arising in execution",
+      "draftArticle": "src/content/articles/cpc/cpc-section-47.md"
+    },
+    {
+      "id": "section-80",
+      "pinpoint": "Section 80",
+      "topic": "Notice before suits against government or public officers",
+      "draftArticle": "src/content/articles/cpc/cpc-section-80.md"
+    },
+    {
+      "id": "section-96",
+      "pinpoint": "Section 96",
+      "topic": "First appeal against original decrees",
+      "draftArticle": "src/content/articles/cpc/cpc-section-96.md"
+    },
+    {
+      "id": "section-100",
+      "pinpoint": "Section 100",
+      "topic": "Second appeal",
+      "draftArticle": "src/content/articles/cpc/cpc-section-100.md"
+    },
+    {
+      "id": "section-151",
+      "pinpoint": "Section 151",
+      "topic": "Inherent powers of civil courts",
+      "draftArticle": "src/content/articles/cpc/cpc-section-151.md"
+    },
+    {
+      "id": "order-6-rule-17",
+      "pinpoint": "Order VI Rule 17",
+      "topic": "Amendment of pleadings",
+      "draftArticle": "src/content/articles/cpc/cpc-order-6-rule-17.md"
+    },
+    {
+      "id": "order-7-rule-11",
+      "pinpoint": "Order VII Rule 11",
+      "topic": "Rejection of plaint",
+      "draftArticle": "src/content/articles/cpc/cpc-order-7-rule-11.md"
+    },
+    {
+      "id": "order-8-rule-1",
+      "pinpoint": "Order VIII Rule 1",
+      "topic": "Written statement deadlines",
+      "draftArticle": "src/content/articles/cpc/cpc-order-8-rule-1.md"
+    },
+    {
+      "id": "order-21",
+      "pinpoint": "Order XXI",
+      "topic": "Execution of decrees and orders",
+      "draftArticle": "src/content/articles/cpc/cpc-order-21.md"
+    },
+    {
+      "id": "order-39-rules-1-2",
+      "pinpoint": "Order XXXIX Rules 1–2",
+      "topic": "Temporary injunctions",
+      "draftArticle": "src/content/articles/cpc/cpc-order-39-rules-1-2.md"
+    },
+    {
+      "id": "order-41-rule-5",
+      "pinpoint": "Order XLI Rule 5",
+      "topic": "Stay pending appeal",
+      "draftArticle": "src/content/articles/cpc/cpc-order-41-rule-5.md"
+    }
+  ],
+  "review": [
+    "Obtain updated central text and check amendments and commencement",
+    "Check Bihar and other applicable state amendments and High Court rules",
+    "Check Commercial Courts Act and special procedural regimes",
+    "Verify exact statutory text separately before import; no approved statute record"
+  ]
+}
