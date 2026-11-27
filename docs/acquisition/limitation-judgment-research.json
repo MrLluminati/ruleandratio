@@ -1,0 +1,53 @@
+{
+  "state": "draft-research-only",
+  "researchDate": "2026-11-27",
+  "cases": [
+    {
+      "slug": "basawaraj-v-special-land-acquisition-officer-2013",
+      "name": "Basawaraj & Anr. v. Special Land Acquisition Officer",
+      "date": "2013-08-22",
+      "sourceUrl": "https://indiankanoon.org/doc/95455039/",
+      "pinpoint": "Paras 9–15",
+      "status": "Public reproduction consulted; official signed copy pending",
+      "topics": [
+        "section-5"
+      ]
+    },
+    {
+      "slug": "esha-bhattacharjee-v-raghunathpur-nafar-academy-2013",
+      "name": "Esha Bhattacharjee v. Managing Committee of Raghunathpur Nafar Academy & Ors.",
+      "date": "2013-09-13",
+      "sourceUrl": "https://indiankanoon.org/doc/95647034/",
+      "pinpoint": "Discussion of condonation principles and application to the school committee's appeal",
+      "status": "Public reproduction consulted; official signed copy and precise reporter paragraph numbering pending",
+      "topics": [
+        "section-5"
+      ]
+    },
+    {
+      "slug": "consolidated-engineering-v-principal-secretary-irrigation-2008",
+      "name": "Consolidated Engineering Enterprises v. Principal Secretary, Irrigation Department & Ors.",
+      "date": "2008-04-03",
+      "sourceUrl": "https://indiankanoon.org/doc/1818558/",
+      "pinpoint": "Paras 12–20 of the Panchal J. opinion",
+      "status": "Public reproduction consulted; official signed copy and separate concurring opinion comparison pending",
+      "topics": [
+        "section-14",
+        "section-29"
+      ]
+    },
+    {
+      "slug": "asset-reconstruction-company-v-bishal-jaiswal-2021",
+      "name": "Asset Reconstruction Company (India) Limited v. Bishal Jaiswal & Anr.",
+      "date": "2021-04-15",
+      "sourceUrl": "https://api.sci.gov.in/supremecourt/2021/2660/2660_2021_33_1502_27520_Judgement_15-Apr-2021.pdf",
+      "pinpoint": "Para 13 onwards; discussion of financial statements, qualifications and connected appeals",
+      "status": "Official PDF text and first-page rendering inspected; complete original-file comparison pending",
+      "topics": [
+        "section-18",
+        "article-137"
+      ]
+    }
+  ],
+  "notes": "No comprehensive later-treatment review. No published statutory links or licensed database checks. The existing Yusuf news draft remains separate."
+}

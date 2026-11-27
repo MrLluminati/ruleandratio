@@ -1,0 +1,153 @@
+{
+  "slug": "limitation-act-1963",
+  "title": "Limitation Act, 1963",
+  "actNumber": "36 of 1963",
+  "researchDate": "2026-11-27",
+  "state": "source-map-only",
+  "coverage": "selected-provisions",
+  "source": {
+    "registry": "https://www.indiacode.nic.in/indiacode/handle/123456789/1565?col=123456789%2F1362&view_type=search",
+    "url": "https://www.indiacode.nic.in/bitstream/123456789/1565/5/A1963-36.pdf",
+    "status": "Official-host PDF indexed text and printed pages 3 and 12 visually inspected; no original-file checksum; current amendment status not certified"
+  },
+  "provisions": [
+    {
+      "id": "section-3",
+      "pinpoint": "Section 3",
+      "topic": "Bar of limitation",
+      "draftArticle": "src/content/articles/limitation/limitation-act-section-3.md"
+    },
+    {
+      "id": "section-4",
+      "pinpoint": "Section 4",
+      "topic": "Court closure on the last day",
+      "draftArticle": "src/content/articles/limitation/limitation-act-section-4.md"
+    },
+    {
+      "id": "section-5",
+      "pinpoint": "Section 5",
+      "topic": "Condonation of delay",
+      "draftArticle": "src/content/articles/limitation/limitation-act-section-5.md"
+    },
+    {
+      "id": "sections-6-9",
+      "pinpoint": "Sections 6–9",
+      "topic": "Legal disability and running of time",
+      "draftArticle": "src/content/articles/limitation/limitation-act-sections-6-9.md"
+    },
+    {
+      "id": "section-12",
+      "pinpoint": "Section 12",
+      "topic": "Exclusion of time in legal proceedings",
+      "draftArticle": "src/content/articles/limitation/limitation-act-section-12.md"
+    },
+    {
+      "id": "section-14",
+      "pinpoint": "Section 14",
+      "topic": "Proceedings before an incompetent forum",
+      "draftArticle": "src/content/articles/limitation/limitation-act-section-14.md"
+    },
+    {
+      "id": "section-15",
+      "pinpoint": "Section 15",
+      "topic": "Other statutory exclusions",
+      "draftArticle": "src/content/articles/limitation/limitation-act-section-15.md"
+    },
+    {
+      "id": "section-17",
+      "pinpoint": "Section 17",
+      "topic": "Fraud, concealment and mistake",
+      "draftArticle": "src/content/articles/limitation/limitation-act-section-17.md"
+    },
+    {
+      "id": "section-18",
+      "pinpoint": "Section 18",
+      "topic": "Written acknowledgment of liability",
+      "draftArticle": "src/content/articles/limitation/limitation-act-section-18.md"
+    },
+    {
+      "id": "section-19",
+      "pinpoint": "Section 19",
+      "topic": "Part-payment and fresh limitation",
+      "draftArticle": "src/content/articles/limitation/limitation-act-section-19.md"
+    },
+    {
+      "id": "section-21",
+      "pinpoint": "Section 21",
+      "topic": "Addition or substitution of parties",
+      "draftArticle": "src/content/articles/limitation/limitation-act-section-21.md"
+    },
+    {
+      "id": "section-22",
+      "pinpoint": "Section 22",
+      "topic": "Continuing breach and tort",
+      "draftArticle": "src/content/articles/limitation/limitation-act-section-22.md"
+    },
+    {
+      "id": "section-27",
+      "pinpoint": "Section 27",
+      "topic": "Extinguishment of property rights",
+      "draftArticle": "src/content/articles/limitation/limitation-act-section-27.md"
+    },
+    {
+      "id": "section-29",
+      "pinpoint": "Section 29",
+      "topic": "Special and local laws",
+      "draftArticle": "src/content/articles/limitation/limitation-act-section-29.md"
+    },
+    {
+      "id": "articles-14-15",
+      "pinpoint": "Schedule Articles 14–15",
+      "topic": "Price of goods supplied",
+      "draftArticle": "src/content/articles/limitation/limitation-act-articles-14-15.md"
+    },
+    {
+      "id": "article-54",
+      "pinpoint": "Schedule Article 54",
+      "topic": "Specific performance",
+      "draftArticle": "src/content/articles/limitation/limitation-act-article-54.md"
+    },
+    {
+      "id": "article-55",
+      "pinpoint": "Schedule Article 55",
+      "topic": "Compensation for breach of contract",
+      "draftArticle": "src/content/articles/limitation/limitation-act-article-55.md"
+    },
+    {
+      "id": "articles-58-59",
+      "pinpoint": "Schedule Articles 58–59",
+      "topic": "Declaration and cancellation",
+      "draftArticle": "src/content/articles/limitation/limitation-act-articles-58-59.md"
+    },
+    {
+      "id": "articles-64-65",
+      "pinpoint": "Schedule Articles 64–65",
+      "topic": "Possession of immovable property",
+      "draftArticle": "src/content/articles/limitation/limitation-act-articles-64-65.md"
+    },
+    {
+      "id": "article-113",
+      "pinpoint": "Schedule Article 113",
+      "topic": "Residuary suits",
+      "draftArticle": "src/content/articles/limitation/limitation-act-article-113.md"
+    },
+    {
+      "id": "articles-135-136",
+      "pinpoint": "Schedule Articles 135–136",
+      "topic": "Execution of decrees",
+      "draftArticle": "src/content/articles/limitation/limitation-act-articles-135-136.md"
+    },
+    {
+      "id": "article-137",
+      "pinpoint": "Schedule Article 137",
+      "topic": "Residuary applications",
+      "draftArticle": "src/content/articles/limitation/limitation-act-article-137.md"
+    }
+  ],
+  "review": [
+    "Obtain original and verify every selected provision and Schedule row",
+    "Verify amendments, special laws and territorial adaptations",
+    "Check judicial exclusion orders and current procedural rules",
+    "No verbatim statute record or reviewer approval"
+  ]
+}
