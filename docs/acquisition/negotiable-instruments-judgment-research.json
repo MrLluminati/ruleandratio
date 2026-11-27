@@ -1,0 +1,76 @@
+{
+  "state": "draft-research-only",
+  "researchDate": "2026-11-27",
+  "cases": [
+    {
+      "slug": "rangappa-v-sri-mohan-2010",
+      "name": "Rangappa v. Sri Mohan",
+      "date": "2010-05-07",
+      "sourceUrl": "https://api.sci.gov.in/judgment/judis/36322.pdf",
+      "officialCandidate": "https://api.sci.gov.in/judgment/judis/36322.pdf",
+      "pinpoint": "Paras 13–15",
+      "status": "Official PDF indexed text and first page inspected",
+      "topics": [
+        "section-118",
+        "section-139"
+      ]
+    },
+    {
+      "slug": "basalingappa-v-mudibasappa-2019",
+      "name": "Basalingappa v. Mudibasappa",
+      "date": "2019-04-09",
+      "sourceUrl": "https://api.sci.gov.in/supremecourt/2018/36832/36832_2018_Judgement_09-Apr-2019.pdf",
+      "officialCandidate": "https://api.sci.gov.in/supremecourt/2018/36832/36832_2018_Judgement_09-Apr-2019.pdf",
+      "pinpoint": "Para 25 and subsequent factual discussion",
+      "status": "Official PDF indexed text and first page inspected; targeted second retrieval timed out",
+      "topics": [
+        "section-118",
+        "section-139"
+      ]
+    },
+    {
+      "slug": "aneeta-hada-v-godfather-travels-2012",
+      "name": "Aneeta Hada v. Godfather Travels & Tours Pvt. Ltd.",
+      "date": "2012-04-27",
+      "sourceUrl": "https://api.sci.gov.in/jonew/judis/39265.pdf",
+      "officialCandidate": "https://api.sci.gov.in/jonew/judis/39265.pdf",
+      "pinpoint": "Paras 37, 42–45",
+      "status": "Official PDF indexed text inspected; first-page rendering timed out",
+      "topics": [
+        "section-141"
+      ]
+    },
+    {
+      "slug": "rakesh-ranjan-shrivastava-v-state-of-jharkhand-2024",
+      "name": "Rakesh Ranjan Shrivastava v. State of Jharkhand & Anr.",
+      "date": "2024-03-15",
+      "sourceUrl": "https://sooperkanoon.com/case/1230913/rakesh-ranjan-shrivastava-vs-state-jharkhand",
+      "officialCandidate": "https://api.sci.gov.in/supremecourt/2023/7859/7859_2023_8_1502_51462_Judgement_15-Mar-2024.pdf",
+      "pinpoint": "Paras 16–20",
+      "status": "Public reproduction inspected; official candidate timed out",
+      "topics": [
+        "section-143a"
+      ]
+    },
+    {
+      "slug": "jamboo-bhandari-v-mp-state-industrial-development-2023",
+      "name": "Jamboo Bhandari v. M.P. State Industrial Development Corporation Ltd. & Ors.",
+      "date": "2023-09-04",
+      "sourceUrl": "https://api.sci.gov.in/supremecourt/2022/30722/30722_2022_7_40_46699_Judgement_04-Sep-2023.pdf",
+      "officialCandidate": "https://api.sci.gov.in/supremecourt/2022/30722/30722_2022_7_40_46699_Judgement_04-Sep-2023.pdf",
+      "pinpoint": "Paras 6–13",
+      "status": "Official PDF text and first page inspected",
+      "topics": [
+        "section-148"
+      ]
+    }
+  ],
+  "followUp": [
+    {
+      "topic": "Section 148 subsequent treatment",
+      "url": "https://api.sci.gov.in/supremecourt/2024/24556/24556_2024_16_8_58094_Judgement_19-Dec-2024.pdf",
+      "status": "Discovery result only; full reading and treatment classification pending"
+    }
+  ],
+  "notes": "No full signed-original comparison or comprehensive current-law check. No human review or licensed database checks. Drafts only."
+}

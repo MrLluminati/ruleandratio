@@ -1,0 +1,165 @@
+{
+  "slug": "negotiable-instruments-act-1881",
+  "title": "Negotiable Instruments Act, 1881",
+  "actNumber": "26 of 1881",
+  "researchDate": "2026-11-27",
+  "state": "source-map-only",
+  "coverage": "selected-provisions",
+  "source": {
+    "url": "https://www.indiacode.nic.in/bitstream/123456789/2189/1/a1881-26.pdf",
+    "registry": "https://www.indiacode.nic.in/handle/123456789/13092?locale=hi",
+    "status": "Official India Code indexed text and first-page screenshot inspected; complete comparison and original PDF checksum pending"
+  },
+  "additionalSource": {
+    "url": "https://www.indiacode.nic.in/repealedfileopen?rfilename=A2018-20.pdf",
+    "title": "Negotiable Instruments (Amendment) Act, 2018",
+    "status": "Official-host search result located; full original comparison pending"
+  },
+  "provisions": [
+    {
+      "id": "sections-4-7",
+      "pinpoint": "Sections 4–7",
+      "topic": "Promissory notes, bills and cheques",
+      "draftArticle": "src/content/articles/negotiable-instruments/ni-act-sections-4-7.md"
+    },
+    {
+      "id": "sections-8-10",
+      "pinpoint": "Sections 8–10",
+      "topic": "Holder, holder in due course and payment",
+      "draftArticle": "src/content/articles/negotiable-instruments/ni-act-sections-8-10.md"
+    },
+    {
+      "id": "sections-13-16",
+      "pinpoint": "Sections 13–16",
+      "topic": "Negotiability and endorsements",
+      "draftArticle": "src/content/articles/negotiable-instruments/ni-act-sections-13-16.md"
+    },
+    {
+      "id": "section-20",
+      "pinpoint": "Section 20",
+      "topic": "Inchoate stamped instruments",
+      "draftArticle": "src/content/articles/negotiable-instruments/ni-act-section-20.md"
+    },
+    {
+      "id": "sections-30-35",
+      "pinpoint": "Sections 30–35",
+      "topic": "Liability of parties to instruments",
+      "draftArticle": "src/content/articles/negotiable-instruments/ni-act-sections-30-35.md"
+    },
+    {
+      "id": "sections-46-56",
+      "pinpoint": "Sections 46–56",
+      "topic": "Delivery, negotiation and part-payment endorsements",
+      "draftArticle": "src/content/articles/negotiable-instruments/ni-act-sections-46-56.md"
+    },
+    {
+      "id": "sections-61-76",
+      "pinpoint": "Sections 61–76",
+      "topic": "Presentment and exceptions",
+      "draftArticle": "src/content/articles/negotiable-instruments/ni-act-sections-61-76.md"
+    },
+    {
+      "id": "sections-82-89",
+      "pinpoint": "Sections 82–89",
+      "topic": "Discharge and material alteration",
+      "draftArticle": "src/content/articles/negotiable-instruments/ni-act-sections-82-89.md"
+    },
+    {
+      "id": "sections-91-98",
+      "pinpoint": "Sections 91–98",
+      "topic": "Dishonour and notice",
+      "draftArticle": "src/content/articles/negotiable-instruments/ni-act-sections-91-98.md"
+    },
+    {
+      "id": "section-118",
+      "pinpoint": "Section 118",
+      "topic": "Presumptions concerning negotiable instruments",
+      "draftArticle": "src/content/articles/negotiable-instruments/ni-act-section-118.md"
+    },
+    {
+      "id": "sections-123-131",
+      "pinpoint": "Sections 123–131",
+      "topic": "Crossed cheques and banker protection",
+      "draftArticle": "src/content/articles/negotiable-instruments/ni-act-sections-123-131.md"
+    },
+    {
+      "id": "section-138",
+      "pinpoint": "Section 138",
+      "topic": "Dishonour of cheques",
+      "draftArticle": "src/content/articles/negotiable-instruments/ni-act-section-138.md"
+    },
+    {
+      "id": "section-138-demand-notice",
+      "pinpoint": "Section 138 proviso (b)–(c)",
+      "topic": "Demand notice and cause of action",
+      "draftArticle": "src/content/articles/negotiable-instruments/ni-act-section-138-demand-notice.md"
+    },
+    {
+      "id": "section-139",
+      "pinpoint": "Section 139",
+      "topic": "Presumption in favour of the holder",
+      "draftArticle": "src/content/articles/negotiable-instruments/ni-act-section-139.md"
+    },
+    {
+      "id": "section-140",
+      "pinpoint": "Section 140",
+      "topic": "Excluded defence",
+      "draftArticle": "src/content/articles/negotiable-instruments/ni-act-section-140.md"
+    },
+    {
+      "id": "section-141",
+      "pinpoint": "Section 141",
+      "topic": "Offences by companies",
+      "draftArticle": "src/content/articles/negotiable-instruments/ni-act-section-141.md"
+    },
+    {
+      "id": "section-142",
+      "pinpoint": "Section 142",
+      "topic": "Cognizance and complaint limitation",
+      "draftArticle": "src/content/articles/negotiable-instruments/ni-act-section-142.md"
+    },
+    {
+      "id": "section-142-2-142a",
+      "pinpoint": "Sections 142(2) and 142A",
+      "topic": "Territorial jurisdiction and transfers",
+      "draftArticle": "src/content/articles/negotiable-instruments/ni-act-section-142-2-142a.md"
+    },
+    {
+      "id": "section-143",
+      "pinpoint": "Section 143",
+      "topic": "Summary trial",
+      "draftArticle": "src/content/articles/negotiable-instruments/ni-act-section-143.md"
+    },
+    {
+      "id": "section-143a",
+      "pinpoint": "Section 143A",
+      "topic": "Interim compensation",
+      "draftArticle": "src/content/articles/negotiable-instruments/ni-act-section-143a.md"
+    },
+    {
+      "id": "sections-144-146",
+      "pinpoint": "Sections 144–146",
+      "topic": "Summons, affidavit evidence and bank memo",
+      "draftArticle": "src/content/articles/negotiable-instruments/ni-act-sections-144-146.md"
+    },
+    {
+      "id": "section-147",
+      "pinpoint": "Section 147",
+      "topic": "Compounding",
+      "draftArticle": "src/content/articles/negotiable-instruments/ni-act-section-147.md"
+    },
+    {
+      "id": "section-148",
+      "pinpoint": "Section 148",
+      "topic": "Deposit pending appeal against conviction",
+      "draftArticle": "src/content/articles/negotiable-instruments/ni-act-section-148.md"
+    }
+  ],
+  "review": [
+    "Verify central amendments and applicable state rules",
+    "Check current RBI cheque validity direction and bank rules",
+    "Verify BNSS/BSA savings and procedural cross-references",
+    "Check temporal application of Sections 143A and 148 separately",
+    "No approved verbatim statutory text"
+  ]
+}
