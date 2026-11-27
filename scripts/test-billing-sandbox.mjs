@@ -1,0 +1,58 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync,readdirSync} from 'node:fs';
+import {DatabaseSync} from 'node:sqlite';
+import {billingWebhook,billingPanel,requestCancellation} from '../studio/billing-sandbox.mjs';
+const now=1700000000,secret='test-only-webhook-secret',enc=new TextEncoder(),hash='a'.repeat(64),site='https://account.example.invalid';
+const envBase={BILLING_MODE:'sandbox',RAZORPAY_KEY_ID:'rzp_test_example',RAZORPAY_KEY_SECRET:'test-only',RAZORPAY_WEBHOOK_SECRET:secret,RAZORPAY_ACCOUNT_ID:'acc_test'};
+test('test-only billing: signature, capture, replay, refund race, cancellation ownership',async()=>{
+ const sql=new DatabaseSync(':memory:');
+ try{
+  const dir=new URL('../studio/migrations/',import.meta.url);
+  for(const file of readdirSync(dir).filter(x=>x.endsWith('.sql')).sort())sql.exec(readFileSync(new URL(file,dir),'utf8'));
+  const DB={prepare(query){return {bind(...args){return {first:async()=>sql.prepare(query).get(...args)??null,all:async()=>({results:sql.prepare(query).all(...args)}),run:async()=>sql.prepare(query).run(...args)}}}},async batch(statements){sql.exec('BEGIN');try{for(const s of statements)await s.run();sql.exec('COMMIT')}catch(e){sql.exec('ROLLBACK');throw e}}};
+  const env={...envBase,DB};
+  sql.exec("INSERT INTO billing_sandbox_settings VALUES (1,'acc_test',1); INSERT INTO member_profiles(id,issuer,subject,created_at) VALUES ('a','issuer','a',1),('b','issuer','b',1); INSERT INTO billing_plans VALUES ('monthly','Synthetic test plan','monthly',10000,'INR','plan_test',1); INSERT INTO billing_subscriptions VALUES ('sub-local','a','monthly','sub_test',10000,'https://rzp.io/rzp/abc',1700001000,1)");
+  sql.prepare('INSERT INTO member_sessions VALUES (?,?,?,?)').run(hash,'a',now-10,now+600);
+  sql.prepare('INSERT INTO member_sessions VALUES (?,?,?,?)').run('b'.repeat(64),'b',now-10,now+600);
+  const key=await crypto.subtle.importKey('raw',enc.encode(secret),{name:'HMAC',hash:'SHA-256'},false,['sign']);
+  const event=(payment='pay_one',invoice='inv_one',cycle=1)=>({account_id:'acc_test',created_at:now,event:'subscription.charged',payload:{subscription:{entity:{id:'sub_test',plan_id:'plan_test',quantity:1,current_start:now-60,current_end:now-60+30*86400,paid_count:cycle}},payment:{entity:{id:payment,invoice_id:invoice,status:'captured',currency:'INR',amount:10000}}}});
+  const refund=payment=>({account_id:'acc_test',created_at:now,event:'refund.processed',payload:{refund:{entity:{id:'rfnd_one',payment_id:payment}}}});
+  const send=async(e,eventId,override={},bad=false,api={})=>{
+   const raw=JSON.stringify(e),sig=Array.from(new Uint8Array(await crypto.subtle.sign('HMAC',key,enc.encode(raw))),x=>x.toString(16).padStart(2,'0')).join('');
+   return billingWebhook(new Request(site+'/webhooks/razorpay-test',{method:'POST',headers:{'x-razorpay-event-id':eventId,'x-razorpay-signature':bad?'0'.repeat(64):sig},body:raw}),{...env,...override},now,{fetcher:async url=>{const p=e.payload.payment.entity;assert.equal(url,'https://api.razorpay.com/v1/payments/'+p.id);return Response.json({...p,amount_refunded:0,...api})}});
+  };
+  assert.equal((await send(event(),'bad',{},true)).status,401);
+  assert.equal((await send(event(),'live',{RAZORPAY_KEY_ID:'rzp_live_example'})).status,404);
+  assert.equal((await send(event(),'disabled',{BILLING_MODE:'disabled'})).status,404);
+  assert.equal((await send(event(),'uncaptured',{},false,{status:'authorized'})).status,422);
+  assert.equal((await send(event(),'badamount',{},false,{amount:1})).status,422);
+  assert.equal((await send(event(),'wrongaccount', {RAZORPAY_ACCOUNT_ID:'acc_other'})).status,404);
+  assert.match(await billingPanel(env,'a',hash,now),/Open test checkout/);
+  assert.ok(!(await billingPanel(env,'b','b'.repeat(64),now)).includes('Open test checkout'));
+  const cancellation=new URLSearchParams({subscription:'sub-local',confirm:'yes'});
+  assert.equal(await requestCancellation(env,'b','b'.repeat(64),now,cancellation),false);
+  assert.equal(await requestCancellation(env,'a',hash,now,cancellation),true);
+  assert.match(await billingPanel(env,'a',hash,now),/Cancellation request: requested/);
+  const activation=event();activation.event='subscription.activated';
+  assert.equal((await send(activation,'activate')).status,200);
+  assert.equal(sql.prepare('SELECT COUNT(*) n FROM membership_entitlements').get().n,0);
+  assert.equal((await send(event(),'charge1')).status,200);
+  assert.equal((await send(event(),'charge1')).status,200);
+  assert.equal((await send(event('pay_fake','inv_fake',2),'charge1')).status,409);
+  assert.equal((await send(event('pay_duplicate','inv_duplicate',1),'duplicatecycle')).status,200);
+  assert.equal(sql.prepare('SELECT COUNT(*) n FROM membership_entitlements').get().n,1);
+  assert.equal((await send(refund('pay_one'),'refund1')).status,200);
+  assert.equal(sql.prepare('SELECT revoked_at FROM membership_entitlements').get().revoked_at,now);
+  assert.equal((await send(event(),'replayedwithnewid')).status,200);
+  assert.equal(sql.prepare('SELECT revoked_at FROM membership_entitlements').get().revoked_at,now);
+  assert.equal((await send(refund('pay_two'),'earlyrefund')).status,200);
+  assert.equal((await send(event('pay_two','inv_two',2),'charge2')).status,200);
+  assert.equal(sql.prepare('SELECT COUNT(*) n FROM membership_entitlements').get().n,1);
+  assert.equal((await send(event('pay_three','inv_three',3),'charge3',{},false,{amount_refunded:100})).status,200);
+  assert.equal(sql.prepare('SELECT COUNT(*) n FROM membership_entitlements').get().n,1);
+  assert.equal((await send(event('pay_four','inv_four',4),'charge4')).status,200);
+  assert.equal(sql.prepare('SELECT COUNT(*) n FROM membership_entitlements WHERE revoked_at IS NULL').get().n,1);
+  assert.match(await billingPanel(env,'a',hash,now),/Verified test charges/);
+ }finally{sql.close()}
+});

@@ -10,7 +10,9 @@
     "MEMBER_ISSUER": "https://REPLACE.auth0.com/",
     "MEMBER_CLIENT_ID": "REPLACE",
     "MEMBER_WORKSPACE_ENABLED": "false",
-    "PUBLIC_SITE_ORIGIN": "https://www.example.invalid"
+    "PUBLIC_SITE_ORIGIN": "https://www.example.invalid",
+    "BILLING_MODE": "disabled",
+    "RAZORPAY_ACCOUNT_ID": "REPLACE"
   },
   "d1_databases": [
     {

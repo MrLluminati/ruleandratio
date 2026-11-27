@@ -2,6 +2,7 @@ import {createRemoteJWKSet,jwtVerify} from 'jose';
 import {canStaff,canMember} from './permissions.mjs';
 import {editorialRoute} from './editorial-workspace.mjs';
 import {memberRoute} from './member-workspace.mjs';
+import {billingWebhook} from './billing-sandbox.mjs';
 
 const loginCookie='__Host-rr-login',sessionCookie='__Host-rr-member';
 const nowSeconds=()=>Math.floor(Date.now()/1000);
@@ -76,6 +77,7 @@ export function makeWorker({keyset=keys,fetchToken=fetch,clock=nowSeconds}={}){
     if(u.pathname==='/api/session')return response(JSON.stringify({kind:'staff',role:actor.role}),200,{'content-type':'application/json; charset=utf-8'});
     return page('Editorial Studio','<p>Signed in as authorised staff: <strong>'+esc(actor.role)+'</strong>.</p><p>Editorial tools will be connected in the next phase. No content editing or publication is enabled here.</p><a href="/cdn-cgi/access/logout">Sign out of staff access</a>');
    }
+   if(u.pathname==='/webhooks/razorpay-test')return billingWebhook(req,env,now);
    const issuerOrigin=origin(env.MEMBER_ISSUER?.replace(/\/$/,''));
    const issuer=issuerOrigin+'/',client=env.MEMBER_CLIENT_ID;
    if(!client||!env.MEMBER_CLIENT_SECRET)return unavailable();
@@ -122,7 +124,7 @@ export function makeWorker({keyset=keys,fetchToken=fetch,clock=nowSeconds}={}){
     const url=new URL(issuer+'oidc/logout');url.search=new URLSearchParams({client_id:client,post_logout_redirect_uri:site+'/'}).toString();
     return redirect(url.href,[cookie(sessionCookie,'',0),cookie(loginCookie,'',0)]);
    }
-   if(env.MEMBER_WORKSPACE_ENABLED==='true'&&(u.pathname==='/account'||u.pathname.startsWith('/account/')))return memberRoute(req,db,actor,token?await hash(token):null,now,env.PUBLIC_SITE_ORIGIN);
+   if(env.MEMBER_WORKSPACE_ENABLED==='true'&&(u.pathname==='/account'||u.pathname.startsWith('/account/')))return memberRoute(req,db,actor,token?await hash(token):null,now,env.PUBLIC_SITE_ORIGIN,env);
    if(req.method!=='GET')return response('Method not allowed',405,{allow:'GET'});
    if(u.pathname==='/api/session'){
     if(!active)return unauthorized();

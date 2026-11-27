@@ -1,5 +1,6 @@
 import MarkdownIt from 'markdown-it';
 import {canMember} from './permissions.mjs';
+import {billingPanel,requestCancellation} from './billing-sandbox.mjs';
 const md=new MarkdownIt({html:false,linkify:false}).disable('image');
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const statement=(db,sql,...params)=>db.prepare(sql).bind(...params);
@@ -39,7 +40,7 @@ function contentRow(row,site,actions=''){
  return '<div class="row"><strong>'+(link?'<a href="'+esc(link)+'">'+esc(row.title)+'</a>':esc(row.title))+'</strong><br><small>'+esc(row.kind)+' · '+esc(row.access_level)+'</small>'+actions+'</div>';
 }
 const empty='<p class="muted">Nothing saved yet.</p>';
-export async function memberRoute(req,db,actor,sessionHash,now,publicSite){
+export async function memberRoute(req,db,actor,sessionHash,now,publicSite,billingEnv=null){
  try{
   if(!canMember(actor,'profile:read',{memberId:actor?.id})||typeof sessionHash!=='string'||!/^[a-f0-9]{64}$/.test(sessionHash))fail('Sign in to continue',401);
   const id=actor.id,session=[sessionHash,id,now],u=new URL(req.url);
@@ -54,7 +55,7 @@ export async function memberRoute(req,db,actor,sessionHash,now,publicSite){
     return layout('My account','<p>Welcome'+(profile.display_name?', '+esc(profile.display_name):'')+'. Your research workspace is private.</p><div class="grid"><section><p class="state">Membership</p><h2>'+ (paid?'Premium access active':'Free membership')+'</h2><p>'+ (paid?'Recorded access until '+esc(stamp(expiry.until)):'Read public legal content and build your research library.')+'</p><a href="/account/membership">View membership</a></section><section><h2>Saved research</h2><p>'+esc(counts?.bookmarks??0)+' bookmarks · '+esc(counts?.collections??0)+' collections</p><a href="/account/library">Open your library</a></section><section><h2>My profile</h2><p>'+esc(roles[profile.profession]??'Not specified')+'</p><a href="/account/profile">Edit profile</a></section><section><h2>Account security</h2><p>Login and password recovery are managed by the identity provider.</p>'+form('/logout','','Sign out')+'</section></div>');
    }
    if(u.pathname==='/account/profile')return layout('My profile','<section><p>Optional, self-described information; no professional verification is implied.</p>'+form('/account/profile',field('displayName','Display name',profile.display_name,100)+'<label>Professional category<select name="profession">'+Object.entries(roles).map(([key,label])=>'<option value="'+esc(key)+'"'+(profile.profession===key?' selected':'')+'>'+esc(label)+'</option>').join('')+'</select></label>','Save profile')+'</section>');
-   if(u.pathname==='/account/membership')return layout('My membership','<section><p class="state">Current access</p><h2>'+(paid?'Premium research enabled':'Free membership')+'</h2><p>'+(paid?'Access expires at '+esc(stamp(expiry.until))+'.':'No active premium entitlement.')+'</p><p class="notice">Checkout, renewal, billing history and cancellation will be enabled after payment integration. This status does not certify payment or recurring subscription terms.</p></section>');
+   if(u.pathname==='/account/membership')return layout('My membership','<section><p class="state">Current access</p><h2>'+(paid?'Premium research enabled':'Free membership')+'</h2><p>'+(paid?'Access expires at '+esc(stamp(expiry.until))+'.':'No active premium entitlement.')+'</p><p class="notice">Checkout, renewal, billing history and cancellation will be enabled after payment integration. This status does not certify payment or recurring subscription terms.</p></section>'+(billingEnv?await billingPanel(billingEnv,id,sessionHash,now):''));
    if(u.pathname==='/account/library'){
     const bookmarks=await all(db,'SELECT c.* FROM member_bookmarks b JOIN member_content_catalog c ON c.content_key=b.content_key WHERE b.member_id=? AND c.status=? AND '+active+' ORDER BY b.created_at DESC LIMIT 500',id,'published',...session);
     const collections=await all(db,'SELECT id,name FROM member_collections WHERE member_id=? AND '+active+' ORDER BY created_at DESC LIMIT 50',id,...session);
@@ -85,6 +86,10 @@ export async function memberRoute(req,db,actor,sessionHash,now,publicSite){
   }
   if(req.method!=='POST')fail('Method not allowed',405);
   const f=await readForm(req);
+  if(u.pathname==='/account/billing/cancel'){
+   if(!billingEnv||!await requestCancellation(billingEnv,id,sessionHash,now,f))fail('Cancellation request unavailable or invalid',404);
+   return go('/account/membership');
+  }
   // Explicit field sets prevent role/entitlement injection and cross-account ID substitution.
   const fields=(...allowed)=>{if([...f.keys()].some(k=>!allowed.includes(k)))fail('Unexpected form field')};
   if(u.pathname==='/account/profile'){
