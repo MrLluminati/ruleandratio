@@ -1,0 +1,21 @@
+{
+  "name": "rr-members-staging",
+  "main": "auth-worker.mjs",
+  "compatibility_date": "2026-11-27",
+  "workers_dev": false,
+  "preview_urls": false,
+  "vars": {
+    "APP_MODE": "member",
+    "APP_ORIGIN": "https://account.example.invalid",
+    "MEMBER_ISSUER": "https://REPLACE.auth0.com/",
+    "MEMBER_CLIENT_ID": "REPLACE"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "rr-members-staging",
+      "database_id": "REPLACE",
+      "migrations_dir": "migrations"
+    }
+  ]
+}

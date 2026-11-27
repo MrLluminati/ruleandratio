@@ -1,0 +1,21 @@
+{
+  "name": "rr-staff-staging",
+  "main": "auth-worker.mjs",
+  "compatibility_date": "2026-11-27",
+  "workers_dev": false,
+  "preview_urls": false,
+  "vars": {
+    "APP_MODE": "staff",
+    "APP_ORIGIN": "https://admin.example.invalid",
+    "ACCESS_ISSUER": "https://REPLACE.cloudflareaccess.com",
+    "ACCESS_AUDIENCE": "REPLACE"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "rr-staff-staging",
+      "database_id": "REPLACE",
+      "migrations_dir": "migrations"
+    }
+  ]
+}

@@ -24,10 +24,11 @@
     "test:editorial": "node --test scripts/test-editorial.mjs scripts/test-editorial-cms.mjs",
     "editorial:cms": "node scripts/editorial-cms.mjs",
     "test:statutes": "node --test scripts/test-statute-versions.mjs",
-    "test:studio": "node --test scripts/test-studio.mjs"
+    "test:studio": "node --test scripts/test-studio.mjs scripts/test-auth-worker.mjs"
   },
   "dependencies": {
-    "astro": "7.4.13"
+    "astro": "7.4.13",
+    "jose": "^6.2.10"
   },
   "devDependencies": {
     "pagefind": "^1.4.0",

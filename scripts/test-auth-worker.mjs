@@ -1,0 +1,67 @@
+import {test} from 'node:test';
+import assert from 'node:assert/strict';
+import {readFileSync} from 'node:fs';
+import {DatabaseSync} from 'node:sqlite';
+import {generateKeyPair,SignJWT,exportJWK,createLocalJWKSet} from 'jose';
+import {makeWorker,verifyStaffToken,verifyMemberToken} from '../studio/auth-worker.mjs';
+const {publicKey,privateKey}=await generateKeyPair('RS256',{extractable:true});
+const jwk={...await exportJWK(publicKey),kid:'test',alg:'RS256'};
+const keys=createLocalJWKSet({keys:[jwk]});
+const staffIssuer='https://test.cloudflareaccess.com',memberIssuer='https://test.auth0.com/';
+const staffSite='https://admin.example.invalid',memberSite='https://account.example.invalid',client='member-client',aud='staff-audience';
+const sign=(issuer,audience,claims={},expiration='5m')=>new SignJWT({sub:'test-sub',...claims}).setProtectedHeader({alg:'RS256',kid:'test'}).setIssuer(issuer).setAudience(audience).setIssuedAt().setExpirationTime(expiration).sign(privateKey);
+test('signed tokens enforce issuer, audience, expiry, app type, nonce and verified email',async()=>{
+ const good=await sign(staffIssuer,aud,{type:'app',email:'test@example.invalid'});
+ assert.ok(await verifyStaffToken(good,staffIssuer,aud,keys));
+ assert.equal(await verifyStaffToken(good,staffIssuer,'wrong',keys),null);
+ assert.equal(await verifyStaffToken(good,memberIssuer,aud,keys),null);
+ assert.equal(await verifyStaffToken(await sign(staffIssuer,aud,{type:'org',email:'test@example.invalid'}),staffIssuer,aud,keys),null);
+ assert.equal(await verifyStaffToken(await sign(staffIssuer,aud,{type:'app',email:'test@example.invalid'},'-30s'),staffIssuer,aud,keys),null);
+});
+test('member tokens cannot become staff; wrong nonce or unverified email fails',async()=>{
+ const good=await sign(memberIssuer,client,{nonce:'n',email_verified:true});
+ assert.ok(await verifyMemberToken(good,memberIssuer,client,'n',keys));
+ assert.equal(await verifyMemberToken(good,memberIssuer,client,'wrong',keys),null);
+ assert.equal(await verifyStaffToken(good,staffIssuer,aud,keys),null);
+ assert.equal(await verifyMemberToken(await sign(memberIssuer,client,{nonce:'n',email_verified:false}),memberIssuer,client,'n',keys),null);
+});
+test('worker end-to-end synthetic signup, replay, session and staff separation',async()=>{
+ const sql=new DatabaseSync(':memory:');
+ for(const name of ['0001_identity_and_editorial.sql','0002_authentication.sql'])sql.exec(readFileSync(new URL('../studio/migrations/'+name,import.meta.url),'utf8'));
+ const DB={prepare:query=>({bind:(...args)=>({first:async()=>sql.prepare(query).get(...args)??null,run:async()=>sql.prepare(query).run(...args)})})};
+ let nonce,expectedVerifier;
+ const worker=makeWorker({keyset:()=>keys,fetchToken:async(url,options)=>{
+  assert.equal(url,memberIssuer+'oauth/token');const body=JSON.parse(options.body);assert.equal(body.code,'synthetic-code');assert.equal(body.code_verifier,expectedVerifier);
+  return Response.json({id_token:await sign(memberIssuer,client,{nonce,email_verified:true})});
+ }});
+ const m={DB,APP_MODE:'member',APP_ORIGIN:memberSite,MEMBER_ISSUER:memberIssuer,MEMBER_CLIENT_ID:client,MEMBER_CLIENT_SECRET:'test-only'};
+ const s={DB,APP_MODE:'staff',APP_ORIGIN:staffSite,ACCESS_ISSUER:staffIssuer,ACCESS_AUDIENCE:aud};
+ const call=(url,env,headers={},method='GET')=>worker.fetch(new Request(url,{headers,method}),env);
+ try{
+  assert.equal((await call(memberSite+'/api/session',m)).status,401);
+  assert.equal((await call(staffSite+'/',s,{'cf-access-authenticated-user-email':'spoof@example.invalid'})).status,401);
+  assert.equal((await call('https://alternate.example.invalid/',m)).status,403);
+  const login=await call(memberSite+'/register',m);
+  assert.equal(login.status,303);const auth=new URL(login.headers.get('location'));assert.equal(auth.origin,'https://test.auth0.com');assert.equal(auth.searchParams.get('screen_hint'),'signup');assert.equal(auth.searchParams.get('code_challenge_method'),'S256');nonce=auth.searchParams.get('nonce');
+  expectedVerifier=sql.prepare('SELECT verifier FROM member_login_attempts').get().verifier;
+  const state=auth.searchParams.get('state'),loginHeader=login.headers.getSetCookie()[0].split(';')[0];
+  const callback=memberSite+'/callback?state='+state+'&code=synthetic-code';
+  assert.equal((await call(callback,m)).status,400);
+  const complete=await call(callback,m,{cookie:loginHeader});assert.equal(complete.status,303);
+  assert.equal(sql.prepare('SELECT COUNT(*) n FROM member_profiles').get().n,1);
+  assert.equal(sql.prepare('SELECT COUNT(*) n FROM staff_accounts').get().n,0);
+  assert.equal((await call(callback,m,{cookie:loginHeader})).status,400);
+  const session=complete.headers.getSetCookie().find(x=>x.startsWith('__Host-rr-member=')).split(';')[0];
+  assert.equal((await call(memberSite+'/api/session',m,{cookie:session})).status,200);
+  assert.equal((await call(staffSite+'/',s,{cookie:session})).status,401);
+  const access=await sign(staffIssuer,aud,{type:'app',email:'staff@example.invalid'});
+  assert.equal((await call(staffSite+'/',s,{'cf-access-jwt-assertion':access})).status,403);
+  sql.prepare("INSERT INTO staff_accounts(id,issuer,subject,role,status,created_at) VALUES (?,?,?,?,?,?)").run('s',staffIssuer,'test-sub','owner','active',1);
+  assert.equal((await call(staffSite+'/api/session',s,{'cf-access-jwt-assertion':access})).status,200);
+  sql.exec("UPDATE staff_accounts SET status='disabled'");
+  assert.equal((await call(staffSite+'/',s,{'cf-access-jwt-assertion':access})).status,403);
+  assert.equal((await call(memberSite+'/logout',m,{cookie:session,origin:'https://attacker.invalid'},'POST')).status,403);
+  assert.equal((await call(memberSite+'/logout',m,{cookie:session,origin:memberSite},'POST')).status,303);
+  assert.equal((await call(memberSite+'/api/session',m,{cookie:session})).status,401);
+ }finally{sql.close()}
+});

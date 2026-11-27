@@ -14,3 +14,10 @@ dist/
 
 # Local review records, dashboard and publication candidates
 .rr-editorial/
+
+# Worker deployment configuration and local secrets
+studio/wrangler.staff.jsonc
+studio/wrangler.member.jsonc
+.dev.vars
+.dev.vars.*
+.wrangler/
