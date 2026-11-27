@@ -14,11 +14,11 @@ sources: [{"title":"Bihar Gazette: Micro and Small Enterprises Facilitation Coun
 
 ## What the Gazette provides
 
-Bihar published rules establishing district-level Facilitation Councils and a reconstituted State Council. Under the published framework, the district body handles qualifying disputes involving Bihar-based suppliers and buyers within the State. The State Council is assigned original jurisdiction where the supplier is in Bihar and a buyer is outside Bihar. Its administrative oversight is not an appellate power over district awards.
+Bihar published rules establishing district-level Facilitation Councils and a reconstituted State Council. Under the published framework, the district body handles qualifying disputes involving Bihar-based suppliers and buyers within the State. The State Council is assigned original jurisdiction where the supplier is in Bihar and a buyer is outside Bihar. Where a reference names multiple buyers and at least one is outside Bihar, Rule 9(iii) assigns the entire reference to the State Council. The jurisdiction described in that rule is original, not appellate.
 
 ## Filing and pending references
 
-The text provides for electronic and physical filing, and permits transfer of pending references in specified circumstances. Rule 9 addresses jurisdictional objections and transmission to the appropriate Council rather than dismissal for lack of jurisdiction.
+The text provides for electronic and physical filing, and permits transfer of pending references in specified circumstances. Rule 9(iv) requires jurisdictional objections at or before first appearance and provides for transmission to the competent Council with the original institution date preserved, rather than dismissal for want of jurisdiction.
 
 ## Commencement and legal hierarchy
 
@@ -26,4 +26,4 @@ Rule 1 states that the rules take effect on publication. However, some provision
 
 ## Editorial verification pending
 
-Official Bihar Gazette text accessed; page-image retrieval failed. Confirm the resolution identifier and Gazette details against the original PDF, central commencement notifications and implementation orders.
+Official indexed Bihar Gazette text rechecked on 27 November 2026, including Rules 9 and 10; page-image retrieval failed. Confirm the resolution identifier and Gazette details against the original PDF, central commencement notifications and implementation orders.

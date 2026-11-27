@@ -18,7 +18,7 @@ The Ministry of Home Affairs published rules on 25 November 2026 for the UPSC's 
 
 ## Eligibility and procedure
 
-The rules require four years of regular service in specified Sub-Inspector or Inspector ranks by 1 January 2027, a recognized university degree and the prescribed disciplinary record. They prescribe age eligibility assessed on 1 August 2027, specified SC/ST relaxation and a maximum of three attempts. Applications must follow the departmental channel.
+The rules require four years of regular service in specified Sub-Inspector or Inspector ranks by 1 January 2027, a recognized university degree and the prescribed disciplinary record. The ordinary age condition is below 35 years on 1 August 2027, with up to five years of relaxation for SC/ST candidates and a maximum of three attempts. Applications must follow the departmental channel.
 
 ## Pending litigation
 
@@ -28,4 +28,4 @@ Vacancies and examination dates will be specified separately by UPSC. The Gazett
 
 ## Verification pending
 
-Official Gazette text accessed on 27 November 2026; screenshot retrieval failed. Confirm original document and subsequent corrigenda or orders before publication.
+Official indexed Gazette text rechecked on 27 November 2026, including the opening recital and rules 1–10; screenshot retrieval failed. Confirm original document and subsequent corrigenda or orders before publication.

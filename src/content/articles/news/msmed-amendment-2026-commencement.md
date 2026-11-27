@@ -9,7 +9,7 @@ author: "Rule & Ratio"
 authorType: "Organization"
 draft: true
 news: {"kind":"enactment","eventDate":"2026-08-13","authority":"Parliament of India","identifier":"Act No. 16 of 2026","primaryUrl":"https://www.ricago.com/assets/front/base/file/file_management/7028.pdf","verification":"pending"}
-sources: [{"title":"Gazette reproduction: MSMED (Amendment) Act, 2026","url":"https://www.ricago.com/assets/front/base/file/file_management/7028.pdf","kind":"primary","pinpoint":"Sections 1, 4, 5, 7–12"},{"title":"Ministry of MSME, PIB release on parliamentary passage","url":"https://www.pib.gov.in/PressReleasePage.aspx?PRID=2296358&lang=1&reg=3","kind":"primary","pinpoint":"7 August 2026; features 1–6"},{"title":"Indexed reproduction of commencement notification S.O. 5575(E)","url":"https://policyindex.ai/in/gazette/appointment-of-the-date-15th-october-2026-for-msmed-amendment-act-2026-agylgz","kind":"secondary","pinpoint":"Notification dated 12 October 2026; indexed text only"}]
+sources: [{"title":"Gazette reproduction: MSMED (Amendment) Act, 2026","url":"https://www.ricago.com/assets/front/base/file/file_management/7028.pdf","kind":"primary","pinpoint":"Sections 1, 4, 5, 7–12"},{"title":"Ministry of MSME, PIB release on parliamentary passage","url":"https://www.pib.gov.in/PressReleasePage.aspx?PRID=2296358&lang=1&reg=3","kind":"primary","pinpoint":"7 August 2026; features 1–6"},{"title":"Indexed reproduction of commencement notification S.O. 5575(E)","url":"https://policyindex.ai/in/gazette/appointment-of-the-date-15th-october-2026-for-msmed-amendment-act-2026-agylgz","kind":"secondary","pinpoint":"Notification dated 12 October 2026; indexed text only"},{"title":"Gazette Tracker reproduction: S.O. 5575(E)","url":"https://www.gazettetracker.com/g/CG-DL-E-12102026-277080","kind":"secondary","pinpoint":"Clauses (a) and (b)"},{"title":"Official Gazette register: Act 16 of 2026","url":"https://egazette.gov.in/%28S%28ivlecovpodcsdduvlnroq0lx%29%29/RecentUploads.aspx?Category=1","kind":"secondary","pinpoint":"Listing dated 13 August 2026, CG-DL-E-13082026-275448; not full Act text"}]
 ---
 
 ## What changed
@@ -18,7 +18,7 @@ The amending Act was published on 13 August 2026. It revises registration and cl
 
 ## Commencement matters
 
-Section 1(2) permits separate commencement dates. An indexed reproduction of S.O. 5575(E), dated 12 October 2026, identifies 15 October for sections 2–7, 11 and 13–17, and 15 December for section 12. Sections 8–10 are not listed in that reproduction. The original commencement notification and any subsequent notifications must be obtained before concluding what is operative.
+Section 1(2) permits separate commencement dates. An indexed reproduction of S.O. 5575(E), dated 12 October 2026, identifies 15 October for sections 2–7, 11 and 13–17, and 15 December for section 12. The notification is corroborated by a second indexed reproduction (Gazette ID CG-DL-E-12102026-277080). It does not specify commencement for amending Act sections 8–10, which respectively amend principal Act section 18, insert section 18A and substitute section 19. Section 11 of the amending Act substitutes section 20; section 12 substitutes section 21. This is a statement about the identified notification, not a finding that no later notification exists. The original commencement notification and any subsequent notifications must be obtained before concluding what is operative.
 
 ## Practical significance
 

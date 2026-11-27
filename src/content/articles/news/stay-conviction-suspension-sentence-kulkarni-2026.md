@@ -8,8 +8,8 @@ jurisdiction: "India"
 author: "Rule & Ratio"
 authorType: "Organization"
 draft: true
-news: {"kind":"judicial-decision","eventDate":"2026-11-25","authority":"Supreme Court of India","identifier":"2026 INSC 1265; SLP(Crl) 18004/2026 and connected matters","primaryUrl":"https://api.sci.gov.in/supremecourt/2026/56124/56124_2026_11_1502_76393_Judgement_25-Nov-2026.pdf","verification":"pending"}
-sources: [{"title":"State of Karnataka v. Vinay Rajashekharappa Kulkarni & Anr.","url":"https://api.sci.gov.in/supremecourt/2026/56124/56124_2026_11_1502_76393_Judgement_25-Nov-2026.pdf","kind":"primary","pinpoint":"Paragraphs 9, 11–13, 22–26"}]
+news: {"kind":"judicial-decision","eventDate":"2026-11-25","authority":"Supreme Court of India","identifier":"2026 INSC 1265; SLP(Crl) 18004/2026 and connected matters","primaryUrl":"https://www.sci.gov.in/sci-get-pdf/?diary_no=561242026&from=latest_judgements_order&order_date=2026-11-25&type=j","verification":"pending"}
+sources: [{"title":"State of Karnataka v. Vinay Rajashekharappa Kulkarni & Anr.","url":"https://www.sci.gov.in/sci-get-pdf/?diary_no=561242026&from=latest_judgements_order&order_date=2026-11-25&type=j","kind":"primary","pinpoint":"Paragraphs 9, 11–13, 22–26"}]
 ---
 
 ## What happened
@@ -28,4 +28,4 @@ The challenged orders were set aside and the respondents directed to surrender w
 
 ## Verification pending
 
-Official PDF text accessed on 27 November 2026; screenshot retrieval failed. Confirm signed copy, subsequent orders and precise statutory references before publication.
+Official indexed judgment text rechecked on 27 November 2026, including paragraph 26; screenshot retrieval failed. Confirm signed copy, subsequent orders and precise statutory references before publication.

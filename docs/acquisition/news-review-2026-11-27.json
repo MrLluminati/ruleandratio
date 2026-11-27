@@ -1,0 +1,59 @@
+{
+  "reviewDate": "2026-11-27",
+  "reviewType": "assistant source recheck; not human editorial approval",
+  "publicationAllowed": false,
+  "items": [
+    {
+      "slug": "stay-conviction-suspension-sentence-kulkarni-2026",
+      "status": "editor-review-pending",
+      "primary": "https://www.sci.gov.in/sci-get-pdf/?diary_no=561242026&from=latest_judgements_order&order_date=2026-11-25&type=j",
+      "evidence": "Official indexed full judgment text, including operative paragraph 26 and named coram. Direct previous API URL and screenshot unavailable.",
+      "checks": [
+        "Confirm paragraphs 9, 11–13 and 22–26 in signed copy; check subsequent orders."
+      ]
+    },
+    {
+      "slug": "cisf-departmental-examination-rules-2027",
+      "status": "editor-review-pending",
+      "primary": "https://egazette.gov.in/WriteReadData/2026/278164.pdf",
+      "evidence": "Official indexed PDF text, opening recital and rules 1–10, corroborated by official Gazette listing. Screenshot unavailable.",
+      "checks": [
+        "Check rule 12 and current Delhi HC/UPSC status; confirm page pinpoints against actual PDF."
+      ]
+    },
+    {
+      "slug": "yusuf-balance-sheet-acknowledgment-limitation-2026",
+      "status": "editor-review-pending",
+      "primary": "https://api.sci.gov.in/supremecourt/2024/58317/58317_2024_2_1501_75966_Judgement_06-Nov-2026.pdf",
+      "evidence": "Official indexed PDF text identifies the original plaintiff and trial court acknowledgment issue.",
+      "checks": [
+        "Confirm operative paragraphs and subsequent treatment, original signed PDF."
+      ]
+    },
+    {
+      "slug": "bihar-msefc-rules-district-councils-2026",
+      "status": "hold-current-law",
+      "primary": "https://egazette.bihar.gov.in/GazettePrinting/GazettePublished/1320_2_2026.pdf",
+      "evidence": "Official indexed Gazette text, Rule 9 confirms territorial allocation and transfer, Rule 10 electronic filing. Screenshot unavailable.",
+      "checks": [
+        "Authenticate central commencement, actual council constitution and implementation; distinguish rule text from enforceability."
+      ]
+    },
+    {
+      "slug": "msmed-amendment-2026-commencement",
+      "status": "hold-current-law",
+      "primary": "https://www.ricago.com/assets/front/base/file/file_management/7028.pdf",
+      "evidence": "Private Gazette reproduction text and official indexed Gazette listing. S.O. 5575(E) wording corroborated by two reproductions; original Gazette PDFs unavailable.",
+      "checks": [
+        "Obtain official Gazette Act 16/2026 and S.O. 5575(E); check later notifications, Mediation Act commencement and savings."
+      ]
+    }
+  ],
+  "globalChecks": [
+    "Verify reporting restrictions and confidentiality",
+    "Confirm signed originals and date/identifier/pinpoints",
+    "Check subsequent developments",
+    "Record actual human reviewer and review date before changing verification or draft flags"
+  ],
+  "sourceAccess": "Indexed PDF text accessible after search; direct opens intermittently failed; no screenshots recovered."
+}
