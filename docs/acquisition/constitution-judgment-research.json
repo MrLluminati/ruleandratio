@@ -1,0 +1,105 @@
+{
+  "state": "draft-research-only",
+  "researchDate": "2026-11-27",
+  "cases": [
+    {
+      "slug": "kesavananda-bharati-v-state-of-kerala-1973",
+      "name": "Kesavananda Bharati Sripadagalvaru v. State of Kerala & Anr.",
+      "date": "1973-04-24",
+      "sourceUrl": "https://indiankanoon.org/doc/257876/",
+      "officialCandidate": null,
+      "officialResearchResource": "https://judgments.ecourts.gov.in/KBJ/?p=home",
+      "reproduction": null,
+      "pinpoint": "Separate opinions on Article 368; conclusions on the Twenty-fourth, Twenty-fifth and Twenty-ninth Amendments",
+      "status": "Public reproduction consulted; official commemorative portal located but direct signed judgment not retrieved",
+      "topics": [
+        "article-368",
+        "preamble"
+      ]
+    },
+    {
+      "slug": "kihoto-hollohan-v-zachillhu-1992",
+      "name": "Kihoto Hollohan v. Zachillhu & Ors.",
+      "date": "1992-02-18",
+      "sourceUrl": "https://indiankanoon.org/doc/542383/",
+      "officialCandidate": null,
+      "officialResearchResource": null,
+      "reproduction": null,
+      "pinpoint": "Majority conclusions on paragraphs 6 and 7 of the Tenth Schedule; minority opinion on ratification",
+      "status": "Public judgment reproduction consulted; original court copy and spelling variants pending",
+      "topics": [
+        "tenth-schedule",
+        "article-368",
+        "article-226"
+      ]
+    },
+    {
+      "slug": "l-chandra-kumar-v-union-of-india-1997",
+      "name": "L. Chandra Kumar v. Union of India & Ors.",
+      "date": "1997-03-18",
+      "sourceUrl": "https://indiankanoon.org/doc/1152518/",
+      "officialCandidate": null,
+      "officialResearchResource": null,
+      "reproduction": null,
+      "pinpoint": "Paras 78–80, 99–100",
+      "status": "Public reproduction consulted; authenticated original pending",
+      "topics": [
+        "article-32",
+        "article-226",
+        "article-227",
+        "articles-323a-323b"
+      ]
+    },
+    {
+      "slug": "whirlpool-corporation-v-registrar-of-trade-marks-1998",
+      "name": "Whirlpool Corporation v. Registrar of Trade Marks, Mumbai & Ors.",
+      "date": "1998-10-26",
+      "sourceUrl": "https://indiankanoon.org/doc/1885496/",
+      "officialCandidate": null,
+      "officialResearchResource": null,
+      "reproduction": null,
+      "pinpoint": "Discussion of alternative remedies and Registrar's jurisdiction, especially paras 14–15 in reported numbering (verify)",
+      "status": "Public reproduction consulted; official original and reporter numbering pending",
+      "topics": [
+        "article-226"
+      ]
+    },
+    {
+      "slug": "ks-puttaswamy-v-union-of-india-2017-privacy",
+      "name": "Justice K.S. Puttaswamy (Retd.) & Anr. v. Union of India & Ors.",
+      "date": "2017-08-24",
+      "sourceUrl": "https://indiankanoon.org/doc/91938676/",
+      "officialCandidate": "https://api.sci.gov.in/supremecourt/2012/35071/35071_2012_Judgement_24-Aug-2017.pdf",
+      "officialResearchResource": "https://www.sci.gov.in/landmark-judgment-summaries/?judgment_year=2017",
+      "reproduction": null,
+      "pinpoint": "Common operative order and separate opinions; Chandrachud J.'s conclusions",
+      "status": "Public judicial text and official court summary consulted; original official PDF timed out",
+      "topics": [
+        "article-21",
+        "article-19",
+        "article-14"
+      ]
+    },
+    {
+      "slug": "subhash-desai-v-principal-secretary-governor-maharashtra-2023",
+      "name": "Subhash Desai v. Principal Secretary, Governor of Maharashtra & Ors.",
+      "date": "2023-05-11",
+      "sourceUrl": "https://api.sci.gov.in/supremecourt/2022/20234/20234_2022_1_1502_44512_Judgement_11-May-2023.pdf",
+      "officialCandidate": "https://api.sci.gov.in/supremecourt/2022/20234/20234_2022_1_1502_44512_Judgement_11-May-2023.pdf",
+      "officialResearchResource": null,
+      "reproduction": "https://indiankanoon.org/doc/12168609/",
+      "pinpoint": "Part E, especially paras 181–186; Part F, conclusions",
+      "status": "Official PDF first page and indexed text inspected; later page fetch timed out; public reproduction used for reasoning",
+      "topics": [
+        "tenth-schedule",
+        "articles-163-164"
+      ]
+    }
+  ],
+  "followUp": [
+    "Verify larger-bench status of Nabam Rebia reference in Subhash Desai",
+    "Add later authorities on legislative privilege, privacy and basic structure",
+    "Authenticate older judgments and verify reporter paragraph numbering"
+  ],
+  "notes": "No comprehensive subsequent-treatment check, signed-original comparison, or human review. No licensed database access. All entries draft."
+}

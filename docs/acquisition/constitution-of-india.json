@@ -1,0 +1,250 @@
+{
+  "slug": "constitution-of-india",
+  "title": "Constitution of India",
+  "researchDate": "2026-11-27",
+  "state": "source-map-only",
+  "coverage": "selected-provisions",
+  "source": {
+    "url": "https://www.legislative.gov.in/static/uploads/2025/08/b9a933fb88c0a5afba254256bc55a3f0.pdf",
+    "editionDate": "2026-09-10",
+    "language": "Hindi and English",
+    "status": "Legislative Department official PDF cover screenshot and preface text inspected; compilation states amendments through the 106th Amendment Act, 2023; no original-file checksum or exhaustive version comparison"
+  },
+  "provisions": [
+    {
+      "id": "preamble",
+      "pinpoint": "Preamble",
+      "topic": "Constitutional values",
+      "draftArticle": "src/content/articles/constitution/constitution-preamble.md"
+    },
+    {
+      "id": "articles-1-4",
+      "pinpoint": "Articles 1–4",
+      "topic": "Territory and reorganisation of States",
+      "draftArticle": "src/content/articles/constitution/constitution-articles-1-4.md"
+    },
+    {
+      "id": "articles-12-13",
+      "pinpoint": "Articles 12–13",
+      "topic": "State action and validity of laws",
+      "draftArticle": "src/content/articles/constitution/constitution-articles-12-13.md"
+    },
+    {
+      "id": "article-14",
+      "pinpoint": "Article 14",
+      "topic": "Equality and non-arbitrariness",
+      "draftArticle": "src/content/articles/constitution/constitution-article-14.md"
+    },
+    {
+      "id": "articles-15-16",
+      "pinpoint": "Articles 15–16",
+      "topic": "Non-discrimination and public employment",
+      "draftArticle": "src/content/articles/constitution/constitution-articles-15-16.md"
+    },
+    {
+      "id": "articles-17-18",
+      "pinpoint": "Articles 17–18",
+      "topic": "Untouchability and titles",
+      "draftArticle": "src/content/articles/constitution/constitution-articles-17-18.md"
+    },
+    {
+      "id": "article-19",
+      "pinpoint": "Article 19",
+      "topic": "Freedoms and permissible restrictions",
+      "draftArticle": "src/content/articles/constitution/constitution-article-19.md"
+    },
+    {
+      "id": "article-20",
+      "pinpoint": "Article 20",
+      "topic": "Protections in criminal proceedings",
+      "draftArticle": "src/content/articles/constitution/constitution-article-20.md"
+    },
+    {
+      "id": "article-21",
+      "pinpoint": "Article 21",
+      "topic": "Life, liberty and privacy",
+      "draftArticle": "src/content/articles/constitution/constitution-article-21.md"
+    },
+    {
+      "id": "article-21a",
+      "pinpoint": "Article 21A",
+      "topic": "Right to education",
+      "draftArticle": "src/content/articles/constitution/constitution-article-21a.md"
+    },
+    {
+      "id": "article-22",
+      "pinpoint": "Article 22",
+      "topic": "Arrest and preventive detention",
+      "draftArticle": "src/content/articles/constitution/constitution-article-22.md"
+    },
+    {
+      "id": "articles-23-24",
+      "pinpoint": "Articles 23–24",
+      "topic": "Exploitation and child labour",
+      "draftArticle": "src/content/articles/constitution/constitution-articles-23-24.md"
+    },
+    {
+      "id": "articles-25-28",
+      "pinpoint": "Articles 25–28",
+      "topic": "Freedom of religion",
+      "draftArticle": "src/content/articles/constitution/constitution-articles-25-28.md"
+    },
+    {
+      "id": "articles-29-30",
+      "pinpoint": "Articles 29–30",
+      "topic": "Cultural and educational rights",
+      "draftArticle": "src/content/articles/constitution/constitution-articles-29-30.md"
+    },
+    {
+      "id": "article-32",
+      "pinpoint": "Article 32",
+      "topic": "Constitutional remedies before the Supreme Court",
+      "draftArticle": "src/content/articles/constitution/constitution-article-32.md"
+    },
+    {
+      "id": "articles-36-51",
+      "pinpoint": "Articles 36–51",
+      "topic": "Directive Principles of State Policy",
+      "draftArticle": "src/content/articles/constitution/constitution-articles-36-51.md"
+    },
+    {
+      "id": "article-51a",
+      "pinpoint": "Article 51A",
+      "topic": "Fundamental Duties",
+      "draftArticle": "src/content/articles/constitution/constitution-article-51a.md"
+    },
+    {
+      "id": "articles-72-161",
+      "pinpoint": "Articles 72 and 161",
+      "topic": "Clemency powers",
+      "draftArticle": "src/content/articles/constitution/constitution-articles-72-161.md"
+    },
+    {
+      "id": "articles-102-191",
+      "pinpoint": "Articles 102 and 191",
+      "topic": "Legislative disqualifications",
+      "draftArticle": "src/content/articles/constitution/constitution-articles-102-191.md"
+    },
+    {
+      "id": "articles-103-192",
+      "pinpoint": "Articles 103 and 192",
+      "topic": "Determination of legislative disqualification",
+      "draftArticle": "src/content/articles/constitution/constitution-articles-103-192.md"
+    },
+    {
+      "id": "articles-105-194",
+      "pinpoint": "Articles 105 and 194",
+      "topic": "Legislative privilege",
+      "draftArticle": "src/content/articles/constitution/constitution-articles-105-194.md"
+    },
+    {
+      "id": "articles-123-213",
+      "pinpoint": "Articles 123 and 213",
+      "topic": "Ordinance-making powers",
+      "draftArticle": "src/content/articles/constitution/constitution-articles-123-213.md"
+    },
+    {
+      "id": "articles-136-137",
+      "pinpoint": "Articles 136–137",
+      "topic": "Special leave and Supreme Court review",
+      "draftArticle": "src/content/articles/constitution/constitution-articles-136-137.md"
+    },
+    {
+      "id": "articles-141-142",
+      "pinpoint": "Articles 141–142",
+      "topic": "Binding precedent and complete justice",
+      "draftArticle": "src/content/articles/constitution/constitution-articles-141-142.md"
+    },
+    {
+      "id": "articles-163-164",
+      "pinpoint": "Articles 163–164",
+      "topic": "Governor, Council of Ministers and confidence",
+      "draftArticle": "src/content/articles/constitution/constitution-articles-163-164.md"
+    },
+    {
+      "id": "article-226",
+      "pinpoint": "Article 226",
+      "topic": "High Court writ jurisdiction",
+      "draftArticle": "src/content/articles/constitution/constitution-article-226.md"
+    },
+    {
+      "id": "article-227",
+      "pinpoint": "Article 227",
+      "topic": "High Court superintendence",
+      "draftArticle": "src/content/articles/constitution/constitution-article-227.md"
+    },
+    {
+      "id": "articles-245-246a",
+      "pinpoint": "Articles 245–246A and Seventh Schedule",
+      "topic": "Legislative competence",
+      "draftArticle": "src/content/articles/constitution/constitution-articles-245-246a.md"
+    },
+    {
+      "id": "article-254",
+      "pinpoint": "Article 254",
+      "topic": "Repugnancy",
+      "draftArticle": "src/content/articles/constitution/constitution-article-254.md"
+    },
+    {
+      "id": "article-265",
+      "pinpoint": "Article 265",
+      "topic": "Authority of law for taxation",
+      "draftArticle": "src/content/articles/constitution/constitution-article-265.md"
+    },
+    {
+      "id": "article-300a",
+      "pinpoint": "Article 300A",
+      "topic": "Constitutional protection of property",
+      "draftArticle": "src/content/articles/constitution/constitution-article-300a.md"
+    },
+    {
+      "id": "articles-309-311",
+      "pinpoint": "Articles 309–311",
+      "topic": "Public service and disciplinary safeguards",
+      "draftArticle": "src/content/articles/constitution/constitution-articles-309-311.md"
+    },
+    {
+      "id": "articles-323a-323b",
+      "pinpoint": "Articles 323A–323B",
+      "topic": "Tribunals and judicial review",
+      "draftArticle": "src/content/articles/constitution/constitution-articles-323a-323b.md"
+    },
+    {
+      "id": "articles-352-359",
+      "pinpoint": "Articles 352–359",
+      "topic": "Emergency provisions",
+      "draftArticle": "src/content/articles/constitution/constitution-articles-352-359.md"
+    },
+    {
+      "id": "article-360",
+      "pinpoint": "Article 360",
+      "topic": "Financial emergency",
+      "draftArticle": "src/content/articles/constitution/constitution-article-360.md"
+    },
+    {
+      "id": "article-368",
+      "pinpoint": "Article 368",
+      "topic": "Constitutional amendment and basic structure",
+      "draftArticle": "src/content/articles/constitution/constitution-article-368.md"
+    },
+    {
+      "id": "tenth-schedule",
+      "pinpoint": "Tenth Schedule",
+      "topic": "Disqualification on ground of defection",
+      "draftArticle": "src/content/articles/constitution/constitution-tenth-schedule.md"
+    },
+    {
+      "id": "articles-98-187",
+      "pinpoint": "Articles 98 and 187",
+      "topic": "Legislative secretariat staff",
+      "draftArticle": "src/content/articles/constitution/constitution-articles-98-187.md"
+    }
+  ],
+  "review": [
+    "Verify actual Article text and amendments after edition date",
+    "Check commencement and implementation conditions separately, including the 106th Amendment",
+    "Check judicial invalidation, reading down and relevant constitutional orders",
+    "Verify applicable House and High Court rules",
+    "No approved verbatim constitutional text"
+  ]
+}
