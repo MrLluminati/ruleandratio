@@ -1,5 +1,5 @@
 {
-  "state": "supplied-gazette-text-extracted-partial-statutory-draft",
+  "state": "historical-and-dated-2026-versions-staged-review-pending",
   "asOf": "2026-11-27",
   "act": "msmed-act-2006",
   "coverage": "selected-provisions",
@@ -215,14 +215,26 @@
       "pages": 2,
       "signature": "Valid cryptographic signature covering entire document; issuer not trusted by local pdfsig",
       "inspection": "English text of page 2 inspected"
+    },
+    {
+      "file": "msmedact.pdf",
+      "sha256": "cdcb226d75a1e51db44310b53063afa5f6ae341400e7b4d349375f6fd1385469",
+      "bytes": 66960,
+      "pages": 10,
+      "signature": "No signatures",
+      "inspection": "Historical reproduction; pages 5–7 extracted, pages 5–6 rendered and visually inspected; discrepancies recorded separately"
     }
   ],
   "partialStatutoryDraft": "src/content/statutes/msmed-act-2006.json",
   "enactedOnlyRecord": "docs/acquisition/msmed-2026-enacted-only.json",
   "outstanding": [
-    "Principal Act original PDF",
     "Mediation Act original PDF",
+    "Authenticated principal Gazette and full comparison with supplied reproduction",
     "Subsequent commencement notifications",
-    "Complete historical versions, exact-text comparison and human approval"
-  ]
+    "Complete human legal review and publication approval"
+  ],
+  "principalSourceReview": "docs/acquisition/msmed-principal-source-review.json",
+  "historicalVersionCount": 10,
+  "datedVersionCount": 14,
+  "provisionCount": 12
 }

@@ -6,10 +6,10 @@
   "source": {
     "url": "https://www.indiacode.nic.in/bitstream/123456789/19412/1/msme_act_2006.pdf",
     "title": "India Code — historical MSMED Act 2006 compilation",
-    "retrieval": "Printed pages 9–11 visually inspected in web PDF; direct byte download failed; no PDF checksum; not a current consolidated Act"
+    "retrieval": "Supplied unsigned historical reproduction msmedact.pdf, compared in part to indexed India Code text; see msmed-principal-source-review.json; no original Gazette authentication"
   },
   "coverage": "selected-provisions",
-  "state": "partial-2026-text-staged-original-principal-act-pending",
+  "state": "historical-2006-and-dated-2026-versions-staged-review-pending",
   "chapter": "V",
   "provisions": [
     {

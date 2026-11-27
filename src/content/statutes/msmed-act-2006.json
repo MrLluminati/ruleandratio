@@ -13,9 +13,9 @@
   "draft": true,
   "coverage": "selected-provisions",
   "source": {
-    "title": "Gazette of India, MSMED (Amendment) Act 2026, Act 16 of 2026 (supplied signed PDF)",
-    "url": "https://egazette.gov.in/WriteReadData/2026/275448.pdf",
-    "pinpoint": "Gazette CG-DL-E-13082026-275448; sections 7–13, pp. 3–6"
+    "title": "MSMED Act 2006 — historical principal Act and supplied 2026 Gazette versions",
+    "url": "https://www.indiacode.nic.in/bitstream/123456789/5872/1/a2006-27.pdf",
+    "pinpoint": "Selected sections 15–24; per-version sources and acquisition ledger distinguish the uploaded reproduction from official comparison URLs"
   },
   "chapters": [
     {
@@ -25,6 +25,28 @@
     }
   ],
   "provisions": [
+    {
+      "slug": "section-15",
+      "number": "15",
+      "kind": "section",
+      "heading": "Liability of buyer to make payment",
+      "chapter": "chapter-v",
+      "commentary": "Check the statutory supplier definition, actual delivery or service date, written objections and their removal, and any written credit period. Distinguish the statutory appointed day from the contractual due date. The 45-day ceiling is not an automatic credit period.",
+      "versions": [
+        {
+          "id": "original-2006",
+          "effectiveFrom": "2006-10-02",
+          "text": "15. Where any supplier supplies any goods or renders any services to any buyer, the buyer shall make payment therefor on or before the date agreed upon between him and the supplier in writing or, where there is no agreement in this behalf, before the appointed day:\n\nProvided that in no case the period agreed upon between the supplier and the buyer in writing shall exceed forty-five days from the day of acceptance or the day of deemed acceptance.",
+          "source": {
+            "title": "Historical MSMED Act — supplied msmedact.pdf, compared with India Code (review pending)",
+            "url": "https://www.indiacode.nic.in/bitstream/123456789/5872/1/a2006-27.pdf",
+            "pinpoint": "Uploaded PDF page(s) 5, section 15; India Code printed page(s) 9 (comparison reference, not uploaded file URL)"
+          },
+          "amendmentIds": [],
+          "note": "Historical text transcribed from supplied unsigned reproduction with documented comparison corrections. Initial commencement per S.O. 1154(E). Full original Gazette comparison and subsequent amendment review pending."
+        }
+      ]
+    },
     {
       "slug": "section-15a",
       "number": "15A",
@@ -50,13 +72,114 @@
       ]
     },
     {
+      "slug": "section-16",
+      "number": "16",
+      "kind": "section",
+      "heading": "Date from which and rate at which interest is payable",
+      "chapter": "chapter-v",
+      "commentary": "Establish the due date, outstanding principal, applicable RBI bank rate for each period and partial payments. The statutory measure is compound interest with monthly rests, not a simple flat annual charge.",
+      "versions": [
+        {
+          "id": "original-2006",
+          "effectiveFrom": "2006-10-02",
+          "text": "16. Where any buyer fails to make payment of the amount to the supplier, as required under section 15, the buyer shall, notwithstanding anything contained in any agreement between the buyer and the supplier or in any law for the time being in force, be liable to pay compound interest with monthly rests to the supplier on that amount from the appointed day or, as the case may be, from the date immediately following the date agreed upon, at three times of the bank rate notified by the Reserve Bank.",
+          "source": {
+            "title": "Historical MSMED Act — supplied msmedact.pdf, compared with India Code (review pending)",
+            "url": "https://www.indiacode.nic.in/bitstream/123456789/5872/1/a2006-27.pdf",
+            "pinpoint": "Uploaded PDF page(s) 5, section 16; India Code printed page(s) 9 (comparison reference, not uploaded file URL)"
+          },
+          "amendmentIds": [],
+          "note": "Historical text transcribed from supplied unsigned reproduction with documented comparison corrections. Initial commencement per S.O. 1154(E). Full original Gazette comparison and subsequent amendment review pending."
+        }
+      ]
+    },
+    {
+      "slug": "section-17",
+      "number": "17",
+      "kind": "section",
+      "heading": "Recovery of amount due",
+      "chapter": "chapter-v",
+      "commentary": "Reconcile invoice principal, credits, returns and payments before calculating interest. Establish the underlying supply and eligibility rather than assuming every contractual amount is recoverable under the statutory mechanism.",
+      "versions": [
+        {
+          "id": "original-2006",
+          "effectiveFrom": "2006-10-02",
+          "text": "17. For any goods supplied or services rendered by the supplier, the buyer shall be liable to pay the amount with interest thereon as provided under section 16.",
+          "source": {
+            "title": "Historical MSMED Act — supplied msmedact.pdf, compared with India Code (review pending)",
+            "url": "https://www.indiacode.nic.in/bitstream/123456789/5872/1/a2006-27.pdf",
+            "pinpoint": "Uploaded PDF page(s) 5, section 17; India Code printed page(s) 9 (comparison reference, not uploaded file URL)"
+          },
+          "amendmentIds": [],
+          "note": "Historical text transcribed from supplied unsigned reproduction with documented comparison corrections. Initial commencement per S.O. 1154(E). Full original Gazette comparison and subsequent amendment review pending."
+        }
+      ]
+    },
+    {
+      "slug": "section-18",
+      "number": "18",
+      "kind": "section",
+      "heading": "Reference to Micro and Small Enterprises Facilitation Council",
+      "chapter": "chapter-v",
+      "commentary": "Historical conciliation-and-arbitration framework. Check supplier eligibility, territorial competence, limitation and procedural stage. The 2023 enacted substitution and 2026 amendment require independent commencement verification; the absence of an end date here does not certify continuing operation.",
+      "versions": [
+        {
+          "id": "original-2006",
+          "effectiveFrom": "2006-10-02",
+          "text": "18. (1) Notwithstanding anything contained in any other law for the time being in force, any party to a dispute may, with regard to any amount due under section 17, make a reference to the Micro and Small Enterprises Facilitation Council.\n\n(2) On receipt of a reference under sub-section (1), the Council shall either itself conduct conciliation in the matter or seek the assistance of any institution or centre providing alternate dispute resolution services by making a reference to such an institution or centre, for conducting conciliation and the provisions of sections 65 to 81 of the Arbitration and Conciliation Act, 1996 (26 of 1996) shall apply to such a dispute as if the conciliation was initiated under Part III of that Act.\n\n(3) Where the conciliation initiated under sub-section (2) is not successful and stands terminated without any settlement between the parties, the Council shall either itself take up the dispute for arbitration or refer it to any institution or centre providing alternate dispute resolution services for such arbitration and the provisions of the Arbitration and Conciliation Act, 1996 (26 of 1996), shall then apply to the dispute as if the arbitration was in pursuance of an arbitration agreement referred to in sub-section (1) of section 7 of that Act.\n\n(4) Notwithstanding anything contained in any other law for the time being in force, the Micro and Small Enterprises Facilitation Council or the centre providing alternate dispute resolution services shall have jurisdiction to act as an Arbitrator or Conciliator under this section in a dispute between the supplier located within its jurisdiction and a buyer located anywhere in India.\n\n(5) Every reference made under this section shall be decided within a period of ninety days from the date of making such a reference.",
+          "source": {
+            "title": "Historical MSMED Act — supplied msmedact.pdf, compared with India Code (review pending)",
+            "url": "https://www.indiacode.nic.in/bitstream/123456789/5872/1/a2006-27.pdf",
+            "pinpoint": "Uploaded PDF page(s) 5–6, section 18; India Code printed page(s) 10 (comparison reference, not uploaded file URL)"
+          },
+          "amendmentIds": [],
+          "note": "Historical text transcribed from supplied unsigned reproduction with documented comparison corrections. Initial commencement per S.O. 1154(E). Full original Gazette comparison and subsequent amendment review pending. No certified end date; consult the enacted-only amendment research and later notifications."
+        }
+      ]
+    },
+    {
+      "slug": "section-19",
+      "number": "19",
+      "kind": "section",
+      "heading": "Application for setting aside decree, award or order",
+      "chapter": "chapter-v",
+      "commentary": "Identify the relevant challenge and the applicable deposit, interim release and stay requirements separately. The substituted 2026 text is recorded as enacted-only research until commencement can be established.",
+      "versions": [
+        {
+          "id": "original-2006",
+          "effectiveFrom": "2006-10-02",
+          "text": "19. No application for setting aside any decree, award or other order made either by the Council itself or by any institution or centre providing alternate dispute resolution services to which a reference is made by the Council, shall be entertained by any court unless the appellant (not being a supplier) has deposited with it seventy-five per cent. of the amount in terms of the decree, award or, as the case may be, the other order in the manner directed by such court:\n\nProvided that pending disposal of the application to set aside the decree, award or order, the court shall order that such percentage of the amount deposited shall be paid to the supplier, as it considers reasonable under the circumstances of the case, subject to such conditions as it deems necessary to impose.",
+          "source": {
+            "title": "Historical MSMED Act — supplied msmedact.pdf, compared with India Code (review pending)",
+            "url": "https://www.indiacode.nic.in/bitstream/123456789/5872/1/a2006-27.pdf",
+            "pinpoint": "Uploaded PDF page(s) 6, section 19; India Code printed page(s) 10 (comparison reference, not uploaded file URL)"
+          },
+          "amendmentIds": [],
+          "note": "Historical text transcribed from supplied unsigned reproduction with documented comparison corrections. Initial commencement per S.O. 1154(E). Full original Gazette comparison and subsequent amendment review pending. No certified end date; consult the enacted-only amendment research and later notifications."
+        }
+      ]
+    },
+    {
       "slug": "section-20",
       "number": "20",
       "kind": "section",
       "heading": "Establishment of Micro and Small Enterprises Facilitation Council.",
       "chapter": "chapter-v",
-      "commentary": "Verify the applicable state notification, territorial jurisdiction and meeting rules. The earlier version is not included in this partial draft and must be acquired before publishing a historical comparison.",
+      "commentary": "Compare the historical establishment power with the substituted text and the actual state notifications and procedural rules.",
       "versions": [
+        {
+          "id": "original-2006",
+          "effectiveFrom": "2006-10-02",
+          "effectiveUntil": "2026-10-15",
+          "text": "20. The State Government shall, by notification, establish one or more Micro and Small Enterprises Facilitation Councils, at such places, exercising such jurisdiction and for such areas, as may be specified in the notification.",
+          "source": {
+            "title": "Historical MSMED Act — supplied msmedact.pdf, compared with India Code (review pending)",
+            "url": "https://www.indiacode.nic.in/bitstream/123456789/5872/1/a2006-27.pdf",
+            "pinpoint": "Uploaded PDF page(s) 6, section 20; India Code printed page(s) 10 (comparison reference, not uploaded file URL)"
+          },
+          "amendmentIds": [],
+          "note": "Historical text transcribed from supplied unsigned reproduction with documented comparison corrections. Initial commencement per S.O. 1154(E). Full original Gazette comparison and subsequent amendment review pending."
+        },
         {
           "id": "amendment-2026",
           "effectiveFrom": "2026-10-15",
@@ -69,7 +192,7 @@
           "amendmentIds": [
             "amendment-2026-11"
           ],
-          "note": "Date appointed in supplied S.O. 5575(E), clause (a). Later notifications and historical completeness not certified."
+          "note": "Date appointed in supplied S.O. 5575(E), clause (a). Earlier version staged from supplied reproduction; later notifications and historical completeness not certified."
         }
       ]
     },
@@ -79,8 +202,21 @@
       "kind": "section",
       "heading": "Composition of Micro and Small Enterprises Facilitation Council.",
       "chapter": "chapter-v",
-      "commentary": "Scheduled commencement under the supplied notification is 15 December 2026, later than the review date. Do not present this as the operative composition before commencement. Historical text and state rules remain required.",
+      "commentary": "Check the constitution of the particular Council and applicable state rules. The supplied 2026 notification schedules the substituted text for 15 December 2026; do not apply it before its commencement.",
       "versions": [
+        {
+          "id": "original-2006",
+          "effectiveFrom": "2006-10-02",
+          "effectiveUntil": "2026-12-15",
+          "text": "21. (1) The Micro and Small Enterprise Facilitation Council shall consist of not less than three but not more than five members to be appointed from amongst the following categories, namely:—\n\n(i) Director of Industries, by whatever name called, or any other officer not below the rank of such Director, in the Department of the State Government having administrative control of the small scale industries or, as the case may be, micro, small and medium enterprises; and\n\n(ii) one or more office-bearers or representatives of associations of micro or small industry or enterprises in the State; and\n\n(iii) one or more representatives of banks and financial institutions lending to micro or small enterprises; or\n\n(iv) one or more persons having special knowledge in the field of industry, finance, law, trade or commerce.\n\n(2) The person appointed under clause (i) of sub-section (1) shall be the Chairperson of the Micro and Small Enterprises Facilitation Council.\n\n(3) The composition of the Micro and Small Enterprises Facilitation Council, the manner of filling vacancies of its members and the procedure to be followed in the discharge of their functions by the members shall be such as may be prescribed by the State Government.",
+          "source": {
+            "title": "Historical MSMED Act — supplied msmedact.pdf, compared with India Code (review pending)",
+            "url": "https://www.indiacode.nic.in/bitstream/123456789/5872/1/a2006-27.pdf",
+            "pinpoint": "Uploaded PDF page(s) 6, section 21; India Code printed page(s) 10–11 (comparison reference, not uploaded file URL)"
+          },
+          "amendmentIds": [],
+          "note": "Historical text transcribed from supplied unsigned reproduction with documented comparison corrections. Initial commencement per S.O. 1154(E). Full original Gazette comparison and subsequent amendment review pending."
+        },
         {
           "id": "amendment-2026",
           "effectiveFrom": "2026-12-15",
@@ -93,7 +229,29 @@
           "amendmentIds": [
             "amendment-2026-12"
           ],
-          "note": "Date appointed in supplied S.O. 5575(E), clause (b). Later notifications and historical completeness not certified."
+          "note": "Date appointed in supplied S.O. 5575(E), clause (b). Earlier version staged from supplied reproduction; later notifications and historical completeness not certified."
+        }
+      ]
+    },
+    {
+      "slug": "section-22",
+      "number": "22",
+      "kind": "section",
+      "heading": "Requirement to specify unpaid amount with interest in the annual statement of accounts",
+      "chapter": "chapter-v",
+      "commentary": "Reconcile audited financial statements with supplier ledgers and interest calculations. Disclosure is not automatically an acknowledgment for limitation in every dispute. Distinguish these duties from the separate section 22A reporting mechanism.",
+      "versions": [
+        {
+          "id": "original-2006",
+          "effectiveFrom": "2006-10-02",
+          "text": "22. Where any buyer is required to get his annual accounts audited under any law for the time being in force, such buyer shall furnish the following additional information in his annual statement of accounts, namely:—\n\n(i) the principal amount and the interest due thereon (to be shown separately) remaining unpaid to any supplier as at the end of each accounting year;\n\n(ii) the amount of interest paid by the buyer in terms of section 16, along with the amount of the payment made to the supplier beyond the appointed day during each accounting year;\n\n(iii) the amount of interest due and payable for the period of delay in making payment (which have been paid but beyond the appointed day during the year) but without adding the interest specified under this Act;\n\n(iv) the amount of interest accrued and remaining unpaid at the end of each accounting year; and\n\n(v) the amount of further interest remaining due and payable even in the succeeding years, until such date when the interest dues as above are actually paid to the small enterprise, for the purpose of disallowance as a deductible expenditure under section 23.",
+          "source": {
+            "title": "Historical MSMED Act — supplied msmedact.pdf, compared with India Code (review pending)",
+            "url": "https://www.indiacode.nic.in/bitstream/123456789/5872/1/a2006-27.pdf",
+            "pinpoint": "Uploaded PDF page(s) 6, section 22; India Code printed page(s) 11 (comparison reference, not uploaded file URL)"
+          },
+          "amendmentIds": [],
+          "note": "Historical text transcribed from supplied unsigned reproduction with documented comparison corrections. Initial commencement per S.O. 1154(E). Full original Gazette comparison and subsequent amendment review pending."
         }
       ]
     },
@@ -118,6 +276,50 @@
             "amendment-2026-13"
           ],
           "note": "Date appointed in supplied S.O. 5575(E), clause (a). Later notifications and historical completeness not certified."
+        }
+      ]
+    },
+    {
+      "slug": "section-23",
+      "number": "23",
+      "kind": "section",
+      "heading": "Interest not to be allowed as deduction from income",
+      "chapter": "chapter-v",
+      "commentary": "Distinguish the statutory treatment of delayed-payment interest from principal-expenditure deductibility under applicable tax law. Check the relevant tax period and current tax legislation.",
+      "versions": [
+        {
+          "id": "original-2006",
+          "effectiveFrom": "2006-10-02",
+          "text": "23. Notwithstanding anything contained in the Income-tax Act, 1961 (43 of 1961), the amount of interest payable or paid by any buyer, under or in accordance with the provisions of this Act, shall not, for the purposes of computation of income under the Income-tax Act, 1961, be allowed as deduction.",
+          "source": {
+            "title": "Historical MSMED Act — supplied msmedact.pdf, compared with India Code (review pending)",
+            "url": "https://www.indiacode.nic.in/bitstream/123456789/5872/1/a2006-27.pdf",
+            "pinpoint": "Uploaded PDF page(s) 6, section 23; India Code printed page(s) 11 (comparison reference, not uploaded file URL)"
+          },
+          "amendmentIds": [],
+          "note": "Historical text transcribed from supplied unsigned reproduction with documented comparison corrections. Initial commencement per S.O. 1154(E). Full original Gazette comparison and subsequent amendment review pending."
+        }
+      ]
+    },
+    {
+      "slug": "section-24",
+      "number": "24",
+      "kind": "section",
+      "heading": "Overriding effect",
+      "chapter": "chapter-v",
+      "commentary": "Identify the actual inconsistency and the affected statutory provision. A non obstante clause does not eliminate all independently applicable procedural requirements; verify binding case law and the relevant statutory versions.",
+      "versions": [
+        {
+          "id": "original-2006",
+          "effectiveFrom": "2006-10-02",
+          "text": "24. The provisions of sections 15 to 23 shall have effect notwithstanding anything inconsistent therewith contained in any other law for the time being in force.",
+          "source": {
+            "title": "Historical MSMED Act — supplied msmedact.pdf, compared with India Code (review pending)",
+            "url": "https://www.indiacode.nic.in/bitstream/123456789/5872/1/a2006-27.pdf",
+            "pinpoint": "Uploaded PDF page(s) 7, section 24; India Code printed page(s) 11 (comparison reference, not uploaded file URL)"
+          },
+          "amendmentIds": [],
+          "note": "Historical text transcribed from supplied unsigned reproduction with documented comparison corrections. Initial commencement per S.O. 1154(E). Full original Gazette comparison and subsequent amendment review pending."
         }
       ]
     }
