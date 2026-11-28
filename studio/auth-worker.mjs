@@ -54,8 +54,15 @@ export async function verifyMemberToken(token,issuer,clientId,nonce,keyset){
  }catch{return null}
 }
 // Dependency injection only for local tests; production default uses fixed configured issuers and real fetch.
-export function makeWorker({keyset=keys,fetchToken=fetch,clock=nowSeconds}={}){
+// Keep the native fetch receiver intact in workerd; Node mocks can hide detached-fetch errors.
+const nativeTokenFetch=(url,options)=>globalThis.fetch(url,options);
+// Only constant stage/outcome labels and HTTP status codes; never log request URLs or exceptions.
+const authDiagnostic=event=>console.info(JSON.stringify(event));
+export function makeWorker({keyset=keys,fetchToken=nativeTokenFetch,clock=nowSeconds,diagnostic=authDiagnostic}={}){
  return {async fetch(req,env){
+  let callbackStage=null;
+  const report=(outcome,status)=>{if(callbackStage)try{diagnostic({event:'rr.auth.callback',stage:callbackStage,outcome,...(Number.isInteger(status)?{status}:{})})}catch{/* Diagnostics must not change authentication. */}};
+  const mark=stage=>{callbackStage=stage;report('start')};
   try{
    if(!env.DB||!['staff','member'].includes(env.APP_MODE))return unavailable();
    const site=origin(env.APP_ORIGIN),u=new URL(req.url);
@@ -91,27 +98,38 @@ export function makeWorker({keyset=keys,fetchToken=fetch,clock=nowSeconds}={}){
     return redirect(url.href,[cookie(loginCookie,state,600)]);
    }
    if(u.pathname==='/callback'){
+    mark('validate_request');
     if(req.method!=='GET')return response('Method not allowed',405,{allow:'GET'});
     const state=one(u,'state'),code=one(u,'code');
     if(!safeToken(state)||state!==readCookie(req,loginCookie)||!code||code.length>4096||u.searchParams.has('error'))return page('Sign-in unsuccessful','<p>Start a new sign-in attempt.</p><a href="/login">Sign in again</a>',400);
     // Atomic consumption: the same state cannot complete a second time.
+    mark('consume_attempt');
     const attempt=await first(db,'DELETE FROM member_login_attempts WHERE state_hash=? AND expires_at>? RETURNING verifier,nonce',await hash(state),now);
     if(!attempt)return page('Sign-in expired','<p>Start a new sign-in attempt.</p><a href="/login">Sign in again</a>',400);
+    mark('exchange_code');
     const tokenResponse=await fetchToken(issuer+'oauth/token',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({grant_type:'authorization_code',client_id:client,client_secret:env.MEMBER_CLIENT_SECRET,code,code_verifier:attempt.verifier,redirect_uri:site+'/callback'}),redirect:'error',signal:AbortSignal.timeout(8000)});
-    if(!tokenResponse.ok)return unauthorized();
+    if(!tokenResponse.ok){report('rejected',tokenResponse.status);return unauthorized()}
+    report('success',tokenResponse.status);
+    mark('decode_response');
     const tokens=await tokenResponse.json();
+    mark('verify_id_token');
     const claims=await verifyMemberToken(tokens.id_token,issuer,client,attempt.nonce,keyset(issuer+'.well-known/jwks.json'));
-    if(!claims)return page('Verification required','<p>Sign in with a verified email address and try again.</p><a href="/login">Sign in again</a>',403);
+    if(!claims){report('rejected',403);return page('Verification required','<p>Sign in with a verified email address and try again.</p><a href="/login">Sign in again</a>',403)}
     // Never link identities by email, never write to staff_accounts.
+    mark('upsert_member');
     await run(db,'INSERT INTO member_profiles(id,issuer,subject,created_at) VALUES (?,?,?,?) ON CONFLICT(issuer,subject) DO NOTHING',crypto.randomUUID(),issuer,claims.sub,now);
+    mark('read_member');
     const member=await first(db,'SELECT id,status FROM member_profiles WHERE issuer=? AND subject=?',issuer,claims.sub);
     if(!member||member.status!=='active')return forbidden();
+    mark('create_session');
     const prior=readCookie(req,sessionCookie);
     if(prior)await run(db,'DELETE FROM member_sessions WHERE token_hash=?',await hash(prior));
     await run(db,'DELETE FROM member_sessions WHERE expires_at<=?',now);
     const session=random(),expiry=Math.min(now+3600,claims.exp);
     if(expiry<=now)return unauthorized();
     await run(db,'INSERT INTO member_sessions(token_hash,member_id,created_at,expires_at) VALUES (?,?,?,?)',await hash(session),member.id,now,expiry);
+    mark('complete');
+    report('success',303);
     return redirect('/',[cookie(loginCookie,'',0),cookie(sessionCookie,session,expiry-now)]);
    }
    const token=readCookie(req,sessionCookie);
@@ -134,7 +152,7 @@ export function makeWorker({keyset=keys,fetchToken=fetch,clock=nowSeconds}={}){
    if(!active)return page('Member account','<p>Sign in or register to use your personal Rule &amp; Ratio account.</p><nav><a class="button" href="/login">Sign in</a><a href="/register">Create account</a></nav><p><small>Membership never grants editorial access. Payments are not yet enabled.</small></p>');
    if(env.MEMBER_WORKSPACE_ENABLED==='true')return redirect('/account');
    return page('My account','<p>Signed in'+(member.display_name?' as '+esc(member.display_name):'')+'.</p><p>Member profile and subscription features are being prepared.</p><form method="post" action="/logout"><button type="submit">Sign out</button></form>');
-  }catch{return unavailable()}
+  }catch{report('exception',503);return unavailable()}
  }};
 }
 export default makeWorker();

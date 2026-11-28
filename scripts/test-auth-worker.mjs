@@ -25,15 +25,20 @@ test('member tokens cannot become staff; wrong nonce or unverified email fails',
  assert.equal(await verifyStaffToken(good,staffIssuer,aud,keys),null);
  assert.equal(await verifyMemberToken(await sign(memberIssuer,client,{nonce:'n',email_verified:false}),memberIssuer,client,'n',keys),null);
 });
-test('worker end-to-end synthetic signup, replay, session and staff separation',async()=>{
+test('worker end-to-end synthetic signup, replay, session and staff separation',async t=>{
  const sql=new DatabaseSync(':memory:');
  for(const name of ['0001_identity_and_editorial.sql','0002_authentication.sql'])sql.exec(readFileSync(new URL('../studio/migrations/'+name,import.meta.url),'utf8'));
  const DB={prepare:query=>({bind:(...args)=>({first:async()=>sql.prepare(query).get(...args)??null,run:async()=>sql.prepare(query).run(...args)})})};
- let nonce,expectedVerifier;
- const worker=makeWorker({keyset:()=>keys,fetchToken:async(url,options)=>{
+ let nonce,expectedVerifier,failExchange=false;
+ const events=[];
+ // Model the native workerd receiver constraint instead of injecting a detached Node fetch.
+ t.mock.method(globalThis,'fetch',async function(url,options){
+  assert.equal(this,globalThis);
+  if(failExchange)throw Error('private-error-marker: synthetic-code');
   assert.equal(url,memberIssuer+'oauth/token');const body=JSON.parse(options.body);assert.equal(body.code,'synthetic-code');assert.equal(body.code_verifier,expectedVerifier);
   return Response.json({id_token:await sign(memberIssuer,client,{nonce,email_verified:true})});
- }});
+ });
+ const worker=makeWorker({keyset:()=>keys,diagnostic:event=>events.push(event)});
  const m={DB,APP_MODE:'member',APP_ORIGIN:memberSite,MEMBER_ISSUER:memberIssuer,MEMBER_CLIENT_ID:client,MEMBER_CLIENT_SECRET:'test-only'};
  const s={DB,APP_MODE:'staff',APP_ORIGIN:staffSite,ACCESS_ISSUER:staffIssuer,ACCESS_AUDIENCE:aud};
  const call=(url,env,headers={},method='GET')=>worker.fetch(new Request(url,{headers,method}),env);
@@ -63,5 +68,19 @@ test('worker end-to-end synthetic signup, replay, session and staff separation',
   assert.equal((await call(memberSite+'/logout',m,{cookie:session,origin:'https://attacker.invalid'},'POST')).status,403);
   assert.equal((await call(memberSite+'/logout',m,{cookie:session,origin:memberSite},'POST')).status,303);
   assert.equal((await call(memberSite+'/api/session',m,{cookie:session})).status,401);
+  assert.ok(events.some(e=>e.stage==='complete'&&e.outcome==='success'));
+  // A transport failure remains a generic 503, consumes the attempt and logs no secrets.
+  const retry=await call(memberSite+'/login',m);
+  const retryAuth=new URL(retry.headers.get('location'));
+  const retryCookie=retry.headers.getSetCookie()[0].split(';')[0];
+  const retryCallback=memberSite+'/callback?state='+retryAuth.searchParams.get('state')+'&code=synthetic-code';
+  failExchange=true;
+  const failed=await call(retryCallback,m,{cookie:retryCookie});
+  assert.equal(failed.status,503);
+  assert.deepEqual(events.at(-1),{event:'rr.auth.callback',stage:'exchange_code',outcome:'exception',status:503});
+  assert.doesNotMatch(JSON.stringify(events),/private-error-marker|synthetic-code|test-only|test-sub/);
+  assert.doesNotMatch(await failed.text(),/private-error-marker|synthetic-code/);
+  assert.equal((await call(retryCallback,m,{cookie:retryCookie})).status,400);
+  assert.equal(sql.prepare('SELECT COUNT(*) n FROM member_sessions').get().n,0);
  }finally{sql.close()}
 });
