@@ -3,6 +3,7 @@ import {canStaff,canMember} from './permissions.mjs';
 import {editorialRoute} from './editorial-workspace.mjs';
 import {memberRoute} from './member-workspace.mjs';
 import {billingWebhook} from './billing-sandbox.mjs';
+import {formHeaders} from './form-security.mjs';
 
 const loginCookie='__Host-rr-login',sessionCookie='__Host-rr-member';
 const nowSeconds=()=>Math.floor(Date.now()/1000);
@@ -24,7 +25,7 @@ function response(body,status=200,headers={}){
  for(const [k,v] of Object.entries(headers))h.set(k,v);
  return new Response(body,{status,headers:h});
 }
-const page=(title,body,status=200)=>response('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(title)+' | Rule &amp; Ratio</title><style>body{font:16px/1.6 system-ui,sans-serif;background:#f5f6f4;color:#16283b;margin:0}main{max-width:640px;margin:6vh auto;padding:28px;background:white;border-top:3px solid #ac8b4c}h1,h2{font-family:Georgia,serif}header{letter-spacing:.14em;color:#08223d;font-weight:700;border-bottom:1px solid #ddd;padding-bottom:14px}a,button{color:#173d60}a.button,button{display:inline-block;border:1px solid #173d60;background:#173d60;color:white;padding:10px 16px;text-decoration:none;font:inherit;cursor:pointer}nav{display:flex;gap:12px;flex-wrap:wrap}small{color:#536575}</style></head><body><main><header>RULE &amp; RATIO</header><h1>'+esc(title)+'</h1>'+body+'</main></body></html>',status);
+const page=(title,body,status=200,headers={})=>response('<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>'+esc(title)+' | Rule &amp; Ratio</title><style>body{font:16px/1.6 system-ui,sans-serif;background:#f5f6f4;color:#16283b;margin:0}main{max-width:640px;margin:6vh auto;padding:28px;background:white;border-top:3px solid #ac8b4c}h1,h2{font-family:Georgia,serif}header{letter-spacing:.14em;color:#08223d;font-weight:700;border-bottom:1px solid #ddd;padding-bottom:14px}a,button{color:#173d60}a.button,button{display:inline-block;border:1px solid #173d60;background:#173d60;color:white;padding:10px 16px;text-decoration:none;font:inherit;cursor:pointer}nav{display:flex;gap:12px;flex-wrap:wrap}small{color:#536575}</style></head><body><main><header>RULE &amp; RATIO</header><h1>'+esc(title)+'</h1>'+body+'</main></body></html>',status,headers);
 const redirect=(to,cookies=[])=>{const r=response(null,303,{location:to});for(const c of cookies)r.headers.append('set-cookie',c);return r};
 const one=(u,k)=>{const v=u.searchParams.getAll(k);return v.length===1?v[0]:null};
 const first=(db,sql,...args)=>db.prepare(sql).bind(...args).first();
@@ -153,7 +154,7 @@ export function makeWorker({keyset=keys,fetchToken=nativeTokenFetch,clock=nowSec
    if(u.pathname!=='/')return page('Not found','<p>No such member route.</p>',404);
    if(!active)return page('Member account','<p>Sign in or register to use your personal Rule &amp; Ratio account.</p><nav><a class="button" href="/login">Sign in</a><a href="/register">Create account</a></nav><p><small>Membership never grants editorial access. Payments are not yet enabled.</small></p>');
    if(env.MEMBER_WORKSPACE_ENABLED==='true')return redirect('/account');
-   return page('My account','<p>Signed in'+(member.display_name?' as '+esc(member.display_name):'')+'.</p><p>Member profile and subscription features are being prepared.</p><form method="post" action="/logout"><button type="submit">Sign out</button></form>');
+   return page('My account','<p>Signed in'+(member.display_name?' as '+esc(member.display_name):'')+'.</p><p>Member profile and subscription features are being prepared.</p><form method="post" action="/logout"><button type="submit">Sign out</button></form>',200,formHeaders(issuerOrigin));
   }catch{report('exception',503);return unavailable()}
  }};
 }

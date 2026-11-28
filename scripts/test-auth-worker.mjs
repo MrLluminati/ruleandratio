@@ -68,7 +68,14 @@ test('worker end-to-end synthetic signup, replay, session and staff separation',
   assert.equal((await call(staffSite+'/api/session',s,{'cf-access-jwt-assertion':access})).status,200);
   sql.exec("UPDATE staff_accounts SET status='disabled'");
   assert.equal((await call(staffSite+'/',s,{'cf-access-jwt-assertion':access})).status,403);
+  const signedPage=await call(memberSite+'/',m,{cookie:session});
+  assert.equal(signedPage.headers.get('referrer-policy'),'same-origin');
+  assert.match(signedPage.headers.get('content-security-policy'),/form-action 'self' https:\/\/test\.auth0\.com\/oidc\/logout;/);
+  assert.equal(complete.headers.get('referrer-policy'),'no-referrer');
+  assert.equal((await call(memberSite+'/logout',m,{cookie:session,origin:'null'},'POST')).status,403);
+  assert.equal((await call(memberSite+'/logout',m,{cookie:session},'POST')).status,403);
   assert.equal((await call(memberSite+'/logout',m,{cookie:session,origin:'https://attacker.invalid'},'POST')).status,403);
+  assert.equal((await call(memberSite+'/logout',m,{cookie:session,origin:memberSite,'sec-fetch-site':'cross-site'},'POST')).status,403);
   assert.equal((await call(memberSite+'/logout',m,{cookie:session,origin:memberSite},'POST')).status,303);
   assert.equal((await call(memberSite+'/api/session',m,{cookie:session})).status,401);
   assert.ok(events.some(e=>e.stage==='complete'&&e.outcome==='success'));
