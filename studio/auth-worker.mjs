@@ -107,7 +107,9 @@ export function makeWorker({keyset=keys,fetchToken=nativeTokenFetch,clock=nowSec
     const attempt=await first(db,'DELETE FROM member_login_attempts WHERE state_hash=? AND expires_at>? RETURNING verifier,nonce',await hash(state),now);
     if(!attempt)return page('Sign-in expired','<p>Start a new sign-in attempt.</p><a href="/login">Sign in again</a>',400);
     mark('exchange_code');
-    const tokenResponse=await fetchToken(issuer+'oauth/token',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({grant_type:'authorization_code',client_id:client,client_secret:env.MEMBER_CLIENT_SECRET,code,code_verifier:attempt.verifier,redirect_uri:site+'/callback'}),redirect:'error',signal:AbortSignal.timeout(8000)});
+    const tokenResponse=await fetchToken(issuer+'oauth/token',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify({grant_type:'authorization_code',client_id:client,client_secret:env.MEMBER_CLIENT_SECRET,code,code_verifier:attempt.verifier,redirect_uri:site+'/callback'}),redirect:'manual',signal:AbortSignal.timeout(8000)});
+    // Workers supports manual redirects, not redirect:error. Never forward OAuth credentials.
+    if(tokenResponse.status>=300&&tokenResponse.status<400){report('redirect_rejected',tokenResponse.status);return unauthorized()}
     if(!tokenResponse.ok){report('rejected',tokenResponse.status);return unauthorized()}
     report('success',tokenResponse.status);
     mark('decode_response');

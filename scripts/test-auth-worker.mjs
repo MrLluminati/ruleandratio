@@ -29,11 +29,14 @@ test('worker end-to-end synthetic signup, replay, session and staff separation',
  const sql=new DatabaseSync(':memory:');
  for(const name of ['0001_identity_and_editorial.sql','0002_authentication.sql'])sql.exec(readFileSync(new URL('../studio/migrations/'+name,import.meta.url),'utf8'));
  const DB={prepare:query=>({bind:(...args)=>({first:async()=>sql.prepare(query).get(...args)??null,run:async()=>sql.prepare(query).run(...args)})})};
- let nonce,expectedVerifier,failExchange=false;
+ let nonce,expectedVerifier,failExchange=false,redirectExchange=false,exchangeCalls=0;
  const events=[];
  // Model the native workerd receiver constraint instead of injecting a detached Node fetch.
  t.mock.method(globalThis,'fetch',async function(url,options){
   assert.equal(this,globalThis);
+  assert.equal(options.redirect,'manual','workerd does not support redirect:error');
+  exchangeCalls++;
+  if(redirectExchange)return new Response(null,{status:302,headers:{location:'https://unexpected.example.invalid/'}});
   if(failExchange)throw Error('private-error-marker: synthetic-code');
   assert.equal(url,memberIssuer+'oauth/token');const body=JSON.parse(options.body);assert.equal(body.code,'synthetic-code');assert.equal(body.code_verifier,expectedVerifier);
   return Response.json({id_token:await sign(memberIssuer,client,{nonce,email_verified:true})});
@@ -81,6 +84,19 @@ test('worker end-to-end synthetic signup, replay, session and staff separation',
   assert.doesNotMatch(JSON.stringify(events),/private-error-marker|synthetic-code|test-only|test-sub/);
   assert.doesNotMatch(await failed.text(),/private-error-marker|synthetic-code/);
   assert.equal((await call(retryCallback,m,{cookie:retryCookie})).status,400);
+  assert.equal(sql.prepare('SELECT COUNT(*) n FROM member_sessions').get().n,0);
+  // A redirect cannot forward the client secret, and its state cannot be replayed.
+  failExchange=false;redirectExchange=true;
+  const redirectLogin=await call(memberSite+'/login',m);
+  const redirectAuth=new URL(redirectLogin.headers.get('location'));
+  const redirectCookie=redirectLogin.headers.getSetCookie()[0].split(';')[0];
+  const redirectCallback=memberSite+'/callback?state='+redirectAuth.searchParams.get('state')+'&code=synthetic-code';
+  const before=exchangeCalls;
+  assert.equal((await call(redirectCallback,m,{cookie:redirectCookie})).status,401);
+  assert.deepEqual(events.at(-1),{event:'rr.auth.callback',stage:'exchange_code',outcome:'redirect_rejected',status:302});
+  assert.equal(exchangeCalls,before+1);
+  assert.equal((await call(redirectCallback,m,{cookie:redirectCookie})).status,400);
+  assert.equal(exchangeCalls,before+1);
   assert.equal(sql.prepare('SELECT COUNT(*) n FROM member_sessions').get().n,0);
  }finally{sql.close()}
 });
